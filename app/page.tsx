@@ -8,7 +8,6 @@ export default function Page() {
     <ChapterProvider>
       <main className="relative w-full">
         <ScrollExperience />
-        <DebugInfo />
       </main>
     </ChapterProvider>
   );
