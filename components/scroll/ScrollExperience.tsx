@@ -10,22 +10,18 @@ import HTMLChapters from "./HTMLChapters";
 export default function ScrollExperience() {
   return (
     <Canvas
-      style={{ 
+      style={{
         position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        zIndex: 0
+        inset: 0,
+        zIndex: 0,
       }}
       camera={{ position: [0, 0, 10], fov: 30 }}
       dpr={[1, 2]}
     >
       <ScrollControls pages={TOTAL_PAGES} damping={0.2}>
         <ChapterRouter />
-        
         <Scene />
-        
+
         <Scroll html>
           <HTMLChapters />
         </Scroll>
