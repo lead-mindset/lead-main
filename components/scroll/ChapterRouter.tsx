@@ -3,13 +3,13 @@
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useScroll } from "@react-three/drei";
-import { useChapter } from "@/context/ChapterContext";
 import { chapterRanges } from "@/config/chapters";
 import type { ChapterId } from "@/config/chapters";
+import { useChapterStore } from "@/store/useChapterStore";
 
 export default function ChapterRouter() {
   const scroll = useScroll();
-  const { setActiveChapter } = useChapter();
+  const setActiveChapter = useChapterStore((s) => s.setActiveChapter);
   const lastChapterId = useRef<ChapterId | null>(null);
 
   useFrame(() => {
