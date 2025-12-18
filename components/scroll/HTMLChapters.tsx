@@ -1,9 +1,9 @@
 "use client";
 
-import { useChapter } from "@/context/ChapterContext";
+import { useChapterStore } from "@/store/useChapterStore";
 
 export default function HTMLChapters() {
-  const { activeChapter } = useChapter();
+  const activeChapter = useChapterStore((s) => s.activeChapter);
 
   return (
     <div className="w-screen">
