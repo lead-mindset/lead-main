@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Mesh } from "three";
-import { useChapter } from "@/context/ChapterContext";
+import { useChapterStore } from "@/store/useChapterStore";
 import type { ChapterRange } from "@/config/chapters";
 
 interface ChapterSceneProps {
@@ -13,15 +13,17 @@ interface ChapterSceneProps {
 
 export default function ChapterScene({ chapter, position }: ChapterSceneProps) {
   const meshRef = useRef<Mesh>(null);
-  const { activeChapter } = useChapter();
+
+  const activeChapter = useChapterStore((s) => s.activeChapter);
   const isActive = activeChapter === chapter.id;
 
   useFrame((state) => {
     if (!meshRef.current) return;
-    
+
     if (isActive) {
       meshRef.current.rotation.y += 0.01;
-      meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime) * 0.1;
+      meshRef.current.rotation.x =
+        Math.sin(state.clock.elapsedTime) * 0.1;
     }
   });
 
@@ -63,7 +65,7 @@ export default function ChapterScene({ chapter, position }: ChapterSceneProps) {
     <group position={position}>
       <mesh ref={meshRef} scale={isActive ? 1.2 : 0.8}>
         {getChapterGeometry()}
-        <meshStandardMaterial 
+        <meshStandardMaterial
           color={getChapterColor()}
           metalness={0.3}
           roughness={0.4}
@@ -71,7 +73,7 @@ export default function ChapterScene({ chapter, position }: ChapterSceneProps) {
           opacity={isActive ? 0.9 : 0.6}
         />
       </mesh>
-      
+
       {chapter.id === "impact" && (
         <group>
           {[...Array(8)].map((_, i) => (
@@ -80,7 +82,7 @@ export default function ChapterScene({ chapter, position }: ChapterSceneProps) {
               position={[
                 Math.cos(i * Math.PI * 0.25) * 2,
                 Math.sin(i * Math.PI * 0.25) * 2,
-                0
+                0,
               ]}
               scale={0.2}
             >
@@ -90,7 +92,7 @@ export default function ChapterScene({ chapter, position }: ChapterSceneProps) {
           ))}
         </group>
       )}
-      
+
       {chapter.id === "future" && (
         <group>
           {[...Array(5)].map((_, i) => (
@@ -101,9 +103,9 @@ export default function ChapterScene({ chapter, position }: ChapterSceneProps) {
               scale={0.3}
             >
               <torusGeometry args={[0.5, 0.2, 8, 16]} />
-              <meshStandardMaterial 
-                color="#06b6d4" 
-                transparent 
+              <meshStandardMaterial
+                color="#06b6d4"
+                transparent
                 opacity={0.7 - i * 0.1}
               />
             </mesh>
