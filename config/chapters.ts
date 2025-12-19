@@ -1,9 +1,5 @@
 export const chapters = [
-  { id: "intro", type: "vertical", pages: 2 },
-  { id: "impact", type: "horizontal", pages: 3 },
-  { id: "programs", type: "horizontal", pages: 2 },
-  { id: "team", type: "vertical", pages: 1 },
-  { id: "future", type: "horizontal", pages: 2 },
+  { id: "intro", type: "vertical", pages: 1 },
 ] as const;
 
 export type ChapterId = typeof chapters[number]["id"];
