@@ -3,17 +3,13 @@ import { useScroll } from "@react-three/drei"
 export const Overlay = () => {
   const scroll = useScroll()
 
-  // Scroll math
   const holdStart = 0.5      // 2 / 4
   const holdLength = 0.25    // 1 page
 
-  // 0 → 1 only during section 2
   const hold = scroll.range(holdStart, holdLength)
 
-  // Only visible during that range
   const isVisible = scroll.visible(holdStart, holdLength)
 
-  // Counter-scroll exactly 100vh
   const translateY = -hold * window.innerHeight
 
   return (
