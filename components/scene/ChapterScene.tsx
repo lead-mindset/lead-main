@@ -47,7 +47,7 @@ export default function ChapterScene({ chapter, position }: ChapterSceneProps) {
   const getChapterColor = () => {
     switch (chapter.id) {
       case "intro":
-        return "#3b82f6";
+        return "#f59e0b";
       case "impact":
         return "#10b981";
       case "programs":
@@ -63,6 +63,7 @@ export default function ChapterScene({ chapter, position }: ChapterSceneProps) {
 
   return (
     <group position={position}>
+      
       <mesh ref={meshRef} scale={isActive ? 1.2 : 0.8}>
         {getChapterGeometry()}
         <meshStandardMaterial
