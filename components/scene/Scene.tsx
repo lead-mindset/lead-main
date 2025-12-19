@@ -17,7 +17,7 @@ export default function Scene() {
 
     chapterRanges.forEach((chapter) => {
       const t = scroll.range(chapter.from, chapter.length);
-      
+
       if (t > 0 && t <= 1) {
         if (chapter.type === "horizontal") {
           groupRef.current!.position.x = -t * viewport.width * chapter.pages;
@@ -34,18 +34,13 @@ export default function Scene() {
     <group ref={groupRef}>
       <ambientLight intensity={0.4} />
       <directionalLight position={[10, 10, 5]} intensity={1} />
-      
-      {chapterRanges.map((chapter, index) => (
-        <ChapterScene 
-          key={chapter.id}
-          chapter={chapter}
-          position={[
-            chapter.type === "horizontal" ? index * viewport.width : 0,
-            chapter.type === "vertical" ? -index * viewport.height : 0,
-            0
-          ]}
-        />
-      ))}
+
+      <mesh position={[0, 0, 0]}>
+        <sphereGeometry args={[1, 32, 32]} />
+        <meshStandardMaterial color="hotpink" />
+      </mesh>
+
+
     </group>
   );
 }
