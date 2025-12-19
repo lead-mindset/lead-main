@@ -6,7 +6,7 @@ import { ChapterProvider } from "@/context/ChapterContext";
 import ScrollExperience from "@/components/scroll/ScrollExperience";
 export default function Page() {
   return (
-      <main className="relative w-full">
+      <main className="relative h-screen w-full">
         <ScrollExperience />
       </main>
   );
