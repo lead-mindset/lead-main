@@ -17,6 +17,7 @@
     "@types/three": "^0.182.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "gsap": "^3.14.2",
     "motion": "^12.23.26",
     "next": "14.2.30",
     "radix-ui": "^1.4.3",
