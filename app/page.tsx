@@ -1,143 +1,111 @@
-'use client';
+"use client";
 
 import React, { useRef } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { Stars } from "@react-three/drei";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import { useGSAP } from "@gsap/react";
 import ActionLines from "../components/scroll/action-lines";
-import { Stars } from "@react-three/drei";
-import { useEffect } from "react";
-import MotionPathPlugin from "gsap/MotionPathPlugin";
+import PinnedLogo from "@/components/scroll/pinned-logo";
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
 
-export default function App() {
-  const htmlRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const svgRef = useRef<HTMLDivElement>(null);
-
-  const boxRef = useRef<HTMLDivElement>(null);
-
-
-
-useEffect(() => {
-  if (!boxRef.current) return;
-
-  requestAnimationFrame(() => {
-const markers = Array.from(document.querySelectorAll(".marker")) as HTMLElement[];
-const points = markers.map(el => {
-  const rect = el.getBoundingClientRect();
-  return {
-    x: rect.left + rect.width / 2,
-    y: rect.top + window.scrollY + rect.height / 2
-  };
-});
-
-    gsap.to(boxRef.current, {
-      scrollTrigger: {
-        trigger: document.body,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: true,
-        markers: true
-      },
-      motionPath: {
-        path: points,
-        curviness: 1.5
-      },
-      ease: "none"
-    });
-  });
-}, []);
-
+function CanvasReveal({ videoRef }: { videoRef: React.RefObject<HTMLVideoElement> }) {
+  const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    if (!htmlRef.current) return;
-
-    gsap.timeline({
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: "#scroll-section",
         start: "top top",
         end: "bottom top",
         scrub: true,
       },
-    }).to(htmlRef.current, { y: -900, opacity: 0 });
-  });
-
-
-  const canvasRef = useRef<HTMLDivElement>(null);
-
-
-  useEffect(() => {
-    if (!svgRef.current) return;
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: svgRef.current,
-        start: "top top",
-        end: "bottom+=100% top",
-        scrub: true,
-        pin: true,
-      },
     });
 
-    tl.fromTo(svgRef.current,
-      { scale: 0, transformOrigin: "center center" },
-      { scale: 1, ease: "power1.out" }
-    );
-
-    return () => tl.scrollTrigger?.kill();
-  }, []);
-
-
-
-  useGSAP(() => {
-    if (!canvasRef.current || !videoRef.current) return;
-
-    gsap.fromTo(
-      canvasRef.current,
-      { clipPath: 'circle(0% at 50% 50%)' },
-      {
-        clipPath: 'circle(150% at 50% 50%)',
-        scrollTrigger: {
-          trigger: '#scroll-section',
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true,
-          onUpdate: (self) => {
-            if (self.progress < 1) {
-              videoRef.current!.style.display = 'block';
-            } else {
-              videoRef.current!.style.display = 'none';
-            }
-          },
-          onLeaveBack: () => {
-            videoRef.current!.style.display = 'block';
-          }
-        },
-        ease: 'power1.inOut',
-      }
-    );
-  });
+    tl.fromTo(
+      container.current,
+      { clipPath: "circle(0% at 50% 50%)" },
+      { clipPath: "circle(150% at 50% 50%)", ease: "none" }
+    )
+      .to(videoRef.current, { autoAlpha: 0 }, "<80%");
+  }, { scope: container });
 
   return (
-    <div id='initial' className="relative">
-      <div ref={canvasRef}
-        className="fixed inset-0 w-full h-screen z-0 pointer-events-none overflow-hidden"
-        style={{ clipPath: 'circle(0% at 50% 50%)' }}
-      >
-        <Canvas
-          camera={{ position: [0, 0, 5] }} gl={{ antialias: true, alpha: false }}
-        >
-          <color attach="background" args={["#000D5A"]} />
-          <ambientLight intensity={1.2} />
-          <directionalLight intensity={0.1} />
-          <ActionLines />
-          <Stars />
-        </Canvas>
-      </div>
+    <div
+      ref={container}
+      className="fixed inset-0 w-full h-screen z-0 pointer-events-none overflow-hidden"
+      style={{ clipPath: "circle(0% at 50% 50%)" }}
+    >
+      <Canvas camera={{ position: [0, 0, 5] }}>
+        <color attach="background" args={["#000D5A"]} />
+        <ambientLight intensity={1.2} />
+        <ActionLines />
+        <Stars />
+      </Canvas>
+    </div>
+  );
+}
+
+
+function MotionPathBox() {
+  const container = useRef<HTMLDivElement>(null);
+  const boxRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const markers = gsap.utils.toArray<HTMLElement>(".marker");
+
+    const points = markers.map((el) => {
+      const r = el.getBoundingClientRect();
+      return {
+        x: r.left + r.width / 2,
+        y: r.top + window.scrollY + r.height / 2,
+      };
+    });
+
+    gsap.to(boxRef.current, {
+      motionPath: { path: points, curviness: 1.5 },
+      ease: "none",
+      scrollTrigger: {
+        trigger: document.body,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: true,
+        invalidateOnRefresh: true,
+      },
+    });
+  }, { scope: container });
+
+  return (
+    <div ref={container}>
+      <div
+        ref={boxRef}
+        className="fixed w-24 h-24 bg-blue-500 rounded-lg -translate-x-1/2 -translate-y-1/2"
+      />
+    </div>
+  );
+}
+
+
+function Markers() {
+  return (
+    <div className="flex flex-col items-center space-y-96">
+      <div className="w-24 h-24 marker bg-gray-700 rounded-lg" />
+      <div className="w-24 h-24 marker bg-gray-700 rounded-lg" />
+      <div className="w-24 h-24 marker bg-gray-700 rounded-lg" />
+    </div>
+  );
+}
+
+
+export default function Page() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  return (
+    <div className="relative">
+      <CanvasReveal videoRef={videoRef} />
 
       <video
         ref={videoRef}
@@ -145,40 +113,17 @@ const points = markers.map(el => {
         autoPlay
         muted
         loop
-        className="fixed inset-0 w-full h-full object-cover object-top z-[-1]"
-      ></video>
-
-      <section
-        id="scroll-section"
-        className="relative w-full h-[150vh]"
+        className="fixed inset-0 w-full h-full object-cover z-[-1]"
       />
 
-      <div
-        ref={svgRef}
-        className="absolute inset-0 w-full h-screen flex items-center justify-center z-20"
-        style={{ scale: 0 }}
-      >
-        <img src="/leadgrouplogo.svg" className="w-96 h-96" />
-      </div>
+      <section id="scroll-section" className="relative w-full h-[150vh]" />
 
+      <PinnedLogo />
 
       <div className="h-[20vh] flex justify-center items-center">scroll down</div>
 
-
-
-<div className="flex flex-col items-center space-y-96">
-  <div className="w-24 h-24 marker bg-gray-700 rounded-lg" />
-  <div className="w-24 h-24 marker bg-gray-700 rounded-lg" />
-  <div className="w-24 h-24 marker bg-gray-700 rounded-lg" />
-</div>
-
-
-<div
-  ref={boxRef}
-  className="fixed w-24 h-24 bg-blue-500 rounded-lg -translate-x-1/2 -translate-y-1/2"
-/>
-
-
+      <Markers />
+      <MotionPathBox />
 
       <div className="h-[600vh]" />
     </div>
