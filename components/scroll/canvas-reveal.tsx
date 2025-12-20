@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
 import gsap from "gsap";
+import PlanetModel from "../scene/planet";
 
 export default function CanvasReveal({ videoRef }: { videoRef: React.RefObject<HTMLVideoElement> }) {
   const container = useRef<HTMLDivElement>(null);
@@ -37,6 +38,7 @@ export default function CanvasReveal({ videoRef }: { videoRef: React.RefObject<H
         <ambientLight intensity={1.2} />
         <ActionLines />
         <Stars />
+        <PlanetModel/>
       </Canvas>
     </div>
   );
