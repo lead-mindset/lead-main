@@ -54,7 +54,7 @@ export default function PlanetModel({ scale = 3 }: PlanetProps) {
       <primitive object={gltf.scene} />
 
       <mesh position={[-0.2, 0.6, 0.85]}>
-        <sphereGeometry args={[0.05, 16, 16]} />
+        <sphereGeometry args={[0.02, 16, 16]} />
         <meshStandardMaterial color="red" />
         <Text position={[0, 0.05, 0]} fontSize={0.1} color="white" anchorX="center" anchorY="bottom">
           USA
@@ -62,7 +62,7 @@ export default function PlanetModel({ scale = 3 }: PlanetProps) {
       </mesh>
 
       <mesh position={[0.3, -0.1, 1]}>
-        <sphereGeometry args={[0.05, 16, 16]} />
+        <sphereGeometry args={[0.02, 16, 16]} />
         <meshStandardMaterial color="blue" />
         <Text position={[0, 0.05, 0]} fontSize={0.1} color="white" anchorX="center" anchorY="bottom">
           Peru
