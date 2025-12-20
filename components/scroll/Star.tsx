@@ -22,11 +22,9 @@ export function ShootingStar({ startPage = 2 }) {
     const ctx = gsap.context(() => {
       tl.current = gsap.timeline({ paused: true });
 
-      // initial position: top center
       tl.current.set(sphereRef.current.position, { y: 5, z: 0, x: 0 });
       tl.current.set(sphereRef.current.scale, { x: 0.3, y: 0.3, z: 0.3 });
 
-      // move down as you scroll further
       tl.current.to(sphereRef.current.position, {
         y: -5,
         duration: 1,
