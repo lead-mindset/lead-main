@@ -12,7 +12,7 @@ export default function ActionLines() {
 
   const stars = useMemo(() => {
     const arr = [];
-    for (let i = 0; i < 150; i++) {
+    for (let i = 0; i < 100; i++) {
       arr.push({
         position: [
           (Math.random() - 0.5) * 50,
@@ -27,7 +27,7 @@ export default function ActionLines() {
 
   const lines = useMemo(() => {
     const arr = [];
-    for (let i = 0; i < 80; i++) {
+    for (let i = 0; i < 40; i++) {
       arr.push({
         position: [
           (Math.random() - 0.5) * 20,
@@ -41,10 +41,12 @@ export default function ActionLines() {
     return arr;
   }, []);
 
- useGSAP(() => {
+useGSAP(() => {
   if (!starsRef.current || !linesRef.current) return;
 
-  const tl = gsap.timeline({
+  gsap.to(starsRef.current.position, {
+    z: 120,
+    ease: "none",
     scrollTrigger: {
       trigger: "#scroll-section",
       start: "top top",
@@ -54,14 +56,65 @@ export default function ActionLines() {
     },
   });
 
-tl.to(starsRef.current.position, { z: 120, ease: "power1.out" });
-tl.fromTo(
-  linesRef.current.scale,
-  { x: 0, y: 0, z: 0 },
-  { x: 1, y: 1, z: 1, ease: "power1.out" }
-);
-tl.to(linesRef.current.position, { z: 200, ease: "power2.in" });
-tl.to(linesRef.current.scale, { x: 0, y: 0, z: 0, ease: "power1.in" });
+  linesRef.current.children.forEach((line, i) => {
+    gsap.fromTo(
+      line.scale,
+      { x: 0, y: 0, z: line.scale.z },
+      {
+        x: 0.08,
+        y: 0.08,
+        z: line.scale.z,
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#scroll-section",
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      }
+    );
+
+    gsap.to(line.position, {
+      z: line.position.z + 200,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#scroll-section",
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+  });
+
+linesRef.current.children.forEach((line) => {
+  gsap.to(line.scale, {
+    x: 0,
+    y: 0,
+    z: line.scale.z,
+    ease: "power1.inOut",
+    scrollTrigger: {
+      trigger: "#scroll-section",
+      start: "bottom bottom",
+      end: "bottom bottom+=1",
+      scrub: false,
+    },
+  });
+});
+
+starsRef.current.children.forEach((star) => {
+  gsap.to(star.scale, {
+    x: 0,
+    y: 0,
+    z: 0,
+    ease: "power1.inOut",
+    scrollTrigger: {
+      trigger: "#scroll-section",
+      start: "bottom bottom",
+      end: "bottom bottom+=1",
+      scrub: false,
+    },
+  });
+});
 
 });
 
@@ -84,21 +137,20 @@ tl.to(linesRef.current.scale, { x: 0, y: 0, z: 0, ease: "power1.in" });
       <group ref={starsRef}>
         {stars.map((s, i) => (
           <mesh key={i} position={s.position} scale={[s.scale, s.scale, s.scale]}>
-            <shapeGeometry args={[createStarShape(1, 0.5)]} />
+            <shapeGeometry args={[createStarShape(1.5, 0.5)]} />
             <meshBasicMaterial color="white" />
           </mesh>
         ))}
       </group>
 
-      <group ref={linesRef} scale={[0, 0, 0]}>
+      <group ref={linesRef} >
         {lines.map((l, i) => (
-          <mesh key={i} position={l.position} scale={[0.08, 0.08, l.length]}>
-            <boxGeometry args={[1, 1, 1]} />
+          <mesh key={i} position={l.position} scale={[1, 1, l.length]}>
+            <boxGeometry args={[1.5, 1.5, 1.5]} />
             <meshBasicMaterial color={l.color} />
           </mesh>
         ))}
       </group>
-
     </>
   );
 }
