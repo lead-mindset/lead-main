@@ -14,6 +14,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
   const htmlRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useGSAP(() => {
     if (!htmlRef.current) return;
@@ -33,24 +34,36 @@ export default function App() {
   const canvasRef = useRef<HTMLDivElement>(null);
 
 useGSAP(() => {
-    if (!canvasRef.current) return;
+  if (!canvasRef.current || !videoRef.current) return;
 
-    gsap.fromTo(
-      canvasRef.current,
-      { clipPath: 'circle(0% at 50% 50%)' },
-      {
-        clipPath: 'circle(150% at 50% 50%)',
-        scrollTrigger: {
-          trigger: '#scroll-section',
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true,
-          markers: true,
+  gsap.fromTo(
+    canvasRef.current,
+    { clipPath: 'circle(0% at 50% 50%)' }, // start tiny circle
+    {
+      clipPath: 'circle(150% at 50% 50%)', // expand to cover screen
+      scrollTrigger: {
+        trigger: '#scroll-section',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+        markers: true,
+        onUpdate: (self) => {
+          // Show video if circle not fully expanded, hide if fully expanded
+          if (self.progress < 1) {
+            videoRef.current!.style.display = 'block';
+          } else {
+            videoRef.current!.style.display = 'none';
+          }
         },
-        ease: 'power1.inOut',
-      }
-    );
-  });
+        onLeaveBack: () => {
+          // If user scrolls back up past start, ensure video is visible
+          videoRef.current!.style.display = 'block';
+        }
+      },
+      ease: 'power1.inOut',
+    }
+  );
+});
 
   return (
     <div id='initial' className="relative">
@@ -62,8 +75,8 @@ useGSAP(() => {
           camera={{ position: [0, 0, 5] }} gl={{ antialias: true, alpha: false }}
         >
           <color attach="background" args={["#000D5A"]} />
-          <ambientLight intensity={1.2} />   // stronger ambient to reduce edge darkening
-          <directionalLight intensity={0.1} />  // very subtle directional
+          <ambientLight intensity={1.2} />
+          <directionalLight intensity={0.1} />
           <ActionLines />
           <Stars />
         </Canvas>
@@ -79,20 +92,15 @@ useGSAP(() => {
 
 
 
-      <div
-        ref={htmlRef}
-        className="fixed hidden top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[60%] z-10 pointer-events-auto"
-      >
+      <video
+        ref={videoRef}
+        src="/video.mp4"
+        autoPlay
+        muted
+        loop
+        className="fixed inset-0 w-full h-full object-cover z-[-1]"
+      ></video>
 
-        <video
-          src="/video.mp4"
-          autoPlay
-          muted
-          loop
-          className="w-full h-auto rounded-lg shadow-xl"
-        ></video>
-
-      </div>
 
       <div className="h-[300vh]"></div>
 
