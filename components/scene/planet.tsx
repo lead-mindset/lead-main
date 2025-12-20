@@ -20,8 +20,14 @@ export default function PlanetModel({ scale = 3 }: PlanetProps) {
   const gltf = useGLTF("/models/earth.glb") as GLTFResult;
   const groupRef = useRef<Group>(null);
 
+
+
   useGSAP(() => {
     if (!groupRef.current) return;
+
+    gsap.set(groupRef.current.scale, { x: 5, y: 5, z: 5 });
+
+    gsap.set(groupRef.current.position, { x: 0, y: -30, z: -20 });
 
 
     const tl = gsap.timeline({
@@ -34,19 +40,12 @@ export default function PlanetModel({ scale = 3 }: PlanetProps) {
       },
     });
 
-  gsap.set(groupRef.current.position, { x: 0, y: -20, z: -2 });
 
-  gsap.set(groupRef.current.scale, { x: 5, y: 5, z: 5 });
+    tl.to(groupRef.current.position, { x: 4, y: 0, z: -7, ease: "power1.inOut" });
 
+    tl.to(groupRef.current.position, { x: 0, y: 0, z: -5, ease: "power1.inOut" });
 
-  tl.to(groupRef.current.position, { y: 0, ease: "power1.out" });
-  tl.to(groupRef.current.position, { x: 5, ease: "power1.out" });
-
-  tl.to(groupRef.current.position, { z: -15, ease: "power1.out" });
-  tl.to(groupRef.current.position, { z: -5, ease: "power1.inOut" });
-  tl.to(groupRef.current.position, { x: 0, ease: "power1.out" });
-
-  tl.to(groupRef.current.rotation, { y: Math.PI * 2, ease: "none" }, 0);
+    tl.to(groupRef.current.rotation, { y: Math.PI * 2, ease: "none" }, 0);
 
   });
 
