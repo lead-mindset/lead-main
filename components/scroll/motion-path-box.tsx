@@ -10,16 +10,17 @@ export default function MotionPathBox() {
     const box = boxRef.current;
     if (!box) return;
 
+    const container = document.querySelector(".markers-wrapper");
     const getPath = () => {
+      if (!container) return [];
       const markerEls = gsap.utils.toArray<HTMLElement>(".marker");
-      if (!markerEls.length) return [];
+      const containerRect = container.getBoundingClientRect();
 
-      const start = markerEls[0].getBoundingClientRect();
       return markerEls.map((el) => {
         const r = el.getBoundingClientRect();
         return {
-          x: r.left - start.left,
-          y: r.top - start.top,
+          x: r.left - containerRect.left,
+          y: r.top - containerRect.top,
         };
       });
     };
