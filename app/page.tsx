@@ -32,14 +32,14 @@ export default function App() {
 
   const canvasRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
+useGSAP(() => {
     if (!canvasRef.current) return;
 
     gsap.fromTo(
       canvasRef.current,
-      { clipPath: 'polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%)' },
+      { clipPath: 'circle(0% at 50% 50%)' },
       {
-        clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+        clipPath: 'circle(150% at 50% 50%)',
         scrollTrigger: {
           trigger: '#scroll-section',
           start: 'top top',
@@ -56,7 +56,7 @@ export default function App() {
     <div id='initial' className="relative">
       <div ref={canvasRef}
         className="fixed inset-0 w-full h-screen z-0 pointer-events-none overflow-hidden"
-        style={{ clipPath: 'polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%)' }}
+        style={{ clipPath: 'circle(0% at 50% 50%)' }}
       >
         <Canvas
           camera={{ position: [0, 0, 5] }} gl={{ antialias: true, alpha: false }}
