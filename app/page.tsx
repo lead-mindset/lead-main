@@ -7,25 +7,11 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import { useGSAP } from "@gsap/react";
-import ActionLines from "../components/scroll/action-lines";
 import PinnedLogo from "@/components/scroll/pinned-logo";
 import CanvasReveal from "@/components/scroll/canvas-reveal";
+import MotionPathBox from "@/components/scroll/motion-path-box";
+
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
-
-
-
-
-
-
-function Markers() {
-  return (
-    <div className="flex flex-col items-center space-y-96">
-      <div className="w-24 h-24 marker bg-gray-700 rounded-lg" />
-      <div className="w-24 h-24 marker bg-gray-700 rounded-lg" />
-      <div className="w-24 h-24 marker bg-gray-700 rounded-lg" />
-    </div>
-  );
-}
 
 
 export default function Page() {
@@ -44,15 +30,21 @@ export default function Page() {
         className="fixed inset-0 w-full h-full object-cover z-[-1]"
       />
 
+      <CanvasReveal videoRef={videoRef} />
+
       <section id="scroll-section" className="relative w-full h-[150vh]" />
 
       <PinnedLogo />
 
       <div className="h-[20vh] flex justify-center items-center">scroll down</div>
 
-      <Markers />
-      <CanvasReveal />
       <MotionPathBox />
+
+      <div className="flex flex-col items-center space-y-96">
+        <div className="w-24 h-24 marker bg-gray-700 rounded-lg" />
+        <div className="w-24 h-24 marker bg-gray-700 rounded-lg" />
+        <div className="w-24 h-24 marker bg-gray-700 rounded-lg" />
+      </div>
 
       <div className="h-[600vh]" />
     </div>
