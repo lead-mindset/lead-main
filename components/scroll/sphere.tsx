@@ -42,33 +42,46 @@ export default function ActionLines() {
     return arr;
   }, []);
 
-  useGSAP(() => {
-    if (!starsRef.current || !linesRef.current || !redCircleRef.current) return;
+ useGSAP(() => {
+  if (!starsRef.current || !linesRef.current || !redCircleRef.current) return;
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#scroll-section",
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
-      },
-    });
-
-    tl.to(starsRef.current.position, { z: 120, duration: 3, ease: "none" }, 0);
-    tl.fromTo(
-      linesRef.current.scale,
-      { x: 0, y: 0, z: 0 },
-      { x: 1, y: 1, z: 1, duration: 1, ease: "power1.out" },
-      0.5
-    );
-    tl.to(linesRef.current.position, { z: 200, duration: 3, ease: "power2.in" }, 0.5);
-    tl.fromTo(
-      redCircleRef.current.scale,
-      { x: 0.01, y: 0.01, z: 0.01 },
-      { x: 10, y: 10, z: 10, duration: 1, ease: "power2.out" },
-      2.5
-    );
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#scroll-section",
+      start: "top top",
+      end: "bottom+=200% top",
+      scrub: true,
+      markers: true,
+    },
   });
+
+  // Stars move forward
+  tl.to(starsRef.current.position, { z: 120, ease: "power1.out" }, 0);
+
+  // Lines scale in
+  tl.fromTo(
+    linesRef.current.scale,
+    { x: 0, y: 0, z: 0 },
+    { x: 1, y: 1, z: 1, ease: "power1.out" },
+    0.2
+  );
+
+  tl.to(linesRef.current.position, { z: 200, ease: "power2.in" }, 0.2);
+
+  tl.fromTo(
+    redCircleRef.current.scale,
+    { x: 0.01, y: 0.01, z: 0.01 },
+    { x: 10, y: 10, z: 10, ease: "power2.out" },
+    0.8
+  );
+
+  tl.to(
+    linesRef.current.scale,
+    { x: 0, y: 0, z: 0, ease: "power1.in" },
+    1.5
+  );
+});
+
 
   const createStarShape = (radius = 1, inset = 0.5) => {
     const shape = new THREE.Shape();
