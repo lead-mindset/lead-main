@@ -125,21 +125,6 @@
   }
 }
 
-.slot {
-  width: 100%;
-  pointer-events: auto;
-}
-
-.sticky-inner {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
@@ -147,18 +132,9 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  
-  .sticky-inner {
-    transition: none !important;
-  }
 }
 
 html {
   scroll-behavior: smooth;
-}
-
-@media (max-width: 768px) {
-  .sticky-inner {
-    padding: 1rem;
-  }
+  @apply m-0 p-0
 }
