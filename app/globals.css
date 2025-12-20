@@ -123,6 +123,15 @@
   body {
     @apply bg-background text-foreground;
   }
+  p  {
+    @apply text-lg
+  }
+  h3 {
+    @apply text-xl
+  }
+  h1 {
+    @apply text-3xl
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
