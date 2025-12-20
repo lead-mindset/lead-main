@@ -1,8 +1,5 @@
-'use client'
-
 import { useRef, useMemo } from "react";
 import * as THREE from "three";
-import { Canvas } from "@react-three/fiber";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -31,14 +28,15 @@ export default function ActionLines() {
 
   const lines = useMemo(() => {
     const arr = [];
-    for (let i = 0; i < 60; i++) {
+    for (let i = 0; i < 80; i++) {
       arr.push({
         position: [
-          (Math.random() - 0.5) * 15,
-          (Math.random() - 0.5) * 15,
-          -Math.random() * 250
+          (Math.random() - 0.5) * 20,
+          (Math.random() - 0.5) * 20,
+          -Math.random() * 200
         ],
-        length: Math.random() * 20 + 10
+        length: Math.random() * 6 + 4,
+        color: i % 2 === 0 ? "#9b5de5" : "white"
       });
     }
     return arr;
@@ -58,16 +56,13 @@ export default function ActionLines() {
     });
 
     tl.to(starsRef.current.position, { z: 120, duration: 3, ease: "none" }, 0);
-
     tl.fromTo(
       linesRef.current.scale,
       { x: 0, y: 0, z: 0 },
       { x: 1, y: 1, z: 1, duration: 1, ease: "power1.out" },
       0.5
     );
-
-    tl.to(linesRef.current.position, { z: 300, duration: 3, ease: "power2.in" }, 0.5);
-
+    tl.to(linesRef.current.position, { z: 200, duration: 3, ease: "power2.in" }, 0.5);
     tl.fromTo(
       redCircleRef.current.scale,
       { x: 0.01, y: 0.01, z: 0.01 },
@@ -76,12 +71,26 @@ export default function ActionLines() {
     );
   });
 
+  const createStarShape = (radius = 1, inset = 0.5) => {
+    const shape = new THREE.Shape();
+    shape.moveTo(0, radius);
+    shape.lineTo(inset * radius, inset * radius);
+    shape.lineTo(radius, 0);
+    shape.lineTo(inset * radius, -inset * radius);
+    shape.lineTo(0, -radius);
+    shape.lineTo(-inset * radius, -inset * radius);
+    shape.lineTo(-radius, 0);
+    shape.lineTo(-inset * radius, inset * radius);
+    shape.closePath();
+    return shape;
+  };
+
   return (
     <>
       <group ref={starsRef}>
         {stars.map((s, i) => (
           <mesh key={i} position={s.position} scale={[s.scale, s.scale, s.scale]}>
-            <sphereGeometry args={[1, 8, 8]} />
+            <shapeGeometry args={[createStarShape(1, 0.5)]} />
             <meshBasicMaterial color="white" />
           </mesh>
         ))}
@@ -89,9 +98,9 @@ export default function ActionLines() {
 
       <group ref={linesRef} scale={[0, 0, 0]}>
         {lines.map((l, i) => (
-          <mesh key={i} position={l.position} scale={[0.05, 0.05, l.length]}>
+          <mesh key={i} position={l.position} scale={[0.08, 0.08, l.length]}>
             <boxGeometry args={[1, 1, 1]} />
-            <meshBasicMaterial color="white" />
+            <meshBasicMaterial color={l.color} />
           </mesh>
         ))}
       </group>
