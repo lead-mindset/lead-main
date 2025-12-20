@@ -9,13 +9,49 @@ import { useGSAP } from "@gsap/react";
 import ActionLines from "../components/scroll/action-lines";
 import { Stars } from "@react-three/drei";
 import { useEffect } from "react";
-gsap.registerPlugin(ScrollTrigger);
+import MotionPathPlugin from "gsap/MotionPathPlugin";
+gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
 
 export default function App() {
   const htmlRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const svgRef = useRef<HTMLDivElement>(null);
+
+  const boxRef = useRef<HTMLDivElement>(null);
+
+
+
+useEffect(() => {
+  if (!boxRef.current) return;
+
+  requestAnimationFrame(() => {
+const markers = Array.from(document.querySelectorAll(".marker")) as HTMLElement[];
+const points = markers.map(el => {
+  const rect = el.getBoundingClientRect();
+  return {
+    x: rect.left + rect.width / 2,
+    y: rect.top + window.scrollY + rect.height / 2
+  };
+});
+
+    gsap.to(boxRef.current, {
+      scrollTrigger: {
+        trigger: document.body,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: true,
+        markers: true
+      },
+      motionPath: {
+        path: points,
+        curviness: 1.5
+      },
+      ease: "none"
+    });
+  });
+}, []);
+
 
   useGSAP(() => {
     if (!htmlRef.current) return;
@@ -125,10 +161,26 @@ export default function App() {
         <img src="/leadgrouplogo.svg" className="w-96 h-96" />
       </div>
 
+
+      <div className="h-[20vh] flex justify-center items-center">scroll down</div>
+
+
+
+<div className="flex flex-col items-center space-y-96">
+  <div className="w-24 h-24 marker bg-gray-700 rounded-lg" />
+  <div className="w-24 h-24 marker bg-gray-700 rounded-lg" />
+  <div className="w-24 h-24 marker bg-gray-700 rounded-lg" />
+</div>
+
+
+<div
+  ref={boxRef}
+  className="fixed w-24 h-24 bg-blue-500 rounded-lg -translate-x-1/2 -translate-y-1/2"
+/>
+
+
+
       <div className="h-[600vh]" />
     </div>
-
-
-
   );
 }
