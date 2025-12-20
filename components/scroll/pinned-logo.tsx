@@ -1,8 +1,9 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { useEffect } from "react";
 
-export default function PinnedLogo() {
+export default function PinnedSlogan() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
 
@@ -33,8 +34,26 @@ export default function PinnedLogo() {
         ref={logoRef}
         className="absolute inset-0 flex items-center justify-center"
       >
-        <img src="/leadgrouplogo.svg" className="w-96 h-96" />
-      </div>
+        <div
+          className="mx-auto relative w-fit text-left"
+        >
+          <h1 className="font-bold text-7xl tracking-wide text-white">
+            <span className="word block">
+              LEARN
+            </span>
+            <span className="word block">
+              EXPLORE
+            </span>
+            <span className="word block">
+              ASPIRE
+            </span>
+            <span className="word block">
+              DISCOVER.
+            </span>
+          </h1>
+        </div>
+        
+        </div>
     </section>
   );
 }
