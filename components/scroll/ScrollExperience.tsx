@@ -1,62 +1,67 @@
 "use client";
 
-import { Canvas } from "@react-three/fiber";
-import { ScrollControls, Scroll } from "@react-three/drei";
-import { TOTAL_PAGES } from "@/config/chapters";
-import ChapterRouter from "./ChapterRouter";
-import Scene from "../scene/Scene";
-import HTMLChapters from "./HTMLChapters";
-import { Overlay } from "./Overlay";
-import { Office } from "../scene/Office";
-import { SpaceBackground } from "./StarsBackground";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { ScrollControls, Scroll, useScroll } from "@react-three/drei";
 import { SphereIntro } from "../scene/SphereIntro";
-import { StickyTitle } from "./Pinned";
-import { Html } from "@react-three/drei";
+import { useRef } from "react";
+import { ShootingStar } from "./Star";
+import Gallery from "./gallery";
+
 export default function ScrollExperience() {
+  const TOTAL_PAGES = 5;
+
   return (
     <Canvas
       className="w-full h-screen bg-black text-white"
       camera={{ position: [0, 0, 10], fov: 30 }}
       dpr={[1, 2]}
     >
-      <fog attach="fog" args={['#272730', 16, 30]} />
+      <ambientLight intensity={0.75} />
 
-      <ambientLight intensity={0.75 * Math.PI} />
+      <ScrollControls pages={TOTAL_PAGES} damping={0.5}>
+        <SphereIntro />
+        <ShootingStar startPage={2} /> {/* starts on 3rd section */}
 
-  <Html fullscreen style={{ pointerEvents: "auto" }}>
-    <iframe
-      title="embed"
-      width={100}
-      height={100}
-      src="https://threejs.org/"
-      frameBorder={0}
-    />
-  </Html>
+        <Scroll html style={{ width: "100%", height: "100%" }}>
 
-      <ScrollControls pages={5} damping={0.5}>
-        <SpaceBackground />
-        <ChapterRouter />
-        <SphereIntro />             
-        
 
-        <Scroll html style={{ width: '100%' }}>
+          <main className="w-full ">
 
-  <StickyTitle />
 
-  <h1 style={{ top: "180vh", left: "10vw", position: "absolute" }}>
-    hail
+            <section className="h-[100vh] relative bg-red-500/50 flex items-center justify-center">
+
+              <h1 className="text-4xl font-bold">LEAD</h1>
+
+            </section>
+
+            <Gallery/>
+
+            <section className="h-screen flex items-center justify-center">
+              <h1 className="text-4xl font-bold">LEARN EXPLORE ASPIRE DISCOVER</h1>
+            </section>
+
+           <section style={{ height: "100vh", position: "relative" }}>
+  <h1 style={{
+    position: "sticky",
+    top: "50%",
+    transform: "translateY(-50%)",
+    textAlign: "center"
+  }}>
+    I stay centered!
   </h1>
+</section>
+
+            <section className="h-screen flex items-center justify-center">
+              <h1 className="text-4xl font-bold">Members</h1>
+            </section>
+
+            <section className="h-screen flex items-center justify-center">
+              <h1 className="text-4xl font-bold">Community</h1>
+            </section>
 
 
-          <h1 style={{ position: 'absolute', top: `100vh`, right: '20vw', fontSize: '25em', transform: `translate3d(0,-100%,0)` }}>all</h1>
-        <h1 style={{ position: 'absolute', top: '180vh', left: '10vw' }}>hail</h1>
-        <h1 style={{ position: 'absolute', top: '260vh', right: '10vw' }}>thee,</h1>
-        <h1 style={{ position: 'absolute', top: '350vh', left: '10vw' }}>thoth</h1>
-        <h1 style={{ position: 'absolute', top: '450vh', right: '10vw' }}>
-          her
-          <br />
-          mes.
-        </h1>
+
+          </main>
         </Scroll>
       </ScrollControls>
     </Canvas>
