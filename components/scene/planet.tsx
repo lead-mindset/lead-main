@@ -53,19 +53,19 @@ export default function PlanetModel({ scale = 3 }: PlanetProps) {
     <group ref={groupRef}>
       <primitive object={gltf.scene} />
 
-      <mesh position={[1.2, 0.5, 0]}>
+      <mesh position={[-0.2, 0.6, 0.85]}>
         <sphereGeometry args={[0.05, 16, 16]} />
         <meshStandardMaterial color="red" />
-        <Text position={[0, 0.15, 0]} fontSize={0.1} color="white" anchorX="center" anchorY="bottom">
-          Marker 1
+        <Text position={[0, 0.05, 0]} fontSize={0.1} color="white" anchorX="center" anchorY="bottom">
+          USA
         </Text>
       </mesh>
 
-      <mesh position={[-1, -0.3, 0.5]}>
+      <mesh position={[0.3, -0.1, 1]}>
         <sphereGeometry args={[0.05, 16, 16]} />
         <meshStandardMaterial color="blue" />
-        <Text position={[0, 0.15, 0]} fontSize={0.1} color="white" anchorX="center" anchorY="bottom">
-          Marker 2
+        <Text position={[0, 0.05, 0]} fontSize={0.1} color="white" anchorX="center" anchorY="bottom">
+          Peru
         </Text>
       </mesh>
     </group>
