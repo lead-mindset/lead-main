@@ -9,62 +9,76 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(MotionPathPlugin, ScrollTrigger);
 
 export default function MotionPathBox() {
-  const containerRef = useRef<HTMLDivElement>(null);
   const boxRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
-    const box = boxRef.current;
-    if (!box) return;
+useGSAP(() => {
+  const box = boxRef.current;
+  if (!box) return;
 
-    const getPath = () => {
-      const markers = gsap.utils.toArray<HTMLElement>(".marker");
-      return markers.map((el) => {
-        const r = el.getBoundingClientRect();
-        return {
-          x: r.left + r.width / 2,
-          y: r.top + window.scrollY + r.height / 2,
-        };
-      });
-    };
+  gsap.set(box, {
+    xPercent: -50,
+    yPercent: -50,
+    opacity: 1,
+  });
 
-    const mypath = getPath()
-    console.log(mypath)
+  const getPath = () => {
+    const markerEls = gsap.utils.toArray<HTMLElement>(".marker");
+    if (!markerEls.length) return [];
 
-    gsap.set(box, {
-      x: mypath[0].x,
-      y: mypath[0].y,
+    const boxRect = box.getBoundingClientRect();
+    const boxCenterX = boxRect.left + boxRect.width / 2;
+    const boxCenterY = boxRect.top + boxRect.height / 2;
+
+    const rawPath = markerEls.map((el) => {
+      const r = el.getBoundingClientRect();
+      return {
+        x: r.left + r.width / 2 - boxCenterX,
+        y: r.top + r.height / 2 - boxCenterY,
+      };
     });
 
+    const start = rawPath[0];
 
-    gsap.to(box, {
-      motionPath: {
-        path: getPath(),
-        curviness: 1.2,
-        autoRotate: false,
+    return rawPath.map((p) => ({
+      x: p.x - start.x,
+      y: p.y - start.y,
+    }));
+  };
+
+  gsap.to(box, {
+    motionPath: {
+      path: getPath(),
+      curviness: 1.2,
+    },
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".markers-wrapper",
+      start: "top bottom",
+      end: "bottom top",
+      scrub: true,
+      invalidateOnRefresh: true,
+      onRefresh: () => {
+        gsap.set(box, {
+          motionPath: { path: getPath() },
+        });
       },
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".markers-wrapper",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: true,
-        markers: true
-      }
+    },
+  });
+}, []);
 
-    });
-  }, []);
 
   return (
-    <div ref={containerRef} className=" pointer-events-none">
+    <div className="pointer-events-none">
       <div
         ref={boxRef}
         className="
-          relative
+          fixed
+          left-0
+          top-0
+          z-50
           w-24 h-24
-          bg-blue-500 border-4 border-black
+          bg-blue-500
           rounded-lg
-          -translate-x-1/2
-          -translate-y-1/2
         "
       />
     </div>
