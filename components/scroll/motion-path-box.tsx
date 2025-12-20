@@ -15,11 +15,11 @@ useGSAP(() => {
   const box = boxRef.current;
   if (!box) return;
 
-  gsap.set(box, {
-    xPercent: -50,
-    yPercent: -50,
-    opacity: 1,
-  });
+gsap.set(box, {
+      xPercent: -50,
+      yPercent: -50,
+      opacity: 1,
+    });
 
   const getPath = () => {
     const markerEls = gsap.utils.toArray<HTMLElement>(".marker");
