@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 export default function PinnedLogo() {
   const sectionRef = useRef<HTMLDivElement>(null);

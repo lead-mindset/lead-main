@@ -3,6 +3,7 @@ import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
+import gsap from "gsap";
 
 export default function CanvasReveal({ videoRef }: { videoRef: React.RefObject<HTMLVideoElement> }) {
   const container = useRef<HTMLDivElement>(null);
