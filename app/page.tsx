@@ -6,7 +6,7 @@ import { OrbitControls } from "@react-three/drei";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import ActionLines from "../components/scroll/sphere";
+import ActionLines from "../components/scroll/action-lines";
 import { Stars } from "@react-three/drei";
 import { useEffect } from "react";
 gsap.registerPlugin(ScrollTrigger);
@@ -44,7 +44,6 @@ export default function App() {
         end: "bottom+=100% top",
         scrub: true,
         pin: true,
-        markers: true,
       },
     });
 
