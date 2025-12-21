@@ -120,7 +120,7 @@ export default function Pillars() {
     <div ref={containerRef} className="flex w-[400%] h-screen overflow-hidden relative text-white">
       <div
         ref={boxRef}
-        className="absolute w-12 h-12 bg-blue-500 rounded-full z-50 top-1/2 left-0"
+        className="absolute hidden w-12 h-12 bg-blue-500 rounded-full z-50 top-1/2 left-0"
       />
 
       <section className="horizontal-section bg-red-500/40 w-screen h-screen flex-shrink-0 flex justify-center items-center bg-cover bg-center">
@@ -140,6 +140,11 @@ export default function Pillars() {
           <GalleryItem item={item} index={index} containerRef={containerRef} />
         </section>
       ))}
+
+      <section
+        className="horizontal-section h-screen flex-shrink-0 flex justify-center items-center bg-cover bg-center"
+      >
+      </section>
     </div>
   );
 }
