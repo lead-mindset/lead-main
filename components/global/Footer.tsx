@@ -12,8 +12,7 @@ interface FooterProps {
 function Footer({ className = "", position, opacity }: FooterProps) {
   return (
     <div
-      className={`${className} ${
-        position === "fixed" ? "fixed  bottom-0 left-0 w-full -z-30" : ""
+      className={`${className} relative bg-white
       }`}
       style={{ opacity }}
     >
