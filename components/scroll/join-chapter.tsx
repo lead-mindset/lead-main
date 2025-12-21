@@ -17,22 +17,15 @@ const chapters = [
 
 export default function JoinChapter() {
   return (
-    <section className="w-full relative text-white max-w-7xl mx-auto px-6 py-24 grid grid-cols-1 lg:grid-cols-2 gap-16">
+    <section className="w-full relative text-white text-center flex-col max-w-7xl mx-auto px-6 h-screen flex items-center justify-center">
       
-      <div className="flex flex-col justify-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-6">
           Join a LEAD Chapter
         </h2>
 
         <p className=" text-lg mb-6 max-w-xl">
-          LEAD chapters are built by students who want more than just participation.
           Here, you lead initiatives, build real projects, and grow alongside others
           who share the same mindset: impact, responsibility, and growth.
-        </p>
-
-        <p className=" text-lg mb-10 max-w-xl">
-          Each chapter is connected to a broader network across universities, companies,
-          and professionals — giving you access to opportunities that go far beyond campus.
         </p>
 
         <a
@@ -43,11 +36,6 @@ export default function JoinChapter() {
           Find your chapter
           <ArrowRight className="w-4 h-4" />
         </a>
-      </div>
-
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-        
-      </div>
 
     </section>
   );
