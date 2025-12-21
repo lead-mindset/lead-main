@@ -11,7 +11,6 @@ const images = [
   "/allies/alpfa.png",
   "/allies/shpe.webp",
   "/allies/peruviansinstem.jpg",
-
 ];
 
 export default function ChaptersPhotos() {
@@ -22,43 +21,48 @@ export default function ChaptersPhotos() {
 
     const row = rowRef.current;
 
-    const totalWidth = row.scrollWidth / 2;
+    const ctx = gsap.context(() => {
+      const totalWidth = row.scrollWidth / 2;
 
-    gsap.set(row, { x: 0 });
+      gsap.set(row, { x: 0 });
 
-    gsap.to(row, {
-      x: -totalWidth,
-      duration: 40,
-      ease: "none",
-      repeat: -1,
+      gsap.to(row, {
+        x: -totalWidth,
+        duration: 40,
+        ease: "none",
+        repeat: -1,
+      });
     });
+
+    return () => ctx.revert();
   }, []);
 
   return (
-    <section className="relative">
-      <h2>Backed by</h2>
-      <div className="overflow-hidden bg-white/80">
+    <section className="relative py-12">
+      <h2 className="mb-6 text-xl font-semibold text-white text-center">Supported by</h2>
+
+      <div className="overflow-hidden bg-white/80 py-4">
         <div
           ref={rowRef}
-          className="flex gap-8 will-change-transform "
+          className="flex items-center gap-10 will-change-transform"
         >
           {[...images, ...images].map((src, i) => (
             <div
               key={i}
-              className="relative flex-shrink-0 w-[70vw] sm:w-[40vw] md:w-[28vw] lg:w-[22vw] h-28 w-auto rounded-2xl overflow-hidden will-change-transform translate-z-0"
+              className="flex-shrink-0 h-24 md:h-28 lg:h-32"
             >
               <Image
                 src={src}
-                alt={`Chapter ${i + 1}`}
-                fill
-                sizes="(max-width: 640px) 70vw, (max-width: 1024px) 40vw, 22vw"
-                className="object-cover"
+                alt={`Partner ${i + 1}`}
+                width={400}
+                height={200}
+                className="h-full w-auto object-contain"
+                priority={i < images.length}
               />
             </div>
           ))}
         </div>
       </div>
-
     </section>
   );
 }
