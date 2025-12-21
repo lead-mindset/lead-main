@@ -29,10 +29,10 @@ export default function Allies() {
 
   return (
     <section className="relative">
+    <h1>Thanks to the support of</h1>
       <div className="py-[200px]">
-        <div className="-my-[58px] overflow-hidden bg-white/30">
+        <div className="overflow-hidden bg-white/30">
 
-          {/* ROW 3 */}
           <div
             ref={(el) => (rowsRef.current[2] = el!)}
             className="flex whitespace-nowrap text-center "
@@ -46,7 +46,7 @@ export default function Allies() {
             ].map((text, i) => (
               <div
                 key={i}
-                className={`flex-[0_0_33%] py-[58px] text-[3.75vw] uppercase leading-none ${
+                className={`flex-[0_0_33%] text-[3.75vw] uppercase leading-none ${
                   i % 2 === 1
                     ? "text-transparent stroke-text"
                     : ""
