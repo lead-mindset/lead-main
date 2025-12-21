@@ -135,7 +135,7 @@ export default function Pillars() {
       {data.map((item, index) => (
         <section
           key={item.id}
-          className="horizontal-section w-screen h-screen flex-shrink-0 flex justify-center items-center bg-cover bg-center"
+          className="horizontal-section px-4  h-screen flex-shrink-0 flex justify-center items-center bg-cover bg-center"
         >
           <GalleryItem item={item} index={index} containerRef={containerRef} />
         </section>
