@@ -100,7 +100,7 @@ function NavBar({ menuItems }: { menuItems: MenuItem[] }) {
 
 
         <Link
-          href={'/join_us'}
+          href={'/get-involved'}
           className="cursor-pointer  rounded-bl-2xl h-full bg-primary transition-all 
           flex items-center"
         >
