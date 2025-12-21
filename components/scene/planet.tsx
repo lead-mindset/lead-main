@@ -36,7 +36,6 @@ export default function PlanetModel({ scale = 3 }: PlanetProps) {
         start: "top bottom",
         end: "bottom top",
         scrub: true,
-        markers: true,
       },
     });
 
