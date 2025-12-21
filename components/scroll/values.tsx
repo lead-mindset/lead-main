@@ -11,6 +11,7 @@ export default function Values() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const values = ["Integrity", "Collaboration", "Innovation", "Empowerment"];
+  const colors = ["#FF3B3B", "#3B82F6", "#9B30FF", "#F59E0B"]; // red, blue, purple, orange
 
   useGSAP(() => {
     const ctx = gsap.context(() => {
@@ -28,7 +29,6 @@ export default function Values() {
         },
       });
 
-      // Slide circles from corners
       tl.fromTo(
         circles,
         {
@@ -55,8 +55,8 @@ export default function Values() {
       {values.map((value, i) => (
         <div
           key={i}
-          className="circle absolute w-52 h-52 rounded-full bg-primary flex items-center justify-center text-center p-2"
-          style={{ zIndex: 10 - i }}
+          className="circle absolute w-56 h-56 rounded-full flex items-center justify-center text-center p-2"
+          style={{ zIndex: i + 10 , backgroundColor: colors[i] }}
         >
           <h1 className="text-white font-bold text-2xl">{value}</h1>
         </div>
