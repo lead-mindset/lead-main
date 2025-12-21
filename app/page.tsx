@@ -8,6 +8,7 @@ import PinnedSlogan from "@/components/scroll/pinned-logo";
 import CanvasReveal from "@/components/scroll/canvas-reveal";
 import MotionPathBox from "@/components/scroll/motion-path-box";
 import SloganReveal from "@/components/scroll/slogan";
+import RollingNumber from "@/components/scroll/number-counter";
 import AnimatedText from "@/components/scroll/animated-text";
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
@@ -16,6 +17,9 @@ export default function Page() {
 
   return (
     <div className="overflow-x-hidden">
+
+
+
       <CanvasReveal videoRef={videoRef} />
 
       <video
@@ -31,6 +35,7 @@ export default function Page() {
 
       <PinnedSlogan />
 
+
       <div className="relative min-h-screen p-10 flex flex-col justify-center text-white space-y-10 max-w-5xl mx-auto">
         <AnimatedText className="text-2xl md:text-4xl">
           We are a <span className="font-extrabold">network</span> of professionals and students dedicated to <span className="font-extrabold">empowering</span>
@@ -43,6 +48,33 @@ export default function Page() {
           personally and professionally.
         </AnimatedText>
       </div>
+
+
+      <div className="relative text-center gap-10 text-2xl flex flex-col items-center p-10">
+        
+        <div className="flex flex-col justify-center items-center scale-200">
+          <RollingNumber className="text-blue-700 " number={1135} />
+          <span className="text-white mt-2">MEMBERS</span>
+        </div>
+
+        <div className="flex gap-10 mt-4">
+
+          <div>
+            <RollingNumber whiteBg={false} number={10} />
+            <span className="text-white mt-4">Chapters</span>
+
+          </div>
+
+          <div className="">
+            <RollingNumber whiteBg={false} number={20} />
+            <span className="text-white mt-4">Events</span>
+          </div>
+
+        </div>
+
+
+      </div>
+
 
 
       <div id="section3" className="bg-red-500/50 relative max-w-5xl mx-auto flex items-center h-[100vh] px-8">
