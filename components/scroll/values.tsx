@@ -1,59 +1,68 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Values() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const circlesRef = useRef<HTMLDivElement[]>([]);
 
-  useEffect(() => {
-    if (!containerRef.current) return;
+  const values = ["Integrity", "Collaboration", "Innovation", "Empowerment"];
 
-    gsap.fromTo(
-      circlesRef.current,
-      {
-        x: (i) => (i % 2 === 0 ? -200 : 200),
-        y: (i) => (i < 2 ? -200 : 200),
-        scale: 0,
-        opacity: 0,
-      },
-      {
-        x: 0,
-        y: 0,
-        scale: 1,
-        opacity: 1,
-        ease: "power2.out",
-        stagger: 0.2,
+  useGSAP(() => {
+    const ctx = gsap.context(() => {
+      const circles = gsap.utils.toArray(".circle");
+
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          scrub: true, // <---- this makes it scroll-controlled
+          start: "top top",
+          end: "+=100%",
+          scrub: true,
+          pin: true,
+          anticipatePin: 1,
+          markers: false,
         },
-      }
-    );
-  }, []);
+      });
+
+      // Slide circles from corners
+      tl.fromTo(
+        circles,
+        {
+          x: (i) => (i % 2 === 0 ? -200 : 200),
+          y: (i) => (i < 2 ? -200 : 200),
+        },
+        {
+          x: 0,
+          y: 0,
+          ease: "power2.out",
+          stagger: 0.2,
+        }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, { scope: containerRef });
 
   return (
     <div
       ref={containerRef}
       className="relative w-full h-screen flex items-center justify-center overflow-hidden"
     >
-      {[0, 1, 2, 3].map((_, i) => (
+      {values.map((value, i) => (
         <div
           key={i}
-          ref={(el) => {
-            if (el) circlesRef.current[i] = el;
-          }}
-          className={`absolute w-40 h-40 rounded-full bg-blue-400 opacity-80`}
+          className="circle absolute w-52 h-52 rounded-full bg-primary flex items-center justify-center text-center p-2"
           style={{ zIndex: 10 - i }}
-        />
+        >
+          <h1 className="text-white font-bold text-2xl">{value}</h1>
+        </div>
       ))}
-      <h1 className="absolute text-white text-3xl font-bold z-50">
+
+      <h1 className="absolute text-white text-4xl font-bold z-0">
         Our Values
       </h1>
     </div>
