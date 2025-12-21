@@ -51,7 +51,7 @@ export default function DesktopMenu({
           flex items-center"
           onClick={onMenuItemClick}
         >
-          <h3 className="font-bold text-sm">{menuItem.name}</h3>
+          <h3 className="font-bold text-base">{menuItem.name}</h3>
         </Link>
 
         {hasSubMenu && (
