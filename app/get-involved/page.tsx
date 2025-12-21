@@ -6,9 +6,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Canvas } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
 import Allies from "@/components/scroll/allies";
-import JoinSlackCommunity from "@/components/scroll/join-slack";
 import PartnerWithUs from "@/components/scroll/partner-with-us";
 import JoinChapter from "@/components/scroll/join-chapter";
+import ChaptersPhotos from "@/components/scroll/chapters-photos";
+import JoinSlackCommunity from "@/components/scroll/join-slack";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function GetInvolved() {
@@ -22,8 +23,10 @@ export default function GetInvolved() {
                     <Stars />
                 </Canvas>
             </div>
+            
             <JoinSlackCommunity />
-
+            
+            <ChaptersPhotos/>
             <JoinChapter />
             <PartnerWithUs />
             <Allies />
