@@ -36,11 +36,9 @@ export default function RootLayout({
         
         {children}
 
-                          <Footer className="w-full z-10" position="static" opacity={0} />
+                          <Footer className="w-full z-50" position="static" opacity={0} />
                           <Footer className="w-full" position="fixed" opacity={1} />
                   
-        
-
       </body>
     </html>
   );
