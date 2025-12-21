@@ -4,6 +4,32 @@ import DesktopMenu from "./DesktopMenu";
 import type { MenuItem } from "./NavHeader";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  InstagramIcon,
+  LinkedinIcon,
+  SlackIcon,
+} from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
+
+export const socialLinks = [
+  {
+    name: "Instagram",
+    href: "https://instagram.com/yourpage",
+    icon: InstagramIcon,
+  },
+  {
+    name: "LinkedIn",
+    href: "https://linkedin.com/company/yourcompany",
+    icon: LinkedinIcon,
+  },
+  {
+    name: "Slack",
+    href: "https://slack.com/yourworkspace",
+    icon: SlackIcon,
+  },
+];
+
+
 function NavBar({ menuItems }: { menuItems: MenuItem[] }) {
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
 
@@ -37,7 +63,28 @@ function NavBar({ menuItems }: { menuItems: MenuItem[] }) {
 
         </Link>
       </div>
-      <div className="flex-1 h-2   bg-primary"></div>
+      <div className="flex-1 h-2 "></div>
+
+   
+        <div className="hidden lg:flex px-3 items-center gap-3">
+          {socialLinks.map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              target="_blank"
+              aria-label={item.name}
+              className="p-2 rounded-full bg-purple-500 text-white transition"
+            >
+              <HugeiconsIcon
+                icon={item.icon}
+                size={20}
+                color=""
+                strokeWidth={2}
+              />
+            </Link>
+          ))}
+        </div>
+    
 
       <ul className="flex bg-white rounded-bl-2xl items-center">
         {menuItems.map((menuItem) => (
@@ -54,15 +101,13 @@ function NavBar({ menuItems }: { menuItems: MenuItem[] }) {
 
         <Link
           href={'/join_us'}
-          target={"_blank"}
-          className="cursor-pointer h-full bg-primary transition-all 
+          className="cursor-pointer  rounded-bl-2xl h-full bg-primary transition-all 
           flex items-center"
         >
           <button
-            className="cyber-btn px-4 text-base font-bold"
-            data-augmented-ui="tl-clip br-clip"
+            className="r px-4 text-base text-white font-bold"
           >
-            Join
+            Get Involved
           </button>
         </Link>
 
