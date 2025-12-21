@@ -36,56 +36,42 @@ export default function Pillars() {
         >
 
             <section
-                className="horizontal-section w-screen h-screen flex-shrink-0 flex justify-center items-center bg-cover bg-center"
+                className="horizontal-section bg-red-500/40 w-screen h-screen flex-shrink-0 flex justify-center items-center bg-cover bg-center"
             >
                 <div className="">
-                    <h1 className="float-right  text-5xl">
-                        Our Pillars
+                   
+                    <p className="text-5xl text-center">
+                        Built on these core values, our pillars drive lasting growth and meaningful impact, shaping students and communities for the better.
+                    </p>
+
+
+                     <h1 className=" text-5xl text-center">
+                        Meet Our Pillars ->
                     </h1>
 
-                    <p>
-                        Built on these core values, our pillars provide a strong foundation for lasting growth and meaningful change. 
-                        
-                        They guide every initiative, ensuring our work leaves a real, positive impact on students and communities alike.
-                    </p>
                 </div>
 
             </section>
 
 
-            {/* ---------- Section 2 ---------- */}
             <section
                 className="horizontal-section w-screen h-screen flex-shrink-0 flex justify-center items-center bg-cover bg-center"
-                style={{
-                    backgroundImage:
-                        "url(https://images.pexels.com/photos/1037995/pexels-photo-1037995.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)",
-                }}
             >
                 <h1 className="text-white text-[8vw] font-light uppercase tracking-[1vw] font-oswald">
                     01
                 </h1>
             </section>
 
-            {/* ---------- Section 3 ---------- */}
             <section
                 className="horizontal-section w-screen h-screen flex-shrink-0 flex justify-center items-center bg-cover bg-center"
-                style={{
-                    backgroundImage:
-                        "url(https://images.pexels.com/photos/1517076/pexels-photo-1517076.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)",
-                }}
             >
                 <h1 className="text-white text-[8vw] font-light uppercase tracking-[1vw] font-oswald">
                     02
                 </h1>
             </section>
 
-            {/* ---------- Section 4 ---------- */}
             <section
                 className="horizontal-section w-screen h-screen flex-shrink-0 flex justify-center items-center bg-cover bg-center"
-                style={{
-                    backgroundImage:
-                        "url(https://images.pexels.com/photos/1037996/pexels-photo-1037996.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)",
-                }}
             >
                 <h1 className="text-white text-[8vw] font-light uppercase tracking-[1vw] font-oswald">
                     03
