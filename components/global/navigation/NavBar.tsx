@@ -21,11 +21,11 @@ function NavBar({ menuItems }: { menuItems: MenuItem[] }) {
 
   return (
 
-    <div className="flex w-full items-center">
+    <div className="flex w-full ">
       <div className="">
         <Link
           href={"/"}
-          className="cursor-pointer gap-2 flex px-4"
+          className="cursor-pointer bg-white rounded-br-2xl gap-2 p-2 flex px-4"
         >
           <Image
             src="/leadl2.svg"
@@ -37,9 +37,9 @@ function NavBar({ menuItems }: { menuItems: MenuItem[] }) {
 
         </Link>
       </div>
-      <div className="flex-1 h-2 rounded-full  bg-primary"></div>
+      <div className="flex-1 h-2   bg-primary"></div>
 
-      <ul className="flex">
+      <ul className="flex bg-white rounded-bl-2xl items-center">
         {menuItems.map((menuItem) => (
           <DesktopMenu
             menuItem={menuItem}
@@ -50,22 +50,22 @@ function NavBar({ menuItems }: { menuItems: MenuItem[] }) {
             onSubMenuClick={handleSubMenuClick}
           />
         ))}
-       
 
-          <Link
-            href={'/join_us'}
-            target={"_blank"}
-            className="cursor-pointer transition-all 
+
+        <Link
+          href={'/join_us'}
+          target={"_blank"}
+          className="cursor-pointer h-full bg-primary transition-all 
           flex items-center"
+        >
+          <button
+            className="cyber-btn px-4 text-base font-bold"
+            data-augmented-ui="tl-clip br-clip"
           >
-            <button
-              className="cyber-btn bg-primary p-2 px-6 font-bold"
-              data-augmented-ui="tl-clip br-clip"
-            >
-              Join Us
-            </button>
-          </Link>
-      
+            Join
+          </button>
+        </Link>
+
 
 
 
