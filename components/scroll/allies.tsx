@@ -1,63 +1,64 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 
-export default function Allies() {
-  const rowsRef = useRef<HTMLDivElement[]>([]);
+const images = [
+  "/allies/microsoft.svg",
+  "/allies/accenture.png",
+  "/allies/ibm.png",
+  "/allies/alpfa.png",
+  "/allies/shpe.webp",
+  "/allies/peruviansinstem.jpg",
+
+];
+
+export default function ChaptersPhotos() {
+  const rowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    rowsRef.current.forEach((row, i) => {
-      if (!row) return;
+    if (!rowRef.current) return;
 
-      const rowWidth = row.getBoundingClientRect().width;
-      const itemWidth = row.children[0].getBoundingClientRect().width;
+    const row = rowRef.current;
 
-      const initialOffset =
-        ((2 * itemWidth) / rowWidth) * 100 * -1;
+    const totalWidth = row.scrollWidth / 2;
 
-      gsap.set(row, { xPercent: initialOffset });
+    gsap.set(row, { x: 0 });
 
-      gsap.to(row, {
-        xPercent: 0,
-        duration: 6 * (i + 1),
-        ease: "none",
-        repeat: -1,
-      });
+    gsap.to(row, {
+      x: -totalWidth,
+      duration: 40,
+      ease: "none",
+      repeat: -1,
     });
   }, []);
 
   return (
     <section className="relative">
-    <h1>Thanks to the support of</h1>
-      <div className="py-[200px]">
-        <div className="overflow-hidden bg-white/30">
-
-          <div
-            ref={(el) => (rowsRef.current[2] = el!)}
-            className="flex whitespace-nowrap text-center "
-          >
-            {[
-              "Development",
-              "Development",
-              "Development",
-              "Development",
-              "Development",
-            ].map((text, i) => (
-              <div
-                key={i}
-                className={`flex-[0_0_33%] text-[3.75vw] uppercase leading-none ${
-                  i % 2 === 1
-                    ? "text-transparent stroke-text"
-                    : ""
-                }`}
-              >
-                <span>{text}</span>
-              </div>
-            ))}
-          </div>
+      <h2>Backed by</h2>
+      <div className="overflow-hidden bg-white/80">
+        <div
+          ref={rowRef}
+          className="flex gap-8 will-change-transform "
+        >
+          {[...images, ...images].map((src, i) => (
+            <div
+              key={i}
+              className="relative flex-shrink-0 w-[70vw] sm:w-[40vw] md:w-[28vw] lg:w-[22vw] h-28 w-auto rounded-2xl overflow-hidden will-change-transform translate-z-0"
+            >
+              <Image
+                src={src}
+                alt={`Chapter ${i + 1}`}
+                fill
+                sizes="(max-width: 640px) 70vw, (max-width: 1024px) 40vw, 22vw"
+                className="object-cover"
+              />
+            </div>
+          ))}
         </div>
       </div>
+
     </section>
   );
 }
