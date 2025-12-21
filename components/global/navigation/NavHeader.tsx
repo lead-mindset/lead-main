@@ -32,7 +32,7 @@ export const menuItems: MenuItem[] = [
 export default function NavHeader() {
   return (
     <header className="h-fit fixed w-full top-0 left-0 z-50 ">
-      <nav className="flex w-full relative p-3">
+      <nav className="flex w-full relative ">
         <NavBar menuItems={menuItems} />
         <div className="ml-auto flex items-center space-x-2 absolute">
           <div className="lg:hidden"> 
