@@ -32,14 +32,6 @@ export default function Page() {
 
       <PinnedSlogan />
 
-      <div className="markers-wrapper relative w-full h-[500px]">
-        <div className="marker absolute top-0 left-0 w-6 h-6 bg-red-500" />
-        <div className="marker absolute top-32 left-32 w-6 h-6 bg-red-500" />
-        <div className="marker absolute top-52 left-0 w-6 h-6 bg-red-500" />
-        <div className="marker absolute top-32 left-32 w-6 h-6 bg-red-500" />
-        <MotionPathBox />
-      </div>
-
       <div className="relative text-white space-y-10 max-w-5xl mx-auto">
         <AnimatedText className="text-4xl">
           We are a <span className="font-extrabold">network</span> of professionals and students dedicated to <span className="font-extrabold">empowering</span>
