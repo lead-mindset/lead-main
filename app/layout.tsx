@@ -2,6 +2,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import NavHeader from "@/components/global/navigation/NavHeader";
+import Footer from "@/components/global/Footer";
 
 const outfit = Inter({subsets:['latin'],variable:'--font-sans'});
 
@@ -30,7 +32,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+                  <NavHeader />
+        
         {children}
+
+                          <Footer className="w-full z-10" position="static" opacity={0} />
+                          <Footer className="w-full" position="fixed" opacity={1} />
+                  
+        
+
       </body>
     </html>
   );
