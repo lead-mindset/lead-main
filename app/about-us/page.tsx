@@ -12,7 +12,10 @@ import RollingNumber from "@/components/scroll/number-counter";
 import AnimatedText from "@/components/scroll/animated-text";
 import { Canvas } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
-
+import Gallery from "@/components/scroll/gallery";
+import Pillars from "@/components/scroll/pillars";
+import Values from "@/components/scroll/values";
+import Founders from "@/components/scroll/founders";
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
 export default function AboutUs() {
@@ -50,8 +53,9 @@ export default function AboutUs() {
                 </AnimatedText>
             </div>
 
-
-
+            <Values/>
+           <Pillars/>
+           <Founders/>
 
 
 
