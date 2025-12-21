@@ -2,25 +2,25 @@
 
 export default function PartnerWithUs() {
   return (
-    <section className="w-full relative max-w-5xl mx-auto px-6 py-24 grid grid-cols-1 lg:grid-cols-2 gap-16 bg-gray-50 rounded-3xl">
-      
-      <div className="flex flex-col justify-center">
+    <>
+
+<div className=" relative flex flex-col text-white text-center  justify-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-6">
           Partner with LEAD
         </h2>
 
-        <p className="text-gray-600 text-lg mb-6 max-w-xl">
-          LEAD connects organizations with high-potential students who are already
-          developing leadership, technical, and execution skills through real initiatives.
-        </p>
-
-        <p className="text-gray-600 text-lg max-w-xl">
-          If your organization believes in investing early in future leaders,
+        <p className=" text-lg">
+          If your organization believes in investing early in high-potential future leaders,
           we’d love to explore how we can work together.
         </p>
       </div>
 
-      <form className="bg-white rounded-2xl shadow-xl p-8 space-y-5">
+    <section className="w-full relative max-w-5xl mx-auto px-6 py-24 flex gap-16 text-white rounded-3xl">
+      <div className="flex flex-col basis-2/5  justify-center">
+</div>
+      
+
+      <form className="bg-white/10 rounded-2xl basis-3/5 shadow-xl p-8 space-y-5">
         <div>
           <label className="text-sm font-medium">Organization Name</label>
           <input
@@ -55,12 +55,13 @@ export default function PartnerWithUs() {
 
         <button
           type="submit"
-          className="w-full bg-black text-white py-3 rounded-xl font-semibold hover:bg-black/90 transition"
+          className="w-fit px-5 bg-black text-white py-3 rounded-xl font-semibold hover:bg-black/90 transition"
         >
-          Contact LEAD
+          Send Message
         </button>
       </form>
 
     </section>
+     </>
   );
 }
