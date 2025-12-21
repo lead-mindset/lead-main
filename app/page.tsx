@@ -10,6 +10,7 @@ import MotionPathBox from "@/components/scroll/motion-path-box";
 import SloganReveal from "@/components/scroll/slogan";
 import RollingNumber from "@/components/scroll/number-counter";
 import AnimatedText from "@/components/scroll/animated-text";
+
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
 export default function Page() {
@@ -38,7 +39,7 @@ export default function Page() {
 
       <div className="relative min-h-screen p-10 flex flex-col justify-center text-white space-y-10 max-w-5xl mx-auto">
         <AnimatedText className="text-2xl md:text-4xl">
-          We are a <span className="font-extrabold">network</span> of professionals and students dedicated to <span className="font-extrabold">empowering</span>
+          We are a <span className="font-extrabold">network</span> of professionals and students dedicated to <span className="font-extrabold">empowering {' '}</span>
           the next generation of Latino leaders across Latin America and the U.S
         </AnimatedText>
 
@@ -92,7 +93,6 @@ export default function Page() {
 
 
       </div>
-
 
     </div>
   );
