@@ -23,11 +23,12 @@ export default function GetInvolved() {
                     <Stars />
                 </Canvas>
             </div>
-            
+
             <JoinSlackCommunity />
-            
-            <ChaptersPhotos/>
+
             <JoinChapter />
+            <ChaptersPhotos />
+
             <PartnerWithUs />
             <Allies />
 
