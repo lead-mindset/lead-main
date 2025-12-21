@@ -16,6 +16,7 @@ import Gallery from "@/components/scroll/gallery";
 import Pillars from "@/components/scroll/pillars";
 import Values from "@/components/scroll/values";
 import Founders from "@/components/scroll/founders";
+import Testimonies from "@/components/scroll/testimonies";
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
 export default function AboutUs() {
@@ -56,7 +57,7 @@ export default function AboutUs() {
             <Values/>
            <Pillars/>
            <Founders/>
-
+        <Testimonies/>
 
 
         </div>
