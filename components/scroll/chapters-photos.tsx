@@ -20,50 +20,44 @@ export default function ChaptersPhotos() {
     if (!rowRef.current) return;
 
     const row = rowRef.current;
-    const rowWidth = row.getBoundingClientRect().width;
-    const itemWidth =
-      row.children[0].getBoundingClientRect().width;
 
-    const initialOffset =
-      ((2 * itemWidth) / rowWidth) * 100 * -1;
+    const totalWidth = row.scrollWidth / 2;
 
-    gsap.set(row, { xPercent: initialOffset });
+    gsap.set(row, { x: 0 });
 
     gsap.to(row, {
-      xPercent: 0,
-      duration: 20,
+      x: -totalWidth,
+      duration: 40,
       ease: "none",
       repeat: -1,
     });
   }, []);
 
   return (
-    <section className="relative py-32">
-      <h2 className="mb-12 text-center text-3xl font-semibold">
-        Featured Chapters
-      </h2>
+    <section className="relative">
 
-      <div className="overflow-hidden">
-        <div
-          ref={rowRef}
-          className="flex gap-8 whitespace-nowrap"
-        >
-          {[...images, ...images].map((src, i) => (
-            <div
-              key={i}
-              className="relative flex-shrink-0 w-[70vw] sm:w-[40vw] md:w-[28vw] lg:w-[22vw] aspect-[3/4] rounded-2xl overflow-hidden"
-            >
-              <Image
-                src={src}
-                alt={`Chapter ${i + 1}`}
-                fill
-                className="object-cover"
-                priority={i < 3}
-              />
-            </div>
-          ))}
-        </div>
+     <div className="overflow-hidden">
+  <div
+    ref={rowRef}
+    className="flex gap-8 will-change-transform"
+  >
+    {[...images, ...images].map((src, i) => (
+      <div
+        key={i}
+        className="relative flex-shrink-0 w-[70vw] sm:w-[40vw] md:w-[28vw] lg:w-[22vw] aspect-[3/4] rounded-2xl overflow-hidden will-change-transform translate-z-0"
+      >
+        <Image
+          src={src}
+          alt={`Chapter ${i + 1}`}
+          fill
+          sizes="(max-width: 640px) 70vw, (max-width: 1024px) 40vw, 22vw"
+          className="object-cover"
+        />
       </div>
+    ))}
+  </div>
+</div>
+
     </section>
   );
 }
