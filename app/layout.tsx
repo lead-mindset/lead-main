@@ -4,15 +4,16 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import NavHeader from "@/components/global/navigation/NavHeader";
 import Footer from "@/components/global/Footer";
+import { Raleway } from "next/font/google";
 
-const outfit = Inter({subsets:['latin'],variable:'--font-sans'});
+const outfit = Raleway({ subsets: ['latin'], variable: '--font-sans' });
 
-const geistSans = Inter({
+const geistSans = Raleway({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Inter({
+const geistMono = Raleway({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
@@ -32,13 +33,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-                  <NavHeader />
-        
+        <NavHeader />
+
         {children}
 
-                          <Footer className="w-full z-50" position="static" opacity={0} />
-                          <Footer className="w-full" position="fixed" opacity={1} />
-                  
+        <Footer className="w-full z-50" position="static" opacity={0} />
+        <Footer className="w-full" position="fixed" opacity={1} />
+
       </body>
     </html>
   );
