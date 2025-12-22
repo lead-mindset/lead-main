@@ -37,18 +37,18 @@ export default function PinnedSlogan() {
         <div
           className="mx-auto relative w-fit text-left"
         >
-          <h1 className="font-bold text-4xl md:text-7xl tracking-wide text-white">
-            <span className="word block">
-              LEARN
+          <h1 className="font-bold text-6xl lg:text-8xl">
+            <span className="word block text-chart-1">
+              Learn
             </span>
-            <span className="word block">
-              EXPLORE
+            <span className="word block text-chart-2">
+              Explore
             </span>
-            <span className="word block">
-              ASPIRE
+            <span className="word block text-chart-3">
+              Aspire
             </span>
-            <span className="word block">
-              DISCOVER.
+            <span className="word block text-foreground">
+              Discover.
             </span>
           </h1>
         </div>
