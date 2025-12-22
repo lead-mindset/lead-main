@@ -17,7 +17,7 @@ const chapters = [
 
 export default function JoinChapter() {
   return (
-    <section className="w-full relative text-white text-center flex-col max-w-7xl mx-auto px-6 h-screen flex items-center justify-center">
+    <section id='join' className="w-full relative text-white text-center flex-col max-w-7xl mx-auto px-6 h-screen flex items-center justify-center">
       
         <h2 className="text-3xl md:text-4xl font-bold mb-6">
           Join a LEAD Chapter
