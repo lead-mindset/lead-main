@@ -9,7 +9,7 @@ export default function CameraAnimation() {
   const { camera } = useThree();
 
   useLayoutEffect(() => {
-    camera.position.set(0, 6, 18);
+    camera.position.set(0, 4, 4);
     camera.lookAt(0, 0, 0);
 
     const tl = gsap.timeline({
@@ -24,8 +24,8 @@ export default function CameraAnimation() {
     });
 
     tl.to(camera.position, {
-      z: 4,
-      y: 4.5,
+      z: 2,
+      y: 2,
       duration: 1,
       onUpdate: () => camera.lookAt(0, 0, 0),
     });
