@@ -29,12 +29,13 @@ export default function GetInvolved() {
                 </Canvas>
             </div>
 
-            <div className="relative min-h-screen p-10 flex flex-col justify-center text-white space-y-10 max-w-5xl mx-auto">
-                <AnimatedText className="text-2xl md:text-4xl">
-                    Launch Into Our Community
+            <div className="relative min-h-screen p-10 mx-auto">
+                <AnimatedText
+                    className="text-5xl lg:text-7xl font-bold absolute top-[70%] left-1/2 -translate-x-1/2 text-center text-white"
+                >
+                    Launch Into Our Community!
                 </AnimatedText>
             </div>
-
 
             <JoinSlackCommunity />
 
@@ -43,8 +44,6 @@ export default function GetInvolved() {
 
             <PartnerWithUs />
             <Allies />
-
-
 
         </div>
     );
