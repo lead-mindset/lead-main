@@ -18,6 +18,7 @@ import Galaxy from "@/components/scene/galaxy";
 import CameraAnimation from "@/components/scene/camera-animation";
 import PillarsCarousel from "@/components/scroll/pillarscarousel";
 import CurvedConnector from "@/components/scroll/animated-curve";
+import CurvedConnector2 from "@/components/scroll/animated-curve2";
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
 
@@ -70,10 +71,10 @@ export default function AboutUs() {
                 </AnimatedText>
             </div>
 
-
+            <CurvedConnector2 />
             <Values />
 
-            <div className="relative p-10 flex flex-col justify-center text-white max-w-5xl mx-auto">
+            <div className="relative px-10 flex flex-col justify-center text-white max-w-5xl mx-auto">
                 <AnimatedText className="text-2xl md:text-4xl">
                     Built on these core values, our pillars drive lasting growth and meaningful impact, shaping students and communities for the better.
                 </AnimatedText>
