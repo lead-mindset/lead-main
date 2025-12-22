@@ -30,7 +30,7 @@ export default function AnimatedText({ children, className = "" }) {
             ease: "power3.out",
             scrollTrigger: {
               trigger: container,
-              start: "top center",
+              start: "top bottom",
               toggleActions: "play none none none",
               once: true,
             },
