@@ -38,15 +38,14 @@ export default function AboutUs() {
             </div>
             <Gallery />
 
-            <div className="relative h-screen p-10 text-center text-white max-w-5xl mx-auto">
-                <AnimatedText className="text-2xl font-bold  md:text-7xl uppercase">
+            <div id='empowering' className="relative py-60  p-10 text-center text-white max-w-5xl mx-auto">
+               {/*<AnimatedText className="text-2xl font-bold  md:text-7xl uppercase">
                     Empowering Dreams
-                </AnimatedText>
+                </AnimatedText> */} 
             </div>
 
             
            <CurvedConnector/>
-
 
             <div className="relative p-10 flex flex-col justify-center text-white space-y-10 max-w-5xl mx-auto">
                 <AnimatedText className="text-3xl md:text-6xl">Mission</AnimatedText>
@@ -63,7 +62,7 @@ export default function AboutUs() {
 
                 <AnimatedText className="text-3xl md:text-6xl">Vision</AnimatedText>
 
-                <AnimatedText className="text-2xl md:text-4xl text-right">
+                <AnimatedText className="text-2xl md:text-4xl">
                     Through mentorship, leadership training, and impactful community
                     projects, we connect ambitious students with opportunities to grow both
                     personally and professionally.
