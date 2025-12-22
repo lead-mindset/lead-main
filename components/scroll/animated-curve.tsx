@@ -40,7 +40,7 @@ export default function CurvedConnector() {
 
   return (
     <div
-      ref={containerRef}
+      ref={containerRef} id='curved-connector'
       className="relative -mb-52 w-full h-screen pointer-events-none"
     >
       <svg
