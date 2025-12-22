@@ -20,10 +20,11 @@ export default function CurvedConnector() {
     gsap.set(path, {
       strokeDasharray: length,
       strokeDashoffset: length,
-      opacity: 0,
     });
 
-    const tl = gsap.timeline({
+    gsap.to(path, {
+      strokeDashoffset: 0,
+      ease: "none",
       scrollTrigger: {
         trigger: container,
         start: "top 85%",
@@ -32,36 +33,28 @@ export default function CurvedConnector() {
       },
     });
 
-    tl.to(path, { opacity: 1, duration: 0.1 })
-      .to(path, { strokeDashoffset: 0, duration: 0.7, ease: "none" })
-      .to(path, { opacity: 0, duration: 0.2 });
-
     return () => {
-      tl.scrollTrigger?.kill();
-      tl.kill();
+      ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, []);
 
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-64 md:h-96 pointer-events-none"
+      className="relative w-full h-screen pointer-events-none"
     >
       <svg
         viewBox="0 0 1000 400"
         className="w-full h-full"
         fill="none"
-        preserveAspectRatio="none"
+        preserveAspectRatio="xMinYMin meet"
       >
         <path
           ref={pathRef}
-          d="
-            M 0 40
-            C 300 40, 400 360, 700 360
-            S 1000 360, 1000 360
-          "
+          d="M 0 50 C 250 50, 750 350, 1000 350"
           stroke="pink"
           strokeWidth="50"
+          strokeLinecap="round"
         />
       </svg>
     </div>
