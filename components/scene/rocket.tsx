@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useRef, Suspense } from "react";
+import React, { useRef, useEffect, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import { useGLTF, Text, OrbitControls } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
 import type { Group } from "three";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -16,13 +15,27 @@ interface RocketProps {
   scale?: number;
 }
 
-export default function RocketModel({ scale = 3 }: RocketProps) {
+export default function RocketModel({ scale = 1 }: RocketProps) {
+  const rocketRef = useRef<Group>(null);
   const gltf = useGLTF("/models/rocket.glb") as GLTFResult;
 
+  useEffect(() => {
+    if (!rocketRef.current) return;
+
+    gsap.to(rocketRef.current.position, {
+      x: 0,
+      scrollTrigger: {
+        trigger: "#slack",
+        start: "top top",
+        end: "bottom top", 
+        scrub: true,
+      },
+    });
+  }, []);
+
   return (
-    <group>
+    <group ref={rocketRef} scale={[1, 1, 1]}>
       <primitive object={gltf.scene} />
     </group>
   );
 }
-
