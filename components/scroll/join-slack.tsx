@@ -45,13 +45,13 @@ export default function JoinSlackCommunity() {
 
   return (
     <section
-      ref={containerRef}
+      ref={containerRef} id='slack'
       className="w-full h-screen relative flex items-center justify-center py-24 px-4"
     >
       <div className="max-w-5xl w-full">
-        <Card className="js-card relative overflow-hidden rounded-2xl shadow-xl bg-gradient-to-br from-pink-600/50 via-purple-600 to-purple-700/50 text-white">
-          <div className="absolute -top-24 -right-24 w-72 h-72 bg-yellow-500 rounded-full blur-3xl" />
-          <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-red-500 rounded-full blur-3xl" />
+        <Card className="js-card relative overflow-hidden rounded-2xl   text-white">
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-purple-500/50 rounded-full blur-3xl" />
+          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-pink-500/50 rounded-full blur-3xl" />
 
           <CardContent className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-10 p-10 md:p-14">
             <div className="js-left flex flex-col justify-center">
