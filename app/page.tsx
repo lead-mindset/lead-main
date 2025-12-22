@@ -10,6 +10,7 @@ import MotionPathBox from "@/components/scroll/motion-path-box";
 import SloganReveal from "@/components/scroll/slogan";
 import RollingNumber from "@/components/scroll/number-counter";
 import AnimatedText from "@/components/scroll/animated-text";
+import CurvedConnector2 from "@/components/scroll/animated-curve2";
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
@@ -18,8 +19,6 @@ export default function Page() {
 
   return (
     <div className="overflow-x-hidden">
-
-
 
       <CanvasReveal videoRef={videoRef} />
 
@@ -32,10 +31,11 @@ export default function Page() {
         className="fixed inset-0 w-full h-full object-cover z-[-1]"
       />
 
-      <section id="scroll-section" className="relative w-full h-[100vh]" />
+      <section id="scroll-section" className="relative w-full h-screen" />
 
       <PinnedSlogan />
 
+      <CurvedConnector2/>
 
       <div className="relative min-h-screen p-10 flex flex-col justify-center text-white space-y-10 max-w-5xl mx-auto">
         <AnimatedText className="text-2xl md:text-4xl">
@@ -45,7 +45,7 @@ export default function Page() {
 
         <AnimatedText className="text-2xl md:text-4xl text-right">
           Through mentorship, leadership training, and impactful community
-          projects, we connect ambitious students with opportunities to grow both
+          projects, we connect <span className="font-extrabold">ambitious students</span>  with  <span className="font-extrabold">opportunities</span> to grow both
           personally and professionally.
         </AnimatedText>
       </div>
@@ -53,21 +53,21 @@ export default function Page() {
 
       <div className="relative text-center gap-10 text-2xl flex flex-col items-center p-10">
         
-        <div className="flex flex-col justify-center items-center scale-200">
-          <RollingNumber className="text-blue-700 " number={1135} />
-          <span className="text-white mt-2">MEMBERS</span>
+        <div className="flex flex-col  items-center scale-125 md:scale-200 lg:scale-[300%] xl:scale-[400%]">
+          <RollingNumber className="font-bold" number={1135} />
+          <span className="text-white mt-2 font-bold">MEMBERS</span>
         </div>
 
-        <div className="flex gap-10 mt-4">
+        <div className="flex gap-10 md:gap-40 lg:gap-52 xl:gap-60 mt-4 md:mt-24 lg:mt-52">
 
-          <div>
-            <RollingNumber whiteBg={false} number={10} />
+          <div className="sm:scale-125  lg:scale-200">
+            <RollingNumber whiteBg={false} className="font-bold" number={10} />
             <span className="text-white mt-4">Chapters</span>
 
           </div>
 
-          <div className="">
-            <RollingNumber whiteBg={false} number={20} />
+          <div className="sm:scale-125  lg:scale-200">
+            <RollingNumber whiteBg={false} className="font-bold" number={20} />
             <span className="text-white mt-4">Events</span>
           </div>
 
