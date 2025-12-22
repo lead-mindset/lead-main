@@ -35,7 +35,7 @@ export default function Page() {
 
       <PinnedSlogan />
 
-      <CurvedConnector2/>
+      <CurvedConnector2 />
 
       <div className="relative min-h-screen p-10 flex flex-col justify-center text-white space-y-10 max-w-5xl mx-auto">
         <AnimatedText className="text-2xl md:text-4xl">
@@ -52,7 +52,7 @@ export default function Page() {
 
 
       <div className="relative text-center gap-10 text-2xl flex flex-col items-center p-10">
-        
+
         <div className="flex flex-col  items-center scale-125 md:scale-200 lg:scale-[300%] xl:scale-[400%]">
           <RollingNumber className="font-bold" number={1135} />
           <span className="text-white mt-2 font-bold">MEMBERS</span>
@@ -79,11 +79,17 @@ export default function Page() {
 
 
       <div id="section3" className="bg-red-500/50 relative max-w-5xl mx-auto flex items-center h-[100vh] px-8">
-        <div className="flex-1 space-y-4 max-w-sm bg-blue-500/10 text-white"> <h1 className="text-3xl font-bold mb-4">Global Impact</h1>
-          <p className=""> With chapters at top universities, we support students in Peru
-            by connecting them to transformative opportunities in technology and innovation. </p>
-          <p> We collaborate with organizations like SHPE and ALPFA to deliver meaningful student opportunities
-            that drive growth, leadership, and innovation. </p> </div>
+        <div className="md:basis-2/3">
+          <AnimatedText className="text-2xl md:text-4xl mb-10">
+            With chapters at top universities, we support students in Peru
+            by connecting them to transformative opportunities in technology and innovation.
+          </AnimatedText>
+
+          <AnimatedText className="text-2xl md:text-4xl">
+            We collaborate with organizations like SHPE and ALPFA to deliver meaningful student opportunities
+            that drive growth, leadership, and innovation.
+          </AnimatedText>
+        </div>
 
         <div className="md:flex-1 bg-yellow-500/10">
         </div>
