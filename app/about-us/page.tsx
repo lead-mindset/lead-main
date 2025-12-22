@@ -16,6 +16,7 @@ import { useEffect } from "react";
 import { useThree } from "@react-three/fiber";
 import Galaxy from "@/components/scene/galaxy";
 import CameraAnimation from "@/components/scene/camera-animation";
+import PillarsCarousel from "@/components/scroll/pillarscarousel";
 import CurvedConnector from "@/components/scroll/animated-curve";
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
@@ -39,13 +40,13 @@ export default function AboutUs() {
             <Gallery />
 
             <div id='empowering' className="relative py-60  p-10 text-center text-white max-w-5xl mx-auto">
-               {/*<AnimatedText className="text-2xl font-bold  md:text-7xl uppercase">
+                {/*<AnimatedText className="text-2xl font-bold  md:text-7xl uppercase">
                     Empowering Dreams
-                </AnimatedText> */} 
+                </AnimatedText> */}
             </div>
 
-            
-           <CurvedConnector/>
+
+            <CurvedConnector />
 
             <div className="relative p-10 flex flex-col justify-center text-white space-y-10 max-w-5xl mx-auto">
                 <AnimatedText className="text-3xl md:text-6xl">Mission</AnimatedText>
@@ -71,7 +72,15 @@ export default function AboutUs() {
 
 
             <Values />
-            <Pillars />
+
+            <div className="relative p-10 flex flex-col justify-center text-white max-w-5xl mx-auto">
+                <AnimatedText className="text-2xl md:text-4xl">
+                    Built on these core values, our pillars drive lasting growth and meaningful impact, shaping students and communities for the better.
+                </AnimatedText>
+            </div>
+
+            <PillarsCarousel />
+
             <Founders />
             <Testimonies />
 
