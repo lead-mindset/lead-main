@@ -11,12 +11,13 @@ import SloganReveal from "@/components/scroll/slogan";
 import RollingNumber from "@/components/scroll/number-counter";
 import AnimatedText from "@/components/scroll/animated-text";
 import { Canvas } from "@react-three/fiber";
-import { Stars } from "@react-three/drei";
-import Gallery from "@/components/scroll/gallery";
+import { OrbitControls, Stars } from "@react-three/drei";
 import Pillars from "@/components/scroll/pillars";
 import Values from "@/components/scroll/values";
 import Founders from "@/components/scroll/founders";
 import Testimonies from "@/components/scroll/testimonies";
+import Gallery from "../example/bento-gallery";
+import Galaxy from "@/components/scene/galaxy";
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
 export default function AboutUs() {
@@ -30,8 +31,12 @@ export default function AboutUs() {
                     <color attach="background" args={["#000D5A"]} />
                     <ambientLight intensity={1.2} />
                     <Stars />
+                    <OrbitControls/>
+                            <Galaxy />
+
                 </Canvas>
             </div>
+
 
             <section id="scroll-section" className="relative w-full h-[100vh]" />
 
@@ -54,10 +59,10 @@ export default function AboutUs() {
                 </AnimatedText>
             </div>
 
-            <Values/>
-           <Pillars/>
-           <Founders/>
-        <Testimonies/>
+            <Values />
+            <Pillars />
+            <Founders />
+            <Testimonies />
 
 
         </div>

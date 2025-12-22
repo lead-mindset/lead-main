@@ -8,43 +8,45 @@ import { SplitText } from "gsap/SplitText";
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
 export default function AnimatedText({ children, className = "" }) {
-    const containerRef = useRef(null);
+  const containerRef = useRef(null);
 
-    useEffect(() => {
-        const container = containerRef.current;
-        const text = container.querySelector(".split");
+  useEffect(() => {
+    const container = containerRef.current;
+    const text = container.querySelector(".split");
 
-        gsap.set(text, { opacity: 1 });
+    gsap.set(text, { opacity: 1 });
 
-        document.fonts.ready.then(() => {
-            SplitText.create(text, {
-                type: "words,lines",
-                mask: "lines",
-                linesClass: "line",
-                autoSplit: true,
-                onSplit: (instance) => {
-                    return gsap.from(instance.lines, {
-                        yPercent: 120,
-                        stagger: 0.1,
-                        scrollTrigger: {
-                            trigger: container,
-                            start: "top center",
-                            end: "bottom center",
-                            scrub: true,
-                        },
-                    });
-                },
-            });
-        });
-    }, []);
+    document.fonts.ready.then(() => {
+      SplitText.create(text, {
+        type: "words,lines",
+        mask: "lines",
+        linesClass: "line",
+        autoSplit: true,
+        onSplit: (instance) => {
+          gsap.from(instance.lines, {
+            yPercent: 120,
+            stagger: 0.1,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: container,
+              start: "top center",
+              toggleActions: "play none none none",
+              once: true,
+            },
+          });
+        },
+      });
+    });
 
-    return (
-        <div ref={containerRef} className="mx-auto">
-            <p
-                className={`split will-change-transform opacity-0 ${className}`}
-            >
-                {children}
-            </p>
-        </div>
-    );
+    return () => ScrollTrigger.getAll().forEach(t => t.kill());
+  }, []);
+
+  return (
+    <div ref={containerRef} className="mx-auto">
+      <p className={`split will-change-transform opacity-0 ${className}`}>
+        {children}
+      </p>
+    </div>
+  );
 }
