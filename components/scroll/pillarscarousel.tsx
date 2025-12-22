@@ -132,7 +132,7 @@ export default function PillarsCarousel() {
     }, []);
 
     return (
-        <div className="relative">
+        <div className="relative text-white">
             <div className="flex flex-row items-start justify-center md:gap-16 w-full">
                 <div ref={wheelRef} className="max-md:hidden relative md:w-[400px] md:h-[400px]">
                     {data.map((item, i) => {
