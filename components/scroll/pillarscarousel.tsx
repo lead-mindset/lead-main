@@ -8,66 +8,11 @@ import { Users, BookOpen, Award, Briefcase, Globe, User, GraduationCap } from "l
 import { StyledCard } from "../ui/styled-card";
 
 gsap.registerPlugin(MotionPathPlugin, ScrollTrigger);
-const data = [
-    {
-        id: 1,
-        title: 'Chapter Development',
-        description:
-            'Building strong, sustainable chapters that foster active engagement, collaboration, and a sense of belonging among students across Latin America.',
-        IconComponent: Users,
-        color: 'from-blue-500 to-purple-500',
-    },
-    {
-        id: 2,
-        title: 'Academic Excellence',
-        description:
-            'Encouraging high academic achievement and a culture of curiosity, discipline, and lifelong learning that prepares students for future success.',
-        IconComponent: BookOpen,
-        color: 'from-purple-500 to-pink-500',
-    },
-    {
-        id: 3,
-        title: 'Leadership',
-        description:
-            'Developing confident, ethical, and visionary leaders who can inspire others and drive meaningful impact in their communities and industries.',
-        IconComponent: Award,
-        color: 'from-blue-500 to-purple-500',
-    },
-    {
-        id: 4,
-        title: 'Professional Development',
-        description:
-            'Equipping students with the skills, mentorship, and experiences needed to excel in their careers and thrive in the evolving tech landscape.',
-        IconComponent: Briefcase,
-        color: 'from-purple-500 to-pink-500',
-    },
-    {
-        id: 5,
-        title: 'Community Impact',
-        description:
-            'Inspiring students to create initiatives that positively transform local communities, promote social responsibility, and leave a lasting legacy.',
-        IconComponent: Globe,
-        color: 'from-blue-500 to-purple-500',
-    },
-    {
-        id: 6,
-        title: 'Women Excellence',
-        description:
-            'Empowering and celebrating female students, providing support, mentorship, and opportunities to thrive as leaders in technology and beyond.',
-        IconComponent: User,
-        color: 'from-purple-500 to-pink-500',
-    },
-    {
-        id: 7,
-        title: 'LEAD Academia',
-        description:
-            'Engaging high-school students with exposure to technology, leadership skills, and career opportunities to cultivate the next generation of Latino talent.',
-        IconComponent: GraduationCap,
-        color: 'from-blue-500 to-purple-500',
-    },
-];
+
+const data = [{ id: 1, title: 'Chapter Development', description: 'Building strong, sustainable chapters that foster active engagement, collaboration, and a sense of belonging among students across Latin America.', IconComponent: Users, color: 'from-blue-500 to-purple-500', }, { id: 2, title: 'Academic Excellence', description: 'Encouraging high academic achievement and a culture of curiosity, discipline, and lifelong learning that prepares students for future success.', IconComponent: BookOpen, color: 'from-purple-500 to-pink-500', }, { id: 3, title: 'Leadership', description: 'Developing confident, ethical, and visionary leaders who can inspire others and drive meaningful impact in their communities and industries.', IconComponent: Award, color: 'from-blue-500 to-purple-500', }, { id: 4, title: 'Professional Development', description: 'Equipping students with the skills, mentorship, and experiences needed to excel in their careers and thrive in the evolving tech landscape.', IconComponent: Briefcase, color: 'from-purple-500 to-pink-500', }, { id: 5, title: 'Community Impact', description: 'Inspiring students to create initiatives that positively transform local communities, promote social responsibility, and leave a lasting legacy.', IconComponent: Globe, color: 'from-blue-500 to-purple-500', }, { id: 6, title: 'Women Excellence', description: 'Empowering and celebrating female students, providing support, mentorship, and opportunities to thrive as leaders in technology and beyond.', IconComponent: User, color: 'from-purple-500 to-pink-500', }, { id: 7, title: 'LEAD Academia', description: 'Engaging high-school students with exposure to technology, leadership skills, and career opportunities to cultivate the next generation of Latino talent.', IconComponent: GraduationCap, color: 'from-blue-500 to-purple-500', },];
 
 export default function PillarsCarousel() {
+    const wrapperRef = useRef(null);
     const wheelRef = useRef(null);
     const cardRef = useRef(null);
     const itemsRef = useRef([]);
@@ -96,7 +41,7 @@ export default function PillarsCarousel() {
 
         const wheelTimeline = gsap.timeline({
             scrollTrigger: {
-                trigger: wheelRef.current,
+                trigger: wrapperRef.current,
                 start: "top top",
                 end: `+=${scrollDistance}`,
                 pin: true,
@@ -118,22 +63,17 @@ export default function PillarsCarousel() {
             ease: "none",
         }, 0);
 
-        ScrollTrigger.create({
-            trigger: cardRef.current,
-            start: "top 20%",
-            end: `+=${scrollDistance}`,
-            pin: true,
-            pinSpacing: true,
-        });
-
         return () => {
             ScrollTrigger.getAll().forEach(st => st.kill());
         };
     }, []);
 
     return (
-        <div className="relative text-white">
-            <div className="flex flex-row items-start justify-center md:gap-16 w-full">
+        <div className="relative mt-40 text-white">
+            <div
+                ref={wrapperRef}
+                className="flex flex-col md:flex-row items-center justify-center min-h-[100vh] gap-16"
+            >
                 <div ref={wheelRef} className="max-md:hidden relative md:w-[400px] md:h-[400px]">
                     {data.map((item, i) => {
                         const Icon = item.IconComponent;
@@ -162,17 +102,13 @@ export default function PillarsCarousel() {
                     </svg>
                 </div>
 
-                <div ref={cardRef} className="w-xl">
-
-                    <h1 className="text-5xl">Our Pillars </h1>
-
+                <div ref={cardRef} className="w-xl text-center md:text-left">
+                    <h1 className="text-5xl mb-8">Our Pillars</h1>
                     <StyledCard color={data[activeIndex].color}>
                         <h3 className="mt-4">{data[activeIndex].title}</h3>
                         <p className="mt-2">{data[activeIndex].description}</p>
                     </StyledCard>
                 </div>
-
-
             </div>
         </div>
     );
