@@ -10,6 +10,9 @@ import PartnerWithUs from "@/components/scroll/partner-with-us";
 import JoinChapter from "@/components/scroll/join-chapter";
 import ChaptersPhotos from "@/components/scroll/chapters-photos";
 import JoinSlackCommunity from "@/components/scroll/join-slack";
+import RocketModel from "@/components/scene/rocket";
+import CameraAnimation2 from "@/components/scene/camera-animation2";
+import AnimatedText from "@/components/scroll/animated-text";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function GetInvolved() {
@@ -21,8 +24,17 @@ export default function GetInvolved() {
                     <color attach="background" args={["#000D5A"]} />
                     <ambientLight intensity={1.2} />
                     <Stars />
+                    <CameraAnimation2 />
+                    <RocketModel />
                 </Canvas>
             </div>
+
+            <div className="relative min-h-screen p-10 flex flex-col justify-center text-white space-y-10 max-w-5xl mx-auto">
+                <AnimatedText className="text-2xl md:text-4xl">
+                    Launch Into Our Community
+                </AnimatedText>
+            </div>
+
 
             <JoinSlackCommunity />
 
