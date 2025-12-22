@@ -102,8 +102,6 @@ export default function Gallery() {
           />
         </div>
       </section>
-
-      <div className="h-screen bg-neutral-950" />
     </>
   );
 }
