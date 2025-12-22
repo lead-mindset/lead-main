@@ -23,31 +23,47 @@ export default function Gallery() {
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
+        defaults: {
+          ease: "power3.out",
+        },
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
           end: "+=300%",
-          scrub: true,
+          scrub: 1,
           pin: true,
         },
       });
 
       groupRefs.current.forEach((group, i) => {
+        const imgs = group.querySelectorAll("img");
+
         tl.fromTo(
           group,
-          { autoAlpha: 0, scale: 0.9 },
+          { autoAlpha: 0, scale: 0.96 },
           { autoAlpha: 1, scale: 1, duration: 1 }
         );
 
         tl.fromTo(
-          group.querySelectorAll("img"),
-          { y: 50 },
-          { y: -50, stagger: 0.08, duration: 1 },
+          imgs,
+          { yPercent: 8 },
+          {
+            stagger: 0.12,
+            duration: 1,
+          },
           "<"
         );
 
         if (i !== groupRefs.current.length - 1) {
-          tl.to(group, { autoAlpha: 0, scale: 0.9, duration: 1 });
+          tl.to(
+            group,
+            {
+              autoAlpha: 0,
+              scale: 0.98,
+              duration: 1,
+            },
+            ">"
+          );
         }
       });
     }, sectionRef);
@@ -63,7 +79,7 @@ export default function Gallery() {
       >
         <div
           ref={(el) => el && (groupRefs.current[0] = el)}
-          className="absolute inset-0"
+          className="absolute inset-0 will-change-transform"
         >
           <img src={images[0]} className="absolute left-[8%] top-[18%] h-[32vh]" />
           <img src={images[1]} className="absolute left-[22%] bottom-[16%] h-[38vh]" />
@@ -76,7 +92,7 @@ export default function Gallery() {
 
         <div
           ref={(el) => el && (groupRefs.current[1] = el)}
-          className="absolute inset-0"
+          className="absolute inset-0 will-change-transform"
         >
           <img
             src={images[2]}
