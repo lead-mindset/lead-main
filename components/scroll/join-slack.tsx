@@ -46,7 +46,7 @@ export default function JoinSlackCommunity() {
   return (
     <section
       ref={containerRef}
-      className="w-full relative flex justify-center py-24 px-4"
+      className="w-full h-screen relative flex items-center justify-center py-24 px-4"
     >
       <div className="max-w-5xl w-full">
         <Card className="js-card relative overflow-hidden rounded-2xl shadow-xl bg-gradient-to-br from-pink-600/50 via-purple-600 to-purple-700/50 text-white">
