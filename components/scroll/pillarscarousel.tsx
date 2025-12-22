@@ -136,17 +136,17 @@ export default function PillarsCarousel() {
             <div
               key={item.id}
               ref={(el) => (itemsRef.current[i] = el)}
-              className={`absolute w-16 h-16 rounded-full flex items-center justify-center text-white transition-all 
+              className={`absolute w-16 h-16 z-10 rounded-full flex items-center justify-center text-white transition-all 
                 ${i === activeIndex 
-                  ? `bg-gradient-to-br ${item.color} scale-110 z-10 shadow-lg` 
-                  : `bg-gray-400 scale-100 z-0 opacity-70`
+                  ? `bg-gradient-to-br ${item.color}` 
+                  : `bg-gray-400`
                 }`}
             >
-              <Icon className="w-8 h-8" />
+              <Icon className="w-8 h-8 z-10" />
             </div>
           );
         })}
-        <svg viewBox="0 0 300 300" className="absolute top-0 left-0 w-full h-full pointer-events-none">
+        <svg viewBox="0 0 300 300" className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none">
           <circle ref={circleRef} cx="150" cy="150" r="150" fill="none" stroke="black" strokeWidth="2" />
         </svg>
       </div>
