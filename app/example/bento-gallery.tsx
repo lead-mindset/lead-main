@@ -22,47 +22,41 @@ export default function Gallery() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
+      const groups = groupRefs.current;
+
+      gsap.set(groups, { autoAlpha: 0, scale: 1 });
+      gsap.set(groups[0], { autoAlpha: 1 });
+
+      const HOLD = 0.35;
+      const FADE = 0.25;
+
       const tl = gsap.timeline({
-        defaults: {
-          ease: "power3.out",
-        },
+        defaults: { ease: "power3.out" },
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: "+=300%",
+          end: "+=220%",
           scrub: 1,
           pin: true,
         },
       });
 
-      groupRefs.current.forEach((group, i) => {
-        const imgs = group.querySelectorAll("img");
+      groups.forEach((group, i) => {
+        const nextGroup = groups[i + 1];
 
-        tl.fromTo(
-          group,
-          { autoAlpha: 0, scale: 0.96 },
-          { autoAlpha: 1, scale: 1, duration: 1 }
-        );
+        tl.to(group, { autoAlpha: 1, duration: HOLD });
 
-        tl.fromTo(
-          imgs,
-          { yPercent: 8 },
-          {
-            stagger: 0.12,
-            duration: 1,
-          },
-          "<"
-        );
+        tl.to(group, {
+          autoAlpha: 0,
+          duration: FADE,
+        });
 
-        if (i !== groupRefs.current.length - 1) {
-          tl.to(
-            group,
-            {
-              autoAlpha: 0,
-              scale: 0.98,
-              duration: 1,
-            },
-            ">"
+        if (nextGroup) {
+          tl.fromTo(
+            nextGroup,
+            { autoAlpha: 0, scale: 0.95 },
+            { autoAlpha: 1, scale: 1, duration: FADE },
+            `-=${FADE}`
           );
         }
       });
@@ -79,7 +73,7 @@ export default function Gallery() {
       >
         <div
           ref={(el) => el && (groupRefs.current[0] = el)}
-          className="absolute inset-0 will-change-transform"
+          className="absolute inset-0"
         >
           <img src={images[0]} className="absolute left-[8%] top-[18%] h-[32vh]" />
           <img src={images[1]} className="absolute left-[22%] bottom-[16%] h-[38vh]" />
@@ -92,7 +86,7 @@ export default function Gallery() {
 
         <div
           ref={(el) => el && (groupRefs.current[1] = el)}
-          className="absolute inset-0 will-change-transform"
+          className="absolute inset-0"
         >
           <img
             src={images[2]}
