@@ -13,10 +13,11 @@ export default function Page() {
         <color attach="background" args={["#000D5A"]} />
         <ambientLight intensity={1.2} />
         <Stars />
-        <OrbitControls />
         <Galaxy />
 
       </Canvas>
+
+      
     </div>
   );
 }
