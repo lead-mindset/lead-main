@@ -76,7 +76,7 @@ export default function GetInvolved() {
             </div>
 
             <section
-                className="max-w-5xl mx-auto relative flex items-center justify-center">
+                className="max-w-5xl min-h-screen mx-auto relative flex items-center justify-center">
 
                 <Card className="js-card max-w-5xl relative overflow-hidden rounded-2xl text-white">
                     <div className="absolute -top-24 -right-24 w-96 h-96 bg-chart-2/20 z-0 rounded-full" />
