@@ -1,11 +1,9 @@
-import ActionLines from "./action-lines";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
 import gsap from "gsap";
 import PlanetModel from "../scene/planet";
-import { PerspectiveCamera } from "@react-three/drei";
 import CameraAnimation3 from "../scene/camera-animation3";
 
 export default function CanvasReveal({ videoRef }: { videoRef: React.RefObject<HTMLVideoElement> }) {

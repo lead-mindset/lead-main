@@ -1,6 +1,5 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
 import { Card } from "../ui/card";
 import { CardContent } from "../ui/card";
 const chapters = [
