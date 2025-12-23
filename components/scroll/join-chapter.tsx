@@ -26,6 +26,8 @@ export default function JoinChapter() {
         <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-chart-1/20 rounded-full" />
           <CardContent className="relative flex flex-col z-10 gap-8 p-10 md:p-14">
 
+
+        
         <h2 className="text-3xl md:text-4xl font-bold">
           Join a LEAD Chapter
         </h2>
