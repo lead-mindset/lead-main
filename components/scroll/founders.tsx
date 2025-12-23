@@ -41,14 +41,7 @@ const Founders = () => {
                   fill
                   className="object-cover "
                 />
-                <div className="absolute bottom-2 right-2 w-10 h-10">
-                  <Image
-                    src={founder.logo}
-                    alt="Company Logo"
-                    fill
-                    className="object-contain "
-                  />
-                </div>
+               
               </div>
               <AnimatedText className="text-2xl md:text-4xl font-bold">
                 {founder.name}
