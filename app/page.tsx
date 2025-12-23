@@ -88,8 +88,8 @@ export default function Page() {
 
 
       <div id='section3'>
-        <div className="h-screen bg-purple-500/30" />
-        <div id="section4" className="bg-yellow-500/50 relative max-w-5xl mx-auto flex items-center h-screen px-8">
+        <div className="h-screen" />
+        <div id="section4" className="relative max-w-5xl mx-auto flex items-center h-screen px-8">
           <div className="md:basis-2/3">
             <AnimatedText className="text-2xl md:text-4xl mb-10">
               With  <span className="font-extrabold">chapters</span> at top universities, we support students in Peru
@@ -102,8 +102,8 @@ export default function Page() {
         </div>
 
 
-        <div id="section5" className="bg-red-500/50 relative max-w-5xl mx-auto flex items-center h-screen px-8">
-          <div className="md:flex-1 bg-yellow-500/10">
+        <div id="section5" className=" relative max-w-5xl mx-auto flex items-center h-screen px-8">
+          <div className="md:flex-1 ">
           </div>
           <div className="md:basis-2/3">
 
