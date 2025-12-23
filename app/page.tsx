@@ -75,39 +75,43 @@ export default function Page() {
 
       </div>
 
-      <div id='section3'> 
-        <div className="h-screen"/>
-      <div id="section4" className="bg-red-500/50 relative max-w-5xl mx-auto flex items-center h-[100vh] px-8">
-        <div className="md:basis-2/3">
-          <AnimatedText className="text-2xl md:text-4xl mb-10">
-            With chapters at top universities, we support students in Peru
-            by connecting them to transformative opportunities in technology and innovation.
-          </AnimatedText>
+      <div id='section3'>
+        <div className="h-screen bg-purple-500/30" />
+        <div id="section4" className="bg-yellow-500/50 relative max-w-5xl mx-auto flex items-center h-screen px-8">
+          <div className="md:basis-2/3">
+            <AnimatedText className="text-2xl md:text-4xl mb-10">
+              With chapters at top universities, we support students in Peru
+              by connecting them to transformative opportunities in technology and innovation.
+            </AnimatedText>
+          </div>
+
+          <div className="md:flex-1 bg-yellow-500/10">
+          </div>
         </div>
 
-        <div className="md:flex-1 bg-yellow-500/10">
+
+        <div id="section5" className="bg-red-500/50 relative max-w-5xl mx-auto flex items-center h-screen px-8">
+          <div className="md:flex-1 bg-yellow-500/10">
+          </div>
+          <div className="md:basis-2/3">
+
+            <AnimatedText className="text-2xl md:text-4xl text-right">
+              We collaborate with organizations like SHPE and ALPFA to deliver meaningful student opportunities
+              that drive growth, leadership, and innovation.
+            </AnimatedText>
+          </div>
+
+
         </div>
+        <div className="h-screen">
+          
+        </div>
+
+
+
+
       </div>
 
-
-        <div id="section5" className="bg-red-500/50 relative max-w-5xl mx-auto flex items-center h-[100vh] px-8">
-         <div className="md:flex-1 bg-yellow-500/10">
-        </div>
-        <div className="md:basis-2/3">
-
-          <AnimatedText className="text-2xl md:text-4xl text-right">
-            We collaborate with organizations like SHPE and ALPFA to deliver meaningful student opportunities
-            that drive growth, leadership, and innovation.
-          </AnimatedText>
-        </div>
-
-       
-      </div>
-</div>
-      <div id="section4" className="bg-green-500/50 h-[100vh] px-8">
-
-
-      </div>
 
     </div>
   );
