@@ -50,7 +50,7 @@ export default function AboutUs() {
             <CurvedConnector />
 
             <div className="relative p-10 flex flex-col justify-center text-white space-y-10 max-w-5xl mx-auto">
-                <AnimatedText className="text-3xl md:text-6xl">Mission</AnimatedText>
+                <AnimatedText className="text-3xl md:text-6xl font-bold">Mission</AnimatedText>
 
                 <AnimatedText className="text-2xl md:text-4xl">
                     We are a <span className="font-extrabold">network</span> of professionals and students dedicated to <span className="font-extrabold">empowering {' '}</span>
@@ -62,11 +62,11 @@ export default function AboutUs() {
 
             <div className="relative p-10 flex flex-col justify-center text-white space-y-10 max-w-5xl mx-auto">
 
-                <AnimatedText className="text-3xl md:text-6xl">Vision</AnimatedText>
+                <AnimatedText className="text-3xl md:text-6xl font-bold">Vision</AnimatedText>
 
                 <AnimatedText className="text-2xl md:text-4xl">
                     Through mentorship, leadership training, and impactful community
-                    projects, we connect ambitious students with opportunities to grow both
+                    projects, we connect  <span className="font-extrabold">ambitious students</span> with opportunities to <span className="font-extrabold"> grow</span> both
                     personally and professionally.
                 </AnimatedText>
             </div>
