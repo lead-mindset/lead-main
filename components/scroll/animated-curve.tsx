@@ -60,7 +60,7 @@ export default function CurvedConnector() {
           ref={pathRef}
           d="M 0 50 C 250 50, 750 350, 1000 350"
           stroke="url(#gradientStroke)"
-          strokeWidth="50"
+          strokeWidth="60"
           strokeLinecap="round"
         />
       </svg>
