@@ -16,95 +16,63 @@ export default function PlanetModel({ scale = 5 }) {
   const groupRef = useRef<THREE.Group>(null);
   const peruRef = useRef<HTMLDivElement>(null);
   const usaRef = useRef<HTMLDivElement>(null);
+useLayoutEffect(() => {
+  let ctx: gsap.Context | undefined;
 
-  useLayoutEffect(() => {
-    if (!groupRef.current) return;
+  const init = () => {
+    if (!groupRef.current || !peruRef.current || !usaRef.current) return;
 
-    requestAnimationFrame(() => {
-      if (!peruRef.current || !usaRef.current) return;
+    const section = document.querySelector("#section3");
+    if (!section) return;
 
+    ctx = gsap.context(() => {
       gsap.set(groupRef.current.position, { y: -16, z: 0 });
       gsap.set(groupRef.current.rotation, { x: 0, y: 0, z: 0 });
-
       gsap.set([peruRef.current, usaRef.current], { autoAlpha: 0 });
 
       const tl = gsap.timeline({
         defaults: { ease: "none" },
         scrollTrigger: {
-          trigger: "#section3",
+          trigger: section,
           start: "top bottom",
           end: "bottom bottom",
           scrub: 1,
           markers: true,
+          invalidateOnRefresh: true,
         },
       });
 
       tl.to({}, { duration: 0.125 });
-
-      tl.to(groupRef.current.position, {
-        y: 0,
-        duration: 0.25,
-      });
+      tl.to(groupRef.current.position, { y: 0, duration: 0.25 });
 
       tl.to({}, { duration: 0.125 });
-
-      tl.to(groupRef.current.rotation, {
-        x: -0.4,
-        y: 0.3,
-        duration: 0.25,
-      });
-
-      tl.to(peruRef.current, {
-        autoAlpha: 1,
-        duration: 0.08,
-        ease: "power1.out",
-      });
+      tl.to(groupRef.current.rotation, { x: -0.2, y: 0.5, duration: 0.25 });
+      tl.to(peruRef.current, { autoAlpha: 1, duration: 0.08 });
 
       tl.to({}, { duration: 0.125 });
-
-      tl.to(groupRef.current.rotation, {
-        x: 0.3,
-        y: -0.5,
-        duration: 0.25,
-      });
-
-      tl.to(peruRef.current, {
-        autoAlpha: 0,
-        duration: 0.08,
-        ease: "power1.in",
-      });
-
-      tl.to(
-        usaRef.current,
-        {
-          autoAlpha: 1,
-          duration: 0.08,
-          ease: "power1.out",
-        },
-        "<"
-      );
+      tl.to(groupRef.current.rotation, { x: 0.3, y: -0.5, duration: 0.25 });
+      tl.to(peruRef.current, { autoAlpha: 0, duration: 0.08 });
+      tl.to(usaRef.current, { autoAlpha: 1, duration: 0.08 }, "<");
 
       tl.to({}, { duration: 0.125 });
-
-      tl.to(groupRef.current.rotation, {
-        x: 0.6,
-        y: -1.5,
-        z: 0,
-        duration: 0.25,
-      });
-
-      tl.to(usaRef.current, {
-        autoAlpha: 0,
-        duration: 0.08,
-        ease: "power1.in",
-      });
-
-      return () => {
-        tl.scrollTrigger?.kill();
-        tl.kill();
-      };
+      tl.to(groupRef.current.rotation, { x: 0, y: 0, z: 0, duration: 0.25 });
+      tl.to(usaRef.current, { autoAlpha: 0, duration: 0.08 });
     });
-  }, []);
+    
+    ScrollTrigger.refresh();
+  };
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(init);
+  });
+
+  return () => ctx?.revert();
+}, []);
+
+
+
+
+
 
   return (
     <group ref={groupRef} scale={[scale, scale, scale]}>
