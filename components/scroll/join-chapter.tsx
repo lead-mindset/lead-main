@@ -24,7 +24,7 @@ export default function JoinChapter() {
       <Card className="js-card max-w-5xl relative overflow-hidden rounded-2xl text-white">
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-chart-2/20 z-0 rounded-full" />
         <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-chart-1/20 rounded-full" />
-          <CardContent className="relative flex flex-col z-10 gap-10 p-10 md:p-14">
+          <CardContent className="relative flex flex-col z-10 gap-8 p-10 md:p-14">
 
         <h2 className="text-3xl md:text-4xl font-bold">
           Join a LEAD Chapter
