@@ -20,18 +20,13 @@ export default function PlanetModel({ scale = 5 }) {
   useLayoutEffect(() => {
     if (!groupRef.current) return;
 
-    // ⬇️ Drei Html mounts one frame later — wait for it
     requestAnimationFrame(() => {
       if (!peruRef.current || !usaRef.current) return;
 
-      // Initial transforms (same as your original)
       gsap.set(groupRef.current.position, { y: -16, z: 0 });
       gsap.set(groupRef.current.rotation, { x: 0, y: 0, z: 0 });
 
-      // Initial label state (BOTH HIDDEN)
-      gsap.set([peruRef.current, usaRef.current], {
-        autoAlpha: 0,
-      });
+      gsap.set([peruRef.current, usaRef.current], { autoAlpha: 0 });
 
       const tl = gsap.timeline({
         defaults: { ease: "none" },
@@ -44,7 +39,6 @@ export default function PlanetModel({ scale = 5 }) {
         },
       });
 
-      // Spacer
       tl.to({}, { duration: 0.125 });
 
       tl.to(groupRef.current.position, {
@@ -54,31 +48,19 @@ export default function PlanetModel({ scale = 5 }) {
 
       tl.to({}, { duration: 0.125 });
 
-      tl.to(peruRef.current, {
-        autoAlpha: 1,
-        duration: 0.25,
-      });
-
       tl.to(groupRef.current.rotation, {
         x: -0.2,
         y: 0.5,
         duration: 0.25,
       });
 
-      tl.to({}, { duration: 0.125 });
-
       tl.to(peruRef.current, {
-        autoAlpha: 0,
-        duration: 0.25,
+        autoAlpha: 1,
+        duration: 0.08,
+        ease: "power1.out",
       });
-      tl.to(
-        usaRef.current,
-        {
-          autoAlpha: 1,
-          duration: 0.25,
-        },
-        "<"
-      );
+
+      tl.to({}, { duration: 0.125 });
 
       tl.to(groupRef.current.rotation, {
         x: 0.3,
@@ -86,20 +68,35 @@ export default function PlanetModel({ scale = 5 }) {
         duration: 0.25,
       });
 
-      tl.to({}, { duration: 0.125 });
-
-      // 
-      tl.to(usaRef.current, {
+      tl.to(peruRef.current, {
         autoAlpha: 0,
-        duration: 0.25,
+        duration: 0.08,
+        ease: "power1.in",
       });
 
-      // Back to center
+      tl.to(
+        usaRef.current,
+        {
+          autoAlpha: 1,
+          duration: 0.08,
+          ease: "power1.out",
+        },
+        "<"
+      );
+
+      tl.to({}, { duration: 0.125 });
+
       tl.to(groupRef.current.rotation, {
         x: 0,
         y: 0,
         z: 0,
         duration: 0.25,
+      });
+
+      tl.to(usaRef.current, {
+        autoAlpha: 0,
+        duration: 0.08,
+        ease: "power1.in",
       });
 
       return () => {
