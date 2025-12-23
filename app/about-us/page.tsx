@@ -14,7 +14,6 @@ import CameraAnimation from "@/components/scene/camera-animation";
 import PillarsCarousel from "@/components/scroll/pillarscarousel";
 import CurvedConnector from "@/components/scroll/animated-curve";
 import CurvedConnector2 from "@/components/scroll/animated-curve2";
-import Gallery from "@/components/scroll/gallery";
 import EmpowerSection from "@/components/scroll/get-involved-section";
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
@@ -36,8 +35,6 @@ export default function AboutUs() {
                     <Galaxy />
                 </Canvas>
             </div>
-            <Gallery />
-
             <div id='empowering' className="relative py-60  p-10 text-center text-white max-w-5xl mx-auto">
                 {/*<AnimatedText className="text-2xl font-bold  md:text-7xl uppercase">
                     Empowering Dreams
