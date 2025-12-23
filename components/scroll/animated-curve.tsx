@@ -49,10 +49,17 @@ export default function CurvedConnector() {
         fill="none"
         preserveAspectRatio="xMinYMin meet"
       >
+        <defs>
+          <linearGradient id="gradientStroke" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="var(--chart-1)" />
+            <stop offset="100%" stopColor="var(--chart-2)" />
+          </linearGradient>
+        </defs>
+
         <path
           ref={pathRef}
           d="M 0 50 C 250 50, 750 350, 1000 350"
-          stroke="pink"
+          stroke="url(#gradientStroke)"
           strokeWidth="50"
           strokeLinecap="round"
         />
