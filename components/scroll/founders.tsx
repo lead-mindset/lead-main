@@ -2,76 +2,28 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-import { Highlight } from "../ui/highlight";
+import AnimatedText from "./animated-text";
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(ScrollTrigger);
 
 const founders = [
-  {
-    name: "Antonny Porlles",
-    role: "Data & AI Technical Specialist",
-    photo: "/antonnyphoto.jpg",
-    link: "https://www.linkedin.com/in/antonny-porlles/",
-    logo: "/next.svg",
-  },
-  {
-    name: "Luis Coronel",
-    role: "Copilot CSA AI Business Solutions",
-    photo: "/luisphoto.jpg",
-    link: "https://www.linkedin.com/in/luis-t-coronel/",
-    logo: "/next.svg",
-  },
-  {
-    name: "Jane Doe",
-    role: "AI Strategist",
-    photo: "/luisphoto.jpg",
-    link: "#",
-    logo: "/next.svg",
-  },
-  {
-    name: "John Smith",
-    role: "Cloud Solutions Architect",
-    photo: "/luisphoto.jpg",
-    link: "#",
-    logo: "/next.svg",
-  },
+  { name: "Antonny Porlles", role: "Data & AI Technical Specialist", photo: "/antonnyphoto.jpg", link: "https://www.linkedin.com/in/antonny-porlles/", logo: "/next.svg" },
+  { name: "Luis Coronel", role: "Copilot CSA AI Business Solutions", photo: "/luisphoto.jpg", link: "https://www.linkedin.com/in/luis-t-coronel/", logo: "/next.svg" },
+  { name: "Jane Doe", role: "AI Strategist", photo: "/luisphoto.jpg", link: "#", logo: "/next.svg" },
+  { name: "John Smith", role: "Cloud Solutions Architect", photo: "/luisphoto.jpg", link: "#", logo: "/next.svg" },
 ];
 
 const Founders = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(() => {
-    const cards = gsap.utils.toArray(".founder-card") as HTMLElement[];
-
-    gsap.from(cards, {
-      opacity: 0,
-      scale: 0,
-      y: 50,
-      duration: 0.6,
-      stagger: 0.15,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top center",
-        once: false,
-      },
-    });
-  }, { scope: containerRef });
-
   return (
-    <div
-      ref={containerRef}
-      className="min-h-screen py-16 flex flex-col items-center justify-center relative"
-    >
-      <h2 className="mb-12 text-3xl md:text-5xl text-center">
-        <Highlight>LEAD LEADERS</Highlight>
-      </h2>
+    <div className="min-h-screen py-16 flex flex-col items-center justify-center relative">
+      <AnimatedText className="text-3xl md:text-6xl font-bold mb-12">
+        Our Team
+      </AnimatedText>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 w-full max-w-7xl px-4">
+      <div className="grid relative grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 w-full max-w-7xl px-4">
         {founders.map((founder) => (
           <div
             key={founder.name}
@@ -99,8 +51,12 @@ const Founders = () => {
                   />
                 </div>
               </div>
-              <h3 className="text-xl font-semibold">{founder.name}</h3>
-              <p className="text-sm text-gray-500">{founder.role}</p>
+              <AnimatedText className="text-2xl md:text-4xl font-bold">
+                {founder.name}
+              </AnimatedText>
+              <AnimatedText className="text-xl md:text-2xl font-bold">
+                {founder.role}
+              </AnimatedText>
             </Link>
           </div>
         ))}
