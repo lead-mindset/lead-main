@@ -132,7 +132,7 @@ export default function PillarsCarousel() {
                                 key={item.id}
                                 ref={el => (itemsRef.current[i] = el)}
                                 className={`absolute w-32 h-32 rounded-full flex items-center justify-center text-background transition-transform duration-100 z-10
-                  ${i === activeIndex ? `bg-gradient-to-br text-foreground ${item.color}` : `bg-foreground`}
+                  ${i === activeIndex ? `bg-foreground ` : `bg-gradient-to-br text-foreground ${item.color}`}
                 `}
                             >
                                 <Icon className="w-16 h-16 z-10" />
