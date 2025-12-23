@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import NavHeader from "@/components/global/navigation/NavHeader";
 import { Raleway } from "next/font/google";
+import "../lib/gsap-setup"; // eslint-disable-line @typescript-eslint/no-unused-vars
 
 const outfit = Raleway({ subsets: ['latin'], variable: '--font-sans' });
 
