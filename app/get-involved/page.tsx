@@ -67,7 +67,7 @@ export default function GetInvolved() {
                     />
                 </div>
                 
-                <Link href='https://linktr.ee/leadperu?utm_source=linktree_profile_share&ltsid=77341bb2-0bd9-4882-bce6-ef33355433d4'>                <Button className="mx-auto z-20">Find Your Chapter</Button>
+                <Link href='https://linktr.ee/leadperu?utm_source=linktree_profile_share&ltsid=77341bb2-0bd9-4882-bce6-ef33355433d4' className="z-20">                <Button className="mx-auto ">Find Your Chapter</Button>
                 </Link>
             </div>
 
