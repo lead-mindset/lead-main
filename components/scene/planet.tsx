@@ -20,69 +20,93 @@ export default function PlanetModel({ scale = 5 }) {
   useLayoutEffect(() => {
     if (!groupRef.current) return;
 
-    gsap.set(groupRef.current.position, { y: -16, z: 0 });
-    gsap.set(groupRef.current.rotation, { x: 0, y: 0, z: 0 });
+    // ⬇️ Drei Html mounts one frame later — wait for it
+    requestAnimationFrame(() => {
+      if (!peruRef.current || !usaRef.current) return;
 
-    const tl = gsap.timeline({
-      defaults: { ease: "none" },
-      scrollTrigger: {
-        trigger: "#section3",
-        start: "top bottom",
-        end: "bottom bottom", 
-        scrub: 1,
-        markers: true,
-      },
+      // Initial transforms (same as your original)
+      gsap.set(groupRef.current.position, { y: -16, z: 0 });
+      gsap.set(groupRef.current.rotation, { x: 0, y: 0, z: 0 });
+
+      // Initial label state (BOTH HIDDEN)
+      gsap.set([peruRef.current, usaRef.current], {
+        autoAlpha: 0,
+      });
+
+      const tl = gsap.timeline({
+        defaults: { ease: "none" },
+        scrollTrigger: {
+          trigger: "#section3",
+          start: "top bottom",
+          end: "bottom bottom",
+          scrub: 1,
+          markers: true,
+        },
+      });
+
+      // Spacer
+      tl.to({}, { duration: 0.125 });
+
+      tl.to(groupRef.current.position, {
+        y: 0,
+        duration: 0.25,
+      });
+
+      tl.to({}, { duration: 0.125 });
+
+      tl.to(peruRef.current, {
+        autoAlpha: 1,
+        duration: 0.25,
+      });
+
+      tl.to(groupRef.current.rotation, {
+        x: -0.2,
+        y: 0.5,
+        duration: 0.25,
+      });
+
+      tl.to({}, { duration: 0.125 });
+
+      tl.to(peruRef.current, {
+        autoAlpha: 0,
+        duration: 0.25,
+      });
+      tl.to(
+        usaRef.current,
+        {
+          autoAlpha: 1,
+          duration: 0.25,
+        },
+        "<"
+      );
+
+      tl.to(groupRef.current.rotation, {
+        x: 0.3,
+        y: -0.5,
+        duration: 0.25,
+      });
+
+      tl.to({}, { duration: 0.125 });
+
+      // 
+      tl.to(usaRef.current, {
+        autoAlpha: 0,
+        duration: 0.25,
+      });
+
+      // Back to center
+      tl.to(groupRef.current.rotation, {
+        x: 0,
+        y: 0,
+        z: 0,
+        duration: 0.25,
+      });
+
+      return () => {
+        tl.scrollTrigger?.kill();
+        tl.kill();
+      };
     });
-
-    tl.to({}, { duration: 0.125 });
-    tl.to(groupRef.current.position, { y: 0, duration: 0.25 });
-
-    tl.to({}, { duration: 0.125 });
-
-    tl.add(() => {
-      if (peruRef.current)
-        gsap.to(peruRef.current, { autoAlpha: 1, duration: 0.25 });
-    });
-
-    tl.to(groupRef.current.rotation, {
-      x: -0.2,
-      y: 0.5,
-      duration: 0.25,
-    });
-
-    tl.to({}, { duration: 0.125 });
-
-    tl.add(() => {
-      if (peruRef.current)
-        gsap.to(peruRef.current, { autoAlpha: 0, duration: 0.25 });
-      if (usaRef.current)
-        gsap.to(usaRef.current, { autoAlpha: 1, duration: 0.25 });
-    });
-
-    tl.to(groupRef.current.rotation, {
-      x: 0.3,
-      y: -0.5,
-      duration: 0.25,
-    });
-
-    tl.to({}, { duration: 0.125 });
-
-    tl.add(() => {
-      if (usaRef.current)
-        gsap.to(usaRef.current, { autoAlpha: 0, duration: 0.25 });
-    });
-
-    tl.to(groupRef.current.rotation, {
-      x: 0,
-      y: 0,
-      z: 0,
-      duration: 0.25,
-    });
-
-    return () => {
-      tl.scrollTrigger?.kill();
-      tl.kill();
-    };
   }, []);
 
   return (
@@ -92,7 +116,6 @@ export default function PlanetModel({ scale = 5 }) {
       <Html position={[0.3, -0.1, 1]} center>
         <div
           ref={peruRef}
-          style={{ opacity: 0, visibility: "hidden" }}
           className="flex items-center space-x-2 text-2xl bg-foreground text-background font-bold p-2 rounded"
         >
           <span className="fi fi-pe" />
@@ -103,7 +126,6 @@ export default function PlanetModel({ scale = 5 }) {
       <Html position={[-0.2, 0.6, 0.85]} center>
         <div
           ref={usaRef}
-          style={{ opacity: 0, visibility: "hidden" }}
           className="flex items-center space-x-2 text-2xl bg-foreground text-background font-bold p-2 rounded"
         >
           <span className="fi fi-us" />
