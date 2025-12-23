@@ -73,9 +73,11 @@ export default function Gallery() {
         className="relative h-screen w-full overflow-hidden"
       >
         <div
-          ref={(el) => el && (groupRefs.current[0] = el)}
-          className="absolute inset-0"
-        >
+  ref={(el) => {
+    if (el) groupRefs.current[1] = el;
+  }}
+  className="absolute inset-0"
+>
           <Image
             src={images[0]}
             alt="Image 1"
@@ -121,9 +123,11 @@ export default function Gallery() {
         </div>
 
         <div
-          ref={(el) => el && (groupRefs.current[1] = el)}
-          className="absolute inset-0"
-        >
+  ref={(el) => {
+    if (el) groupRefs.current[1] = el;
+  }}
+  className="absolute inset-0"
+>
 
           <Image
             src={images[2]}
