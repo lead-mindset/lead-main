@@ -92,8 +92,8 @@ export default function Page() {
         <div id="section4" className="bg-yellow-500/50 relative max-w-5xl mx-auto flex items-center h-screen px-8">
           <div className="md:basis-2/3">
             <AnimatedText className="text-2xl md:text-4xl mb-10">
-              With chapters at top universities, we support students in Peru
-              by connecting them to transformative opportunities in technology and innovation.
+              With  <span className="font-extrabold">chapters</span> at top universities, we support students in Peru
+              by connecting them to transformative opportunities in  <span className="font-extrabold">technology</span> and  <span className="font-extrabold">innovation</span>.
             </AnimatedText>
           </div>
 
@@ -108,7 +108,7 @@ export default function Page() {
           <div className="md:basis-2/3">
 
             <AnimatedText className="text-2xl md:text-4xl text-right">
-              We collaborate with organizations like SHPE and ALPFA to deliver meaningful student opportunities
+              We  <span className="font-extrabold">collaborate </span> with organizations like SHPE and ALPFA to deliver meaningful student <span className="font-extrabold">opportunities</span> 
               that drive growth, leadership, and innovation.
             </AnimatedText>
           </div>
