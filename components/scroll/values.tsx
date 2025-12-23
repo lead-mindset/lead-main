@@ -11,7 +11,7 @@ export default function Values() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const values = ["Integrity", "Collaboration", "Innovation", "Empowerment"];
-  const colors = ["#FF3B3B", "#3B82F6", "#9B30FF", "#F59E0B"]; // red, blue, purple, orange
+  const colors = ["bg-chart-1", "bg-chart-2", "bg-chart-3", "bg-chart-4"];
 
   useGSAP(() => {
     const ctx = gsap.context(() => {
@@ -55,8 +55,8 @@ export default function Values() {
       {values.map((value, i) => (
         <div
           key={i}
-          className="circle absolute w-56 h-56 rounded-full flex items-center justify-center text-center p-2"
-          style={{ zIndex: i + 10 , backgroundColor: colors[i] }}
+          className={`circle absolute w-56 h-56 rounded-full flex items-center justify-center text-center p-2 ${colors[i]}`}
+          style={{ zIndex: i + 10 }}
         >
           <h1 className="text-white font-bold text-2xl">{value}</h1>
         </div>
