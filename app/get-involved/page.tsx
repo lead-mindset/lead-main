@@ -13,6 +13,8 @@ import JoinSlackCommunity from "@/components/scroll/join-slack";
 import RocketModel from "@/components/scene/rocket";
 import CameraAnimation2 from "@/components/scene/camera-animation2";
 import AnimatedText from "@/components/scroll/animated-text";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function GetInvolved() {
@@ -22,7 +24,7 @@ export default function GetInvolved() {
             <div className="fixed inset-0 w-full h-screen z-0 pointer-events-none overflow-hidden">
                 <Canvas>
                     <color attach="background" args={["#000D5A"]} />
-        <ambientLight intensity={2}/>
+                    <ambientLight intensity={2} />
                     <Stars />
                     <CameraAnimation2 />
                     <RocketModel />
@@ -42,7 +44,28 @@ export default function GetInvolved() {
             <JoinSlackCommunity />
 
             <JoinChapter />
+
+            <div className="relative mx-auto w-fit">
+
+                     <div className="w-20 md:w-28 mb-8 mx-auto">
+                                      <Image
+                                        src="/leadcharacter2.svg"
+                                        alt="Logo"
+                                        width={356}
+                                        height={356}
+                                        style={{ objectFit: "contain" }}
+                                        priority
+                                      />
+                                    </div>
+                
+
+                <Button>Find Your Chapter</Button>
+            </div>
+
+        <div className="h-screen flex items-center justify-center">
             <ChaptersPhotos />
+
+        </div>
 
             <PartnerWithUs />
             <Allies />
