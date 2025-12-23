@@ -1,18 +1,26 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, ReactNode } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
-export default function AnimatedText({ children, className = "" }) {
-  const containerRef = useRef(null);
+interface AnimatedTextProps {
+  children: ReactNode;
+  className?: string;
+}
+
+export default function AnimatedText({ children, className = "" }: AnimatedTextProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const container = containerRef.current;
-    const text = container.querySelector(".split");
+    if (!container) return;
+
+    const text = container.querySelector(".split") as HTMLElement;
+    if (!text) return;
 
     gsap.set(text, { opacity: 1 });
 
