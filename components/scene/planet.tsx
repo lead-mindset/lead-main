@@ -49,8 +49,8 @@ export default function PlanetModel({ scale = 5 }) {
       tl.to({}, { duration: 0.125 });
 
       tl.to(groupRef.current.rotation, {
-        x: -0.2,
-        y: 0.5,
+        x: -0.4,
+        y: 0.3,
         duration: 0.25,
       });
 
@@ -87,8 +87,8 @@ export default function PlanetModel({ scale = 5 }) {
       tl.to({}, { duration: 0.125 });
 
       tl.to(groupRef.current.rotation, {
-        x: 0,
-        y: 0,
+        x: 0.6,
+        y: -1.5,
         z: 0,
         duration: 0.25,
       });
