@@ -30,47 +30,49 @@ export default function PlanetModel({ scale = 5 }) {
   useLayoutEffect(() => {
     let ctx: gsap.Context | undefined;
 
-    const init = () => {
-      if (!groupRef.current || !peruRef.current || !usaRef.current) return;
+const init = () => {
+  const group = groupRef.current;
+  const peru = peruRef.current;
+  const usa = usaRef.current;
 
-      const section = document.querySelector("#section3");
-      if (!section) return;
+  if (!group || !peru || !usa) return;
 
-      ctx = gsap.context(() => {
-        gsap.set(groupRef.current.position, { y: -16, z: 0 });
-        gsap.set(groupRef.current.rotation, { x: 0, y: 0, z: 0 });
-        gsap.set([peruRef.current, usaRef.current], { autoAlpha: 0 });
+  const section = document.querySelector("#section3");
+  if (!section) return;
 
-        const tl = gsap.timeline({
-          defaults: { ease: "none" },
-          scrollTrigger: {
-            trigger: section,
-            start: "top bottom",
-            end: "bottom bottom",
-            scrub: 1,
-            invalidateOnRefresh: true,
-          },
-        });
+  ctx = gsap.context(() => {
+    gsap.set(group.position, { y: -16, z: 0 });
+    gsap.set(group.rotation, { x: 0, y: 0, z: 0 });
+    gsap.set([peru, usa], { autoAlpha: 0 });
 
-        tl.to({}, { duration: 0.125 });
-        tl.to(groupRef.current.position, { y: 0, duration: 0.25 });
+    const tl = gsap.timeline({
+      defaults: { ease: "none" },
+      scrollTrigger: {
+        trigger: section,
+        start: "top bottom",
+        end: "bottom bottom",
+        scrub: 1,
+        invalidateOnRefresh: true,
+      },
+    });
 
-        tl.to({}, { duration: 0.125 });
-        tl.to(groupRef.current.rotation, { x: -0.2, y: 0.5, duration: 0.25 });
-        tl.to(peruRef.current, { autoAlpha: 1, duration: 0.08 });
+    tl.to({}, { duration: 0.125 });
+    tl.to(group.position, { y: 0, duration: 0.25 });
+    tl.to({}, { duration: 0.125 });
+    tl.to(group.rotation, { x: -0.2, y: 0.5, duration: 0.25 });
+    tl.to(peru, { autoAlpha: 1, duration: 0.08 });
+    tl.to({}, { duration: 0.125 });
+    tl.to(group.rotation, { x: 0.3, y: -0.5, duration: 0.25 });
+    tl.to(peru, { autoAlpha: 0, duration: 0.08 }, "<");
+    tl.to(usa, { autoAlpha: 1, duration: 0.08 }, "<");
+    tl.to({}, { duration: 0.125 });
+    tl.to(group.rotation, { x: -0.1, y: -1.5, z: 0, duration: 0.25 });
+    tl.to(usa, { autoAlpha: 0, duration: 0.08 }, "<");
+  });
 
-        tl.to({}, { duration: 0.125 });
-        tl.to(groupRef.current.rotation, { x: 0.3, y: -0.5, duration: 0.25 });
-        tl.to(peruRef.current, { autoAlpha: 0, duration: 0.08 }, "<");
-        tl.to(usaRef.current, { autoAlpha: 1, duration: 0.08 }, "<");
+  ScrollTrigger.refresh();
+};
 
-        tl.to({}, { duration: 0.125 });
-        tl.to(groupRef.current.rotation, { x: -0.1, y: -1.5, z: 0, duration: 0.25 });
-        tl.to(usaRef.current, { autoAlpha: 0, duration: 0.08 }, "<");
-      });
-
-      ScrollTrigger.refresh();
-    };
 
     requestAnimationFrame(() => {
       requestAnimationFrame(init);
