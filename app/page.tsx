@@ -12,6 +12,8 @@ import RollingNumber from "@/components/scroll/number-counter";
 import AnimatedText from "@/components/scroll/animated-text";
 import CurvedConnector2 from "@/components/scroll/animated-curve2";
 import CurvedConnector from "@/components/scroll/animated-curve";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
 export default function Page() {
@@ -103,10 +105,26 @@ export default function Page() {
 
 
         </div>
-        <div className="h-screen">
+        <div className="relative h-screen p-10 flex flex-col justify-center text-white space-y-10 max-w-5xl mx-auto">
+
+
+          <Image
+            src="/leadgrouplogo.svg"
+            alt="Logo"
+            width={200}
+            height={200}
+            priority
+            className="mx-auto"
+          />
+
+          <AnimatedText className="text-4xl md:text-7xl font-bold">
+            EMPOWERING DREAMS
+          </AnimatedText>
+
+          <Button className="w-fit">Get Involved</Button>
+
           
         </div>
-
 
 
 
