@@ -37,7 +37,8 @@ export default function CanvasReveal({ videoRef }: { videoRef: React.RefObject<H
     >
       <Canvas>
         <color attach="background" args={["#000D5A"]} />
-        <ambientLight intensity={1.2} />
+        <ambientLight intensity={2}/>
+        <fog attach="fog" args={["#000D5A", 2, 17]} />
         <Stars />
         <PlanetModel/>
         <CameraAnimation3/>
