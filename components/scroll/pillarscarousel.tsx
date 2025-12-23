@@ -65,18 +65,23 @@ export default function PillarsCarousel() {
     const wrapperRef = useRef(null);
     const wheelRef = useRef(null);
     const cardRef = useRef(null);
-    const itemsRef = useRef([]);
-    const circleRef = useRef(null);
+const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
+    const circleRef = useRef<SVGCircleElement>(null);
     const [activeIndex, setActiveIndex] = useState(0);
 
     useEffect(() => {
+        if (!circleRef.current) return;
+
         const items = itemsRef.current;
         const itemCount = items.length;
         const scrollDistance = itemCount * 300;
 
         const circlePath = MotionPathPlugin.convertToPath(circleRef.current, false)[0];
         circlePath.id = "circlePath";
-        circleRef.current.parentNode.prepend(circlePath);
+
+        if (circleRef.current.parentNode) {
+            circleRef.current.parentNode.prepend(circlePath);
+        }
 
         const step = 1 / itemCount;
 
@@ -125,20 +130,20 @@ export default function PillarsCarousel() {
                 className="flex flex-col md:flex-row items-center justify-center min-h-[100vh] gap-16"
             >
                 <div ref={wheelRef} className="max-md:hidden relative md:w-[400px] md:h-[400px]">
-                    {data.map((item, i) => {
-                        const Icon = item.IconComponent;
-                        return (
-                            <div
-                                key={item.id}
-                                ref={el => (itemsRef.current[i] = el)}
-                                className={`absolute w-32 h-32 rounded-full flex items-center justify-center text-background transition-transform duration-100 z-10
-                  ${i === activeIndex ? `bg-foreground ` : `bg-gradient-to-br text-foreground ${item.color}`}
-                `}
-                            >
-                                <Icon className="w-16 h-16 z-10" />
-                            </div>
-                        );
-                    })}
+                   {data.map((item, i) => {
+  const Icon = item.IconComponent;
+  return (
+    <div
+      key={item.id}
+      ref={el => { itemsRef.current[i] = el; }}
+      className={`absolute w-32 h-32 rounded-full flex items-center justify-center text-background transition-transform duration-100 z-10
+        ${i === activeIndex ? `bg-foreground ` : `bg-gradient-to-br text-foreground ${item.color}`}
+      `}
+    >
+      <Icon className="w-16 h-16 z-10" />
+    </div>
+  );
+})}
 
 
                     <defs>
