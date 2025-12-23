@@ -15,8 +15,8 @@ export default function CameraAnimation3() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: "#section3",
-        start: "top 80%",
-        end: "bottom 60%",
+        start: "top bottom",
+        end: "bottom bottom",
         scrub: 1,
       },
       defaults: { ease: "power2.out" },
@@ -25,6 +25,14 @@ export default function CameraAnimation3() {
     tl.to(camera.position, {
       x: 0,
       y: 3,
+      z: 10,
+      duration: 1.5,
+      onUpdate: () => camera.lookAt(0, 0, 0),
+    });
+
+    tl.to(camera.position, {
+      x: 0,
+      y: 0,
       z: 8,
       duration: 1.5,
       onUpdate: () => camera.lookAt(0, 0, 0),
