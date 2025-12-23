@@ -16,6 +16,7 @@ import CurvedConnector3 from "@/components/scroll/animated-curve3";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import SocialLinks from "@/components/ui/social-links";
+import EmpowerSection from "@/components/scroll/get-involved-section";
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
 export default function Page() {
@@ -115,28 +116,9 @@ export default function Page() {
 
 
         </div>
-        <div className="relative h-screen p-10 flex flex-col items-center justify-center text-white space-y-8 max-w-5xl mx-auto">
-
-          <div className=" max-w-52 md:max-w-xl mx-auto">
-            <Image
-              src="/leadgrouplogo.svg"
-              alt="Logo"
-              width={356}
-              height={356}
-              style={{ objectFit: 'contain' }}
-              priority
-            />
-          </div>
-
-          <AnimatedText className="text-4xl text-center  font-bold">
-            EMPOWERING DREAMS
-          </AnimatedText>
-
-          <Button className="w-fit">Get Involved</Button>
-          <SocialLinks iconSize={50} />
 
 
-        </div>
+        <EmpowerSection/>
 
 
 
