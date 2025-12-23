@@ -12,8 +12,10 @@ import RollingNumber from "@/components/scroll/number-counter";
 import AnimatedText from "@/components/scroll/animated-text";
 import CurvedConnector2 from "@/components/scroll/animated-curve2";
 import CurvedConnector from "@/components/scroll/animated-curve";
+import CurvedConnector3 from "@/components/scroll/animated-curve3";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import SocialLinks from "@/components/ui/social-links";
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
 export default function Page() {
@@ -33,11 +35,17 @@ export default function Page() {
         className="fixed inset-0 w-full h-full object-cover z-[-1]"
       />
 
-      <section id="scroll-section" className="relative w-full h-screen" />
+      <section id="scroll-section" className="relative w-full h-screen">
 
       <PinnedSlogan />
 
-      <CurvedConnector2 />
+
+      </section>
+
+      <div className="h-screen relative"/>
+      <div className="h-screen relative"/>
+
+      <CurvedConnector3 />
 
       <div className="relative min-h-screen p-10 flex flex-col justify-center text-white space-y-10 max-w-5xl mx-auto">
         <AnimatedText className="text-2xl md:text-4xl">
@@ -76,6 +84,8 @@ export default function Page() {
 
 
       </div>
+
+
 
       <div id='section3'>
         <div className="h-screen bg-purple-500/30" />
@@ -122,6 +132,7 @@ export default function Page() {
           </AnimatedText>
 
           <Button className="w-fit">Get Involved</Button>
+          <SocialLinks iconSize={50}/>
 
           
         </div>
