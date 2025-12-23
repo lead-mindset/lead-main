@@ -8,7 +8,7 @@ import {
   SlackIcon,
 } from "@hugeicons/core-free-icons";
 
-export const socialLinks = [
+const socialLinks = [
   {
     name: "Instagram",
     href: "https://instagram.com/yourpage",
@@ -26,28 +26,18 @@ export const socialLinks = [
   },
 ];
 
-
-
-export type SocialLink = {
-  name: string;
-  href: string;
-  icon: any;
-};
-
 interface SocialLinksProps {
-  links: SocialLink[];
   className?: string;
   iconSize?: number;
 }
 
 export default function SocialLinks({
-  links,
   className = "",
   iconSize = 20,
 }: SocialLinksProps) {
   return (
     <div className={`flex items-center gap-3 ${className}`}>
-      {links.map((item) => (
+      {socialLinks.map((item) => (
         <Link
           key={item.name}
           href={item.href}
