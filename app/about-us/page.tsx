@@ -1,24 +1,20 @@
 "use client";
 
-import React, { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import AnimatedText from "@/components/scroll/animated-text";
 import { Canvas } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
-import Pillars from "@/components/scroll/pillars";
 import Values from "@/components/scroll/values";
 import Founders from "@/components/scroll/founders";
 import Testimonies from "@/components/scroll/testimonies";
-import Gallery from "../example/bento-gallery";
-import { useEffect } from "react";
-import { useThree } from "@react-three/fiber";
 import Galaxy from "@/components/scene/galaxy";
 import CameraAnimation from "@/components/scene/camera-animation";
 import PillarsCarousel from "@/components/scroll/pillarscarousel";
 import CurvedConnector from "@/components/scroll/animated-curve";
 import CurvedConnector2 from "@/components/scroll/animated-curve2";
+import Gallery from "@/components/scroll/gallery";
 import EmpowerSection from "@/components/scroll/get-involved-section";
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 

@@ -6,8 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 import SocialLinks from "@/components/ui/social-links";
 
-import { HugeiconsIcon } from "@hugeicons/react";
-
 function NavBar({ menuItems }: { menuItems: MenuItem[] }) {
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
 

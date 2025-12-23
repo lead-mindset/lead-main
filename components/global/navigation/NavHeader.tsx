@@ -1,7 +1,6 @@
 'use client'
 import MobMenu from "./MobMenu";
 import NavBar from "./NavBar";
-import Link from "next/link";
 
 export type MenuItem = {
   name: string;

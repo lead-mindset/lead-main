@@ -1,21 +1,14 @@
 "use client";
 
-import React, { useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import PinnedSlogan from "@/components/scroll/pinned-logo";
 import CanvasReveal from "@/components/scroll/canvas-reveal";
-import MotionPathBox from "@/components/scroll/motion-path-box";
-import SloganReveal from "@/components/scroll/slogan";
 import RollingNumber from "@/components/scroll/number-counter";
 import AnimatedText from "@/components/scroll/animated-text";
-import CurvedConnector2 from "@/components/scroll/animated-curve2";
-import CurvedConnector from "@/components/scroll/animated-curve";
 import CurvedConnector3 from "@/components/scroll/animated-curve3";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import SocialLinks from "@/components/ui/social-links";
 import EmpowerSection from "@/components/scroll/get-involved-section";
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 

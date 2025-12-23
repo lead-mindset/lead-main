@@ -1,9 +1,7 @@
 
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import NavHeader from "@/components/global/navigation/NavHeader";
-import Footer from "@/components/global/Footer";
 import { Raleway } from "next/font/google";
 
 const outfit = Raleway({ subsets: ['latin'], variable: '--font-sans' });
