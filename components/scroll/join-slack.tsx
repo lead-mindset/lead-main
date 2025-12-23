@@ -23,7 +23,6 @@ export default function JoinSlackCommunity() {
           trigger: containerRef.current,
           start: "top 80%",
           toggleActions: "play none none none",
-          markers: true,
         },
         defaults: {
           ease: "power3.out",

@@ -25,7 +25,6 @@ export default function Values() {
           scrub: true,
           pin: true,
           anticipatePin: 1,
-          markers: false,
         },
       });
 

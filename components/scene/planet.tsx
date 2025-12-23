@@ -48,7 +48,6 @@ export default function PlanetModel({ scale = 5 }) {
             start: "top bottom",
             end: "bottom bottom",
             scrub: 1,
-            markers: true,
             invalidateOnRefresh: true,
           },
         });
