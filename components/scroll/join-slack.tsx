@@ -9,6 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 import { SlackIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import Link from "next/link";
 
 gsap.registerPlugin(useGSAP);
 
@@ -53,20 +54,19 @@ export default function JoinSlackCommunity() {
 
 
               <div className="w-20 md:w-28 mb-8">
-                      <Image
-                        src="/slack.png"
-                        alt="Logo"
-                        width={356}
-                        height={356}
-                        style={{ objectFit: "contain" }}
-                        priority
-                      />
-                    </div>
+                <Image
+                  src="/slack.png"
+                  alt="Logo"
+                  width={356}
+                  height={356}
+                  style={{ objectFit: "contain" }}
+                  priority
+                />
+              </div>
 
 
-
-                              <Button className="w-fit mb-4">Join our Slack</Button>
-              
+              <Link target="_blank" href='https://join.slack.com/t/leadmindsetworkspace/shared_invite/zt-3k9782iqo-lm1xNxkptWdSbkkXOR5mvg'>                               <Button className="w-fit mb-4">Join our Slack</Button>
+              </Link>
 
               <p className="text-white/80 text-xl md:text-2xl mb-8 max-w-xl">
                 Our main space to connect, collaborate, and stay aligned. Share
@@ -83,7 +83,7 @@ export default function JoinSlackCommunity() {
               ].map((item) => (
                 <div
                   key={item}
-                  className="js-feature flex items-start gap-3 bg-[#242F6E] rounded-xl px-5 py-4"
+                  className="js-feature flex items-start gap-3 bg-popover rounded-xl px-5 py-4"
                 >
                   <span className="mt-2 w-2 h-2 rounded-full bg-white shrink-0" />
                   <span className="md:text-xl text-white/90">{item}</span>
