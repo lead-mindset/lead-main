@@ -1,8 +1,5 @@
 "use client";
 
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import AnimatedText from "@/components/scroll/animated-text";
 import { Canvas } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
@@ -16,8 +13,6 @@ import CurvedConnector from "@/components/scroll/animated-curve";
 import CurvedConnector2 from "@/components/scroll/animated-curve2";
 import EmpowerSection from "@/components/scroll/get-involved-section";
 import Gallery from "@/components/scroll/gallery";
-gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
-
 
 export default function AboutUs() {
 

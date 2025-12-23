@@ -1,7 +1,5 @@
 "use client";
 
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Canvas } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
 import Allies from "@/components/scroll/allies";
@@ -18,7 +16,6 @@ import CurvedConnector from "@/components/scroll/animated-curve";
 import { Card } from "@/components/ui/card";
 import { CardContent } from "@/components/ui/card";
 import Link from "next/link";
-gsap.registerPlugin(ScrollTrigger);
 
 export default function GetInvolved() {
 

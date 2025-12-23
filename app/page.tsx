@@ -1,16 +1,12 @@
 "use client";
 
 import { useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import PinnedSlogan from "@/components/scroll/pinned-logo";
 import CanvasReveal from "@/components/scroll/canvas-reveal";
 import RollingNumber from "@/components/scroll/number-counter";
 import AnimatedText from "@/components/scroll/animated-text";
 import CurvedConnector3 from "@/components/scroll/animated-curve3";
 import EmpowerSection from "@/components/scroll/get-involved-section";
-gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
 export default function Page() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -107,13 +103,9 @@ export default function Page() {
             </AnimatedText>
           </div>
 
-
         </div>
 
-
         <EmpowerSection/>
-
-
 
       </div>
 
