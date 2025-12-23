@@ -22,10 +22,12 @@ export default function GetInvolved() {
             <div className="fixed inset-0 w-full h-screen z-0 pointer-events-none overflow-hidden">
                 <Canvas>
                     <color attach="background" args={["#000D5A"]} />
-                    <ambientLight intensity={1.2} />
+        <ambientLight intensity={2}/>
                     <Stars />
                     <CameraAnimation2 />
                     <RocketModel />
+                    <fog attach="fog" args={["#000D5A", 2, 40]} />
+
                 </Canvas>
             </div>
 

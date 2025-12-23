@@ -32,9 +32,10 @@ export default function AboutUs() {
 
                 <Canvas camera={{ position: [0, 2, 12], fov: 60 }}>
                     <color attach="background" args={["#000D5A"]} />
-                    <ambientLight intensity={1.2} />
+                    <ambientLight intensity={2} />
                     <Stars />
                     <CameraAnimation />
+                    <fog attach="fog" args={["#000D5A", 2, 17]} />
 
                     <Galaxy />
                 </Canvas>
