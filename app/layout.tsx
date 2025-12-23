@@ -18,7 +18,7 @@ const geistMono = Raleway({
 
 export const metadata: Metadata = {
   title: "LEAD PERU",
-  description: "Learn. Explore. Aspire. Discover",
+  description: "Learn. Explore. Aspire. Discover.",
 };
 
 export default function RootLayout({
