@@ -3,9 +3,10 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
+import AnimatedText from "./animated-text";
 
 const images = [
-  "/allies/microsoft.svg",
+  "/allies/microsoft.webp",
   "/allies/accenture.png",
   "/allies/ibm.png",
   "/allies/alpfa.png",
@@ -38,10 +39,7 @@ export default function ChaptersPhotos() {
   }, []);
 
   return (
-    <section className="relative py-12">
-      <h2 className="mb-6 text-xl font-semibold text-white text-center">Supported by</h2>
-
-      <div className="overflow-hidden bg-white/80 py-4">
+    <section className="relative overflow-hidden bg-foreground">
         <div
           ref={rowRef}
           className="flex items-center gap-10 will-change-transform"
@@ -49,7 +47,7 @@ export default function ChaptersPhotos() {
           {[...images, ...images].map((src, i) => (
             <div
               key={i}
-              className="flex-shrink-0 h-24 md:h-28 lg:h-32"
+              className="flex-shrink-0 h-12 p-6 md:h-16 lg:h-28"
             >
               <Image
                 src={src}
@@ -62,7 +60,6 @@ export default function ChaptersPhotos() {
             </div>
           ))}
         </div>
-      </div>
     </section>
   );
 }
