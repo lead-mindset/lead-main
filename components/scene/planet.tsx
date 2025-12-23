@@ -11,7 +11,7 @@ import "flag-icons/css/flag-icons.min.css";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function PlanetModel({ scale = 5 }) {
-  const gltf = useGLTF("/models/earth.glb");
+  const gltf = useGLTF("/models/earthbase.glb");
 
   const groupRef = useRef<THREE.Group>(null);
   const peruRef = useRef<HTMLDivElement>(null);
@@ -87,7 +87,7 @@ export default function PlanetModel({ scale = 5 }) {
       <Html position={[0.3, -0.1, 1]} center>
         <div
           ref={peruRef}
-          className="flex items-center sm:space-x-2 text-2xl bg-foreground text-background font-bold p-2 rounded"
+          className="flex items-center sm:space-x-2 text-2xl  text-foreground font-bold p-2 rounded"
         >
           <span className="fi fi-pe" />
           <span className="max-md:hidden">Peru</span>
@@ -97,7 +97,7 @@ export default function PlanetModel({ scale = 5 }) {
       <Html position={[-0.2, 0.6, 0.85]} center>
         <div
           ref={usaRef}
-          className="flex items-center space-x-2 text-2xl bg-foreground text-background font-bold p-2 rounded"
+          className="flex items-center space-x-2 text-2xl  text-foreground font-bold p-2 rounded"
         >
           <span className="fi fi-us" />
           <span className="max-md:hidden">USA</span>
