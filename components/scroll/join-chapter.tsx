@@ -1,7 +1,8 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
-
+import { Card } from "../ui/card";
+import { CardContent } from "../ui/card";
 const chapters = [
   { name: "LEAD UTP", instagram: "https://instagram.com/lead.utp" },
   { name: "LEAD UNI", instagram: "https://instagram.com/lead.uni" },
@@ -17,26 +18,25 @@ const chapters = [
 
 export default function JoinChapter() {
   return (
-    <section id='join' className="w-full relative text-white text-center flex-col max-w-7xl mx-auto px-6 h-screen flex items-center justify-center">
-      
-        <h2 className="text-3xl md:text-4xl font-bold mb-6">
+    <section id='join'
+      className="w-full h-screen relative flex items-center justify-center py-24 px-4">
+
+      <Card className="js-card max-w-5xl relative overflow-hidden rounded-2xl text-white">
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-chart-2/20 z-0 rounded-full" />
+        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-chart-1/20 rounded-full" />
+          <CardContent className="relative flex flex-col z-10 gap-10 p-10 md:p-14">
+
+        <h2 className="text-3xl md:text-4xl font-bold">
           Join a LEAD Chapter
         </h2>
 
-        <p className=" text-lg mb-6 max-w-xl">
+        <p className="text-white/80 text-xl md:text-2xl max-w-xl">
           Here, you lead initiatives, build real projects, and grow alongside others
           who share the same mindset: impact, responsibility, and growth.
         </p>
 
-        <a
-          href="https://linktr.ee/leadchapters"
-          target="_blank"
-          className="inline-flex items-center gap-2 w-fit bg-black text-white px-6 py-3 rounded-xl font-semibold hover:bg-black/90 transition"
-        >
-          Find your chapter
-          <ArrowRight className="w-4 h-4" />
-        </a>
-
+        </CardContent>
+      </Card>
     </section>
   );
 }
