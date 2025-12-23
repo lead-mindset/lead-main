@@ -55,13 +55,13 @@ export default function JoinSlackCommunity() {
 
           <CardContent className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-10 p-10 md:p-14">
             <div className="js-left flex flex-col justify-center">
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center gap-3 mb-12">
                 <HugeiconsIcon icon={SlackIcon} className="w-20 h-20" />
               </div>
 
 
               <Button
-                className="w-fit mb-8"
+                className="w-fit mb-4"
               >
                 Join our Slack
               </Button>
