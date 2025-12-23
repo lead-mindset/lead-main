@@ -161,7 +161,7 @@ export default function PillarsCarousel() {
                     </svg>
                 </div>
 
-                <div ref={cardRef} className="w-xl text-center md:text-left">
+                <div ref={cardRef} className="max-w-full p-4 w-xl text-center md:text-left">
                     <AnimatedText className="text-3xl md:text-6xl font-bold mb-12">Our Pillars</AnimatedText>
                     <AnimatedText className="text-2xl md:text-4xl font-bold">
                         {data[activeIndex].title}
