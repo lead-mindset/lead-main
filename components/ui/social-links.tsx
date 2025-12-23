@@ -11,17 +11,17 @@ import {
 const socialLinks = [
   {
     name: "Instagram",
-    href: "https://instagram.com/yourpage",
+    href: "https://www.instagram.com/lead_peru/",
     icon: InstagramIcon,
   },
   {
     name: "LinkedIn",
-    href: "https://linkedin.com/company/yourcompany",
+    href: "https://www.linkedin.com/company/leadmindsetorg/",
     icon: LinkedinIcon,
   },
   {
     name: "Slack",
-    href: "https://slack.com/yourworkspace",
+    href: "https://join.slack.com/t/leadmindsetworkspace/shared_invite/zt-3k9782iqo-lm1xNxkptWdSbkkXOR5mvg",
     icon: SlackIcon,
   },
 ];
