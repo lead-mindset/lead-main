@@ -24,50 +24,62 @@ export default function PlanetModel({ scale = 5 }: PlanetProps) {
     { name: "Peru", position: [0.3, -0.1, 1], code: "pe" },
   ];
 
-  useLayoutEffect(() => {
-    if (!groupRef.current) return;
+useLayoutEffect(() => {
+  if (!groupRef.current) return;
 
-    gsap.set(groupRef.current.position, { y: -20, z: 0 });
-    gsap.set(groupRef.current.rotation, { x: 0, y: 0, z: 0 });
+  gsap.set(groupRef.current.position, { y: -16, z: 0 });
+  gsap.set(groupRef.current.rotation, { x: 0, y: 0, z: 0 });
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#section3",
-        start: "top 80%",
-        end: "bottom 60%",
-        scrub: 1,
-      },
-    });
+  const tl = gsap.timeline({
+    defaults: { ease: "none" },
+    scrollTrigger: {
+      trigger: "#section3",
+      start: "top bottom",
+      end: "bottom bottom",
+      scrub: true,
+      markers: true,
+    },
+  });
 
-    tl.to(groupRef.current.position, {
-      y: 0,
-      z: 0,
-      duration: 1.5,
-      ease: "power2.out",
-    });
+  tl.to({}, { duration: 0.125 });
+  tl.to(groupRef.current.position, {
+    y: 0,
+    z: 0,
+    duration: 0.25,
+  });
 
-    tl.to(groupRef.current.rotation, {
-      y: 0.1,
-      x: -0.2,
-      duration: 1,
-      ease: "power1.inOut",
-    }, ">");
+  tl.to({}, { duration: 0.125 });
+  tl.to(groupRef.current.rotation, {
+    x: -0.2,
+    y: 0.5,
+    duration: 0.25,
+  });
 
-    tl.to(groupRef.current.rotation, {
-      y: -0.1,
-      x: 0.2,
-      duration: 1,
-      ease: "power1.inOut",
-    }, ">"); 
+  tl.to({}, { duration: 0.125 });
+  tl.to(groupRef.current.rotation, {
+    x: 0.3,
+    y: -0.5,
+    duration: 0.25,
+  });
 
-    tl.to(groupRef.current.rotation, {
-      y: 0,
-      x: 0,
-      z: 0,
-      duration: 0.5,
-      ease: "power1.inOut",
-    }, ">");
-  }, []);
+  tl.to({}, { duration: 0.125 });
+  tl.to(groupRef.current.rotation, {
+    x: 0.3,
+    y: -2,
+    z: 0,
+    duration: 0.25,
+  });
+
+  return () => {
+    tl.scrollTrigger?.kill();
+    tl.kill();
+  };
+}, []);
+
+
+
+
+
 
   return (
     <group ref={groupRef} scale={[scale, scale, scale]}>
