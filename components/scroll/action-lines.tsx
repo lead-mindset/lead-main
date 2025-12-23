@@ -1,8 +1,7 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useLayoutEffect } from "react";
 import * as THREE from "three";
-import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -10,45 +9,28 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function ActionLines() {
   const starsRef = useRef<THREE.Group>(null);
-  const linesRef = useRef<THREE.Group>(null);
 
   const stars = useMemo(() => {
-    const arr = [];
-    for (let i = 0; i < 100; i++) {
-      arr.push({
-        position: [
-          (Math.random() - 0.5) * 50,
-          (Math.random() - 0.5) * 50,
-          -Math.random() * 200,
-        ],
-        scale: Math.random() * 0.2 + 0.05,
-      });
-    }
-    return arr;
+    return Array.from({ length: 160 }, () => ({
+      x: (Math.random() - 0.5) * 50,
+      y: (Math.random() - 0.5) * 50,
+      z: -Math.random() * 200 - 20,
+      scale: Math.random() * 0.2 + 0.05,
+    }));
   }, []);
 
-  const lines = useMemo(() => {
-    const arr = [];
-    for (let i = 0; i < 2; i++) {
-      arr.push({
-        position: [
-          (Math.random() - 0.5) * 20,
-          (Math.random() - 0.5) * 20,
-          -Math.random() * 200,
-        ],
-        length: Math.random() * 8 + 6,
-        color: "#9b5de5",
-      });
-    }
-    return arr;
-  }, []);
+  useLayoutEffect(() => {
+    if (!starsRef.current) return;
 
-  useGSAP(() => {
-    if (!starsRef.current || !linesRef.current) return;
+    const meshes = starsRef.current.children as THREE.Mesh[];
 
-    gsap.to(starsRef.current.position, {
-      z: 120,
-      ease: "none",
+    meshes.forEach((mesh: any) => {
+      mesh.userData.startZ = mesh.position.z;
+      mesh.material.transparent = true;
+      mesh.material.opacity = 1;
+    });
+
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: "#scroll-section",
         start: "top top",
@@ -57,66 +39,47 @@ export default function ActionLines() {
       },
     });
 
-    linesRef.current.children.forEach((line) => {
-      gsap.fromTo(
-        line.scale,
-        { x: 0, y: 0, z: line.scale.z },
-        {
-          x: 0.15,
-          y: 0.15,
-          z: line.scale.z,
-          ease: "none",
-          scrollTrigger: {
-            trigger: "#scroll-section",
-            start: "top top",
-            end: "bottom top",
-            scrub: true,
-          },
-        }
-      );
-
-      gsap.to(line.position, {
-        z: line.position.z + 200,
+    tl.to(
+      meshes.map((m) => m.position),
+      {
+        z: (i) => meshes[i].userData.startZ + 180,
+        duration: 0.7,
         ease: "none",
-        scrollTrigger: {
-          trigger: "#scroll-section",
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
+        stagger: {
+          each: 0.002,
+          from: "random",
         },
-      });
-    });
+      },
+      0
+    );
 
-    starsRef.current.children.forEach((star) => {
-      gsap.to(star.scale, {
-        x: 0,
-        y: 0,
-        z: 0,
-        ease: "power1.inOut",
-        scrollTrigger: {
-          trigger: "#scroll-section",
-          start: "bottom bottom",
-          end: "bottom bottom+=1",
-          scrub: false,
-        },
-      });
-    });
+    tl.to(
+      meshes.map((m) => m.scale),
+      {
+        x: "*=1.8",
+        y: "*=1.8",
+        z: "*=1.8",
+        duration: 0.6,
+        ease: "none",
+      },
+      0
+    );
 
-    linesRef.current.children.forEach((line) => {
-      gsap.to(line.scale, {
-        x: 0,
-        y: 0,
-        z: line.scale.z,
-        ease: "power1.inOut",
-        scrollTrigger: {
-          trigger: "#scroll-section",
-          start: "bottom bottom",
-          end: "bottom bottom+=1",
-          scrub: false,
-        },
-      });
-    });
-  });
+    tl.to(
+      meshes.map((m: any) => m.material),
+      {
+        opacity: 0,
+        duration: 0.3,
+        ease: "none",
+      },
+      0.7
+    );
+
+    return () => {
+      tl.scrollTrigger?.kill();
+      tl.kill();
+    };
+  }, []);
 
   const createStarShape = (radius = 2, inset = 0.5) => {
     const shape = new THREE.Shape();
@@ -133,28 +96,17 @@ export default function ActionLines() {
   };
 
   return (
-    <>
-      <group ref={starsRef}>
-        {stars.map((s, i) => (
-          <mesh
-            key={i}
-            position={s.position}
-            scale={[s.scale, s.scale, s.scale]}
-          >
-            <shapeGeometry args={[createStarShape()]} />
-            <meshBasicMaterial color="#9b5de5" /> 
-          </mesh>
-        ))}
-      </group>
-
-      <group ref={linesRef}>
-        {lines.map((l, i) => (
-          <mesh key={i} position={l.position} scale={[2, 1.5, l.length]}>
-            <boxGeometry args={[3, 2, 2]} /> 
-            <meshBasicMaterial color={l.color} />
-          </mesh>
-        ))}
-      </group>
-    </>
+    <group ref={starsRef}>
+      {stars.map((s, i) => (
+        <mesh
+          key={i}
+          position={[s.x, s.y, s.z]}
+          scale={[s.scale, s.scale, s.scale]}
+        >
+          <shapeGeometry args={[createStarShape()]} />
+          <meshBasicMaterial color="white" />
+        </mesh>
+      ))}
+    </group>
   );
 }
