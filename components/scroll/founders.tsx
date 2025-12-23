@@ -10,10 +10,10 @@ import AnimatedText from "./animated-text";
 gsap.registerPlugin(ScrollTrigger);
 
 const founders = [
-  { name: "Antonny Porlles", role: "Data & AI Technical Specialist", photo: "/antonnyphoto.jpg", link: "https://www.linkedin.com/in/antonny-porlles/", logo: "/next.svg" },
-  { name: "Luis Coronel", role: "Copilot CSA AI Business Solutions", photo: "/luisphoto.jpg", link: "https://www.linkedin.com/in/luis-t-coronel/", logo: "/next.svg" },
-  { name: "Jane Doe", role: "AI Strategist", photo: "/luisphoto.jpg", link: "#", logo: "/next.svg" },
-  { name: "John Smith", role: "Cloud Solutions Architect", photo: "/luisphoto.jpg", link: "#", logo: "/next.svg" },
+  { name: "Luis Coronel", role: "Founder & CEO", photo: "/luisphoto.jpg", link: "https://www.linkedin.com/in/luis-t-coronel/", logo: "/allies/microsoftmini.png" },
+    { name: "Antonny Porlles", role: "Co-Founder & COO", photo: "/antonnyphoto.jpg", link: "https://www.linkedin.com/in/antonny-porlles/", logo: "/allies/microsoftmini.png" },
+  { name: "Nicole Jimenez", role: "VP of Operations", photo: "/nicolephoto.jpg", link: "https://www.linkedin.com/in/nicolejimenez824/", logo: "/allies/accenturemini.png" },
+  { name: "Ellie Jimenez", role: "VP of Programs", photo: "/elliephoto.jpg", link: "#" },
 ];
 
 const Founders = () => {
@@ -40,14 +40,14 @@ const Founders = () => {
                   src={founder.photo}
                   alt={founder.name}
                   fill
-                  className="object-cover"
+                  className="object-cover "
                 />
                 <div className="absolute bottom-2 right-2 w-10 h-10">
                   <Image
                     src={founder.logo}
                     alt="Company Logo"
                     fill
-                    className="object-contain"
+                    className="object-contain "
                   />
                 </div>
               </div>
