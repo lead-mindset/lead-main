@@ -55,7 +55,7 @@ useLayoutEffect(() => {
       tl.to(usaRef.current, { autoAlpha: 1, duration: 0.08 }, "<");
 
       tl.to({}, { duration: 0.125 });
-      tl.to(groupRef.current.rotation, { x: 0.4, y: -1.2, z: 0, duration: 0.25 });
+      tl.to(groupRef.current.rotation, { x: -0.1, y: -1.5, z: 0, duration: 0.25 });
       tl.to(usaRef.current, { autoAlpha: 0, duration: 0.08 });
     });
     
