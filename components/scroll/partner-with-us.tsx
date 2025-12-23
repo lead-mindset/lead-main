@@ -1,67 +1,59 @@
 "use client";
 
+import { Button } from "../ui/button";
+import { Card } from "../ui/card";
+import AnimatedText from "./animated-text";
+
 export default function PartnerWithUs() {
   return (
     <>
+      <h2 className="text-3xl md:text-4xl font-bold">
+        Partner with LEAD
+      </h2>
+      <p className="text-white/80 text-xl md:text-2xl max-w-xl">
+        If you believe in <span className="font-extrabold">investing</span>  early in high-potential future leaders,
+        we’d love to explore how we can <span className="font-extrabold">work together</span>.
+      </p>
 
-<div className=" relative flex flex-col text-white text-center  justify-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-6">
-          Partner with LEAD
-        </h2>
+  
+<form className="space-y-4">
+  <div>
+    <label className="text-lg font-bold">Organization Name</label>
+    <input
+      type="text"
+      className="w-full bg-foreground/90 text-background mt-1 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-background"
+    />
+  </div>
 
-        <p className=" text-lg">
-          If your organization believes in investing early in high-potential future leaders,
-          we’d love to explore how we can work together.
-        </p>
-      </div>
+  <div>
+    <label className="text-lg font-bold">Email</label>
+    <input
+      type="email"
+      className="w-full bg-foreground/90 text-background mt-1 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-background"
+    />
+  </div>
 
-    <section className="w-full relative max-w-5xl mx-auto px-6 py-24 flex gap-16 text-white rounded-3xl">
-      <div className="flex flex-col basis-2/5  justify-center">
-</div>
-      
+  <div>
+    <label className="text-lg font-bold">Subject</label>
+    <input
+      type="text"
+      className="w-full bg-foreground/90 text-background mt-1 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-background"
+    />
+  </div>
 
-      <form className="bg-white/10 rounded-2xl basis-3/5 shadow-xl p-8 space-y-5">
-        <div>
-          <label className="text-sm font-medium">Organization Name</label>
-          <input
-            type="text"
-            className="w-full mt-1 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black"
-          />
-        </div>
+  <div>
+    <label className="text-lg font-bold">Message</label>
+    <textarea
+      rows={4}
+      className="w-full bg-foreground/90 text-background mt-1 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-background"
+    />
+  </div>
 
-        <div>
-          <label className="text-sm font-medium">Email</label>
-          <input
-            type="email"
-            className="w-full mt-1 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black"
-          />
-        </div>
+  <Button type="submit" size="lg" className="right-auto">
+    Send Message
+  </Button>
+</form>
 
-        <div>
-          <label className="text-sm font-medium">Subject</label>
-          <input
-            type="text"
-            className="w-full mt-1 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black"
-          />
-        </div>
-
-        <div>
-          <label className="text-sm font-medium">Message</label>
-          <textarea
-            rows={4}
-            className="w-full mt-1 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black"
-          />
-        </div>
-
-        <button
-          type="submit"
-          className="w-fit px-5 bg-black text-white py-3 rounded-xl font-semibold hover:bg-black/90 transition"
-        >
-          Send Message
-        </button>
-      </form>
-
-    </section>
-     </>
+    </>
   );
 }
