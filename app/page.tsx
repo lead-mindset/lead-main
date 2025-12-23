@@ -37,13 +37,13 @@ export default function Page() {
 
       <section id="scroll-section" className="relative w-full h-screen">
 
-      <PinnedSlogan />
+        <PinnedSlogan />
 
 
       </section>
 
-      <div className="h-screen relative"/>
-      <div className="h-screen relative"/>
+      <div className="h-screen relative" />
+      <div className="h-screen relative" />
 
       <CurvedConnector3 />
 
@@ -108,33 +108,34 @@ export default function Page() {
           <div className="md:basis-2/3">
 
             <AnimatedText className="text-2xl md:text-4xl text-right">
-              We  <span className="font-extrabold">collaborate </span> with organizations like SHPE and ALPFA to deliver meaningful student <span className="font-extrabold">opportunities</span> 
+              We  <span className="font-extrabold">collaborate </span> with organizations like SHPE and ALPFA to deliver meaningful student <span className="font-extrabold">opportunities</span>
               that drive growth, leadership, and innovation.
             </AnimatedText>
           </div>
 
 
         </div>
-        <div className="relative h-screen p-10 flex flex-col justify-center text-white space-y-10 max-w-5xl mx-auto">
+        <div className="relative h-screen p-10 flex flex-col items-center justify-center text-white space-y-8 max-w-5xl mx-auto">
 
+          <div className="max-w-xl">
+            <Image
+              src="/leadgrouplogo.svg"
+              alt="Logo"
+              width={356}
+              height={356}
+              style={{ objectFit: 'contain' }}
+              priority
+            />
+          </div>
 
-          <Image
-            src="/leadgrouplogo.svg"
-            alt="Logo"
-            width={200}
-            height={200}
-            priority
-            className="mx-auto"
-          />
-
-          <AnimatedText className="text-4xl md:text-7xl font-bold">
+          <AnimatedText className="text-4xl  font-bold">
             EMPOWERING DREAMS
           </AnimatedText>
 
           <Button className="w-fit">Get Involved</Button>
-          <SocialLinks iconSize={50}/>
+          <SocialLinks iconSize={50} />
 
-          
+
         </div>
 
 
