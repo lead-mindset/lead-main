@@ -25,7 +25,7 @@ function NavBar({ menuItems }: { menuItems: MenuItem[] }) {
 
   return (
 
-    <div className="flex w-full ">
+    <div className="flex w-full text-background">
       <div className="">
         <Link
           href={"/"}
@@ -64,11 +64,11 @@ function NavBar({ menuItems }: { menuItems: MenuItem[] }) {
 
         <Link
           href={'/get-involved'}
-          className="cursor-pointer  rounded-bl-2xl h-full bg-primary transition-all 
+          className=" rounded-bl-2xl h-full bg-primary transition-all 
           flex items-center"
         >
           <button
-            className="r px-4 text-base text-white font-bold"
+            className="cursor-pointer px-4 text-base text-white font-bold"
           >
             Get Involved
           </button>
