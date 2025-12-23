@@ -1,8 +1,6 @@
 "use client";
 
 import { Button } from "../ui/button";
-import { Card } from "../ui/card";
-import AnimatedText from "./animated-text";
 
 export default function PartnerWithUs() {
   return (

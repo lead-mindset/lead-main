@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useEffect } from "react";
 
 export default function PinnedSlogan() {
   const sectionRef = useRef<HTMLDivElement>(null);
