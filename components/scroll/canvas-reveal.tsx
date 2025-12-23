@@ -35,7 +35,7 @@ export default function CanvasReveal({ videoRef }: { videoRef: React.RefObject<H
       className="fixed inset-0 w-full h-screen z-0 pointer-events-none overflow-hidden"
       style={{ clipPath: "circle(0% at 50% 50%)" }}
     >
-      <Canvas camera={{ position: [0, 0, 5] }}>
+      <Canvas>
         <color attach="background" args={["#000D5A"]} />
         <ambientLight intensity={1.2} />
         <ActionLines />
