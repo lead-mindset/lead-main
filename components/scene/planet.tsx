@@ -15,7 +15,7 @@ interface PlanetProps {
   scale?: number;
 }
 
-export default function PlanetModel({ scale = 3 }: PlanetProps) {
+export default function PlanetModel({ scale = 5 }: PlanetProps) {
   const gltf = useGLTF("/models/earth.glb") as GLTFResult;
   const groupRef = useRef<THREE.Group>(null);
 
@@ -27,27 +27,18 @@ export default function PlanetModel({ scale = 3 }: PlanetProps) {
   useLayoutEffect(() => {
     if (!groupRef.current) return;
 
-    // Start planet off-screen (e.g., below viewport)
-    gsap.set(groupRef.current.position, { y: -5, opacity: 0 });
+    gsap.set(groupRef.current.position, { y: -20, z: 0 });
 
-    // Animate in when #section3 enters viewport
     gsap.to(groupRef.current.position, {
       y: 0,
+      z: 0,
       duration: 1.5,
       ease: "power2.out",
       scrollTrigger: {
         trigger: "#section3",
         start: "top 80%",
-      },
-    });
-
-    gsap.to(groupRef.current, {
-      opacity: 1,
-      duration: 1.5,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: "#section3",
-        start: "top 80%",
+        end: "bottom 60%",
+        scrub: 1,
       },
     });
   }, []);
