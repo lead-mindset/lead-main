@@ -15,6 +15,7 @@ import CameraAnimation2 from "@/components/scene/camera-animation2";
 import AnimatedText from "@/components/scroll/animated-text";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import CurvedConnector from "@/components/scroll/animated-curve";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function GetInvolved() {
@@ -45,27 +46,31 @@ export default function GetInvolved() {
 
             <JoinChapter />
 
-            <div className="relative mx-auto w-fit">
+            <div className="relative w-full flex items-center justify-center flex-col">
 
-                     <div className="w-20 md:w-28 mb-8 mx-auto">
-                                      <Image
-                                        src="/leadcharacter2.svg"
-                                        alt="Logo"
-                                        width={356}
-                                        height={356}
-                                        style={{ objectFit: "contain" }}
-                                        priority
-                                      />
-                                    </div>
-                
+                <div className="absolute z-0">
+                    <CurvedConnector />
+                </div>
 
-                <Button>Find Your Chapter</Button>
+
+                <div className="w-40 z-10 md:w-48 -mb-8 mx-auto bg-foreground p-8  aspect-square rounded-full">
+                    <Image
+                        src="/leadcharacter2.svg"
+                        alt="Logo"
+                        width={356}
+                        height={356}
+                        style={{ objectFit: "contain" }}
+                        priority
+                    />
+                </div>
+
+                <Button className="mx-auto z-20">Find Your Chapter</Button>
             </div>
 
-        <div className="h-screen flex items-center justify-center">
-            <ChaptersPhotos />
+            <div className="h-screen flex items-center justify-center">
+                <ChaptersPhotos />
 
-        </div>
+            </div>
 
             <PartnerWithUs />
             <Allies />
