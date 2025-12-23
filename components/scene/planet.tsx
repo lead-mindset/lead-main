@@ -28,12 +28,9 @@ export default function PlanetModel({ scale = 5 }: PlanetProps) {
     if (!groupRef.current) return;
 
     gsap.set(groupRef.current.position, { y: -20, z: 0 });
+    gsap.set(groupRef.current.rotation, { x: 0, y: 0, z: 0 });
 
-    gsap.to(groupRef.current.position, {
-      y: 0,
-      z: 0,
-      duration: 1.5,
-      ease: "power2.out",
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: "#section3",
         start: "top 80%",
@@ -41,6 +38,35 @@ export default function PlanetModel({ scale = 5 }: PlanetProps) {
         scrub: 1,
       },
     });
+
+    tl.to(groupRef.current.position, {
+      y: 0,
+      z: 0,
+      duration: 1.5,
+      ease: "power2.out",
+    });
+
+    tl.to(groupRef.current.rotation, {
+      y: 0.1,
+      x: -0.2,
+      duration: 1,
+      ease: "power1.inOut",
+    }, ">");
+
+    tl.to(groupRef.current.rotation, {
+      y: -0.1,
+      x: 0.2,
+      duration: 1,
+      ease: "power1.inOut",
+    }, ">"); 
+
+    tl.to(groupRef.current.rotation, {
+      y: 0,
+      x: 0,
+      z: 0,
+      duration: 0.5,
+      ease: "power1.inOut",
+    }, ">");
   }, []);
 
   return (
