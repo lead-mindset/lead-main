@@ -11,7 +11,7 @@ import SloganReveal from "@/components/scroll/slogan";
 import RollingNumber from "@/components/scroll/number-counter";
 import AnimatedText from "@/components/scroll/animated-text";
 import CurvedConnector2 from "@/components/scroll/animated-curve2";
-
+import CurvedConnector from "@/components/scroll/animated-curve";
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
 export default function Page() {
@@ -50,7 +50,6 @@ export default function Page() {
         </AnimatedText>
       </div>
 
-
       <div className="relative text-center gap-10 text-2xl flex flex-col items-center p-10">
 
         <div className="flex flex-col  items-center scale-125 md:scale-200 lg:scale-[300%] xl:scale-[400%]">
@@ -76,18 +75,13 @@ export default function Page() {
 
       </div>
 
-
-
-      <div id="section3" className="bg-red-500/50 relative max-w-5xl mx-auto flex items-center h-[100vh] px-8">
+      <div id='section3'> 
+        <div className="h-screen"/>
+      <div id="section4" className="bg-red-500/50 relative max-w-5xl mx-auto flex items-center h-[100vh] px-8">
         <div className="md:basis-2/3">
           <AnimatedText className="text-2xl md:text-4xl mb-10">
             With chapters at top universities, we support students in Peru
             by connecting them to transformative opportunities in technology and innovation.
-          </AnimatedText>
-
-          <AnimatedText className="text-2xl md:text-4xl">
-            We collaborate with organizations like SHPE and ALPFA to deliver meaningful student opportunities
-            that drive growth, leadership, and innovation.
           </AnimatedText>
         </div>
 
@@ -95,7 +89,22 @@ export default function Page() {
         </div>
       </div>
 
-      <div id="section3" className="bg-green-500/50 h-[100vh] px-8">
+
+        <div id="section5" className="bg-red-500/50 relative max-w-5xl mx-auto flex items-center h-[100vh] px-8">
+         <div className="md:flex-1 bg-yellow-500/10">
+        </div>
+        <div className="md:basis-2/3">
+
+          <AnimatedText className="text-2xl md:text-4xl text-right">
+            We collaborate with organizations like SHPE and ALPFA to deliver meaningful student opportunities
+            that drive growth, leadership, and innovation.
+          </AnimatedText>
+        </div>
+
+       
+      </div>
+</div>
+      <div id="section4" className="bg-green-500/50 h-[100vh] px-8">
 
 
       </div>
