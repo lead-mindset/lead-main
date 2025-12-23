@@ -19,6 +19,7 @@ import CameraAnimation from "@/components/scene/camera-animation";
 import PillarsCarousel from "@/components/scroll/pillarscarousel";
 import CurvedConnector from "@/components/scroll/animated-curve";
 import CurvedConnector2 from "@/components/scroll/animated-curve2";
+import EmpowerSection from "@/components/scroll/get-involved-section";
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
 
@@ -83,8 +84,11 @@ export default function AboutUs() {
             <PillarsCarousel />
 
             <Founders />
+
+
             <Testimonies />
 
+            <EmpowerSection />
 
         </div>
     );
