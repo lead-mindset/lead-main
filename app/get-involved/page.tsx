@@ -18,6 +18,7 @@ import Image from "next/image";
 import CurvedConnector from "@/components/scroll/animated-curve";
 import { Card } from "@/components/ui/card";
 import { CardContent } from "@/components/ui/card";
+import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function GetInvolved() {
@@ -65,8 +66,9 @@ export default function GetInvolved() {
                         priority
                     />
                 </div>
-
-                <Button className="mx-auto z-20">Find Your Chapter</Button>
+                
+                <Link href='https://linktr.ee/leadperu?utm_source=linktree_profile_share&ltsid=77341bb2-0bd9-4882-bce6-ef33355433d4'>                <Button className="mx-auto z-20">Find Your Chapter</Button>
+                </Link>
             </div>
 
             <div className="h-screen flex items-center justify-center">
