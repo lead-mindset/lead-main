@@ -1,11 +1,8 @@
 "use client";
 
 import { useRef, useLayoutEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import * as THREE from "three";
-
-gsap.registerPlugin(ScrollTrigger);
+import gsap from "@/lib/gsap-setup";
 
 export default function Galaxy() {
   const groupRef = useRef<THREE.Group>(null);

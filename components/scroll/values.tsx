@@ -1,11 +1,8 @@
 "use client";
 
 import React, { useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-
-gsap.registerPlugin(ScrollTrigger);
+import gsap from "@/lib/gsap-setup";
 
 export default function Values() {
   const containerRef = useRef<HTMLDivElement>(null);

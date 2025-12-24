@@ -2,11 +2,8 @@
 
 import { useThree } from "@react-three/fiber";
 import { useRef } from "react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+import gsap from "@/lib/gsap-setup";
 
 export default function CameraAnimation2() {
   const { camera } = useThree();

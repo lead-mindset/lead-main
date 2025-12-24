@@ -2,11 +2,7 @@
 
 import { useRef, useMemo, useLayoutEffect } from "react";
 import * as THREE from "three";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
-
+import gsap from "@/lib/gsap-setup";
 export default function ActionLines() {
   const starsRef = useRef<THREE.Group>(null);
 

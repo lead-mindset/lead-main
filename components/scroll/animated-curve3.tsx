@@ -1,11 +1,9 @@
 "use client";
 
 import { useRef, useId } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gsap from "@/lib/gsap-setup";
 import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(ScrollTrigger);
 
 export default function CurvedConnector3() {
   const containerRef = useRef<HTMLDivElement>(null);
