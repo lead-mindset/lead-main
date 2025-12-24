@@ -1,19 +1,17 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import { useRef, useId } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "@/lib/gsap-setup";
 
 export default function CurvedConnector2() {
   const containerRef = useRef<HTMLDivElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
+  const uniqueId = useId();
 
-  useLayoutEffect(() => {
+  useGSAP(() => {
     const path = pathRef.current;
-    const container = containerRef.current;
-    if (!path || !container) return;
+    if (!path) return;
 
     const length = path.getTotalLength();
 
@@ -26,17 +24,13 @@ export default function CurvedConnector2() {
       strokeDashoffset: 0,
       ease: "none",
       scrollTrigger: {
-        trigger: container,
+        trigger: containerRef.current,
         start: "top 80%",
         end: "bottom 50%",
         scrub: 1,
       },
     });
-
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
-  }, []);
+  }, { scope: containerRef });
 
   return (
     <div
@@ -50,7 +44,13 @@ export default function CurvedConnector2() {
         preserveAspectRatio="xMaxYMin meet"
       >
         <defs>
-          <linearGradient id="gradientStroke" x1="0%" y1="0%" x2="100%" y2="0%">
+          <linearGradient
+            id={`gradientStroke-${uniqueId}`}
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="0%"
+          >
             <stop offset="0%" stopColor="var(--chart-1)" />
             <stop offset="100%" stopColor="var(--chart-2)" />
           </linearGradient>
@@ -59,7 +59,7 @@ export default function CurvedConnector2() {
         <path
           ref={pathRef}
           d="M 1050 20 C 750 80, 250 320, -50 380"
-          stroke="url(#gradientStroke)"
+          stroke={`url(#gradientStroke-${uniqueId})`}
           strokeWidth="60"
           strokeLinecap="round"
         />
