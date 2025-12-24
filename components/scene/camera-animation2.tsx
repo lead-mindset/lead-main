@@ -1,18 +1,22 @@
+"use client";
+
 import { useThree } from "@react-three/fiber";
-import { useLayoutEffect } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export default function CameraAnimation2() {
   const { camera } = useThree();
+  const container = useRef(null);
 
-  useLayoutEffect(() => {
+  useGSAP(() => {
     camera.position.set(0, -3, 14);
     camera.lookAt(0, 0, 0);
 
-    const tl = gsap.timeline({
+    gsap.timeline({
       scrollTrigger: {
         start: "top top",
         end: "+=260%",
@@ -20,21 +24,14 @@ export default function CameraAnimation2() {
         pin: true,
       },
       defaults: { ease: "none" },
-    });
-
-    tl.to(camera.position, {
+    }).to(camera.position, {
       z: 0,
       x: -3,
       y: 14,
       duration: 1,
       onUpdate: () => camera.lookAt(0, 0, 0),
     });
+  }, { scope: container });
 
-    return () => {
-      tl.scrollTrigger?.kill();
-      tl.kill();
-    };
-  }, [camera]);
-
-  return null;
+  return <group ref={container} />;
 }
