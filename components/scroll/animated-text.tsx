@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useEffect, useRef, ReactNode } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React, { useRef, ReactNode } from "react";
 import { SplitText } from "gsap/SplitText";
+import { useGSAP } from "@gsap/react";
+import gsap from "@/lib/gsap-setup";
 
-gsap.registerPlugin(SplitText, ScrollTrigger);
 
 interface AnimatedTextProps {
   children: ReactNode;
@@ -15,7 +14,7 @@ interface AnimatedTextProps {
 export default function AnimatedText({ children, className = "" }: AnimatedTextProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     const container = containerRef.current;
     if (!container) return;
 
@@ -46,9 +45,7 @@ export default function AnimatedText({ children, className = "" }: AnimatedTextP
         },
       });
     });
-
-    return () => ScrollTrigger.getAll().forEach(t => t.kill());
-  }, []);
+  }, { scope: containerRef });
 
   return (
     <div ref={containerRef} className="mx-auto">
