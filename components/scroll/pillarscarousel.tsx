@@ -25,6 +25,9 @@ export default function PillarsCarousel() {
   const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const ActiveIcon = data[activeIndex].IconComponent;
+  const activeColor = data[activeIndex].color;
+
   useGSAP(() => {
     if (!circleRef.current || !wrapperRef.current || !wheelRef.current) return;
 
@@ -32,10 +35,15 @@ export default function PillarsCarousel() {
     const itemCount = items.length;
     const scrollDistance = itemCount * 300;
 
-    const circlePath = MotionPathPlugin.convertToPath(circleRef.current, false)[0];
+    const circlePath = MotionPathPlugin.convertToPath(
+      circleRef.current,
+      false
+    )[0];
     circlePath.id = "circlePath";
 
-    if (circleRef.current.parentNode) circleRef.current.parentNode.prepend(circlePath);
+    if (circleRef.current.parentNode) {
+      circleRef.current.parentNode.prepend(circlePath);
+    }
 
     const step = 1 / itemCount;
 
@@ -62,30 +70,49 @@ export default function PillarsCarousel() {
       },
     });
 
-    wheelTimeline.to(wheelRef.current, {
-      rotation: -360,
-      transformOrigin: "center",
-      ease: "none",
-    }).to(items, {
-      rotation: "+=360",
-      transformOrigin: "center",
-      ease: "none",
-    }, 0);
-
-  }, [wrapperRef, wheelRef, circleRef, itemsRef]);
+    wheelTimeline
+      .to(wheelRef.current, {
+        rotation: -360,
+        transformOrigin: "center",
+        ease: "none",
+      })
+      .to(
+        items,
+        {
+          rotation: "+=360",
+          transformOrigin: "center",
+          ease: "none",
+        },
+        0
+      );
+  }, []);
 
   return (
     <div className="relative mt-40 text-white">
-      <div ref={wrapperRef} className="flex flex-col md:flex-row items-center justify-center min-h-[100vh] gap-16">
-        <div ref={wheelRef} className="max-md:hidden relative md:w-[400px] md:h-[400px]">
+      <div
+        ref={wrapperRef}
+        className="flex flex-col md:flex-row items-center justify-center min-h-[100vh] gap-16"
+      >
+        {/* Wheel */}
+        <div
+          ref={wheelRef}
+          className="max-md:hidden relative md:w-[400px] md:h-[400px]"
+        >
           {data.map((item, i) => {
             const Icon = item.IconComponent;
+
             return (
               <div
                 key={item.id}
-                ref={(el) => { itemsRef.current[i] = el; }}
-                className={`absolute w-32 h-32 rounded-full flex items-center justify-center text-background transition-transform duration-100 z-10
-                  ${i === activeIndex ? `bg-foreground` : `bg-gradient-to-br text-foreground ${item.color}`}
+                ref={(el) => {
+                  itemsRef.current[i] = el;
+                }}
+                className={`absolute w-32 h-32 rounded-full flex items-center justify-center transition-transform duration-100 z-10
+                  ${
+                    i === activeIndex
+                      ? "bg-foreground text-background"
+                      : `bg-gradient-to-br text-foreground ${item.color}`
+                  }
                 `}
               >
                 <Icon className="w-16 h-16 z-10" />
@@ -93,9 +120,18 @@ export default function PillarsCarousel() {
             );
           })}
 
-          <svg viewBox="0 0 500 500" className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none">
+          <svg
+            viewBox="0 0 500 500"
+            className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none"
+          >
             <defs>
-              <linearGradient id="gradientStroke" x1="0%" y1="0%" x2="100%" y2="0%">
+              <linearGradient
+                id="gradientStroke"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="0%"
+              >
                 <stop offset="0%" stopColor="var(--chart-1)" />
                 <stop offset="100%" stopColor="var(--chart-2)" />
               </linearGradient>
@@ -112,11 +148,28 @@ export default function PillarsCarousel() {
           </svg>
         </div>
 
-        <div ref={cardRef} className="max-w-full p-4 w-xl text-center md:text-left">
-          <AnimatedText className="text-3xl md:text-6xl font-bold mb-12">Our Pillars</AnimatedText>
+        {/* Card */}
+        <div
+          ref={cardRef}
+          className="max-w-full p-4 w-xl text-center md:text-left"
+        >
+          <AnimatedText className="text-3xl md:text-6xl font-bold mb-12">
+            Our Pillars
+          </AnimatedText>
+
+          <div className="sm:hidden mb-6 flex justify-center md:justify-start">
+            <div
+              className={`w-20 h-20 rounded-full bg-gradient-to-br text-foreground ${activeColor}
+              flex items-center justify-center`}
+            >
+              <ActiveIcon className="w-10 h-10 text-background" />
+            </div>
+          </div>
+
           <AnimatedText className="text-2xl md:text-4xl font-bold">
             {data[activeIndex].title}
           </AnimatedText>
+
           <AnimatedText className="text-2xl md:text-4xl mt-4">
             {data[activeIndex].description}
           </AnimatedText>
