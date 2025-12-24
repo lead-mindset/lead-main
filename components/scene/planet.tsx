@@ -2,13 +2,11 @@
 
 import React, { useRef, useLayoutEffect, useState, useEffect } from "react";
 import { useGLTF, Html } from "@react-three/drei";
-import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import * as THREE from "three";
+import gsap from "@/lib/gsap-setup";
 
 import "flag-icons/css/flag-icons.min.css";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function PlanetModel({ scale = 5 }) {
   const gltf = useGLTF("/models/earthbase.glb");
@@ -82,7 +80,7 @@ const init = () => {
   }, []);
 
   return (
-    <group ref={groupRef} scale={[isMobile ? scale * 0.6 : scale, isMobile ? scale * 0.3 : scale, isMobile ? scale * 0.6 : scale]}>
+    <group ref={groupRef} scale={[isMobile ? scale * 0.5 : scale, isMobile ? scale * 0.5 : scale, isMobile ? scale * 0.5 : scale]}>
       <primitive object={gltf.scene} />
 
       <Html position={[0.3, -0.1, 1]} center>
