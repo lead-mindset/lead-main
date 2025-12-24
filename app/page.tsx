@@ -10,7 +10,7 @@ import EmpowerSection from "@/components/scroll/get-involved-section";
 
 export default function Page() {
   const videoRef = useRef<HTMLVideoElement>(null);
-const scrollSectionRef = useRef<HTMLDivElement>(null);
+  const scrollSectionRef = useRef<HTMLDivElement>(null);
 
   return (
     <div className="overflow-x-hidden">
@@ -26,7 +26,7 @@ const scrollSectionRef = useRef<HTMLDivElement>(null);
         className="fixed inset-0 w-full h-full object-cover z-[-1]"
       />
 
-      <section id="scroll-section" className="relative w-full h-screen">
+      <section ref={scrollSectionRef} id="scroll-section" className="relative w-full h-screen">
 
         <PinnedSlogan />
 
@@ -105,7 +105,7 @@ const scrollSectionRef = useRef<HTMLDivElement>(null);
 
         </div>
 
-        <EmpowerSection/>
+        <EmpowerSection />
 
       </div>
 
