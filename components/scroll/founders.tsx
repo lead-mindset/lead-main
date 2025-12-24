@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import AnimatedText from "./animated-text";
-import gsap from "@/lib/gsap-setup";
 
 const founders = [
   { name: "Luis Coronel", role: "Founder & CEO", photo: "/luisphoto.jpg", link: "https://www.linkedin.com/in/luis-t-coronel/", logo: "/allies/microsoftmini.png" },
