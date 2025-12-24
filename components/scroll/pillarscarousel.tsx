@@ -1,14 +1,11 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import gsap from "gsap";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Users, BookOpen, Award, Briefcase, Globe, User, GraduationCap } from "lucide-react";
 import AnimatedText from "./animated-text";
-
-gsap.registerPlugin(MotionPathPlugin, ScrollTrigger);
+import gsap from "@/lib/gsap-setup";
 
 const data = [
   { id: 1, title: 'Chapter Development', description: 'Build strong, sustainable chapters that foster engagement, collaboration, and belonging among students across Latin America.', IconComponent: Users, color: 'from-chart-1 to-chart-2' },
