@@ -34,7 +34,7 @@ export default function NavHeader() {
       <nav className="flex w-full relative ">
         <NavBar menuItems={menuItems} />
         <div className="ml-auto flex items-center space-x-2 absolute">
-          <div className="lg:hidden"> 
+          <div className="hidden"> 
             <div>
             </div>
             <MobMenu menuItems={menuItems} />
