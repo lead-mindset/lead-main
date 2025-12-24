@@ -11,29 +11,6 @@ import Link from "next/link";
 gsap.registerPlugin(useGSAP);
 
 export default function JoinSlackCommunity() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(
-    () => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-        defaults: {
-          ease: "power3.out",
-          duration: 0.8,
-        },
-      });
-
-      tl.from(".js-card", { opacity: 0, y: 40 })
-        .from(".js-left > *:not(.js-button)", { opacity: 0, y: 24, stagger: 0.12 }, "-=0.4")
-        .from(".js-button", { opacity: 0, y: 24, scale: 0.95 }, "-=0.4")
-        .from(".js-feature", { opacity: 0, x: 24, stagger: 0.1 }, "-=0.5");
-    },
-    { scope: containerRef }
-  );
 
   return (
     <section
