@@ -42,7 +42,7 @@ export default function ChaptersPhotos() {
         {[...images, ...images].map((src, i) => (
           <div
             key={i}
-            className="flex-shrink-0 h-12 p-6 md:h-16 lg:h-28"
+            className="flex-shrink-0 h-16 p-4 lg:p-6  lg:h-28"
           >
             <Image
               src={src}
