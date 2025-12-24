@@ -8,6 +8,7 @@ import AnimatedText from "@/components/scroll/animated-text";
 import CurvedConnector3 from "@/components/scroll/animated-curve3";
 import EmpowerSection from "@/components/scroll/get-involved-section";
 import { useState } from "react";
+import ScrollTrigger from "gsap/ScrollTrigger";
 import { useEffect } from "react";
 import { useLayoutEffect } from "react";
 
@@ -16,6 +17,10 @@ export default function Page() {
   const scrollSectionRef = useRef<HTMLDivElement>(null);
 
   const [scrollUnlocked, setScrollUnlocked] = useState(false);
+
+    useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -30,37 +35,38 @@ export default function Page() {
 
     const preventScroll = (e: Event) => e.preventDefault();
 
-    const preventKeys = (e: KeyboardEvent) => {
-      const keys = ["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "];
-      if (keys.includes(e.key)) e.preventDefault();
-    };
-
-    const scrollY = window.scrollY;
+    window.scrollTo(0, 0);
 
     document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
-    document.body.style.position = "fixed";
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.width = "100%";
 
     window.addEventListener("wheel", preventScroll, { passive: false });
     window.addEventListener("touchmove", preventScroll, { passive: false });
-    window.addEventListener("keydown", preventKeys);
 
     return () => {
       document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
 
       window.removeEventListener("wheel", preventScroll);
       window.removeEventListener("touchmove", preventScroll);
-      window.removeEventListener("keydown", preventKeys);
-
-      window.scrollTo(0, scrollY);
     };
   }, [scrollUnlocked]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.currentTime = 0;
+    video.play().catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    if (!scrollUnlocked) return;
+
+    ScrollTrigger.refresh();
+  }, [scrollUnlocked]);
+
+
   return (
     <div className="overflow-x-hidden">
 
