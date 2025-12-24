@@ -17,14 +17,15 @@ export default function Page() {
 
       <CanvasReveal videoRef={videoRef} scrollRef={scrollSectionRef} />
 
-      <video
-        ref={videoRef}
-        src="/video.mp4"
-        autoPlay
-        muted
-        loop
-        className="fixed inset-0 w-full h-full object-cover z-[-1]"
-      />
+<video
+  ref={videoRef}
+  src="/video.mp4"
+  autoPlay
+  muted
+  loop
+  preload="auto"
+  className="fixed inset-0 w-full h-full object-cover z-[-1]"
+/>
 
       <section ref={scrollSectionRef} id="scroll-section" className="relative w-full h-screen">
 
