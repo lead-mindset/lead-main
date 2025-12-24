@@ -47,7 +47,7 @@ export default function JoinSlackCommunity() {
               </p>
             </div>
 
-            <div className="flex flex-col justify-center gap-4 max-w-sm">
+            <div className="flex max-sm:hidden flex-col justify-center gap-4 max-w-sm">
               {[
                 "Stay updated on the latest initiatives and events",
                 "Connect with students who think, lead, and act",
