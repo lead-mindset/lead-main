@@ -2,12 +2,9 @@
 
 import React, { useRef, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { Group } from "three";
 import type { GLTF } from "three-stdlib";
-
-gsap.registerPlugin(ScrollTrigger);
+import gsap from "@/lib/gsap-setup";
 
 interface RocketProps {
   scale?: number;
