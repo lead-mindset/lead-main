@@ -1,18 +1,23 @@
 import { useThree } from "@react-three/fiber";
-import { useLayoutEffect } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function CameraAnimation3() {
   const { camera } = useThree();
+  const base = useRef({ x: 0, y: 1.5, z: 4 });
+  const drift = useRef({ x: 0, y: 0 });
 
-  useLayoutEffect(() => {
-    const base = { x: 0, y: 1.5, z: 4 };
-    const drift = { x: 0, y: 0 };
+  const updateCamera = () => {
+    camera.position.x = base.current.x + drift.current.x;
+    camera.position.y = base.current.y + drift.current.y;
+    camera.position.z = base.current.z;
+    camera.lookAt(0, 0, 0);
+  };
 
-    camera.position.set(base.x, base.y, base.z);
+  useGSAP(() => {
+    camera.position.set(base.current.x, base.current.y, base.current.z);
     camera.lookAt(0, 0, 0);
 
     const globalST = ScrollTrigger.create({
@@ -22,15 +27,9 @@ export default function CameraAnimation3() {
       scrub: true,
       onUpdate: (self) => {
         const p = self.progress;
-
-        drift.x = Math.sin(p * Math.PI * 2) * 0.1;
-        drift.y = Math.cos(p * Math.PI * 2) * 0.1;
-
-        camera.position.x = base.x + drift.x;
-        camera.position.y = base.y + drift.y;
-        camera.position.z = base.z;
-
-        camera.lookAt(0, 0, 0);
+        drift.current.x = Math.sin(p * Math.PI * 2) * 0.1;
+        drift.current.y = Math.cos(p * Math.PI * 2) * 0.1;
+        updateCamera();
       },
     });
 
@@ -44,36 +43,21 @@ export default function CameraAnimation3() {
       defaults: { ease: "power2.out" },
     });
 
-    sectionTL.to(base, {
+    sectionTL.to(base.current, {
       y: 3,
       z: 10,
       duration: 1.5,
-      onUpdate: () => {
-        camera.position.x = base.x + drift.x;
-        camera.position.y = base.y + drift.y;
-        camera.position.z = base.z;
-        camera.lookAt(0, 0, 0);
-      },
+      onUpdate: updateCamera,
     });
 
-    sectionTL.to(base, {
+    sectionTL.to(base.current, {
       y: 0,
       z: 8,
       duration: 1.5,
-      onUpdate: () => {
-        camera.position.x = base.x + drift.x;
-        camera.position.y = base.y + drift.y;
-        camera.position.z = base.z;
-        camera.lookAt(0, 0, 0);
-      },
+      onUpdate: updateCamera,
     });
 
-    return () => {
-      globalST.kill();
-      sectionTL.scrollTrigger?.kill();
-      sectionTL.kill();
-    };
-  }, [camera]);
+  }, { scope: undefined });
 
   return null;
 }
