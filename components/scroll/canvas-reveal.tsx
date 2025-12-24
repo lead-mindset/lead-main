@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
 import gsap from "gsap";
@@ -17,8 +17,18 @@ interface CanvasRevealProps {
 export default function CanvasReveal({ videoRef, scrollRef }: CanvasRevealProps) {
   const container = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
-    if (!scrollRef.current || !container.current || !videoRef.current) return;
+  useEffect(() => {
+    console.log("scrollRef:", scrollRef.current);
+    console.log("container:", container.current);
+    console.log("videoRef:", videoRef.current);
+  }, []);
+
+
+  useEffect(() => {
+    if (!scrollRef.current || !container.current || !videoRef.current) {
+      console.log("Refs not ready yet");
+      return;
+    }
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -27,6 +37,7 @@ export default function CanvasReveal({ videoRef, scrollRef }: CanvasRevealProps)
         end: "bottom top",
         scrub: true,
         invalidateOnRefresh: true,
+        onRefresh: () => tl.invalidate(),
       },
     });
 
@@ -34,9 +45,15 @@ export default function CanvasReveal({ videoRef, scrollRef }: CanvasRevealProps)
       container.current,
       { clipPath: "circle(0% at 50% 50%)" },
       { clipPath: "circle(150% at 50% 50%)", ease: "none" }
-    )
-    .to(videoRef.current, { autoAlpha: 0 }, "<80%");
-  }, { scope: container });
+    ).to(videoRef.current, { autoAlpha: 0 }, "<80%");
+
+    console.log("Timeline created");
+
+    return () => {
+      tl.scrollTrigger?.kill();
+      tl.kill();
+    };
+  }, [scrollRef.current, videoRef.current]);
 
   return (
     <div
