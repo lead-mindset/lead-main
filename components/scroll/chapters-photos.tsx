@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 const images = [
   "/chapters/chapter-1.jpg",
@@ -16,10 +17,9 @@ const images = [
 export default function ChaptersPhotos() {
   const rowRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (!rowRef.current) return;
-
+  useGSAP(() => {
     const row = rowRef.current;
+    if (!row) return;
 
     const totalWidth = row.scrollWidth / 2;
 
@@ -31,11 +31,10 @@ export default function ChaptersPhotos() {
       ease: "none",
       repeat: -1,
     });
-  }, []);
+  }, { scope: rowRef });
 
   return (
     <section className="relative bg-gradient-to-r from-primary to-chart-2 py-10">
-
       <div className="overflow-hidden">
         <div
           ref={rowRef}
@@ -57,7 +56,6 @@ export default function ChaptersPhotos() {
           ))}
         </div>
       </div>
-
     </section>
   );
 }
