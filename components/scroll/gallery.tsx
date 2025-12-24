@@ -72,7 +72,7 @@ export default function Gallery() {
       >
         <div
           ref={(el) => {
-            if (el) groupRefs.current[1] = el;
+            if (el) groupRefs.current[0] = el;
           }}
           className="absolute inset-0"
         >
