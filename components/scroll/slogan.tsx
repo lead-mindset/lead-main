@@ -1,25 +1,20 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "@/lib/gsap-setup";
 
 export default function SloganReveal() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     if (!containerRef.current) return;
 
-    const words = containerRef.current.querySelectorAll(".word");
+    const words = containerRef.current.querySelectorAll<HTMLElement>(".word");
 
     gsap.fromTo(
       words,
-      {
-        yPercent: 100,
-        opacity: 0,
-      },
+      { yPercent: 100, opacity: 0 },
       {
         yPercent: 0,
         opacity: 1,
@@ -33,12 +28,12 @@ export default function SloganReveal() {
         },
       }
     );
-  }, []);
+  }, [containerRef]);
 
   return (
     <div
       ref={containerRef}
-      className=" bg-yellow-500 mx-auto relative w-fit text-left"
+      className="bg-yellow-500 mx-auto relative w-fit text-left"
     >
       <h1 className="[&_.word]:opacity-0 font-bold text-7xl tracking-wide text-white">
         <span className="word block overflow-hidden will-change-transform">
