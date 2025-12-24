@@ -18,6 +18,7 @@ import { CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
+import gsap from "@/lib/gsap-setup";
 
 export default function GetInvolved() {
     const canvasRef = useRef<HTMLDivElement>(null);
