@@ -2,18 +2,7 @@
 
 import { Card } from "../ui/card";
 import { CardContent } from "../ui/card";
-const chapters = [
-  { name: "LEAD UTP", instagram: "https://instagram.com/lead.utp" },
-  { name: "LEAD UNI", instagram: "https://instagram.com/lead.uni" },
-  { name: "LEAD PUCP", instagram: "https://instagram.com/lead.pucp" },
-  { name: "LEAD UPC", instagram: "https://instagram.com/lead.upc" },
-  { name: "LEAD UNMSM", instagram: "https://instagram.com/lead.unmsm" },
-  { name: "LEAD ESAN", instagram: "https://instagram.com/lead.esan" },
-  { name: "LEAD USIL", instagram: "https://instagram.com/lead.usil" },
-  { name: "LEAD UDEP", instagram: "https://instagram.com/lead.udep" },
-  { name: "LEAD UTEC", instagram: "https://instagram.com/lead.utec" },
-  { name: "LEAD UP", instagram: "https://instagram.com/lead.up" },
-];
+
 
 export default function JoinChapter() {
   return (
