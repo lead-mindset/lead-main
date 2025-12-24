@@ -1,10 +1,8 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
 import Image from "next/image";
-gsap.registerPlugin(ScrollTrigger);
+import gsap from "@/lib/gsap-setup";
 
 const images = [
   "/about-us/1.jpg",
