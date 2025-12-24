@@ -35,7 +35,7 @@ export default function CurvedConnector2() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full -mb-72 h-screen pointer-events-none"
+      className="max-sm:hidden relative w-full -mb-72 h-screen pointer-events-none"
     >
       <svg
         viewBox="0 0 1000 400"
