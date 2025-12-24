@@ -1,21 +1,32 @@
-import { useGSAP } from "@gsap/react";
+"use client";
+
 import { useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
 import PlanetModel from "../scene/planet";
 import CameraAnimation3 from "../scene/camera-animation3";
 
-export default function CanvasReveal({ videoRef }: { videoRef: React.RefObject<HTMLVideoElement> }) {
+interface CanvasRevealProps {
+  videoRef: React.RefObject<HTMLVideoElement>;
+  scrollRef: React.RefObject<HTMLDivElement>;
+}
+
+export default function CanvasReveal({ videoRef, scrollRef }: CanvasRevealProps) {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
+    if (!scrollRef.current || !container.current || !videoRef.current) return;
+
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: "#scroll-section",
+        trigger: scrollRef.current,
         start: "top top",
         end: "bottom top",
         scrub: true,
+        invalidateOnRefresh: true,
       },
     });
 
@@ -24,7 +35,7 @@ export default function CanvasReveal({ videoRef }: { videoRef: React.RefObject<H
       { clipPath: "circle(0% at 50% 50%)" },
       { clipPath: "circle(150% at 50% 50%)", ease: "none" }
     )
-      .to(videoRef.current, { autoAlpha: 0 }, "<80%");
+    .to(videoRef.current, { autoAlpha: 0 }, "<80%");
   }, { scope: container });
 
   return (
@@ -35,11 +46,11 @@ export default function CanvasReveal({ videoRef }: { videoRef: React.RefObject<H
     >
       <Canvas>
         <color attach="background" args={["#000D5A"]} />
-        <ambientLight intensity={2}/>
+        <ambientLight intensity={2} />
         <fog attach="fog" args={["#000D5A", 2, 17]} />
         <Stars />
-        <PlanetModel/>
-        <CameraAnimation3/>
+        <PlanetModel />
+        <CameraAnimation3 />
       </Canvas>
     </div>
   );
