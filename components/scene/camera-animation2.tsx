@@ -14,7 +14,6 @@ export default function CameraAnimation2() {
 
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: "#scroll-section",
         start: "top top",
         end: "+=260%",
         scrub: 1,
