@@ -16,12 +16,32 @@ import CurvedConnector from "@/components/scroll/animated-curve";
 import { Card } from "@/components/ui/card";
 import { CardContent } from "@/components/ui/card";
 import Link from "next/link";
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
 
 export default function GetInvolved() {
+    const canvasRef = useRef<HTMLDivElement>(null);
 
+    useGSAP(
+        () => {
+            gsap.fromTo(
+                canvasRef.current,
+                { autoAlpha: 0 },
+                {
+                    autoAlpha: 1,
+                    duration: 0.6,
+                    ease: "power2.out",
+                }
+            );
+        },
+        { scope: canvasRef }
+    );
     return (
         <div className="overflow-x-hidden ">
-            <div className="fixed inset-0 w-full h-screen z-0 pointer-events-none overflow-hidden">
+            <div
+                ref={canvasRef}
+                className="fixed inset-0 w-full h-screen z-0 pointer-events-none overflow-hidden opacity-0"
+            >
                 <Canvas>
                     <color attach="background" args={["#000D5A"]} />
                     <ambientLight intensity={2} />
@@ -29,9 +49,9 @@ export default function GetInvolved() {
                     <CameraAnimation2 />
                     <RocketModel />
                     <fog attach="fog" args={["#000D5A", 2, 40]} />
-
                 </Canvas>
             </div>
+
 
             <div className="relative min-h-screen p-10 mx-auto">
                 <AnimatedText
@@ -62,7 +82,7 @@ export default function GetInvolved() {
                         priority
                     />
                 </div>
-                
+
                 <Link href='https://linktr.ee/leadperu?utm_source=linktree_profile_share&ltsid=77341bb2-0bd9-4882-bce6-ef33355433d4' className="z-20">                <Button className="mx-auto ">Find Your Chapter</Button>
                 </Link>
             </div>
