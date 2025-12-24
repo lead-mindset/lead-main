@@ -1,14 +1,12 @@
+"use client";
+
 import { useThree } from "@react-three/fiber";
-import { useLayoutEffect } from "react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
-
+import { useGSAP } from "@gsap/react";
+import gsap from "@/lib/gsap-setup";
 export default function CameraAnimation() {
   const { camera } = useThree();
 
-  useLayoutEffect(() => {
+  useGSAP(() => {
     camera.position.set(0, 4, 4);
     camera.lookAt(0, 0, 0);
 
@@ -30,10 +28,6 @@ export default function CameraAnimation() {
       onUpdate: () => camera.lookAt(0, 0, 0),
     });
 
-    return () => {
-      tl.scrollTrigger?.kill();
-      tl.kill();
-    };
   }, [camera]);
 
   return null;
