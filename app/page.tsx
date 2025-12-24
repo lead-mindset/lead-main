@@ -7,25 +7,74 @@ import RollingNumber from "@/components/scroll/number-counter";
 import AnimatedText from "@/components/scroll/animated-text";
 import CurvedConnector3 from "@/components/scroll/animated-curve3";
 import EmpowerSection from "@/components/scroll/get-involved-section";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 
 export default function Page() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const scrollSectionRef = useRef<HTMLDivElement>(null);
 
+  const [scrollUnlocked, setScrollUnlocked] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setScrollUnlocked(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useLayoutEffect(() => {
+    if (scrollUnlocked) return;
+
+    const preventScroll = (e: Event) => e.preventDefault();
+
+    const preventKeys = (e: KeyboardEvent) => {
+      const keys = ["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "];
+      if (keys.includes(e.key)) e.preventDefault();
+    };
+
+    const scrollY = window.scrollY;
+
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
+
+    window.addEventListener("wheel", preventScroll, { passive: false });
+    window.addEventListener("touchmove", preventScroll, { passive: false });
+    window.addEventListener("keydown", preventKeys);
+
+    return () => {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+
+      window.removeEventListener("wheel", preventScroll);
+      window.removeEventListener("touchmove", preventScroll);
+      window.removeEventListener("keydown", preventKeys);
+
+      window.scrollTo(0, scrollY);
+    };
+  }, [scrollUnlocked]);
   return (
     <div className="overflow-x-hidden">
 
       <CanvasReveal videoRef={videoRef} scrollRef={scrollSectionRef} />
 
-<video
-  ref={videoRef}
-  src="/video.mp4"
-  autoPlay
-  muted
-  loop
-  preload="auto"
-  className="fixed inset-0 w-full h-full object-cover z-[-1]"
-/>
+      <video
+        ref={videoRef}
+        src="/video.mp4"
+        autoPlay
+        muted
+        loop
+        preload="auto"
+        className="fixed inset-0 w-full h-full object-cover z-[-1]"
+      />
 
       <section ref={scrollSectionRef} id="scroll-section" className="relative w-full h-screen">
 
