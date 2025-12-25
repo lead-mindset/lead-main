@@ -70,10 +70,10 @@ export default function Gallery() {
 
         className="absolute inset-0 opacity-0"
       >
-        <Image src={images[0]} alt="" width={300} height={400} className="absolute left-[8%] top-[18%] h-[32vh] w-auto rounded-xl object-cover" />
-        <Image src={images[1]} alt="" width={300} height={400} className="absolute left-[33%] bottom-[6%] h-[38vh] w-auto rounded-xl object-cover" />
-        <Image src={images[3]} alt="" width={300} height={400} className="absolute right-[15%] top-[10%] h-[34vh] w-auto rounded-xl object-cover" />
-        <Image src={images[4]} alt="" width={300} height={400} className="absolute right-[3%] bottom-[10%] h-[40vh] w-auto rounded-xl object-cover" />
+        <Image src={images[0]} alt="" width={300} height={400} className="max-sm:hidden absolute left-[8%] top-[18%] h-[32vh] w-auto rounded-xl object-cover" />
+        <Image src={images[1]} alt="" width={300} height={400} className="max-sm:hidden absolute left-[33%] bottom-[6%] h-[38vh] w-auto rounded-xl object-cover" />
+        <Image src={images[3]} alt="" width={300} height={400} className="max-sm:hidden absolute right-[15%] top-[10%] h-[34vh] w-auto rounded-xl object-cover" />
+        <Image src={images[4]} alt="" width={300} height={400} className="max-sm:hidden absolute right-[3%] bottom-[10%] h-[40vh] w-auto rounded-xl object-cover" />
         <Image src={images[5]} alt="" width={300} height={400} className="absolute left-[12%] top-[55%] h-[28vh] w-auto rounded-xl object-cover" />
         <Image src={images[6]} alt="" width={300} height={400} className="absolute left-[40%] top-[3%] h-[46vh] w-auto rounded-xl object-cover" />
       </div>
