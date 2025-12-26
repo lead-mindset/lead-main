@@ -9,6 +9,7 @@ import Image from "next/image";
 const images = [
     "/about-us/1.jpg",
     "/about-us/2.jpg",
+    "/about-us/6.jpg",
     "/about-us/4.jpg",
     "/about-us/5.jpg",
 ];
@@ -23,7 +24,7 @@ export default function CurvedImageRibbon() {
         gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
         const ctx = gsap.context(() => {
-            const SPACING = 0.15;
+            const SPACING = 0.12;
             const COUNT = imgRefs.current.length - 1;
 
             const tl = gsap.timeline({
@@ -107,7 +108,7 @@ export default function CurvedImageRibbon() {
                     ref={(el) => el && (imgRefs.current[i] = el)}
                     className="absolute left-0 top-1/2 z-20 w-96 h-auto flex items-center justify-center border-8 rounded-xl border-foreground"
                 >
-                    <Image src={src} alt="" width={800} height={500} className="rounded-xl object-cover shadow-xl" />
+                    <Image src={src} alt="" width={900} height={500} className="rounded-xl object-cover" />
                 </div>
             ))}
 
