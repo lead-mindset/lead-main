@@ -88,7 +88,7 @@ export default function CurvedImageRibbon() {
     }, []);
 
     return (
-        <section ref={sectionRef} className="relative h-screen w-full overflow-hidden">
+        <section ref={sectionRef} className="relative max-lg:hidden h-screen w-full overflow-hidden">
             <svg
                 className="absolute top-1/2 left-[-60%] w-[220%] -translate-y-1/2 pointer-events-none"
                 viewBox="0 0 512 200"
