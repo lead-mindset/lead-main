@@ -105,7 +105,9 @@ export default function CurvedImageRibbon() {
             {images.map((src, i) => (
                 <div
                     key={i}
-                    ref={(el) => el && (imgRefs.current[i] = el)}
+                    ref={(el) => {
+                        if (el) imgRefs.current[i] = el;
+                    }}
                     className="absolute left-0 top-1/2 z-20 w-96 h-auto flex items-center justify-center border-8 rounded-xl border-foreground"
                 >
                     <Image src={src} alt="" width={900} height={500} className="rounded-xl object-cover" />
@@ -113,7 +115,9 @@ export default function CurvedImageRibbon() {
             ))}
 
             <div
-                ref={(el) => el && (imgRefs.current[images.length] = el)}
+                ref={(el) => {
+                    if (el) imgRefs.current[images.length] = el;
+                }}
                 className="absolute left-0 top-1/2  flex items-center"
             >
                 <div className="relative w-60 h-60 ml-3 z-0 px-5 rotate-90">
