@@ -41,7 +41,6 @@ const init = () => {
   ctx = gsap.context(() => {
     gsap.set(group.position, { y: -16, z: 0 });
     gsap.set(group.rotation, { x: 0, y: 0, z: 0 });
-    gsap.set([peru, usa], { autoAlpha: 0 });
 
     const tl = gsap.timeline({
       defaults: { ease: "none" },
