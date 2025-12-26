@@ -12,9 +12,6 @@ export default function MotionPathDemo() {
     if (!boxRef.current || !sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      const path =
-        "M8,102 C15,83 58,25 131,24 206,24 233,63 259,91 292,125 328,155 377,155 464,155 497,97 504,74";
-
       gsap.set(boxRef.current, {
         xPercent: -50,
         yPercent: -50,
@@ -23,10 +20,12 @@ export default function MotionPathDemo() {
 
       gsap.to(boxRef.current, {
         motionPath: {
-          path,
+          path: "#motion-path",
+          align: "#motion-path",
+          alignOrigin: [0.5, 0.5],
+          autoRotate: true,
           start: 0,
           end: 1,
-          autoRotate: true,
         },
         ease: "none",
         scrollTrigger: {
@@ -36,29 +35,38 @@ export default function MotionPathDemo() {
           scrub: 0.6,
           pin: true,
           anticipatePin: 1,
-
-          onRefreshInit: () => {
-            gsap.set(boxRef.current!, {
-              motionPath: {
-                path,
-                start: 0,
-              },
-            });
-          },
         },
       });
     }, sectionRef);
 
     ScrollTrigger.refresh();
-
     return () => ctx.revert();
   }, []);
 
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen w-full overflow-hidden bg-neutral-900"
+      className="relative h-screen w-full overflow-visible bg-neutral-900"
     >
+      <svg
+        className="
+          absolute top-1/2 left-0
+          w-full min-w-[96vw]
+          -translate-y-1/2
+          overflow-visible
+          pointer-events-none
+        "
+        viewBox="0 0 512 200"
+        preserveAspectRatio="xMidYMid meet"
+      >
+        <path
+          id="motion-path"
+          d="M8,102 C15,83 58,25 131,24 206,24 233,63 259,91 292,125 328,155 377,155 464,155 497,97 504,74"
+          fill="none"
+          stroke="transparent"
+        />
+      </svg>
+
       <div
         ref={boxRef}
         className="absolute left-0 top-1/2 h-24 w-24 rounded-xl bg-white"
