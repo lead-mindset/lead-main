@@ -27,8 +27,8 @@ export default function CurvedConnector3() {
       ease: "none",
       scrollTrigger: {
         trigger: container,
-        start: "top 85%",
-        end: "bottom 65%",
+        start: "top bottom",
+        end: "+=100%",
         scrub: 1,
       },
     });
@@ -37,7 +37,7 @@ export default function CurvedConnector3() {
   return (
     <div
       ref={containerRef}
-      className="max-sm:hidden relative w-full h-[40vh] z-10 pointer-events-none"
+      className="max-sm:hidden relative w-full z-10 pointer-events-none"
     >
       <svg
         viewBox="-200 0 1400 200"
