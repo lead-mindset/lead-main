@@ -11,6 +11,8 @@ import { useState } from "react";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useEffect } from "react";
 import { useLayoutEffect } from "react";
+import { Card } from "@/components/ui/card";
+import { CardContent } from "@/components/ui/card";
 
 export default function Page() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -18,7 +20,7 @@ export default function Page() {
 
   const [scrollUnlocked, setScrollUnlocked] = useState(false);
 
-    useLayoutEffect(() => {
+  useLayoutEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
@@ -57,7 +59,7 @@ export default function Page() {
     if (!video) return;
 
     video.currentTime = 0;
-    video.play().catch(() => {});
+    video.play().catch(() => { });
   }, []);
 
   useEffect(() => {
@@ -93,18 +95,30 @@ export default function Page() {
 
       <CurvedConnector3 />
 
-      <div className="relative min-h-screen p-10 flex flex-col justify-center text-white space-y-10 max-w-5xl mx-auto">
-        <AnimatedText className="text-2xl md:text-4xl">
-          We are a <span className="font-extrabold">network</span> of professionals and students dedicated to <span className="font-extrabold">empowering {' '}</span>
-          the next generation of Latino leaders across Latin America and the U.S
-        </AnimatedText>
+      <section
+        id="slack"
+        className="w-full min-h-screen relative flex items-center justify-center py-24 px-4"
+      >
+        <div className="max-w-6xl w-full">
+          <Card className="js-card relative overflow-hidden rounded-2xl text-white">
+            <div className="absolute -top-24 -right-24 w-96 h-96 from-chart-3 to-chart-4 bg-linear-to-bl opacity-30 z-0 rounded-full" />
+            <div className="absolute -bottom-24 -left-24 w-96 h-96 from-chart-1 to-chart-2 bg-linear-to-br opacity-30 rounded-full" />
 
-        <AnimatedText className="text-2xl md:text-4xl text-right">
-          Through mentorship, leadership training, and impactful community
-          projects, we connect <span className="font-extrabold">ambitious students</span>  with  <span className="font-extrabold">opportunities</span> to grow both
-          personally and professionally.
-        </AnimatedText>
-      </div>
+            <CardContent className="z-10 flex flex-col justify-center space-y-10 mx-auto p-10 md:p-14">
+              <AnimatedText className="text-2xl md:text-4xl">
+                We are a <span className="font-extrabold">network</span> of professionals and students dedicated to <span className="font-extrabold">empowering {' '}</span>
+                the next generation of Latino leaders across Latin America and the U.S
+              </AnimatedText>
+
+              <AnimatedText className="text-2xl md:text-4xl">
+                Through mentorship, leadership training, and impactful community
+                projects, we connect <span className="font-extrabold">ambitious students</span>  with  <span className="font-extrabold">opportunities</span> to grow both
+                personally and professionally.
+              </AnimatedText>
+            </CardContent>
+
+          </Card>
+        </div> </section>
 
       <div className="relative text-center gap-10 text-2xl flex flex-col items-center p-10">
 
