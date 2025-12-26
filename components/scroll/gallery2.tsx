@@ -8,12 +8,10 @@ import Image from "next/image";
 const images = [
     "/about-us/1.jpg",
     "/about-us/2.jpg",
-    "/about-us/3.jpg",
     "/about-us/4.jpg",
     "/about-us/5.jpg",
-    "/about-us/1.jpg",
-    "/about-us/2.jpg",
 ];
+
 
 export default function CurvedImageRibbon() {
     const sectionRef = useRef<HTMLDivElement>(null);
@@ -23,7 +21,7 @@ export default function CurvedImageRibbon() {
         if (!sectionRef.current) return;
 
         const ctx = gsap.context(() => {
-            const SPACING = 0.08;
+            const SPACING = 0.11;
             const COUNT = imgRefs.current.length;
 
             const PATH_END = 1.35;
@@ -39,6 +37,7 @@ export default function CurvedImageRibbon() {
                 },
             });
 
+            // Animate all images including the lead character container
             imgRefs.current.forEach((el, i) => {
                 gsap.set(el, {
                     xPercent: -50,
@@ -73,7 +72,7 @@ export default function CurvedImageRibbon() {
     return (
         <section
             ref={sectionRef}
-            className="relative h-screen w-full overflow-hidden bg-neutral-900"
+            className="relative h-screen w-full overflow-hidden"
         >
             <svg
                 className="absolute top-1/2 left-[-60%] w-[220%] -translate-y-1/2 pointer-events-none"
@@ -94,24 +93,41 @@ export default function CurvedImageRibbon() {
                 />
             </svg>
 
+            {/* Animate normal images */}
             {images.map((src, i) => (
                 <div
                     key={i}
                     ref={(el) => el && (imgRefs.current[i] = el)}
-                    className="
-            absolute left-0 top-1/2
-            w-60 h-40
-            flex items-center justify-center
-          "
+                    className="absolute left-0 z-10 top-1/2 w-96 h-auto flex items-center justify-center border-8 rounded-xl border-foreground"
                 >
                     <Image
                         src={src}
                         alt=""
-                        fill
+                        width={800}
+                        height={500}
                         className="rounded-xl object-cover shadow-xl"
                     />
                 </div>
             ))}
+
+            <div
+                ref={(el) => el && (imgRefs.current[images.length] = el)}
+                className="absolute left-0 top-1/2 z-0 flex items-center"
+            >
+                <div className="relative w-60 h-60 ml-3 px-5 rotate-90">
+                    <div className="absolute w-3 rounded-xl -mt-0.5 h-full bg-white top-0 left-1/2 origin-top-left rotate-[20deg]"></div>
+                    <div className="absolute w-3 rounded-xl mt-0.5 h-full bg-white top-0 left-1/2 origin-top-left -rotate-[20deg]"></div>
+                </div>
+
+                <Image
+                    src="/leadcharacter2.svg"
+                    alt="Logo"
+                    width={256}
+                    height={256}
+                    className="object-contain -ml-8 z-10"
+                    priority
+                />
+            </div>
         </section>
     );
 }
