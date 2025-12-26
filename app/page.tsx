@@ -122,7 +122,7 @@ export default function Page() {
 
       <div className="relative text-center gap-10 text-2xl flex flex-col items-center p-10">
 
-        <div className="flex flex-col  items-center scale-125 md:scale-200 lg:scale-[300%] xl:scale-[400%]">
+        <div className="flex flex-col origin-top  items-center scale-125 md:scale-200 lg:scale-[300%] xl:scale-[400%]">
           <RollingNumber className="font-bold" number={1140} />
           <span className="text-white mt-2 font-bold">MEMBERS</span>
         </div>
