@@ -123,7 +123,7 @@ export default function Page() {
       <div className="relative text-center gap-10 text-2xl flex flex-col items-center p-10">
 
         <div className="flex flex-col  items-center scale-125 md:scale-200 lg:scale-[300%] xl:scale-[400%]">
-          <RollingNumber className="font-bold" number={1135} />
+          <RollingNumber className="font-bold" number={1140} />
           <span className="text-white mt-2 font-bold">MEMBERS</span>
         </div>
 
@@ -136,7 +136,10 @@ export default function Page() {
           </div>
 
           <div className="sm:scale-125  lg:scale-200">
-            <RollingNumber whiteBg={false} className="font-bold" number={20} />
+            <div className="flex">
+              <span className="text-5xl inline-block">+</span>
+              <RollingNumber whiteBg={false} className="font-bold" number={20} />
+            </div>
             <span className="text-white mt-4">Events</span>
           </div>
 
