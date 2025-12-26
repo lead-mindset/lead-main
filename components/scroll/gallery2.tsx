@@ -26,13 +26,13 @@ export default function CurvedImageRibbon() {
       const SPACING = 0.08;
       const COUNT = imgRefs.current.length;
 
-      const PATH_END = 1.6;
+      const PATH_END = 1.35;
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: "+=400%",
+          end: "+=300%",
           scrub: 0.6,
           pin: true,
           anticipatePin: 1,
@@ -55,7 +55,6 @@ export default function CurvedImageRibbon() {
             motionPath: {
               path: "#motion-path",
               align: "#motion-path",
-              alignOrigin: [0.5, 0.5],
               autoRotate: true,
               start,
               end,
@@ -74,18 +73,12 @@ export default function CurvedImageRibbon() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen w-full overflow-visible bg-neutral-900"
+      className="relative h-screen w-full overflow-hidden bg-neutral-900"
     >
       <svg
-        className="
-          absolute top-1/2 left-1/2
-          w-[220%]
-          -translate-x-1/2
-          -translate-y-1/2
-          pointer-events-none
-        "
+        className="absolute top-1/2 left-[-60%] w-[220%] -translate-y-1/2 pointer-events-none"
         viewBox="0 0 512 200"
-        preserveAspectRatio="xMidYMid meet"
+        preserveAspectRatio="none"
       >
         <path
           id="motion-path"
@@ -112,7 +105,7 @@ export default function CurvedImageRibbon() {
             alt=""
             width={180}
             height={120}
-            className="h-28 w-auto rounded-xl object-cover shadow-xl"
+            className="w-60 h-auto rounded-xl object-cover shadow-xl"
           />
         </div>
       ))}
