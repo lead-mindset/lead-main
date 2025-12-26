@@ -25,9 +25,9 @@ export default function CurvedConnector2() {
       ease: "none",
       scrollTrigger: {
         trigger: containerRef.current,
-        start: "top 80%",
-        end: "bottom 50%",
-        scrub: 1,
+        start: "top bottom",
+        end: "+=200%",
+        scrub: true,
       },
     });
   }, { scope: containerRef });
