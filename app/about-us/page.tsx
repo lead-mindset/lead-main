@@ -12,7 +12,7 @@ import PillarsCarousel from "@/components/scroll/pillarscarousel";
 import CurvedConnector from "@/components/scroll/animated-curve";
 import CurvedConnector2 from "@/components/scroll/animated-curve2";
 import EmpowerSection from "@/components/scroll/get-involved-section";
-import Gallery from "@/components/scroll/gallery";
+import Gallery from "@/components/scroll/gallery2";
 
 export default function AboutUs() {
 
@@ -35,9 +35,9 @@ export default function AboutUs() {
             <Gallery />
             
             <div id='empowering' className="relative py-60  p-10 text-center text-white max-w-5xl mx-auto">
-                {/*<AnimatedText className="text-2xl font-bold  md:text-7xl uppercase">
-                    Empowering Dreams
-                </AnimatedText> */}
+                <AnimatedText className="text-2xl font-bold  md:text-7xl uppercase">
+                    shaping brighter futures for all
+                </AnimatedText> 
             </div>
 
 
