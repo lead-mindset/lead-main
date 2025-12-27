@@ -62,7 +62,7 @@ function NavBar({ menuItems }: { menuItems: MenuItem[] }) {
 
         <Link
           href={'/get-involved'}
-          className=" rounded-bl-2xl h-full bg-primary transition-all 
+          className=" rounded-bl-2xl h-full bg-linear-to-br from-primary to-chart-1 transition-all 
           flex items-center"
         >
           <button
