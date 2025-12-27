@@ -10,6 +10,7 @@ const founders = [
   { name: "Nicole Jimenez", role: "VP of Operations", photo: "/nicole.png", link: "https://www.linkedin.com/in/nicolejimenez824/", logo: "/allies/accenturemini.png" },
   { name: "Ellie Jimenez", role: "VP of Programs", photo: "/ellie.jpeg", link: "#" },
   { name: "Abigail Briones", role: "Digital Transformation Lead", photo: "/abigailbriones.jpeg", link: "https://www.linkedin.com/in/abigailbrionesaranda/" },
+  { name: "Christopher Lozada", role: "Digital Transformation Lead", photo: "/christopher.jpeg", link: "https://www.linkedin.com/in/abigailbrionesaranda/" },
 
 ];
 
