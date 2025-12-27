@@ -36,8 +36,8 @@ export default function AboutUs() {
             <Gallery />
 
             <div id='empowering' className="relative py-60  p-10 text-center text-white max-w-5xl mx-auto">
-                <AnimatedText className="text-2xl font-bold  md:text-7xl uppercase">
-                    shaping brighter futures for all
+                <AnimatedText className="text-2xl md:text-7xl uppercase">
+                    shaping <span className="font-extrabold">brighter futures</span> for all
                 </AnimatedText>
             </div>
 
