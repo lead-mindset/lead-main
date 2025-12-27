@@ -43,7 +43,7 @@ export default function SocialLinks({
           href={item.href}
           target="_blank"
           aria-label={item.name}
-          className="p-2 rounded-full bg-chart-3 text-white transition hover:scale-105"
+          className="p-2 rounded-full bg-linear-to-br from-chart-3 to-chart-2 text-white transition hover:scale-105"
         >
           <HugeiconsIcon
             icon={item.icon}
