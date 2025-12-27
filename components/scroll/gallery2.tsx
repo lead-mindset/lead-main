@@ -103,16 +103,24 @@ export default function CurvedImageRibbon() {
             </svg>
 
             {images.map((src, i) => (
-                <div
-                    key={i}
-                    ref={(el) => {
-                        if (el) imgRefs.current[i] = el;
-                    }}
-                    className="absolute left-0 top-1/2 z-20 w-96 h-auto flex items-center justify-center border-8 rounded-xl border-foreground"
-                >
-                    <Image src={src} alt="" width={900} height={500} className="rounded-xl object-cover" />
-                </div>
-            ))}
+    <div
+        key={i}
+        ref={(el) => {
+            if (el) imgRefs.current[i] = el;
+        }}
+        className="absolute left-0 top-1/2 z-20 w-96 h-auto flex items-center justify-center border-8 rounded-xl border-foreground"
+    >
+        <Image
+            src={src}
+            alt=""
+            width={900}
+            height={500}
+            className="rounded-xl object-cover"
+            priority={i === 4}
+        />
+    </div>
+))}
+
 
             <div
                 ref={(el) => {
