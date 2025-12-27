@@ -171,7 +171,7 @@ export default function Page() {
           <div className="md:basis-2/3">
 
             <AnimatedText className="text-2xl md:text-4xl text-right">
-              We  <span className="font-extrabold">collaborate </span> with organizations like SHPE and ALPFA to deliver meaningful student <span className="font-extrabold">opportunities</span>
+              We  <span className="font-extrabold">collaborate </span> with organizations like SHPE and ALPFA to deliver meaningful student <span className="font-extrabold">opportunities</span>{' '}
               that drive growth, leadership, and innovation.
             </AnimatedText>
           </div>
