@@ -7,7 +7,7 @@ import AnimatedText from "./animated-text";
 const founders = [
   { name: "Luis Coronel", role: "Founder & CEO", photo: "/luisphoto.jpg", link: "https://www.linkedin.com/in/luis-t-coronel/", logo: "/allies/microsoftmini.png" },
   { name: "Antonny Porlles", role: "Co-Founder & COO", photo: "/antonnyphoto.jpg", link: "https://www.linkedin.com/in/antonny-porlles/", logo: "/allies/microsoftmini.png" },
-  { name: "Nicole Jimenez", role: "VP of Operations", photo: "/nicolephoto.jpg", link: "https://www.linkedin.com/in/nicolejimenez824/", logo: "/allies/accenturemini.png" },
+  { name: "Nicole Jimenez", role: "VP of Operations", photo: "/nicole.png", link: "https://www.linkedin.com/in/nicolejimenez824/", logo: "/allies/accenturemini.png" },
   { name: "Ellie Jimenez", role: "VP of Programs", photo: "/elliephoto.jpg", link: "#" },
   { name: "Abigail Briones", role: "Digital Transformation Lead", photo: "/abigailbriones.jpeg", link: "https://www.linkedin.com/in/abigailbrionesaranda/" },
 
