@@ -76,7 +76,7 @@ export default function Page() {
 
       <video
         ref={videoRef}
-        src="/video.mp4"
+        src="/video3.mp4"
         autoPlay
         muted
         loop
