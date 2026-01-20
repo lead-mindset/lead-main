@@ -104,7 +104,7 @@ export default function Page() {
             <div className="absolute -top-24 -right-24 w-96 h-96 from-chart-3 to-chart-4 bg-linear-to-bl opacity-30 z-0 rounded-full" />
             <div className="absolute -bottom-24 -left-24 w-96 h-96 from-chart-1 to-chart-2 bg-linear-to-br opacity-30 rounded-full" />
 
-            <CardContent className="z-10 flex flex-col justify-start items-start space-y-10 p-10 md:p-14">
+            <CardContent className="z-10 flex flex-col text-center justify-start items-start space-y-10 p-10 md:p-14">
               <AnimatedText className="text-2xl md:text-4xl">
                 We are a <span className="font-extrabold">network</span> of professionals and students dedicated to <span className="font-extrabold">empowering {' '}</span>
                 the next generation of Latino leaders across Latin America and the U.S
@@ -130,7 +130,7 @@ export default function Page() {
         <div className="flex gap-10 md:gap-40 lg:gap-52 xl:gap-60 mt-4 md:mt-24 lg:mt-52">
 
           <div className="sm:scale-125  lg:scale-200">
-            <RollingNumber whiteBg={false} className="font-bold" number={10} />
+            <RollingNumber whiteBg={false} className="font-bold" number={13} />
             <span className="text-white mt-4">Chapters</span>
 
           </div>
@@ -138,7 +138,7 @@ export default function Page() {
           <div className="sm:scale-125  lg:scale-200">
             <div className="flex">
               <span className="text-5xl inline-block">+</span>
-              <RollingNumber whiteBg={false} className="font-bold" number={20} />
+              <RollingNumber whiteBg={false} className="font-bold" number={100} />
             </div>
             <span className="text-white mt-4">Events</span>
           </div>
