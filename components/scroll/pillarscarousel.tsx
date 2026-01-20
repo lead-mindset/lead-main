@@ -14,7 +14,7 @@ const data = [
   { id: 4, title: 'Professional Development', description: 'Equip students with skills, mentorship, and experiences to excel in their careers and thrive in the evolving tech landscape.', IconComponent: Briefcase, color: 'from-chart-4 to-chart-1' },
   { id: 5, title: 'Community Impact', description: 'Inspire students to lead initiatives that transform communities, promote social responsibility, and leave a lasting legacy.', IconComponent: Globe, color: 'from-chart-1 to-chart-2' },
   { id: 6, title: 'Women Excellence', description: 'Empower female students with mentorship, support, and opportunities to thrive as leaders in technology and beyond.', IconComponent: User, color: 'from-chart-2 to-chart-3' },
-  { id: 7, title: 'LEAD Academia', description: 'Engage high-school students with technology, leadership skills, and career opportunities to cultivate the next generation of Latino talent.', IconComponent: GraduationCap, color: 'from-chart-3 to-chart-4' },
+  { id: 7, title: 'LEAD Academia', description: 'Engage K-12 students with technology, leadership skills, and career opportunities to cultivate the next generation of young talent.', IconComponent: GraduationCap, color: 'from-chart-3 to-chart-4' },
 ];
 
 export default function PillarsCarousel() {
