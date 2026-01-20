@@ -105,15 +105,12 @@ export default function Page() {
             <div className="absolute -bottom-24 -left-24 w-96 h-96 from-chart-1 to-chart-2 bg-linear-to-br opacity-30 rounded-full" />
 
             <CardContent className="z-10 flex flex-col text-center justify-start items-start space-y-10 p-10 md:p-14">
-              <AnimatedText className="text-2xl md:text-4xl">
-                We are a <span className="font-extrabold">network</span> of professionals and students dedicated to <span className="font-extrabold">empowering {' '}</span>
-                the next generation of Latino leaders across Latin America and the U.S
+               <AnimatedText className="text-2xl md:text-4xl">
+                <span className="font-extrabold">Empowering dreams:</span> 
               </AnimatedText>
-
+              
               <AnimatedText className="text-2xl md:text-4xl">
-                Through mentorship, leadership training, and impactful community
-                projects, we connect <span className="font-extrabold">ambitious students</span>  with  <span className="font-extrabold">opportunities</span> to grow both
-                personally and professionally.
+                Bridging gaps, igniting STEM careers, and shaping brighter futures for all.
               </AnimatedText>
             </CardContent>
 
