@@ -89,8 +89,7 @@ export default function AboutUs() {
 
             <div className="relative px-10 flex flex-col justify-center text-white max-w-5xl mx-auto">
                 <AnimatedText className="text-2xl md:text-4xl">
-                    Built on these core values, our pillars drive lasting growth and meaningful impact, shaping students and communities for the better.
-                </AnimatedText>
+                    Grounded in these values, our pillars turn ambition into action, creating measurable impact for students and the communities they serve                </AnimatedText>
             </div>
 
             <PillarsCarousel />
