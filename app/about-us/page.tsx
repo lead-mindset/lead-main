@@ -54,33 +54,33 @@ export default function AboutUs() {
                         <AnimatedText className="text-3xl md:text-6xl font-bold">Mission</AnimatedText>
 
                         <AnimatedText className="text-2xl md:text-4xl">
-                            We are a <span className="font-extrabold">network</span> of professionals and students dedicated to <span className="font-extrabold">empowering {' '}</span>
-                            the next generation of Latino leaders across Latin America and the U.S
+                            To  <span className="font-extrabold">empower</span> the next generation of leaders across LATAM and the U.S.
                         </AnimatedText>
 
                     </div>
-                </CardContent> 
+                </CardContent>
             </Card>
 
-                        <Card className="js-card relative max-w-5xl mx-auto overflow-hidden rounded-2xl text-white">
+            <Card className="js-card relative max-w-5xl mx-auto overflow-hidden rounded-2xl text-white">
                 <div className="absolute -top-24 -right-24 w-96 h-96 from-chart-3 to-chart-4 bg-linear-to-bl opacity-20 z-0 rounded-full" />
                 <div className="absolute -bottom-24 -left-24 w-96 h-96 from-chart-1 to-chart-2 bg-linear-to-br opacity-20 rounded-full" />
 
                 <CardContent className="z-10 flex flex-col justify-center space-y-10 mx-auto p-10 md:p-14">
 
 
-            <div className="relative p-10 flex flex-col justify-center text-white space-y-10 max-w-5xl mx-auto">
+                    <div className="relative p-10 flex flex-col justify-center text-white space-y-10 max-w-5xl mx-auto">
 
-                <AnimatedText className="text-3xl md:text-6xl font-bold">Vision</AnimatedText>
+                        <AnimatedText className="text-3xl md:text-6xl font-bold">Vision</AnimatedText>
 
-                <AnimatedText className="text-2xl md:text-4xl">
-                    Through mentorship, leadership training, and impactful community
-                    projects, we connect  <span className="font-extrabold">ambitious students</span> with opportunities to <span className="font-extrabold"> grow</span> both
-                    personally and professionally.
-                </AnimatedText>
-            </div>
+                        <AnimatedText className="text-2xl md:text-4xl">
 
-            </CardContent> </Card>
+                            To transform LATAM into a <span className="font-extrabold">global hub</span> for technology, leadership, and innovation.
+
+
+                        </AnimatedText>
+                    </div>
+
+                </CardContent> </Card>
 
 
 
