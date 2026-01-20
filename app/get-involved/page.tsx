@@ -58,7 +58,7 @@ export default function GetInvolved() {
                 <AnimatedText
                     className="text-5xl lg:text-7xl font-bold absolute top-[70%] left-1/2 -translate-x-1/2 text-center text-white"
                 >
-                    Launch Into Our Community!
+                    Launch with LEAD!
                 </AnimatedText>
             </div>
 
