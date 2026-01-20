@@ -7,7 +7,7 @@ import gsap from "@/lib/gsap-setup";
 export default function Values() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const values = ["Integrity", "Collaboration", "Innovation", "Empowerment"];
+  const values = ["Mindset", "Excellence", "Purpose", "Impact"];
   const colors = ["from-chart-1 via-chart-1 to-chart-2", "from-chart-2 via-chart-2 to-chart-3", "from-chart-3 via-chart-3 to-chart-4", "from-chart-4 via-chart-4 to-chart-1"];
 
   useGSAP(() => {
