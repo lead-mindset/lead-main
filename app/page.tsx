@@ -105,10 +105,10 @@ export default function Page() {
             <div className="absolute -bottom-24 -left-24 w-96 h-96 from-chart-1 to-chart-2 bg-linear-to-br opacity-30 rounded-full" />
 
             <CardContent className="z-10 flex flex-col text-center justify-start items-start space-y-10 p-10 md:p-14">
-               <AnimatedText className="text-2xl md:text-4xl">
-                <span className="font-extrabold">Empowering dreams:</span> 
+              <AnimatedText className="text-2xl md:text-4xl">
+                <span className="font-extrabold">Empowering dreams:</span>
               </AnimatedText>
-              
+
               <AnimatedText className="text-2xl md:text-4xl">
                 Bridging gaps, igniting STEM careers, and shaping brighter futures for all.
               </AnimatedText>
@@ -152,8 +152,7 @@ export default function Page() {
         <div id="section4" className="relative max-w-5xl mx-auto flex items-center h-screen px-8">
           <div className="md:basis-2/3">
             <AnimatedText className="text-2xl md:text-4xl mb-10">
-              With  <span className="font-extrabold">chapters</span> at top universities, we support students in Peru
-              by connecting them to transformative opportunities in  <span className="font-extrabold">technology</span> and  <span className="font-extrabold">innovation</span>.
+              In U.S., we  <span className="font-extrabold">collaborate </span> with organizations like SHPE and ALPFA to deliver meaningful student <span className="font-extrabold">opportunities</span>{' '}
             </AnimatedText>
           </div>
 
@@ -168,8 +167,9 @@ export default function Page() {
           <div className="md:basis-2/3">
 
             <AnimatedText className="text-2xl md:text-4xl text-right">
-              We  <span className="font-extrabold">collaborate </span> with organizations like SHPE and ALPFA to deliver meaningful student <span className="font-extrabold">opportunities</span>{' '}
-              that drive growth, leadership, and innovation.
+              In Peru, we support <span className="font-extrabold">chapters</span> at top universities by
+               connecting students to transformative opportunities in  <span className="font-extrabold">technology</span> and  <span className="font-extrabold">innovation</span>.
+
             </AnimatedText>
           </div>
 
