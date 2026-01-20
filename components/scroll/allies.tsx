@@ -7,11 +7,11 @@ import gsap from "@/lib/gsap-setup";
 
 const images = [
   "/allies/microsoft.webp",
-  "/allies/accenture.png",
   "/allies/ibm.png",
   "/allies/alpfa.png",
   "/allies/shpe.webp",
-  "/allies/peruviansinstem.jpg",
+  "/allies/microsoft hola.jpg",
+
 ];
 
 export default function ChaptersPhotos() {
