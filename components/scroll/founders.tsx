@@ -10,7 +10,7 @@ const founders = [
   { name: "Nicole Jimenez", role: "VP of Operations", photo: "/nicole.png", link: "https://www.linkedin.com/in/nicolejimenez824/", logo: "/allies/accenturemini.png" },
   { name: "Ellie Jimenez", role: "VP of Programs", photo: "/ellie.jpeg", link: "#" },
   { name: "Abigail Briones", role: "Digital Transformation Lead", photo: "/abigailbriones.jpeg", link: "https://www.linkedin.com/in/abigailbrionesaranda/" },
-  { name: "Christopher Lozada", role: "Regional Student Director", photo: "/christopher.jpg", link: "https://www.linkedin.com/in/christopher-lozada/" },
+  { name: "Christopher Lozada", role: "Country Director, Peru", photo: "/christopher.jpg", link: "https://www.linkedin.com/in/christopher-lozada/" },
   { name: "Angela Cortez", role: "International Program Director", photo: "/angela.png", link: "https://www.linkedin.com/in/angela-cortes-pabon/" },
 
 ];
