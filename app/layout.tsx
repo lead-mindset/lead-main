@@ -19,7 +19,7 @@ const geistMono = Raleway({
 });
 
 export const metadata: Metadata = {
-  title: "LEAD PERU",
+  title: "LEAD",
   description: "Learn. Explore. Aspire. Discover.",
 };
 
