@@ -124,7 +124,7 @@ export default function Page() {
           <span className="text-white mt-2 font-bold">MEMBERS</span>
         </div>
 
-        <div className="flex gap-10 md:gap-40 lg:gap-52 xl:gap-60 mt-4 md:mt-24 lg:mt-52">
+        <div className="flex gap-10 md:gap-40 lg:gap-52 xl:gap-60 mt-4 md:mt-24 lg:mt-52 xl:mt-96">
 
           <div className="sm:scale-125  lg:scale-200">
             <RollingNumber whiteBg={false} className="font-bold" number={13} />
