@@ -50,7 +50,7 @@ export default function AboutUs() {
 
                 <CardContent className="z-10 flex flex-col justify-center space-y-10 mx-auto p-10 md:p-14">
 
-                    <div className="relative p-10 flex flex-col justify-center text-white space-y-10 max-w-5xl mx-auto">
+                    <div className="relative p-10 text-center flex flex-col justify-center text-white space-y-10 max-w-5xl mx-auto">
                         <AnimatedText className="text-3xl md:text-6xl font-bold">Mission</AnimatedText>
 
                         <AnimatedText className="text-2xl md:text-4xl">
@@ -68,7 +68,7 @@ export default function AboutUs() {
                 <CardContent className="z-10 flex flex-col justify-center space-y-10 mx-auto p-10 md:p-14">
 
 
-                    <div className="relative p-10 flex flex-col justify-center text-white space-y-10 max-w-5xl mx-auto">
+                    <div className="relative p-10 flex text-center flex-col justify-center text-white space-y-10 max-w-5xl mx-auto">
 
                         <AnimatedText className="text-3xl md:text-6xl font-bold">Vision</AnimatedText>
 
