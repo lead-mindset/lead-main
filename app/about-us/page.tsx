@@ -54,7 +54,7 @@ export default function AboutUs() {
                         <AnimatedText className="text-3xl md:text-6xl font-bold">Mission</AnimatedText>
 
                         <AnimatedText className="text-2xl md:text-4xl">
-                            To  <span className="font-extrabold">empower</span> the next generation of leaders across LATAM and the U.S.
+                            To  <span className="font-extrabold">empower</span> the next generation of leaders across LATAM and the U.S to reach their highest potential.
                         </AnimatedText>
 
                     </div>
