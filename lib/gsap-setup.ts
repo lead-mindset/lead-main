@@ -7,5 +7,6 @@ import MotionPathPlugin from "gsap/MotionPathPlugin";
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, SplitText);
 
+
 export default gsap;
 
