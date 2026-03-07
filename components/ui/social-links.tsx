@@ -11,7 +11,7 @@ import {
 const socialLinks = [
   {
     name: "Instagram",
-    href: "https://www.instagram.com/lead_peru/",
+    href: "https://www.instagram.com/lead_americas/",
     icon: InstagramIcon,
   },
   {
