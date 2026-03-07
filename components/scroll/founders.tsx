@@ -5,14 +5,24 @@ import Link from "next/link";
 import AnimatedText from "./animated-text";
 
 const founders = [
-  { name: "Luis Coronel", role: "Founder & CEO", photo: "/luisphoto.jpg", link: "https://www.linkedin.com/in/luis-t-coronel/", logo: "/allies/microsoftmini.png" },
-  { name: "Antonny Porlles", role: "Co-Founder & COO", photo: "/antonnyphoto.jpg", link: "https://www.linkedin.com/in/antonny-porlles/", logo: "/allies/microsoftmini.png" },
-  { name: "Nicole Jimenez", role: "VP of Operations", photo: "/nicole.png", link: "https://www.linkedin.com/in/nicolejimenez824/", logo: "/allies/accenturemini.png" },
-  { name: "Ellie Jimenez", role: "VP of Programs", photo: "/ellie.jpeg", link: "#" },
-  { name: "Abigail Briones", role: "Digital Transformation Lead", photo: "/abigailbriones.jpeg", link: "https://www.linkedin.com/in/abigailbrionesaranda/" },
-  { name: "Christopher Lozada", role: "Country Director, Peru", photo: "/christopher.jpg", link: "https://www.linkedin.com/in/christopher-lozada/" },
-  { name: "Angela Cortes", role: "International Program Director", photo: "/angela.png", link: "https://www.linkedin.com/in/angela-cortes-pabon/" },
+  // leadership
+  { name: "Luis Coronel",      role: "Founder & CEO",                  photo: "/luisphoto.jpg",       link: "https://www.linkedin.com/in/luis-t-coronel/",          logo: "/allies/microsoftmini.png" },
+  { name: "Antonny Porlles",   role: "Co-Founder & COO",               photo: "/antonnyphoto.jpg",    link: "https://www.linkedin.com/in/antonny-porlles/",          logo: "/allies/microsoftmini.png" },
+  { name: "Nicole Jimenez",    role: "VP of Operations",               photo: "/nicole.png",          link: "https://www.linkedin.com/in/nicolejimenez824/",         logo: "/allies/accenturemini.png" },
 
+  // directors
+  { name: "Abigail Briones",   role: "Dir. of Transformation",        photo: "/abigailbriones.jpeg", link: "https://www.linkedin.com/in/abigailbrionesaranda/" },
+  { name: "Jhoei Cisneros",    role: "Dir. of Events",                 photo: "/jhoel.png",           link: "#" },
+  { name: "Christopher Lozada",role: "Country Director, Peru",         photo: "/christopher.jpg",     link: "https://www.linkedin.com/in/christopher-lozada/" },
+  { name: "Angela Cortes",     role: "Dir. of International Exp.",     photo: "/angela.png",          link: "https://www.linkedin.com/in/angela-cortes-pabon/" },
+  { name: "Kiara Aguirre",     role: "Dir. of Communications",        photo: "/kiara.jpg",           link: "#" },
+  { name: "Cristhy T.",        role: "Dir. of Legal & Compliance",    photo: "/cristhy.jpeg",        link: "#" },
+  { name: "Ariana Cassina",    role: "Dir. of Marketing",             photo: "/ariana.jpg",          link: "#" },
+  { name: "Arianna Yauri",     role: "Dir. of Programs",              photo: "/arianna.jpg",         link: "#" },
+  { name: "Xiomara Landa",     role: "Dir. of People (HR)",           photo: "/xiomara.jpg",         link: "#" },
+
+  { name: "Keily Luna",        role: "Marketing",                      photo: "/keily.jpg",           link: "#" },
+  { name: "Nikole A.",         role: "Program Manager",                photo: "/nikole.jpg",          link: "#" },
 ];
 
 const Founders = () => {
