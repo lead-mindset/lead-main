@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { MainContainer } from "@/components/global/main-container";
+import { BrandScrollTrace } from "@/components/public/brand-scroll-trace";
 import { CinematicVideoPanel } from "@/components/public/cinematic-video-panel";
 import { SectionReveal } from "@/components/public/section-reveal";
 import { Button } from "@/components/ui/button";
@@ -17,6 +18,7 @@ import { isExternalHref } from "@/components/global/navigation/nav-links";
 export default function AboutPage() {
   return (
     <div className="overflow-hidden bg-background text-foreground">
+      <BrandScrollTrace />
       <section className="editorial-photo-hero pt-28">
         <Image
           src="/about-us/2.jpg"
