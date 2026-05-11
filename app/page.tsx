@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { MainContainer } from "@/components/global/main-container";
-import { NetworkAccent } from "@/components/public/network-accent";
 import { SectionReveal } from "@/components/public/section-reveal";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -22,12 +21,17 @@ import { isExternalHref } from "@/components/global/navigation/nav-links";
 export default function HomePage() {
   return (
     <div className="overflow-hidden bg-background text-foreground">
-      <section className="relative min-h-[92vh] pt-24">
-        <div className="absolute inset-x-0 top-16 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-        <NetworkAccent />
-        <MainContainer className="grid min-h-[calc(92vh-6rem)] items-center gap-10 py-16 lg:grid-cols-[1.05fr_0.95fr]">
+      <section className="editorial-photo-hero pt-24">
+        <Image
+          src="/about-us/1.jpg"
+          alt="LEAD students gathered together at a community event"
+          fill
+          priority
+          className="absolute inset-0 -z-10 object-cover"
+        />
+        <MainContainer className="flex min-h-[calc(92dvh-6rem)] items-end pb-16 pt-20">
           <div className="relative z-10 max-w-3xl">
-            <Badge variant="info" size="lg">LEAD Americas</Badge>
+            <span className="eyebrow-label">LEAD Americas</span>
             <h1 className="display-title mt-6 max-w-4xl">
               Students already have the talent. LEAD opens the door.
             </h1>
@@ -46,22 +50,9 @@ export default function HomePage() {
                 <Link href={publicCtas.partner}>Partner with us</Link>
               </Button>
             </div>
-          </div>
-
-          <div className="relative z-10">
-            <div className="overflow-hidden rounded-lg border border-border bg-card shadow-xl">
-              <Image
-                src="/about-us/1.jpg"
-                alt="LEAD students wearing LEAD shirts at a community event"
-                width={900}
-                height={720}
-                priority
-                className="aspect-[4/3] w-full object-cover"
-              />
-            </div>
-            <div className="mt-4 grid grid-cols-2 gap-3">
+            <div className="mt-10 grid max-w-2xl grid-cols-2 gap-3">
               {proofStats.map((stat) => (
-                <div key={stat.label} className="rounded-lg border border-border bg-card/90 p-4">
+                <div key={stat.label} className="rounded-lg border border-white/15 bg-background/70 p-4 shadow-sm">
                   <p className="text-2xl font-bold text-foreground">{stat.value}</p>
                   <p className="mt-1 text-sm text-muted-foreground">{stat.label}</p>
                 </div>
@@ -97,10 +88,10 @@ export default function HomePage() {
       </SectionReveal>
 
       <SectionReveal>
-        <section className="py-20">
+        <section className="py-24">
           <MainContainer>
             <div className="max-w-2xl">
-              <Badge variant="neutral">Choose your path</Badge>
+              <span className="eyebrow-label">Choose your path</span>
               <h2 className="section-title mt-4">One ecosystem, clear next steps.</h2>
               <p className="body-copy mt-4 text-muted-foreground">
                 Whether you are a student, chapter builder, partner, mentor, or
@@ -110,7 +101,7 @@ export default function HomePage() {
             </div>
             <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
               {audienceRoutes.map((route) => (
-                <Link key={route.title} href={route.href} {...externalProps(route.href)} className="group rounded-lg border border-border bg-card p-5 transition-colors hover:border-primary/40 hover:bg-muted/40">
+                <Link key={route.title} href={route.href} {...externalProps(route.href)} className="group editorial-card rounded-2xl p-6 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-primary/40">
                   <route.icon className="size-5 text-primary" />
                   <h3 className="mt-5 text-lg font-semibold text-foreground">{route.title}</h3>
                   <p className="body-copy mt-3 text-sm text-muted-foreground">{route.description}</p>
@@ -123,11 +114,11 @@ export default function HomePage() {
       </SectionReveal>
 
       <SectionReveal>
-        <section className="bg-card/35 py-20">
+        <section className="editorial-warm-band py-24">
           <MainContainer>
             <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
               <div>
-                <Badge variant="info">LEAD ecosystem</Badge>
+                <span className="eyebrow-label">LEAD ecosystem</span>
                 <h2 className="section-title mt-4">More than events. A system for growth.</h2>
                 <p className="body-copy mt-4 text-muted-foreground">
                   LEAD works as a platform because it creates repeated systems:
@@ -139,7 +130,7 @@ export default function HomePage() {
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
                 {ecosystemItems.map((item) => (
-                  <div key={item.title} className="rounded-lg border border-border bg-background/75 p-4">
+                  <div key={item.title} className="editorial-card rounded-2xl p-5">
                     <h3 className="font-semibold text-foreground">{item.title}</h3>
                     <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.description}</p>
                   </div>
@@ -151,15 +142,15 @@ export default function HomePage() {
       </SectionReveal>
 
       <SectionReveal>
-        <section className="py-20">
+        <section className="py-24">
           <MainContainer>
             <div className="max-w-2xl">
-              <Badge variant="success">Pillars</Badge>
+              <span className="eyebrow-label">Pillars</span>
               <h2 className="section-title mt-4">Seven ways LEAD turns potential into proof.</h2>
             </div>
             <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {pillars.map((pillar) => (
-                <div key={pillar.title} className="rounded-lg border border-border bg-card p-5">
+                <div key={pillar.title} className="editorial-card rounded-2xl p-5">
                   <h3 className="text-lg font-semibold text-foreground">{pillar.title}</h3>
                   <p className="body-copy mt-3 text-sm text-muted-foreground">{pillar.description}</p>
                 </div>
@@ -170,15 +161,15 @@ export default function HomePage() {
       </SectionReveal>
 
       <SectionReveal>
-        <section id="programs" className="bg-card/35 py-20 scroll-mt-24">
+        <section id="programs" className="editorial-warm-band scroll-mt-24 py-24">
           <MainContainer>
             <div className="max-w-2xl">
-              <Badge variant="warning">Programs and experiences</Badge>
+              <span className="eyebrow-label">Programs and experiences</span>
               <h2 className="section-title mt-4">Programs that create real value, not just attendance.</h2>
             </div>
             <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {programs.map((program) => (
-                <div key={program.title} className="rounded-lg border border-border bg-background/75 p-5">
+                <div key={program.title} className="editorial-card rounded-2xl p-5">
                   <h3 className="text-lg font-semibold text-foreground">{program.title}</h3>
                   <p className="body-copy mt-3 text-sm text-muted-foreground">{program.description}</p>
                   <p className="mt-5 text-sm font-semibold text-primary">{program.nextStep}</p>
@@ -190,10 +181,10 @@ export default function HomePage() {
       </SectionReveal>
 
       <SectionReveal>
-        <section id="impact" className="py-20 scroll-mt-24">
+        <section id="impact" className="scroll-mt-24 py-24">
           <MainContainer>
             <div className="max-w-2xl">
-              <Badge variant="info">Impact</Badge>
+              <span className="eyebrow-label">Impact</span>
               <h2 className="section-title mt-4">Proof from real LEAD moments.</h2>
               <p className="body-copy mt-4 text-muted-foreground">
                 LEAD&apos;s strongest proof is concrete: students served, projects
@@ -203,7 +194,7 @@ export default function HomePage() {
             </div>
             <div className="mt-10 grid gap-4 lg:grid-cols-2">
               {impactHighlights.map((highlight) => (
-                <article key={highlight.title} className="rounded-lg border border-border bg-card p-5">
+                <article key={highlight.title} className="editorial-card rounded-2xl p-6">
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                     <h3 className="text-xl font-semibold text-foreground">{highlight.title}</h3>
                     <Badge variant="neutral">{highlight.pillar}</Badge>

@@ -36,7 +36,7 @@ export function InterestForm({ kind }: { kind: InterestKind }) {
   }
 
   return (
-    <div className="rounded-lg border border-border bg-card p-5 shadow-xs">
+    <div className="editorial-card rounded-2xl p-5 shadow-xs">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h3 className="text-lg font-semibold text-foreground">{title}</h3>

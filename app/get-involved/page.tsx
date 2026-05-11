@@ -35,10 +35,17 @@ const paths = [
 export default function GetInvolvedPage() {
   return (
     <div className="overflow-hidden bg-background text-foreground">
-      <section className="pt-28">
-        <MainContainer className="grid gap-10 py-16 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <section className="editorial-photo-hero pt-28">
+        <Image
+          src="/chapters/chapter-2.jpg"
+          alt="LEAD chapter members gathering on campus"
+          fill
+          priority
+          className="absolute inset-0 -z-10 object-cover"
+        />
+        <MainContainer className="grid min-h-[calc(88dvh-7rem)] items-end gap-10 py-16 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
-            <Badge variant="info" size="lg">Get involved</Badge>
+            <span className="eyebrow-label">Get involved</span>
             <h1 className="display-title mt-6">Choose the LEAD path that fits your role.</h1>
             <p className="section-subtitle mt-6 text-muted-foreground">
               Join as a student, submit serious chapter interest, or start a
@@ -48,7 +55,7 @@ export default function GetInvolvedPage() {
           </div>
           <div className="grid gap-4">
             {paths.map((path) => (
-              <Link key={path.href} href={path.href} className="rounded-lg border border-border bg-card p-5 transition-colors hover:border-primary/40 hover:bg-muted/40">
+              <Link key={path.href} href={path.href} className="rounded-2xl border border-white/15 bg-background/75 p-5 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-primary/40">
                 <h2 className="text-xl font-semibold text-foreground">{path.label}</h2>
                 <p className="body-copy mt-2 text-sm text-muted-foreground">{path.description}</p>
               </Link>
@@ -58,10 +65,10 @@ export default function GetInvolvedPage() {
       </section>
 
       <SectionReveal>
-        <section id="students" className="scroll-mt-24 border-y border-border bg-card/35 py-20">
+        <section id="students" className="editorial-warm-band scroll-mt-24 border-y border-border py-24">
           <MainContainer className="grid gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-center">
             <div>
-              <Badge variant="success">Student path</Badge>
+              <span className="eyebrow-label">Student path</span>
               <h2 className="section-title mt-4">Join the community and enter the Talent Platform.</h2>
               <p className="body-copy mt-4 text-muted-foreground">
                 Joining LEAD starts the official onboarding path. The Talent
@@ -83,17 +90,17 @@ export default function GetInvolvedPage() {
               alt="LEAD chapter members together"
               width={720}
               height={540}
-              className="aspect-[4/3] w-full rounded-lg border border-border object-cover shadow-xl"
+              className="editorial-image aspect-[4/3] w-full border border-border object-cover"
             />
           </MainContainer>
         </section>
       </SectionReveal>
 
       <SectionReveal>
-        <section id="chapters" className="scroll-mt-24 py-20">
+        <section id="chapters" className="scroll-mt-24 py-24">
           <MainContainer>
             <div className="max-w-3xl">
-              <Badge variant="warning">Chapter interest</Badge>
+              <span className="eyebrow-label">Chapter interest</span>
               <h2 className="section-title mt-4">Building a chapter is selective.</h2>
               <p className="body-copy mt-4 text-muted-foreground">
                 Submit Chapter Interest does not create a chapter and does not
@@ -106,7 +113,7 @@ export default function GetInvolvedPage() {
 
             <div className="mt-10 grid gap-4 lg:grid-cols-5">
               {chapterProcess.map((step, index) => (
-                <div key={step.title} className="rounded-lg border border-border bg-card p-5">
+                <div key={step.title} className="editorial-card rounded-2xl p-5">
                   <Badge variant="count">{index + 1}</Badge>
                   <h3 className="mt-4 font-semibold text-foreground">{step.title}</h3>
                   <p className="mt-3 text-sm leading-6 text-muted-foreground">{step.description}</p>
@@ -116,7 +123,7 @@ export default function GetInvolvedPage() {
 
             <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               {operatingValues.map((value) => (
-                <div key={value.title} className="rounded-lg border border-border bg-card/80 p-5">
+                <div key={value.title} className="editorial-card rounded-2xl p-5">
                   <h3 className="text-lg font-semibold text-foreground">{value.title}</h3>
                   <p className="mt-1 text-sm font-medium text-primary">{value.translation}</p>
                   <p className="mt-3 text-sm leading-6 text-muted-foreground">{value.description}</p>
@@ -132,10 +139,10 @@ export default function GetInvolvedPage() {
       </SectionReveal>
 
       <SectionReveal>
-        <section id="partners" className="scroll-mt-24 bg-card/35 py-20">
+        <section id="partners" className="editorial-warm-band scroll-mt-24 py-24">
           <MainContainer>
             <div className="max-w-3xl">
-              <Badge variant="info">Partner path</Badge>
+              <span className="eyebrow-label">Partner path</span>
               <h2 className="section-title mt-4">Partner with students who are already building proof.</h2>
               <p className="body-copy mt-4 text-muted-foreground">
                 LEAD works with partners who expand access to STEM, leadership,
@@ -146,7 +153,7 @@ export default function GetInvolvedPage() {
 
             <div className="mt-10 grid gap-4 lg:grid-cols-3">
               {partnerTypes.map((type) => (
-                <div key={type.value} className="rounded-lg border border-border bg-background/75 p-5">
+                <div key={type.value} className="editorial-card rounded-2xl p-5">
                   <type.icon className="size-5 text-primary" />
                   <h3 className="mt-5 text-xl font-semibold text-foreground">{type.title}</h3>
                   <p className="body-copy mt-3 text-sm text-muted-foreground">{type.description}</p>
@@ -155,7 +162,7 @@ export default function GetInvolvedPage() {
             </div>
 
             <div className="mt-10 grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-              <div className="rounded-lg border border-border bg-background/75 p-5">
+              <div className="editorial-card rounded-2xl p-5">
                 <h3 className="text-xl font-semibold text-foreground">What partnership can look like</h3>
                 <ul className="mt-5 grid gap-3 text-sm leading-6 text-muted-foreground">
                   <li>Corporate visits, workshops, sponsorships, and event collaboration.</li>
