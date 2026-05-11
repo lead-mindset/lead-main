@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { MainContainer } from "@/components/global/main-container";
+import { CinematicVideoPanel } from "@/components/public/cinematic-video-panel";
+import { ControlledModelStage } from "@/components/public/controlled-model-stage";
 import { SectionReveal } from "@/components/public/section-reveal";
 import { InterestForm } from "@/components/public/interest-form";
 import { Badge } from "@/components/ui/badge";
@@ -63,6 +65,29 @@ export default function GetInvolvedPage() {
           </div>
         </MainContainer>
       </section>
+
+      <SectionReveal>
+        <section id="path-motion" className="scroll-mt-24 py-24">
+          <MainContainer className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+            <CinematicVideoPanel
+              src="/video.mp4"
+              eyebrow="Momentum"
+              title="Joining LEAD should feel like entering a living ecosystem."
+              className="lg:min-h-full"
+            >
+              Video provides the emotional continuity from the public site into
+              the Talent Platform, while the surrounding paths keep the next
+              action clear.
+            </CinematicVideoPanel>
+            <ControlledModelStage
+              kind="rocket"
+              eyebrow="Chapter launch"
+              title="A controlled launch motif"
+              description="The rocket is back as a small intentional accent for chapter interest, not a page-wide scroll effect."
+            />
+          </MainContainer>
+        </section>
+      </SectionReveal>
 
       <SectionReveal>
         <section id="students" className="editorial-warm-band scroll-mt-24 border-y border-border py-24">

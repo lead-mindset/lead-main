@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { MainContainer } from "@/components/global/main-container";
+import { CinematicVideoPanel } from "@/components/public/cinematic-video-panel";
+import { ControlledModelStage } from "@/components/public/controlled-model-stage";
 import { SectionReveal } from "@/components/public/section-reveal";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -88,6 +90,21 @@ export default function HomePage() {
       </SectionReveal>
 
       <SectionReveal>
+        <section id="motion-proof" className="scroll-mt-24 py-24">
+          <MainContainer>
+            <CinematicVideoPanel
+              src="/video3.mp4"
+              eyebrow="LEAD in motion"
+              title="A public front door that feels alive, not distracting."
+            >
+              Video should carry the emotion of the community while the page
+              keeps the decision path simple: join, build, partner, or explore.
+            </CinematicVideoPanel>
+          </MainContainer>
+        </section>
+      </SectionReveal>
+
+      <SectionReveal>
         <section className="py-24">
           <MainContainer>
             <div className="max-w-2xl">
@@ -114,7 +131,7 @@ export default function HomePage() {
       </SectionReveal>
 
       <SectionReveal>
-        <section className="editorial-warm-band py-24">
+        <section id="ecosystem-motion" className="editorial-warm-band scroll-mt-24 py-24">
           <MainContainer>
             <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
               <div>
@@ -136,6 +153,13 @@ export default function HomePage() {
                   </div>
                 ))}
               </div>
+              <ControlledModelStage
+                kind="earth"
+                eyebrow="Regional ecosystem"
+                title="LATAM + U.S. connectivity"
+                description="A controlled globe accent represents LEAD's cross-border chapter, partner, and student network without taking over the page."
+                className="lg:col-span-2"
+              />
             </div>
           </MainContainer>
         </section>

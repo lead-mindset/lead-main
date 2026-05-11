@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { MainContainer } from "@/components/global/main-container";
+import { CinematicVideoPanel } from "@/components/public/cinematic-video-panel";
 import { SectionReveal } from "@/components/public/section-reveal";
 import { Button } from "@/components/ui/button";
 import {
@@ -55,6 +56,22 @@ export default function AboutPage() {
                 <p className="mt-1 text-sm text-muted-foreground">{stat.label}</p>
               </div>
             ))}
+          </MainContainer>
+        </section>
+      </SectionReveal>
+
+      <SectionReveal>
+        <section className="py-24">
+          <MainContainer>
+            <CinematicVideoPanel
+              src="/video2.mp4"
+              eyebrow="Community proof"
+              title="Real people should carry the trust story."
+            >
+              The About page uses motion like an Apple-style chapter break:
+              immersive, quiet, and supportive of the story rather than the
+              thing users have to decode.
+            </CinematicVideoPanel>
           </MainContainer>
         </section>
       </SectionReveal>
