@@ -108,6 +108,9 @@
   font-weight: 800;
   letter-spacing: 0;
   line-height: 1;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  text-wrap: balance;
 }
 
 .hero-title {
@@ -115,6 +118,9 @@
   font-weight: 800;
   letter-spacing: 0;
   line-height: 1.08;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  text-wrap: balance;
 }
 
 .section-title {
@@ -122,16 +128,23 @@
   font-weight: 700;
   letter-spacing: 0;
   line-height: 1.15;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  text-wrap: balance;
 }
 
 .section-subtitle {
   font-size: 1.125rem;
   line-height: 1.7;
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
 
 .body-copy {
   font-size: 1rem;
   line-height: 1.7;
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
 
 .button-gradient-primary {
@@ -171,4 +184,15 @@
 html {
   scroll-behavior: smooth;
   @apply m-0 p-0;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.grid > *,
+.flex > * {
+  min-width: 0;
 }
