@@ -1,98 +1,85 @@
 "use client";
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Menu, X, ChevronDown } from "lucide-react";
+
+import { AnimatePresence, motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
-import type { MenuItem } from "./NavHeader";
+import { useState } from "react";
 
-export default function MobMenu({ menuItems }: { menuItems: MenuItem[] }) {
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
+import {
+  JOIN_LEAD_HREF,
+  PUBLIC_NAV_ITEMS,
+  isExternalHref,
+} from "./nav-links";
+
+function isActivePath(pathname: string, href: string) {
+  if (href.includes("#")) return false;
+  const route = href.split("#")[0];
+  return route === "/" ? pathname === "/" : pathname.startsWith(route);
+}
+
+export default function MobMenu({ pathname }: { pathname: string }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [clicked, setClicked] = useState<number | null>(null);
-  const toggleDrawer = () => {
-    setIsOpen(!isOpen);
-    setClicked(null);
-  };
-
-  const subMenuDrawer = {
-    enter: {
-      height: "auto",
-      overflow: "hidden",
-    },
-    exit: {
-      height: 0,
-      overflow: "hidden",
-    },
-  };
+  const joinIsExternal = isExternalHref(JOIN_LEAD_HREF);
 
   return (
-    <div className="">
-      <button className="lg:hidden z-[999] relative bg-background/90 p-4 rounded-full" onClick={toggleDrawer}>
-        {isOpen ? (
-          <X className="w-6 h-6" />
-        ) : (
-          <Menu className="w-6 h-6" />
-        )}
-      </button>
-
-      <motion.div
-        className="fixed left-0 right-0 overflow-y-auto  h-full bg-gm-gray
-        bg-background/90 text-foreground font-bold rounded-3xl p-4"
-        initial={{ x: "-100%" }}
-        animate={{ x: isOpen ? "0%" : "-100%" }}
+    <div className="mobile-menu-shell">
+      <Button
+        type="button"
+        variant="ghost"
+        size="icon-sm"
+        className="border border-white/15 bg-white/10 text-white hover:bg-white/15 hover:text-white"
+        aria-label={isOpen ? "Close navigation" : "Open navigation"}
+        aria-expanded={isOpen}
+        onClick={() => setIsOpen((current) => !current)}
       >
-        <ul>
-          {menuItems.map(({ name, href, target, subMenu }, i) => {
-            const isClicked = clicked === i;
-            const hasSubMenu = subMenu?.length;
-            return (
-              <li key={name} className="">
-                <div className="flex items-center justify-between p-4 hover:bg-white/5 rounded-md relative">
-                  <Link
-                    href={href || "#"}
-                    target={target === "_blank" ? "_blank" : undefined}
-                    className="flex-1"
-                    onClick={() => {
-                      toggleDrawer();
-                    }}
-                  >
-                    {name}
-                  </Link>
-                  {hasSubMenu && (
-                    <ChevronDown
-                      className={`ml-2 cursor-pointer transition-transform duration-200 ${isClicked ? "rotate-180" : ""
-                        }`}
-                      onClick={() => setClicked(isClicked ? null : i)}
-                    />
-                  )}
+        {isOpen ? <X className="size-4" /> : <Menu className="size-4" />}
+      </Button>
 
-                </div>
-                {hasSubMenu && (
-                  <motion.ul
-                    initial="exit"
-                    animate={isClicked ? "enter" : "exit"}
-                    variants={subMenuDrawer}
-                    className="ml-5"
+      <AnimatePresence>
+        {isOpen ? (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
+            className="fixed inset-x-4 top-20 rounded-lg border border-border bg-popover p-3 shadow-xl"
+          >
+            <div className="grid gap-1">
+              {PUBLIC_NAV_ITEMS.map((item) => {
+                const active = isActivePath(pathname, item.href);
+
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    aria-current={active ? "page" : undefined}
+                    className={cn(
+                      "rounded-md px-3 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground",
+                      active && "bg-muted text-foreground"
+                    )}
+                    onClick={() => setIsOpen(false)}
                   >
-                    {subMenu.map(({ name, href, target }) => (
-                      <Link
-                        key={`${name}`}
-                        href={href || "#"}
-                        target={target === "_blank" ? "_blank" : undefined}
-                        className="p-2 flex items-center hover:bg-white/5 rounded-md gap-x-2 cursor-pointer"
-                        onClick={() => {
-                          toggleDrawer();
-                        }}
-                      >
-                        <p>{name}</p>
-                      </Link>
-                    ))}
-                  </motion.ul>
-                )}
-              </li>
-            );
-          })}
-        </ul>
-      </motion.div>
+                    {item.label}
+                  </Link>
+                );
+              })}
+              <Button asChild className="mt-2 w-full" size="sm">
+                <Link
+                  href={JOIN_LEAD_HREF}
+                  target={joinIsExternal ? "_blank" : undefined}
+                  rel={joinIsExternal ? "noreferrer" : undefined}
+                  onClick={() => setIsOpen(false)}
+                >
+                  Join LEAD
+                </Link>
+              </Button>
+            </div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </div>
   );
 }

@@ -2,9 +2,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import NavHeader from "@/components/global/navigation/NavHeader";
+import Footer from "@/components/global/footer";
 import { Raleway } from "next/font/google";
-import "../lib/gsap-setup"; // eslint-disable-line @typescript-eslint/no-unused-vars
-import { GoogleAnalytics } from '@next/third-parties/google'
+import "@/lib/gsap-setup";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const outfit = Raleway({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -28,14 +29,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+
   return (
     <html lang="en" className={outfit.variable}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <NavHeader />
-        {children}
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
+        <main>{children}</main>
+        <Footer />
+        {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
       </body>
     </html>
   );
