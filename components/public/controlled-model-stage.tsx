@@ -51,14 +51,20 @@ export function ControlledModelStage({
 
   return (
     <div className={cn("editorial-card relative overflow-hidden rounded-2xl p-0", className)}>
-      <div className="aspect-[16/10] min-h-[340px] sm:min-h-[380px]">
+      <div aria-hidden="true" className="aspect-[16/10] min-h-[340px] sm:min-h-[380px]">
         <Canvas camera={config.camera} dpr={[1, 1.5]}>
           <ambientLight intensity={1.4} />
           <directionalLight position={[4, 4, 4]} intensity={2.2} />
           <Suspense fallback={<ModelFallback />}>
             <AnimatedModel kind={kind} />
           </Suspense>
-          <OrbitControls enablePan={false} enableZoom={false} rotateSpeed={0.25} />
+          <OrbitControls
+            enablePan={false}
+            enableZoom={false}
+            enableDamping
+            dampingFactor={0.08}
+            rotateSpeed={0.16}
+          />
         </Canvas>
       </div>
       <div className={cn("absolute p-5 sm:p-7", copyPlacement)}>

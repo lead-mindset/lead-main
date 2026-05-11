@@ -52,14 +52,16 @@ export function CinematicVideoPanel({
     >
       <video
         ref={videoRef}
-        aria-label={title}
+        aria-hidden="true"
         className="min-h-[360px] w-full object-cover sm:aspect-[16/9] sm:min-h-0"
         src={src}
         autoPlay
         muted
         loop
         playsInline
+        disablePictureInPicture
         preload="metadata"
+        tabIndex={-1}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent sm:via-background/45" />
       <div className="absolute inset-x-0 bottom-0 p-5 sm:p-8">

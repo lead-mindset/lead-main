@@ -95,10 +95,10 @@ export default function HomePage() {
             <CinematicVideoPanel
               src="/video3.mp4"
               eyebrow="LEAD in motion"
-              title="A public front door that feels alive, not distracting."
+              title="A community students can feel before they join."
             >
-              Video should carry the emotion of the community while the page
-              keeps the decision path simple: join, build, partner, or explore.
+              Meet the students, chapters, and real moments behind LEAD. Then
+              choose the next step that matches your role.
             </CinematicVideoPanel>
           </MainContainer>
         </section>
@@ -156,8 +156,8 @@ export default function HomePage() {
               <ControlledModelStage
                 kind="earth"
                 eyebrow="Regional ecosystem"
-                title="LATAM + U.S. connectivity"
-                description="A controlled globe accent represents LEAD's cross-border chapter, partner, and student network without taking over the page."
+                title="One network across regions"
+                description="LEAD connects students, chapters, partners, and mentors across Latin America and the United States through one coordinated ecosystem."
                 className="lg:col-span-2"
               />
             </div>

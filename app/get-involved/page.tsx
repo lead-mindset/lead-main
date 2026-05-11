@@ -72,18 +72,18 @@ export default function GetInvolvedPage() {
             <CinematicVideoPanel
               src="/video.mp4"
               eyebrow="Momentum"
-              title="Joining LEAD should feel like entering a living ecosystem."
+              title="The path into LEAD starts with people."
               className="lg:min-h-full"
             >
-              Video provides the emotional continuity from the public site into
-              the Talent Platform, while the surrounding paths keep the next
-              action clear.
+              Students join a living network of chapters, programs, mentors,
+              and opportunities. The right path depends on what you are ready
+              to build.
             </CinematicVideoPanel>
             <ControlledModelStage
               kind="rocket"
               eyebrow="Chapter launch"
-              title="A controlled launch motif"
-              description="The rocket is back as a small intentional accent for chapter interest, not a page-wide scroll effect."
+              title="Submit chapter interest with context"
+              description="Chapter formation is selective. The interest form helps LEAD understand readiness, alignment, and the founding team's capacity before any next step."
             />
           </MainContainer>
         </section>

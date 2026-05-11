@@ -66,11 +66,11 @@ export default function AboutPage() {
             <CinematicVideoPanel
               src="/video2.mp4"
               eyebrow="Community proof"
-              title="Real people should carry the trust story."
+              title="Trust comes from the people building it."
             >
-              The About page uses motion like an Apple-style chapter break:
-              immersive, quiet, and supportive of the story rather than the
-              thing users have to decode.
+              LEAD is carried by students, chapter leaders, volunteers,
+              mentors, and partners who turn access into real community
+              momentum.
             </CinematicVideoPanel>
           </MainContainer>
         </section>
