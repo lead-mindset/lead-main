@@ -17,7 +17,7 @@ import { isExternalHref } from "@/components/global/navigation/nav-links";
 
 export default function AboutPage() {
   return (
-    <div className="overflow-hidden bg-background text-foreground">
+    <div className="relative isolate overflow-hidden bg-background text-foreground">
       <BrandScrollTrace />
       <section className="editorial-photo-hero pt-28">
         <Image
@@ -27,7 +27,7 @@ export default function AboutPage() {
           priority
           className="absolute inset-0 -z-10 object-cover"
         />
-        <MainContainer className="flex min-h-[calc(88dvh-7rem)] items-end py-16">
+        <MainContainer className="relative z-10 flex min-h-[calc(88dvh-7rem)] items-end py-16">
           <div className="max-w-3xl">
             <span className="eyebrow-label">About LEAD</span>
             <h1 className="display-title mt-6">Talent is already here. Access should be too.</h1>
@@ -51,7 +51,7 @@ export default function AboutPage() {
 
       <SectionReveal>
         <section className="border-y border-border bg-card/45 py-14">
-          <MainContainer className="grid gap-4 md:grid-cols-4">
+          <MainContainer className="relative z-10 grid gap-4 md:grid-cols-4">
             {proofStats.map((stat) => (
               <div key={stat.label} className="editorial-card rounded-2xl p-5">
                 <p className="text-3xl font-bold text-foreground">{stat.value}</p>
@@ -64,7 +64,7 @@ export default function AboutPage() {
 
       <SectionReveal>
         <section className="py-24">
-          <MainContainer>
+          <MainContainer className="relative z-10">
             <CinematicVideoPanel
               src="/video2.mp4"
               eyebrow="Community proof"
@@ -80,7 +80,7 @@ export default function AboutPage() {
 
       <SectionReveal>
         <section className="py-24">
-          <MainContainer className="grid gap-6 lg:grid-cols-2">
+          <MainContainer className="relative z-10 grid gap-6 lg:grid-cols-2">
             <div className="editorial-card rounded-2xl p-7">
               <span className="eyebrow-label">Mission</span>
               <h2 className="section-title mt-4">Empower the next generation of leaders.</h2>
@@ -105,7 +105,7 @@ export default function AboutPage() {
 
       <SectionReveal>
         <section className="editorial-warm-band py-24">
-          <MainContainer>
+          <MainContainer className="relative z-10">
             <div className="max-w-2xl">
               <span className="eyebrow-label">Operating center</span>
               <h2 className="section-title mt-4">The standards behind LEAD growth.</h2>
@@ -130,7 +130,7 @@ export default function AboutPage() {
 
       <SectionReveal>
         <section className="py-24">
-          <MainContainer className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <MainContainer className="relative z-10 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div>
               <span className="eyebrow-label">Why it works</span>
               <h2 className="section-title mt-4">LEAD is not only an event organizer.</h2>
@@ -159,7 +159,7 @@ export default function AboutPage() {
 
       <SectionReveal>
         <section className="editorial-warm-band py-24">
-          <MainContainer>
+          <MainContainer className="relative z-10">
             <div className="max-w-2xl">
               <span className="eyebrow-label">Leadership</span>
               <h2 className="section-title mt-4">Built by students, professionals, volunteers, and chapter leaders.</h2>
@@ -191,7 +191,7 @@ export default function AboutPage() {
       </SectionReveal>
 
       <section className="border-t border-border py-16">
-        <MainContainer className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+        <MainContainer className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-2xl">
             <h2 className="section-title">Take the next step with LEAD.</h2>
             <p className="body-copy mt-3 text-muted-foreground">
