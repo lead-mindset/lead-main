@@ -16,15 +16,17 @@ type ModelKind = "earth" | "rocket";
 const modelConfig = {
   earth: {
     src: "/models/earthbase.glb",
-    scale: 1.45,
-    position: [0, -0.05, 0] as [number, number, number],
+    scale: 1.18,
+    position: [0, -0.72, 0] as [number, number, number],
     rotation: [0.1, -0.7, 0] as [number, number, number],
+    camera: { position: [0, 0, 6] as [number, number, number], fov: 42 },
   },
   rocket: {
     src: "/models/rocket.glb",
-    scale: 0.36,
-    position: [0, -0.25, 0] as [number, number, number],
+    scale: 0.3,
+    position: [0, -0.8, 0] as [number, number, number],
     rotation: [0.35, -1.9, 0.05] as [number, number, number],
+    camera: { position: [0, 0, 6.6] as [number, number, number], fov: 48 },
   },
 };
 
@@ -41,10 +43,16 @@ export function ControlledModelStage({
   description: string;
   className?: string;
 }) {
+  const config = modelConfig[kind];
+  const copyPlacement =
+    kind === "earth"
+      ? "inset-x-0 top-0 bg-gradient-to-b from-background via-background/72 to-transparent"
+      : "inset-x-0 bottom-0 bg-gradient-to-t from-background via-background/75 to-transparent";
+
   return (
     <div className={cn("editorial-card relative overflow-hidden rounded-2xl p-0", className)}>
-      <div className="aspect-[16/10] min-h-[360px]">
-        <Canvas camera={{ position: [0, 0, 6], fov: 42 }} dpr={[1, 1.5]}>
+      <div className="aspect-[16/10] min-h-[340px] sm:min-h-[380px]">
+        <Canvas camera={config.camera} dpr={[1, 1.5]}>
           <ambientLight intensity={1.4} />
           <directionalLight position={[4, 4, 4]} intensity={2.2} />
           <Suspense fallback={<ModelFallback />}>
@@ -53,7 +61,7 @@ export function ControlledModelStage({
           <OrbitControls enablePan={false} enableZoom={false} rotateSpeed={0.25} />
         </Canvas>
       </div>
-      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background via-background/75 to-transparent p-5 sm:p-7">
+      <div className={cn("absolute p-5 sm:p-7", copyPlacement)}>
         <span className="eyebrow-label">{eyebrow}</span>
         <h3 className="mt-4 max-w-[18rem] text-xl font-bold leading-tight text-foreground sm:max-w-2xl sm:text-2xl">
           {title}
