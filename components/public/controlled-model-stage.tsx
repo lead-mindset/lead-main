@@ -23,10 +23,10 @@ const modelConfig = {
   },
   rocket: {
     src: "/models/rocket.glb",
-    scale: 0.3,
-    position: [0, -0.8, 0] as [number, number, number],
+    scale: 0.42,
+    position: [0, -0.38, 0] as [number, number, number],
     rotation: [0.35, -1.9, 0.05] as [number, number, number],
-    camera: { position: [0, 0, 6.6] as [number, number, number], fov: 48 },
+    camera: { position: [0, 0, 7.2] as [number, number, number], fov: 54 },
   },
 };
 
@@ -153,3 +153,6 @@ function ModelFallback() {
     </Html>
   );
 }
+
+useGLTF.preload(modelConfig.earth.src);
+useGLTF.preload(modelConfig.rocket.src);

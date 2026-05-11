@@ -3,21 +3,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 import NavHeader from "@/components/global/navigation/NavHeader";
 import Footer from "@/components/global/footer";
-import { Raleway } from "next/font/google";
+import { Montserrat, Raleway } from "next/font/google";
 import "@/lib/gsap-setup";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
-const outfit = Raleway({ subsets: ['latin'], variable: '--font-sans' });
-
-const geistSans = Raleway({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Raleway({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const raleway = Raleway({ subsets: ["latin"], variable: "--font-raleway" });
+const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat" });
 
 export const metadata: Metadata = {
   title: "LEAD",
@@ -32,10 +23,8 @@ export default function RootLayout({
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
   return (
-    <html lang="en" className={outfit.variable}>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="en" className={`${raleway.variable} ${montserrat.variable}`}>
+      <body className="antialiased">
         <NavHeader />
         <main>{children}</main>
         <Footer />

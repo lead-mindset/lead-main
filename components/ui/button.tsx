@@ -5,18 +5,35 @@ import { Slot } from "radix-ui"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-md border border-transparent text-sm font-medium outline-none transition-colors duration-150 select-none focus-visible:ring-2 focus-visible:ring-ring/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "inline-flex shrink-0 items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors duration-150 outline-none focus-visible:ring-2 focus-visible:ring-ring/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
-        outline: "border-border bg-background shadow-xs hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground",
-        secondary: "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/85 aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
-        ghost: "text-muted-foreground hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground",
-        destructive: "bg-destructive text-primary-foreground shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/30",
+        default:
+          "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
+        destructive:
+          "bg-destructive text-destructive-foreground shadow-xs hover:bg-destructive/90",
+        success:
+          "bg-success/10 text-success ring-1 ring-success/30 hover:bg-success/20",
+        warning:
+          "bg-warning/10 text-warning ring-1 ring-warning/30 hover:bg-warning/20",
+        info:
+          "bg-info/10 text-info ring-1 ring-info/30 hover:bg-info/20",
+        outline:
+          "border border-border bg-background shadow-xs hover:bg-muted hover:text-foreground",
+        secondary:
+          "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/85",
+        ghost:
+          "text-muted-foreground hover:bg-muted hover:text-foreground",
+        glass:
+          "bg-card/80 text-foreground ring-1 ring-border backdrop-blur hover:bg-card",
         brand: "button-gradient-primary rounded-full font-semibold text-primary-foreground shadow-sm hover:shadow-md",
         hero: "button-gradient-primary rounded-full px-7 font-semibold text-primary-foreground shadow-sm hover:shadow-md",
-        link: "h-auto rounded-none border-0 px-0 text-primary underline-offset-4 hover:underline",
+        link: "h-auto rounded-none px-0 text-primary underline-offset-4 hover:underline",
+        filled: "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
+        tonal: "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/85",
+        outlined: "border border-border bg-background shadow-xs hover:bg-muted hover:text-foreground",
+        text: "h-auto rounded-none px-0 text-primary underline-offset-4 hover:underline",
       },
       size: {
         default: "h-10 px-5 py-2 has-[>svg]:px-4",

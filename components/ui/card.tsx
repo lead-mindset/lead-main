@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const cardVariants = cva(
-  "group/card relative flex flex-col gap-5 overflow-hidden rounded-lg border border-border bg-card py-5 text-card-foreground shadow-xs transition-colors duration-150",
+  "relative flex flex-col gap-5 overflow-hidden rounded-lg border border-border bg-card py-5 text-card-foreground shadow-xs transition-colors duration-150",
   {
     variants: {
       variant: {
@@ -12,15 +12,13 @@ const cardVariants = cva(
         featured: "border-primary/25 bg-primary/5 shadow-sm",
         interactive: "cursor-pointer hover:border-primary/30 hover:bg-card/95 hover:shadow-sm",
         glass: "border-border bg-card/80 backdrop-blur",
-      },
-      size: {
-        default: "",
-        sm: "gap-4 py-4",
+
+        md: "",
+        mdElevated: "shadow-sm",
       },
     },
     defaultVariants: {
       variant: "default",
-      size: "default",
     },
   }
 )
@@ -28,16 +26,14 @@ const cardVariants = cva(
 function Card({
   className,
   variant,
-  size = "default",
   ...props
 }: React.ComponentProps<"div"> &
-  VariantProps<typeof cardVariants> & { size?: "default" | "sm" }) {
+  VariantProps<typeof cardVariants>) {
   return (
     <div
       data-slot="card"
-      data-size={size}
       data-variant={variant}
-      className={cn(cardVariants({ variant, size }), className)}
+      className={cn(cardVariants({ variant }), className)}
       {...props}
     />
   )
@@ -48,7 +44,7 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="card-header"
       className={cn(
-        "@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-5 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-5 group-data-[size=sm]/card:px-4 group-data-[size=sm]/card:[.border-b]:pb-4",
+        "@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-5 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-5",
         className
       )}
       {...props}
@@ -60,7 +56,7 @@ function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-title"
-      className={cn("text-lg font-semibold leading-tight text-foreground", className)}
+      className={cn("font-headline text-lg font-semibold leading-tight tracking-tight text-foreground", className)}
       {...props}
     />
   )
@@ -93,7 +89,7 @@ function CardContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-content"
-      className={cn("px-5 group-data-[size=sm]/card:px-4", className)}
+      className={cn("px-5", className)}
       {...props}
     />
   )
@@ -103,7 +99,7 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-footer"
-      className={cn("mt-1 flex items-center gap-3 border-t border-border px-5 [.border-t]:pt-5 group-data-[size=sm]/card:px-4 group-data-[size=sm]/card:[.border-t]:pt-4", className)}
+      className={cn("mt-1 flex items-center gap-3 border-t border-border px-5 [.border-t]:pt-5", className)}
       {...props}
     />
   )

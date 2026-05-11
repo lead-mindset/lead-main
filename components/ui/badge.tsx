@@ -18,6 +18,9 @@ const badgeVariants = cva(
         outline: "border border-border bg-background text-muted-foreground [a&]:hover:bg-muted [a&]:hover:text-foreground",
         ghost: "text-muted-foreground [a&]:hover:bg-muted [a&]:hover:text-foreground",
         neutral: "bg-muted text-muted-foreground ring-1 ring-border",
+        live: "bg-primary/10 text-primary ring-1 ring-primary/30 animate-pulse",
+        student: "bg-primary/10 text-primary ring-1 ring-primary/20",
+        editor: "bg-info/10 text-info ring-1 ring-info/20",
         count: "h-5 min-w-5 rounded-full bg-primary px-1.5 text-[10px] font-semibold text-primary-foreground",
         link: "rounded-none px-0 text-primary underline underline-offset-4",
       },
@@ -26,10 +29,15 @@ const badgeVariants = cva(
         sm: "px-1.5 py-0.5 text-[10px]",
         lg: "px-2.5 py-1 text-sm",
       },
+      pulse: {
+        true: "animate-pulse",
+        false: "",
+      },
     },
     defaultVariants: {
       variant: "default",
       size: "default",
+      pulse: false,
     },
   }
 )
@@ -38,6 +46,7 @@ function Badge({
   className,
   variant = "default",
   size = "default",
+  pulse = false,
   asChild = false,
   ...props
 }: React.ComponentProps<"span"> &
@@ -48,7 +57,7 @@ function Badge({
     <Comp
       data-slot="badge"
       data-variant={variant}
-      className={cn(badgeVariants({ variant, size }), className)}
+      className={cn(badgeVariants({ variant, size, pulse }), className)}
       {...props}
     />
   )
