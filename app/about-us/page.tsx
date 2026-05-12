@@ -50,7 +50,7 @@ export default function AboutPage() {
       </section>
 
       <SectionReveal>
-        <section className="border-y border-border bg-card/45 py-14">
+        <section className="relative z-10 border-y border-border bg-card/45 py-14">
           <MainContainer className="relative z-10 grid gap-4 md:grid-cols-4">
             {proofStats.map((stat) => (
               <div key={stat.label} className="editorial-card rounded-2xl p-5">
@@ -63,7 +63,7 @@ export default function AboutPage() {
       </SectionReveal>
 
       <SectionReveal>
-        <section className="py-24">
+        <section className="relative z-10 py-24">
           <MainContainer className="relative z-10">
             <CinematicVideoPanel
               src="/video2.mp4"
@@ -79,7 +79,7 @@ export default function AboutPage() {
       </SectionReveal>
 
       <SectionReveal>
-        <section className="py-24">
+        <section className="relative z-10 py-24">
           <MainContainer className="relative z-10 grid gap-6 lg:grid-cols-2">
             <div className="editorial-card rounded-2xl p-7">
               <span className="eyebrow-label">Mission</span>
@@ -104,7 +104,7 @@ export default function AboutPage() {
       </SectionReveal>
 
       <SectionReveal>
-        <section className="editorial-warm-band py-24">
+        <section className="editorial-warm-band relative z-10 py-24">
           <MainContainer className="relative z-10">
             <div className="max-w-2xl">
               <span className="eyebrow-label">Operating center</span>
@@ -129,7 +129,7 @@ export default function AboutPage() {
       </SectionReveal>
 
       <SectionReveal>
-        <section className="py-24">
+        <section className="relative z-10 py-24">
           <MainContainer className="relative z-10 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div>
               <span className="eyebrow-label">Why it works</span>
@@ -158,7 +158,7 @@ export default function AboutPage() {
       </SectionReveal>
 
       <SectionReveal>
-        <section className="editorial-warm-band py-24">
+        <section className="editorial-warm-band relative z-10 py-24">
           <MainContainer className="relative z-10">
             <div className="max-w-2xl">
               <span className="eyebrow-label">Leadership</span>
@@ -190,7 +190,7 @@ export default function AboutPage() {
         </section>
       </SectionReveal>
 
-      <section className="border-t border-border py-16">
+      <section className="relative z-10 border-t border-border py-16">
         <MainContainer className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-2xl">
             <h2 className="section-title">Take the next step with LEAD.</h2>
