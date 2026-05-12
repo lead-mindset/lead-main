@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { useGSAP } from "@gsap/react";
+import { useEffect, useRef } from "react";
 
 import gsap from "@/lib/gsap-setup";
 
@@ -11,112 +10,111 @@ export function BrandScrollTrace() {
   const basePathRef = useRef<SVGPathElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
 
-  useGSAP(
-    () => {
-      const ribbon = ribbonRef.current;
-      const basePath = basePathRef.current;
-      const path = pathRef.current;
+  useEffect(() => {
+    const ribbon = ribbonRef.current;
+    const basePath = basePathRef.current;
+    const path = pathRef.current;
 
-      if (!ribbon || !basePath || !path) return;
+    if (!ribbon || !basePath || !path) return;
 
-      const length = path.getTotalLength();
-      const mm = gsap.matchMedia();
+    const length = path.getTotalLength();
+    const mm = gsap.matchMedia();
 
-      mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
-        gsap.set(ribbon, {
-          yPercent: -5,
-          transformOrigin: "50% 50%",
-        });
-
-        gsap.set(basePath, {
-          opacity: 0.045,
-        });
-
-        gsap.set(path, {
-          strokeDasharray: length,
-          strokeDashoffset: length * 0.82,
-          opacity: 0.085,
-        });
-
-        const timeline = gsap.timeline({
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 0.7,
-          },
-        });
-
-        timeline
-          .to(ribbon, { yPercent: 5, ease: "none" }, 0)
-          .to(path, { strokeDashoffset: length * 0.08, ease: "none" }, 0);
-
-        return () => timeline.kill();
+    mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+      gsap.set(ribbon, {
+        yPercent: -5,
+        transformOrigin: "50% 50%",
       });
 
-      mm.add("(prefers-reduced-motion: reduce)", () => {
-        gsap.set(basePath, { opacity: 0.06 });
-        gsap.set(path, { autoAlpha: 0 });
+      gsap.set(basePath, {
+        opacity: 0.075,
       });
 
-      return () => mm.revert();
-    },
-    { scope: containerRef }
-  );
+      gsap.set(path, {
+        strokeDasharray: length,
+        strokeDashoffset: length * 0.68,
+        opacity: 0.16,
+      });
+
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          scrub: 0.7,
+        },
+      });
+
+      timeline
+        .to(ribbon, { yPercent: 4, ease: "none" }, 0)
+        .to(path, { strokeDashoffset: length * 0.04, ease: "none" }, 0);
+
+      return () => timeline.kill();
+    });
+
+    mm.add("(prefers-reduced-motion: reduce)", () => {
+      gsap.set(basePath, { opacity: 0.08 });
+      gsap.set(path, { autoAlpha: 0 });
+    });
+
+    return () => mm.revert();
+  }, []);
 
   return (
     <div
       ref={containerRef}
       aria-hidden="true"
-      className="pointer-events-none absolute inset-x-0 top-[70dvh] -z-10 hidden h-[2500px] overflow-hidden md:block"
+      className="pointer-events-none absolute inset-0 z-0 hidden overflow-hidden md:block"
     >
-      <svg
-        className="h-full w-full overflow-visible"
-        viewBox="0 0 1440 2500"
-        fill="none"
-        preserveAspectRatio="xMidYMid slice"
-      >
-        <defs>
-          <linearGradient id="lead-scroll-trace" x1="-120" y1="0" x2="1540" y2="2350" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stopColor="var(--brand-logo-red-orange)" />
-            <stop offset="0.48" stopColor="var(--brand-logo-magenta)" />
-            <stop offset="1" stopColor="var(--primary)" />
-          </linearGradient>
-          <filter id="lead-scroll-soft-glow" x="-25%" y="-45%" width="150%" height="190%" colorInterpolationFilters="sRGB">
-            <feGaussianBlur stdDeviation="14" result="blur" />
-            <feColorMatrix
-              in="blur"
-              type="matrix"
-              values="1 0 0 0 0.48  0 1 0 0 0.18  0 0 1 0 0.82  0 0 0 0.24 0"
-            />
-            <feMerge>
-              <feMergeNode />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
+      <div className="sticky top-0 h-dvh w-screen overflow-hidden">
+        <svg
+          className="h-full w-full overflow-visible"
+          viewBox="0 0 1440 900"
+          fill="none"
+          preserveAspectRatio="xMidYMid slice"
+        >
+          <defs>
+            <linearGradient id="lead-scroll-trace" x1="-140" y1="0" x2="1560" y2="880" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stopColor="var(--brand-logo-red-orange)" />
+              <stop offset="0.48" stopColor="var(--brand-logo-magenta)" />
+              <stop offset="1" stopColor="var(--primary)" />
+            </linearGradient>
+            <filter id="lead-scroll-soft-glow" x="-25%" y="-45%" width="150%" height="190%" colorInterpolationFilters="sRGB">
+              <feGaussianBlur stdDeviation="14" result="blur" />
+              <feColorMatrix
+                in="blur"
+                type="matrix"
+                values="1 0 0 0 0.48  0 1 0 0 0.18  0 0 1 0 0.82  0 0 0 0.24 0"
+              />
+              <feMerge>
+                <feMergeNode />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
 
-        <g ref={ribbonRef}>
-          <path
-            ref={basePathRef}
-            d="M-150 120 C40 160 96 300 82 472 C60 740 -150 820 -96 1080 C-8 1504 556 1612 1020 1468 C1276 1390 1412 1280 1574 1344"
-            stroke="url(#lead-scroll-trace)"
-            strokeWidth="46"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            filter="url(#lead-scroll-soft-glow)"
-          />
-          <path
-            ref={pathRef}
-            d="M-150 120 C40 160 96 300 82 472 C60 740 -150 820 -96 1080 C-8 1504 556 1612 1020 1468 C1276 1390 1412 1280 1574 1344"
-            stroke="url(#lead-scroll-trace)"
-            strokeWidth="24"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            filter="url(#lead-scroll-soft-glow)"
-          />
-        </g>
-      </svg>
+          <g ref={ribbonRef}>
+            <path
+              ref={basePathRef}
+              d="M-118 36 C56 80 104 202 88 358 C64 592 -110 638 -88 786 C-54 1018 536 986 956 858 C1228 776 1396 728 1568 790"
+              stroke="url(#lead-scroll-trace)"
+              strokeWidth="46"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              filter="url(#lead-scroll-soft-glow)"
+            />
+            <path
+              ref={pathRef}
+              d="M-118 36 C56 80 104 202 88 358 C64 592 -110 638 -88 786 C-54 1018 536 986 956 858 C1228 776 1396 728 1568 790"
+              stroke="url(#lead-scroll-trace)"
+              strokeWidth="24"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              filter="url(#lead-scroll-soft-glow)"
+            />
+          </g>
+        </svg>
+      </div>
     </div>
   );
 }
