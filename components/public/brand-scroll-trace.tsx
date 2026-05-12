@@ -27,13 +27,13 @@ export function BrandScrollTrace() {
       });
 
       gsap.set(basePath, {
-        opacity: 0.045,
+        opacity: 0.012,
       });
 
       gsap.set(path, {
         strokeDasharray: length,
         strokeDashoffset: length,
-        opacity: 0.14,
+        opacity: 0.24,
       });
 
       const timeline = gsap.timeline({
@@ -47,13 +47,15 @@ export function BrandScrollTrace() {
 
       timeline
         .to(ribbon, { yPercent: 1.5, ease: "none" }, 0)
-        .to(path, { strokeDashoffset: length * 0.03, ease: "none" }, 0);
+        .to(path, { strokeDashoffset: 0, ease: "none" }, 0);
+
+      requestAnimationFrame(() => timeline.scrollTrigger?.refresh());
 
       return () => timeline.kill();
     });
 
     mm.add("(prefers-reduced-motion: reduce)", () => {
-      gsap.set(basePath, { opacity: 0.08 });
+      gsap.set(basePath, { opacity: 0.05 });
       gsap.set(path, { autoAlpha: 0 });
     });
 
@@ -106,7 +108,7 @@ export function BrandScrollTrace() {
             ref={pathRef}
             d="M-120 150 C178 42 306 224 204 520 C104 812 -138 908 -56 1210 C64 1654 760 1540 1080 1320 C1328 1150 1430 1262 1548 1468 C1718 1766 1150 1998 718 2240 C318 2464 -86 2740 28 3200 C142 3660 942 3580 1548 3970"
             stroke="url(#lead-scroll-trace)"
-            strokeWidth="28"
+            strokeWidth="34"
             strokeLinecap="round"
             strokeLinejoin="round"
             filter="url(#lead-scroll-soft-glow)"
