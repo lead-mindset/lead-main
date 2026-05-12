@@ -28,7 +28,7 @@ export default function AboutPage() {
           className="absolute inset-0 -z-10 object-cover"
         />
         <MainContainer className="relative z-10 flex min-h-[calc(88dvh-7rem)] items-end py-16">
-          <div className="max-w-3xl">
+          <div className="relative max-w-3xl before:absolute before:-inset-x-8 before:-inset-y-6 before:-z-10 before:bg-gradient-to-r before:from-background/80 before:via-background/55 before:to-transparent before:blur-2xl">
             <span className="eyebrow-label">About LEAD</span>
             <h1 className="display-title mt-6">Talent is already here. Access should be too.</h1>
             <p className="section-subtitle mt-6 text-muted-foreground">

@@ -29,13 +29,13 @@ export function BrandScrollTrace() {
         });
 
         gsap.set(basePath, {
-          opacity: 0.07,
+          opacity: 0.06,
         });
 
         gsap.set(path, {
           strokeDasharray: length,
           strokeDashoffset: length * 0.82,
-          opacity: 0.26,
+          opacity: 0.12,
         });
 
         const timeline = gsap.timeline({
@@ -77,17 +77,17 @@ export function BrandScrollTrace() {
         preserveAspectRatio="xMidYMid slice"
       >
         <defs>
-          <linearGradient id="lead-scroll-trace" x1="95" y1="90" x2="1390" y2="810" gradientUnits="userSpaceOnUse">
+          <linearGradient id="lead-scroll-trace" x1="40" y1="80" x2="1500" y2="820" gradientUnits="userSpaceOnUse">
             <stop offset="0" stopColor="var(--brand-logo-red-orange)" />
             <stop offset="0.48" stopColor="var(--brand-logo-magenta)" />
             <stop offset="1" stopColor="var(--primary)" />
           </linearGradient>
           <filter id="lead-scroll-soft-glow" x="-25%" y="-45%" width="150%" height="190%" colorInterpolationFilters="sRGB">
-            <feGaussianBlur stdDeviation="9" result="blur" />
+            <feGaussianBlur stdDeviation="14" result="blur" />
             <feColorMatrix
               in="blur"
               type="matrix"
-              values="1 0 0 0 0.48  0 1 0 0 0.18  0 0 1 0 0.82  0 0 0 0.28 0"
+              values="1 0 0 0 0.48  0 1 0 0 0.18  0 0 1 0 0.82  0 0 0 0.24 0"
             />
             <feMerge>
               <feMergeNode />
@@ -99,18 +99,18 @@ export function BrandScrollTrace() {
         <g ref={ribbonRef}>
           <path
             ref={basePathRef}
-            d="M-82 164 C205 12 381 123 402 292 C428 504 110 484 154 660 C206 869 646 820 786 640 C904 488 770 336 936 248 C1120 152 1250 412 1518 274"
+            d="M-160 128 C150 24 292 136 260 316 C230 486 -84 520 -72 716 C-52 980 520 950 754 742 C944 574 838 382 1018 298 C1198 210 1326 420 1548 328"
             stroke="url(#lead-scroll-trace)"
-            strokeWidth="10"
+            strokeWidth="30"
             strokeLinecap="round"
             strokeLinejoin="round"
             filter="url(#lead-scroll-soft-glow)"
           />
           <path
             ref={pathRef}
-            d="M-82 164 C205 12 381 123 402 292 C428 504 110 484 154 660 C206 869 646 820 786 640 C904 488 770 336 936 248 C1120 152 1250 412 1518 274"
+            d="M-160 128 C150 24 292 136 260 316 C230 486 -84 520 -72 716 C-52 980 520 950 754 742 C944 574 838 382 1018 298 C1198 210 1326 420 1548 328"
             stroke="url(#lead-scroll-trace)"
-            strokeWidth="6"
+            strokeWidth="16"
             strokeLinecap="round"
             strokeLinejoin="round"
             filter="url(#lead-scroll-soft-glow)"
