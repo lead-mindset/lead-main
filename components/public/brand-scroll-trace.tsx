@@ -29,20 +29,20 @@ export function BrandScrollTrace() {
         });
 
         gsap.set(basePath, {
-          opacity: 0.06,
+          opacity: 0.045,
         });
 
         gsap.set(path, {
           strokeDasharray: length,
           strokeDashoffset: length * 0.82,
-          opacity: 0.12,
+          opacity: 0.085,
         });
 
         const timeline = gsap.timeline({
           scrollTrigger: {
-            trigger: document.documentElement,
-            start: "top top",
-            end: "bottom bottom",
+            trigger: containerRef.current,
+            start: "top bottom",
+            end: "bottom top",
             scrub: 0.7,
           },
         });
@@ -55,7 +55,7 @@ export function BrandScrollTrace() {
       });
 
       mm.add("(prefers-reduced-motion: reduce)", () => {
-        gsap.set(basePath, { opacity: 0.09 });
+        gsap.set(basePath, { opacity: 0.06 });
         gsap.set(path, { autoAlpha: 0 });
       });
 
@@ -68,16 +68,16 @@ export function BrandScrollTrace() {
     <div
       ref={containerRef}
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-[1] hidden h-dvh w-screen overflow-hidden md:block"
+      className="pointer-events-none absolute inset-x-0 top-[70dvh] -z-10 hidden h-[2500px] overflow-hidden md:block"
     >
       <svg
         className="h-full w-full overflow-visible"
-        viewBox="0 0 1440 900"
+        viewBox="0 0 1440 2500"
         fill="none"
         preserveAspectRatio="xMidYMid slice"
       >
         <defs>
-          <linearGradient id="lead-scroll-trace" x1="40" y1="80" x2="1500" y2="820" gradientUnits="userSpaceOnUse">
+          <linearGradient id="lead-scroll-trace" x1="-120" y1="0" x2="1540" y2="2350" gradientUnits="userSpaceOnUse">
             <stop offset="0" stopColor="var(--brand-logo-red-orange)" />
             <stop offset="0.48" stopColor="var(--brand-logo-magenta)" />
             <stop offset="1" stopColor="var(--primary)" />
@@ -99,18 +99,18 @@ export function BrandScrollTrace() {
         <g ref={ribbonRef}>
           <path
             ref={basePathRef}
-            d="M-160 128 C150 24 292 136 260 316 C230 486 -84 520 -72 716 C-52 980 520 950 754 742 C944 574 838 382 1018 298 C1198 210 1326 420 1548 328"
+            d="M-150 120 C40 160 96 300 82 472 C60 740 -150 820 -96 1080 C-8 1504 556 1612 1020 1468 C1276 1390 1412 1280 1574 1344"
             stroke="url(#lead-scroll-trace)"
-            strokeWidth="30"
+            strokeWidth="46"
             strokeLinecap="round"
             strokeLinejoin="round"
             filter="url(#lead-scroll-soft-glow)"
           />
           <path
             ref={pathRef}
-            d="M-160 128 C150 24 292 136 260 316 C230 486 -84 520 -72 716 C-52 980 520 950 754 742 C944 574 838 382 1018 298 C1198 210 1326 420 1548 328"
+            d="M-150 120 C40 160 96 300 82 472 C60 740 -150 820 -96 1080 C-8 1504 556 1612 1020 1468 C1276 1390 1412 1280 1574 1344"
             stroke="url(#lead-scroll-trace)"
-            strokeWidth="16"
+            strokeWidth="24"
             strokeLinecap="round"
             strokeLinejoin="round"
             filter="url(#lead-scroll-soft-glow)"

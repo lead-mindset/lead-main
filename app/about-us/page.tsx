@@ -19,7 +19,7 @@ export default function AboutPage() {
   return (
     <div className="relative isolate overflow-hidden bg-background text-foreground">
       <BrandScrollTrace />
-      <section className="editorial-photo-hero pt-28">
+      <section className="relative z-10 editorial-photo-hero pt-28">
         <Image
           src="/about-us/2.jpg"
           alt="LEAD community members at an event"
@@ -79,7 +79,7 @@ export default function AboutPage() {
       </SectionReveal>
 
       <SectionReveal>
-        <section className="relative z-10 py-24">
+        <section className="relative py-24">
           <MainContainer className="relative z-10 grid gap-6 lg:grid-cols-2">
             <div className="editorial-card rounded-2xl p-7">
               <span className="eyebrow-label">Mission</span>
@@ -129,7 +129,7 @@ export default function AboutPage() {
       </SectionReveal>
 
       <SectionReveal>
-        <section className="relative z-10 py-24">
+        <section className="relative py-24">
           <MainContainer className="relative z-10 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div>
               <span className="eyebrow-label">Why it works</span>
