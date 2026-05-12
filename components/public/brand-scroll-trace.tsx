@@ -1,8 +1,13 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import gsap from "@/lib/gsap-setup";
+
+const VIEWBOX_HEIGHT = 4300;
+const PATH_SAMPLE_COUNT = 900;
+const DRAW_ANCHOR_RATIO = 0.62;
 
 export function BrandScrollTrace() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -36,22 +41,60 @@ export function BrandScrollTrace() {
         opacity: 0.24,
       });
 
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 72%",
-          end: "bottom 78%",
-          scrub: 0.7,
-        },
+      const samples = Array.from({ length: PATH_SAMPLE_COUNT + 1 }, (_, index) => {
+        const distance = (length * index) / PATH_SAMPLE_COUNT;
+        return {
+          distance,
+          y: path.getPointAtLength(distance).y,
+        };
       });
 
-      timeline
-        .to(ribbon, { yPercent: 1.5, ease: "none" }, 0)
-        .to(path, { strokeDashoffset: 0, ease: "none" }, 0);
+      const distanceForY = (targetY: number) => {
+        if (targetY <= samples[0].y) return 0;
 
-      requestAnimationFrame(() => timeline.scrollTrigger?.refresh());
+        for (let index = 1; index < samples.length; index += 1) {
+          const previous = samples[index - 1];
+          const current = samples[index];
+          const minY = Math.min(previous.y, current.y);
+          const maxY = Math.max(previous.y, current.y);
 
-      return () => timeline.kill();
+          if (targetY >= minY && targetY <= maxY) {
+            const span = current.y - previous.y;
+            const progress = span === 0 ? 0 : (targetY - previous.y) / span;
+            return previous.distance + (current.distance - previous.distance) * progress;
+          }
+        }
+
+        return length;
+      };
+
+      const updateTrace = () => {
+        const container = containerRef.current;
+        if (!container) return;
+
+        const rect = container.getBoundingClientRect();
+        const viewportAnchor = window.innerHeight * DRAW_ANCHOR_RATIO;
+        const sectionProgress = gsap.utils.clamp(0, 1, (viewportAnchor - rect.top) / rect.height);
+        const targetY = sectionProgress * VIEWBOX_HEIGHT;
+        const drawnDistance = distanceForY(targetY);
+        const offset = gsap.utils.clamp(0, length, length - drawnDistance);
+
+        gsap.set(path, { strokeDashoffset: offset });
+        gsap.set(ribbon, { yPercent: sectionProgress * 1.5 });
+      };
+
+      const scrollTrigger = ScrollTrigger.create({
+        trigger: containerRef.current,
+        start: "top bottom",
+        end: "bottom top",
+        onUpdate: updateTrace,
+        onRefresh: updateTrace,
+      });
+
+      updateTrace();
+      requestAnimationFrame(() => scrollTrigger.refresh());
+
+      return () => scrollTrigger.kill();
     });
 
     mm.add("(prefers-reduced-motion: reduce)", () => {
@@ -65,12 +108,13 @@ export function BrandScrollTrace() {
   return (
     <div
       ref={containerRef}
+      data-brand-scroll-trace
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 z-0 hidden overflow-hidden md:block"
     >
       <svg
         className="h-full w-full overflow-visible"
-        viewBox="0 0 1440 4300"
+        viewBox={`0 0 1440 ${VIEWBOX_HEIGHT}`}
         fill="none"
         preserveAspectRatio="none"
       >
