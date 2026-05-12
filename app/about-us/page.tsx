@@ -157,59 +157,59 @@ export default function AboutPage() {
             </MainContainer>
           </section>
         </SectionReveal>
-      </div>
 
-      <SectionReveal>
-        <section className="editorial-warm-band relative z-10 py-24">
-          <MainContainer className="relative z-10">
+        <SectionReveal className="relative z-10">
+          <section className="editorial-warm-band relative z-10 py-24">
+            <MainContainer className="relative z-10">
+              <div className="max-w-2xl">
+                <span className="eyebrow-label">Leadership</span>
+                <h2 className="section-title mt-4">Built by students, professionals, volunteers, and chapter leaders.</h2>
+                <p className="body-copy mt-4 text-muted-foreground">
+                  This is a curated leadership view, not a full roster. LEAD is
+                  bigger than any one page: chapter leaders, volunteers, mentors,
+                  and students across the region carry the work forward.
+                </p>
+              </div>
+              <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {leadership.map((person) => (
+                  <article key={person.name} className="overflow-hidden rounded-2xl border border-border bg-background/75">
+                    <Image
+                      src={person.image}
+                      alt={person.name}
+                      width={420}
+                      height={320}
+                      className="aspect-[4/3] w-full object-cover"
+                    />
+                    <div className="p-5">
+                      <h3 className="text-lg font-semibold text-foreground">{person.name}</h3>
+                      <p className="mt-1 text-sm text-muted-foreground">{person.role}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </MainContainer>
+          </section>
+        </SectionReveal>
+
+        <section className="relative z-10 border-t border-border py-16">
+          <MainContainer className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-2xl">
-              <span className="eyebrow-label">Leadership</span>
-              <h2 className="section-title mt-4">Built by students, professionals, volunteers, and chapter leaders.</h2>
-              <p className="body-copy mt-4 text-muted-foreground">
-                This is a curated leadership view, not a full roster. LEAD is
-                bigger than any one page: chapter leaders, volunteers, mentors,
-                and students across the region carry the work forward.
+              <h2 className="section-title">Take the next step with LEAD.</h2>
+              <p className="body-copy mt-3 text-muted-foreground">
+                Join the community, submit serious chapter interest, or start a
+                partnership conversation.
               </p>
             </div>
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {leadership.map((person) => (
-                <article key={person.name} className="overflow-hidden rounded-2xl border border-border bg-background/75">
-                  <Image
-                    src={person.image}
-                    alt={person.name}
-                    width={420}
-                    height={320}
-                    className="aspect-[4/3] w-full object-cover"
-                  />
-                  <div className="p-5">
-                    <h3 className="text-lg font-semibold text-foreground">{person.name}</h3>
-                    <p className="mt-1 text-sm text-muted-foreground">{person.role}</p>
-                  </div>
-                </article>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              {finalPaths.map((path) => (
+                <Button key={path.label} asChild variant={path.label === "Join LEAD" ? "default" : "outline"}>
+                  <Link href={path.href} {...externalProps(path.href)}>{path.label}</Link>
+                </Button>
               ))}
             </div>
           </MainContainer>
         </section>
-      </SectionReveal>
-
-      <section className="relative z-10 border-t border-border py-16">
-        <MainContainer className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-          <div className="max-w-2xl">
-            <h2 className="section-title">Take the next step with LEAD.</h2>
-            <p className="body-copy mt-3 text-muted-foreground">
-              Join the community, submit serious chapter interest, or start a
-              partnership conversation.
-            </p>
-          </div>
-          <div className="flex flex-col gap-3 sm:flex-row">
-            {finalPaths.map((path) => (
-              <Button key={path.label} asChild variant={path.label === "Join LEAD" ? "default" : "outline"}>
-                <Link href={path.href} {...externalProps(path.href)}>{path.label}</Link>
-              </Button>
-            ))}
-          </div>
-        </MainContainer>
-      </section>
+      </div>
     </div>
   );
 }
