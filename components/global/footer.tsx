@@ -44,7 +44,12 @@ export default function Footer() {
         <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr_1fr]">
           <div className="max-w-md">
             <Link href="/" className="inline-flex items-center gap-3">
-              <Image src="/leadl2.svg" alt="LEAD" width={40} height={40} />
+              <Image
+                src="/leadl2.svg"
+                alt="LEAD"
+                width={40}
+                height={22}
+              />
               <span className="text-xl font-bold text-foreground">LEAD</span>
             </Link>
             <p className="body-copy mt-4 text-muted-foreground">
@@ -87,7 +92,7 @@ export default function Footer() {
             </h2>
             <ul className="mt-4 grid gap-3 text-sm">
               {actionLinks.map((item) => (
-                <li key={item.href}>
+                <li key={`${item.href}-${item.label}`}>
                   <Link
                     href={item.href}
                     className="text-muted-foreground transition-colors hover:text-foreground"

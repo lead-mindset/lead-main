@@ -4,15 +4,18 @@ import Link from "next/link";
 import { MainContainer } from "@/components/global/main-container";
 import { CinematicVideoPanel } from "@/components/public/cinematic-video-panel";
 import { ControlledModelStage } from "@/components/public/controlled-model-stage";
+import { LeadPathway } from "@/components/public/lead-pathway";
 import { SectionReveal } from "@/components/public/section-reveal";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   audienceRoutes,
+  communityMoments,
   ecosystemItems,
   finalPaths,
   impactHighlights,
   partnerLogos,
+  pathwayStages,
   pillars,
   programs,
   proofStats,
@@ -35,12 +38,13 @@ export default function HomePage() {
           <div className="relative z-10 max-w-3xl">
             <span className="eyebrow-label">LEAD Americas</span>
             <h1 className="display-title mt-6 max-w-4xl">
-              Students already have the talent. LEAD opens the door.
+              Building pathways for the next generation of leaders in STEM and innovation.
             </h1>
             <p className="section-subtitle mt-6 max-w-2xl text-muted-foreground">
-              LEAD connects Latino students across Latin America and the United
-              States with chapters, leadership development, STEM experiences,
-              mentorship, and professional opportunity.
+              LEAD empowers students across Latin America and the United States
+              through STEM education, leadership development, mentorship,
+              chapters, and access to opportunities that help them grow
+              personally and professionally.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg">
@@ -49,7 +53,7 @@ export default function HomePage() {
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg">
-                <Link href={publicCtas.partner}>Partner with us</Link>
+                <Link href={publicCtas.pathway}>Explore pathways</Link>
               </Button>
             </div>
             <div className="mt-10 grid max-w-2xl grid-cols-2 gap-3">
@@ -65,43 +69,7 @@ export default function HomePage() {
       </section>
 
       <SectionReveal>
-        <section className="border-y border-border bg-card/45 py-8">
-          <MainContainer>
-            <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-              <p className="text-sm font-semibold uppercase text-muted-foreground">
-                Early credibility through allies and collaborators
-              </p>
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-                {partnerLogos.map((logo) => (
-                  <div key={logo.name} className="flex h-14 items-center justify-center rounded-md border border-border bg-background/70 px-3">
-                    <Image
-                      src={logo.src}
-                      alt={logo.name}
-                      width={120}
-                      height={42}
-                      className="max-h-8 w-auto object-contain"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </MainContainer>
-        </section>
-      </SectionReveal>
-
-      <SectionReveal>
-        <section id="motion-proof" className="scroll-mt-24 py-24">
-          <MainContainer>
-            <CinematicVideoPanel
-              src="/video3.mp4"
-              eyebrow="LEAD in motion"
-              title="A community students can feel before they join."
-            >
-              Meet the students, chapters, and real moments behind LEAD. Then
-              choose the next step that matches your role.
-            </CinematicVideoPanel>
-          </MainContainer>
-        </section>
+        <LeadPathway stages={pathwayStages} />
       </SectionReveal>
 
       <SectionReveal>
@@ -124,6 +92,42 @@ export default function HomePage() {
                   <p className="body-copy mt-3 text-sm text-muted-foreground">{route.description}</p>
                   <p className="mt-5 text-sm font-semibold text-primary">{route.cta}</p>
                 </Link>
+              ))}
+            </div>
+          </MainContainer>
+        </section>
+      </SectionReveal>
+
+      <SectionReveal>
+        <section id="motion-proof" className="scroll-mt-24 py-24">
+          <MainContainer>
+            <CinematicVideoPanel
+              src="/video3.mp4"
+              eyebrow="LEAD in motion"
+              title="A community students can feel before they join."
+            >
+              Meet the students, chapters, and real moments behind LEAD. Then
+              choose the next step that matches your role.
+            </CinematicVideoPanel>
+            <div className="mt-6 grid gap-4 md:grid-cols-3">
+              {communityMoments.map((moment) => (
+                <article key={moment.title} className="editorial-card overflow-hidden rounded-2xl">
+                  <div className="relative aspect-[4/3]">
+                    <Image
+                      src={moment.image}
+                      alt={moment.title}
+                      fill
+                      sizes="(min-width: 768px) 33vw, 100vw"
+                      loading="eager"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/10 to-transparent" />
+                  </div>
+                  <div className="p-5">
+                    <h3 className="text-lg font-semibold text-foreground">{moment.title}</h3>
+                    <p className="body-copy mt-2 text-sm text-muted-foreground">{moment.description}</p>
+                  </div>
+                </article>
               ))}
             </div>
           </MainContainer>
@@ -216,6 +220,14 @@ export default function HomePage() {
                 reached.
               </p>
             </div>
+            <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {proofStats.map((stat) => (
+                <div key={stat.label} className="editorial-card rounded-2xl p-5">
+                  <p className="text-3xl font-bold text-foreground">{stat.value}</p>
+                  <p className="mt-2 text-sm text-muted-foreground">{stat.label}</p>
+                </div>
+              ))}
+            </div>
             <div className="mt-10 grid gap-4 lg:grid-cols-2">
               {impactHighlights.map((highlight) => (
                 <article key={highlight.title} className="editorial-card rounded-2xl p-6">
@@ -230,6 +242,37 @@ export default function HomePage() {
                   </dl>
                 </article>
               ))}
+            </div>
+          </MainContainer>
+        </section>
+      </SectionReveal>
+
+      <SectionReveal>
+        <section className="editorial-warm-band py-16">
+          <MainContainer>
+            <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr] lg:items-center">
+              <div>
+                <span className="eyebrow-label">Partners and allies</span>
+                <h2 className="section-title mt-4">Partners help turn student ambition into access.</h2>
+                <p className="body-copy mt-4 text-muted-foreground">
+                  Companies, professionals, mentors, and community organizations
+                  collaborate with LEAD through workshops, mentorship, career
+                  exposure, projects, events, and opportunity pathways.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                {partnerLogos.map((logo) => (
+                  <div key={logo.name} className="flex h-20 items-center justify-center rounded-lg border border-border bg-background/70 px-4">
+                    <Image
+                      src={logo.src}
+                      alt={logo.name}
+                      width={140}
+                      height={48}
+                      className="max-h-10 w-auto object-contain"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </MainContainer>
         </section>

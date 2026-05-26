@@ -30,7 +30,12 @@ const paths = [
   {
     label: "Partner with LEAD",
     href: "#partners",
-    description: "For companies, mentors, and community organizations ready to collaborate.",
+    description: "For companies, professionals, mentors, sponsors, and industry collaborators.",
+  },
+  {
+    label: "Collaborate as a community organization",
+    href: "#partners",
+    description: "For organizations bringing STEM access, leadership, or opportunity into communities.",
   },
 ];
 
@@ -51,13 +56,14 @@ export default function GetInvolvedPage() {
             <h1 className="display-title mt-6">Choose the LEAD path that fits your role.</h1>
             <p className="section-subtitle mt-6 text-muted-foreground">
               Join as a student, submit serious chapter interest, or start a
-              partnership conversation. Each path is structured so LEAD can
-              understand context and follow up with the right next step.
+              partnership or community collaboration. Each path is structured so
+              LEAD can understand context and follow up with the right next
+              step.
             </p>
           </div>
           <div className="grid gap-4">
             {paths.map((path) => (
-              <Link key={path.href} href={path.href} className="rounded-2xl border border-white/15 bg-background/75 p-5 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-primary/40">
+              <Link key={`${path.href}-${path.label}`} href={path.href} className="rounded-2xl border border-white/15 bg-background/75 p-5 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-primary/40">
                 <h2 className="text-xl font-semibold text-foreground">{path.label}</h2>
                 <p className="body-copy mt-2 text-sm text-muted-foreground">{path.description}</p>
               </Link>
@@ -167,12 +173,14 @@ export default function GetInvolvedPage() {
         <section id="partners" className="editorial-warm-band scroll-mt-24 py-24">
           <MainContainer>
             <div className="max-w-3xl">
-              <span className="eyebrow-label">Partner path</span>
-              <h2 className="section-title mt-4">Partner with students who are already building proof.</h2>
+              <span className="eyebrow-label">Partner and community path</span>
+              <h2 className="section-title mt-4">Partner or collaborate with students who are already building proof.</h2>
               <p className="body-copy mt-4 text-muted-foreground">
                 LEAD works with partners who expand access to STEM, leadership,
                 professional development, mentorship, corporate exposure,
-                community impact, and consent-first talent visibility.
+                community impact, and consent-first talent visibility. This
+                includes companies, professionals, mentors, sponsors, and
+                community organizations.
               </p>
             </div>
 

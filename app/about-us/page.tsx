@@ -31,10 +31,10 @@ export default function AboutPage() {
             <span className="eyebrow-label">About LEAD</span>
             <h1 className="display-title mt-6">Talent is already here. Access should be too.</h1>
             <p className="section-subtitle mt-6 text-muted-foreground">
-              LEAD exists because Latino students across Latin America and the
-              United States already carry the ambition, creativity, and talent.
-              LEAD helps unlock access, structure, leadership practice, and
-              opportunity.
+              LEAD exists because students across Latin America and the United
+              States already carry ambition, creativity, and talent. LEAD helps
+              unlock access, structure, leadership practice, and opportunity
+              through STEM education, mentorship, chapters, and innovation.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg">
@@ -111,9 +111,9 @@ export default function AboutPage() {
                 <span className="eyebrow-label">Operating center</span>
                 <h2 className="section-title mt-4">The standards behind LEAD growth.</h2>
                 <p className="body-copy mt-4 text-muted-foreground">
-                  LEAD is English-first for public clarity and Spanish-authentic
-                  where culture matters. These four values guide chapter
-                  activation, leadership development, and program quality.
+                  These four values guide chapter activation, leadership
+                  development, and program quality. They keep LEAD growth rooted
+                  in culture, responsibility, and real student impact.
                 </p>
               </div>
               <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">

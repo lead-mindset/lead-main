@@ -37,7 +37,13 @@ export default function NavBar() {
   return (
     <MainContainer className="flex h-16 items-center gap-4">
       <Link href="/" className="flex shrink-0 items-center gap-3">
-        <Image src="/leadl2.svg" alt="LEAD" width={38} height={38} priority />
+        <Image
+          src="/leadl2.svg"
+          alt="LEAD"
+          width={38}
+          height={21}
+          priority
+        />
         <span className="text-lg font-bold text-foreground">LEAD</span>
       </Link>
 

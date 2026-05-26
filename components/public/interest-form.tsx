@@ -43,7 +43,7 @@ export function InterestForm({ kind }: { kind: InterestKind }) {
           <p className="mt-1 text-sm text-muted-foreground">
             {isChapter
               ? "Use this when you are ready to share serious chapter interest. Submission does not guarantee selection or approval."
-              : "Use this to start a structured partnership conversation with LEAD."}
+              : "Use this to start a structured partnership or community collaboration conversation with LEAD."}
           </p>
         </div>
         <Button type="button" variant="outline" size="sm" onClick={() => setEnabled((value) => !value)}>

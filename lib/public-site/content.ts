@@ -4,7 +4,6 @@ import {
   GraduationCap,
   Handshake,
   HeartHandshake,
-  Network,
   Rocket,
   Sparkles,
   Star,
@@ -18,6 +17,7 @@ export const publicCtas = {
   partner: "/get-involved#partners",
   chapter: "/get-involved#chapters",
   programs: "/#programs",
+  pathway: "/#pathway",
 };
 
 export const proofStats = [
@@ -38,15 +38,15 @@ export const partnerLogos = [
 
 export const audienceRoutes = [
   {
-    title: "Join LEAD",
+    title: "Join as a student",
     description:
       "Create your profile, find your chapter, discover programs, and start building proof of growth.",
     href: publicCtas.join,
     icon: GraduationCap,
-    cta: "Start onboarding",
+    cta: "Join LEAD",
   },
   {
-    title: "Build a Chapter",
+    title: "Submit chapter interest",
     description:
       "Submit interest to bring LEAD to your university through a selective review process.",
     href: publicCtas.chapter,
@@ -56,18 +56,45 @@ export const audienceRoutes = [
   {
     title: "Partner with LEAD",
     description:
-      "Work with Latino student communities through events, mentorship, corporate exposure, and opt-in talent visibility.",
+      "For companies, professionals, mentors, and sponsors ready to expand access with LEAD.",
     href: publicCtas.partner,
     icon: Handshake,
     cta: "Explore partnership",
   },
   {
-    title: "Explore Programs",
+    title: "Collaborate as a community organization",
     description:
-      "See the programs, events, and practical experiences that help students turn ambition into direction.",
-    href: publicCtas.programs,
-    icon: Network,
-    cta: "View programs",
+      "Bring LEAD programs, workshops, or student opportunities into aligned communities.",
+    href: publicCtas.partner,
+    icon: Users,
+    cta: "Start collaboration",
+  },
+];
+
+export const pathwayStages = [
+  {
+    title: "Learn",
+    promise: "Build foundations through STEM education, workshops, mentorship, and exposure to new skills.",
+    example: "Students meet real tools, mentors, and technical ideas before they are expected to have everything figured out.",
+    outcome: "Confidence, language, and a stronger starting point.",
+  },
+  {
+    title: "Explore",
+    promise: "Discover careers, industries, universities, companies, technologies, and possible futures.",
+    example: "Company visits, leadership summits, and chapter events help students see what bigger rooms actually look like.",
+    outcome: "Direction, context, and a clearer map of what exists.",
+  },
+  {
+    title: "Aspire",
+    promise: "Grow leadership, ambition, professional identity, and the belief that you can belong in those rooms.",
+    example: "Chapter leadership, LEAD HER, mentorship, and community role models turn inspiration into practiced responsibility.",
+    outcome: "Leadership practice, courage, and visible momentum.",
+  },
+  {
+    title: "Discover",
+    promise: "Find concrete next steps through opportunities, mentors, chapters, projects, and community initiatives.",
+    example: "The Talent Platform, Pulse, Impact Metrics, and partner network help LEAD guide students toward the next move.",
+    outcome: "Proof of growth, access, and opportunity readiness.",
   },
 ];
 
@@ -103,6 +130,24 @@ export const ecosystemItems = [
   {
     title: "Talent Platform",
     description: "The operational layer that connects profiles, chapters, events, pathways, and opt-in visibility.",
+  },
+];
+
+export const communityMoments = [
+  {
+    title: "Students in motion",
+    description: "Real LEAD moments make the pathway feel human before a student joins.",
+    image: "/about-us/2.jpg",
+  },
+  {
+    title: "Chapter energy",
+    description: "Chapters turn leadership into repeated practice, local ownership, and community trust.",
+    image: "/chapters/chapter-1.jpg",
+  },
+  {
+    title: "Shared standards",
+    description: "Mentors, partners, and student leaders help students understand what opportunity requires.",
+    image: "/about-us/5.jpg",
   },
 ];
 
