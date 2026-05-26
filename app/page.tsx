@@ -5,8 +5,8 @@ import { MainContainer } from "@/components/global/main-container";
 import { CinematicVideoPanel } from "@/components/public/cinematic-video-panel";
 import { ControlledModelStage } from "@/components/public/controlled-model-stage";
 import { LeadPathway } from "@/components/public/lead-pathway";
+import { ProofRail } from "@/components/public/proof-rail";
 import { SectionReveal } from "@/components/public/section-reveal";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   audienceRoutes,
@@ -56,14 +56,7 @@ export default function HomePage() {
                 <Link href={publicCtas.pathway}>Explore pathways</Link>
               </Button>
             </div>
-            <div className="mt-10 grid max-w-2xl grid-cols-2 gap-3">
-              {proofStats.map((stat) => (
-                <div key={stat.label} className="rounded-lg border border-white/15 bg-background/70 p-4 shadow-sm">
-                  <p className="text-2xl font-bold text-foreground">{stat.value}</p>
-                  <p className="mt-1 text-sm text-muted-foreground">{stat.label}</p>
-                </div>
-              ))}
-            </div>
+            <ProofRail stats={proofStats} className="mt-10 max-w-3xl border-white/15 bg-background/70 sm:grid-cols-2" />
           </div>
         </MainContainer>
       </section>
@@ -84,13 +77,24 @@ export default function HomePage() {
                 action without making you decode the whole organization first.
               </p>
             </div>
-            <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <div className="mt-10 border-y border-border/80">
               {audienceRoutes.map((route) => (
-                <Link key={route.title} href={route.href} {...externalProps(route.href)} className="group editorial-card rounded-2xl p-6 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-primary/40">
-                  <route.icon className="size-5 text-primary" />
-                  <h3 className="mt-5 text-lg font-semibold text-foreground">{route.title}</h3>
-                  <p className="body-copy mt-3 text-sm text-muted-foreground">{route.description}</p>
-                  <p className="mt-5 text-sm font-semibold text-primary">{route.cta}</p>
+                <Link
+                  key={route.title}
+                  href={route.href}
+                  {...externalProps(route.href)}
+                  className="group grid gap-4 border-b border-border/70 py-6 transition-colors duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] last:border-b-0 hover:bg-primary/10 sm:grid-cols-[auto_1fr_auto] sm:items-center sm:px-4"
+                >
+                  <span className="flex size-12 items-center justify-center rounded-full border border-primary/35 bg-primary/15 text-primary transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-105">
+                    <route.icon className="size-5" />
+                  </span>
+                  <span>
+                    <span className="block text-xl font-semibold text-foreground">{route.title}</span>
+                    <span className="body-copy mt-2 block max-w-2xl text-sm text-muted-foreground">{route.description}</span>
+                  </span>
+                  <span className="text-sm font-semibold text-primary transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1">
+                    {route.cta}
+                  </span>
                 </Link>
               ))}
             </div>
@@ -149,11 +153,21 @@ export default function HomePage() {
                   those systems connected.
                 </p>
               </div>
-              <div className="grid gap-3 sm:grid-cols-2">
-                {ecosystemItems.map((item) => (
-                  <div key={item.title} className="editorial-card rounded-2xl p-5">
-                    <h3 className="font-semibold text-foreground">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.description}</p>
+              <div className="grid border-y border-border/80 sm:grid-cols-2">
+                {ecosystemItems.map((item, index) => (
+                  <div
+                    key={item.title}
+                    className={`grid gap-4 border-b border-border/70 py-5 sm:grid-cols-[3rem_1fr] ${
+                      index % 2 === 1 ? "sm:border-l sm:pl-6" : "sm:pr-6"
+                    } ${index >= ecosystemItems.length - 2 ? "sm:border-b-0" : ""} ${
+                      index === ecosystemItems.length - 1 ? "border-b-0" : ""
+                    }`}
+                  >
+                    <span className="text-sm font-bold text-primary">{String(index + 1).padStart(2, "0")}</span>
+                    <div>
+                      <h3 className="font-semibold text-foreground">{item.title}</h3>
+                      <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.description}</p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -176,11 +190,23 @@ export default function HomePage() {
               <span className="eyebrow-label">Pillars</span>
               <h2 className="section-title mt-4">Seven ways LEAD turns potential into proof.</h2>
             </div>
-            <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {pillars.map((pillar) => (
-                <div key={pillar.title} className="editorial-card rounded-2xl p-5">
-                  <h3 className="text-lg font-semibold text-foreground">{pillar.title}</h3>
-                  <p className="body-copy mt-3 text-sm text-muted-foreground">{pillar.description}</p>
+            <div className="mt-10 grid border-y border-border/80 lg:grid-cols-2">
+              {pillars.map((pillar, index) => (
+                <div
+                  key={pillar.title}
+                  className={`group grid gap-4 border-b border-border/70 py-6 transition-colors duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-primary/10 sm:grid-cols-[4rem_1fr] ${
+                    index % 2 === 1 ? "lg:border-l lg:pl-6" : "lg:pr-6"
+                  } ${index >= pillars.length - 2 ? "lg:border-b-0" : ""} ${
+                    index === pillars.length - 1 ? "border-b-0" : ""
+                  }`}
+                >
+                  <span className="font-headline text-4xl font-black leading-none text-primary/55 transition-colors duration-500 group-hover:text-primary">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 className="text-xl font-semibold text-foreground">{pillar.title}</h3>
+                    <p className="body-copy mt-3 text-sm text-muted-foreground">{pillar.description}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -195,12 +221,16 @@ export default function HomePage() {
               <span className="eyebrow-label">Programs and experiences</span>
               <h2 className="section-title mt-4">Programs that create real value, not just attendance.</h2>
             </div>
-            <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {programs.map((program) => (
-                <div key={program.title} className="editorial-card rounded-2xl p-5">
-                  <h3 className="text-lg font-semibold text-foreground">{program.title}</h3>
-                  <p className="body-copy mt-3 text-sm text-muted-foreground">{program.description}</p>
-                  <p className="mt-5 text-sm font-semibold text-primary">{program.nextStep}</p>
+            <div className="mt-10 border-y border-border/80">
+              {programs.map((program, index) => (
+                <div
+                  key={program.title}
+                  className="grid gap-4 border-b border-border/70 py-6 last:border-b-0 md:grid-cols-[0.22fr_0.78fr] lg:grid-cols-[0.18fr_0.34fr_1fr_0.28fr] lg:items-center"
+                >
+                  <span className="text-sm font-bold text-primary">{String(index + 1).padStart(2, "0")}</span>
+                  <h3 className="text-xl font-semibold text-foreground">{program.title}</h3>
+                  <p className="body-copy text-sm text-muted-foreground">{program.description}</p>
+                  <p className="text-sm font-semibold text-primary lg:text-right">{program.nextStep}</p>
                 </div>
               ))}
             </div>
@@ -220,22 +250,18 @@ export default function HomePage() {
                 reached.
               </p>
             </div>
-            <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {proofStats.map((stat) => (
-                <div key={stat.label} className="editorial-card rounded-2xl p-5">
-                  <p className="text-3xl font-bold text-foreground">{stat.value}</p>
-                  <p className="mt-2 text-sm text-muted-foreground">{stat.label}</p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-10 grid gap-4 lg:grid-cols-2">
+            <ProofRail stats={proofStats} className="mt-10" />
+            <div className="mt-12 border-y border-border/80">
               {impactHighlights.map((highlight) => (
-                <article key={highlight.title} className="editorial-card rounded-2xl p-6">
-                  <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                    <h3 className="text-xl font-semibold text-foreground">{highlight.title}</h3>
-                    <Badge variant="neutral">{highlight.pillar}</Badge>
+                <article
+                  key={highlight.title}
+                  className="grid gap-6 border-b border-border/70 py-8 last:border-b-0 lg:grid-cols-[0.34fr_1fr] lg:items-start"
+                >
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-[0.14em] text-primary">{highlight.pillar}</p>
+                    <h3 className="mt-3 text-2xl font-semibold text-foreground">{highlight.title}</h3>
                   </div>
-                  <dl className="mt-5 grid gap-4 text-sm">
+                  <dl className="grid gap-5 text-sm md:grid-cols-3">
                     <ImpactLine label="What happened" value={highlight.what} />
                     <ImpactLine label="Who it served" value={highlight.served} />
                     <ImpactLine label="Why it mattered" value={highlight.why} />
@@ -260,9 +286,16 @@ export default function HomePage() {
                   exposure, projects, events, and opportunity pathways.
                 </p>
               </div>
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-                {partnerLogos.map((logo) => (
-                  <div key={logo.name} className="flex h-20 items-center justify-center rounded-lg border border-border bg-background/70 px-4">
+              <div className="grid grid-cols-2 border-y border-border/80 bg-background/35 sm:grid-cols-3">
+                {partnerLogos.map((logo, index) => (
+                  <div
+                    key={logo.name}
+                    className={`flex h-24 items-center justify-center border-b border-border/70 px-4 sm:border-r ${
+                      index % 3 === 2 ? "sm:border-r-0" : ""
+                    } ${index >= partnerLogos.length - 3 ? "sm:border-b-0" : ""} ${
+                      index >= partnerLogos.length - 2 ? "border-b-0" : ""
+                    }`}
+                  >
                     <Image
                       src={logo.src}
                       alt={logo.name}

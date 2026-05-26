@@ -134,7 +134,7 @@ export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
             </p>
           </div>
 
-          <div className="grid gap-5">
+          <div className="border-y border-border/80">
             {stages.map((stage, index) => (
               <article
                 key={stage.title}
@@ -142,39 +142,37 @@ export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
                   stageRefs.current[index] = node;
                 }}
                 className={cn(
-                  "editorial-card rounded-2xl p-5 sm:p-6",
+                  "grid gap-5 border-b border-border/70 py-7 last:border-b-0 sm:py-8 lg:grid-cols-[4rem_0.48fr_1fr] lg:items-start",
                   index % 2 === 1 && "lg:ml-16"
                 )}
               >
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
-                  <div className="flex size-12 shrink-0 items-center justify-center rounded-full border border-primary/35 bg-primary/15 text-sm font-bold text-primary">
-                    {String(index + 1).padStart(2, "0")}
+                <div className="flex size-12 shrink-0 items-center justify-center rounded-full border border-primary/35 bg-primary/15 text-sm font-bold text-primary">
+                  {String(index + 1).padStart(2, "0")}
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-foreground">
+                    {stage.title}
+                  </h3>
+                  <p className="body-copy mt-3 text-muted-foreground">
+                    {stage.promise}
+                  </p>
+                </div>
+                <div className="grid gap-5 md:grid-cols-2">
+                  <div>
+                    <p className="border-t border-primary/45 pt-4 text-xs font-semibold uppercase tracking-[0.12em] text-primary">
+                      In practice
+                    </p>
+                    <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                      {stage.example}
+                    </p>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-foreground">
-                      {stage.title}
-                    </h3>
-                    <p className="body-copy mt-3 text-muted-foreground">
-                      {stage.promise}
+                    <p className="border-t border-primary/45 pt-4 text-xs font-semibold uppercase tracking-[0.12em] text-primary">
+                      Student gains
                     </p>
-                    <div className="mt-5 grid gap-3 md:grid-cols-2">
-                      <div className="rounded-lg border border-border/80 bg-background/55 p-4">
-                        <p className="text-xs font-semibold uppercase text-primary">
-                          In practice
-                        </p>
-                        <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                          {stage.example}
-                        </p>
-                      </div>
-                      <div className="rounded-lg border border-border/80 bg-background/55 p-4">
-                        <p className="text-xs font-semibold uppercase text-primary">
-                          Student gains
-                        </p>
-                        <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                          {stage.outcome}
-                        </p>
-                      </div>
-                    </div>
+                    <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                      {stage.outcome}
+                    </p>
                   </div>
                 </div>
               </article>

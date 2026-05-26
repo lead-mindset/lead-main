@@ -6,7 +6,6 @@ import { CinematicVideoPanel } from "@/components/public/cinematic-video-panel";
 import { ControlledModelStage } from "@/components/public/controlled-model-stage";
 import { SectionReveal } from "@/components/public/section-reveal";
 import { InterestForm } from "@/components/public/interest-form";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   chapterProcess,
@@ -61,11 +60,18 @@ export default function GetInvolvedPage() {
               step.
             </p>
           </div>
-          <div className="grid gap-4">
-            {paths.map((path) => (
-              <Link key={`${path.href}-${path.label}`} href={path.href} className="rounded-2xl border border-white/15 bg-background/75 p-5 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-primary/40">
-                <h2 className="text-xl font-semibold text-foreground">{path.label}</h2>
-                <p className="body-copy mt-2 text-sm text-muted-foreground">{path.description}</p>
+          <div className="border-y border-white/20 bg-background/55">
+            {paths.map((path, index) => (
+              <Link
+                key={`${path.href}-${path.label}`}
+                href={path.href}
+                className="group grid gap-3 border-b border-white/15 px-4 py-5 transition-colors duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] last:border-b-0 hover:bg-primary/10 sm:grid-cols-[3rem_1fr]"
+              >
+                <span className="text-sm font-bold text-primary">{String(index + 1).padStart(2, "0")}</span>
+                <span>
+                  <span className="block text-xl font-semibold text-foreground">{path.label}</span>
+                  <span className="body-copy mt-2 block text-sm text-muted-foreground">{path.description}</span>
+                </span>
               </Link>
             ))}
           </div>
@@ -142,22 +148,29 @@ export default function GetInvolvedPage() {
               </p>
             </div>
 
-            <div className="mt-10 grid gap-4 lg:grid-cols-5">
+            <div className="mt-10 grid border-y border-border/80 lg:grid-cols-5">
               {chapterProcess.map((step, index) => (
-                <div key={step.title} className="editorial-card rounded-2xl p-5">
-                  <Badge variant="count">{index + 1}</Badge>
-                  <h3 className="mt-4 font-semibold text-foreground">{step.title}</h3>
+                <div
+                  key={step.title}
+                  className="relative border-b border-border/70 p-5 last:border-b-0 lg:min-h-64 lg:border-b-0 lg:border-r lg:last:border-r-0"
+                >
+                  <span className="text-sm font-bold text-primary">{String(index + 1).padStart(2, "0")}</span>
+                  <h3 className="mt-5 text-lg font-semibold text-foreground">{step.title}</h3>
                   <p className="mt-3 text-sm leading-6 text-muted-foreground">{step.description}</p>
                 </div>
               ))}
             </div>
 
-            <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-              {operatingValues.map((value) => (
-                <div key={value.title} className="editorial-card rounded-2xl p-5">
-                  <h3 className="text-lg font-semibold text-foreground">{value.title}</h3>
-                  <p className="mt-1 text-sm font-medium text-primary">{value.translation}</p>
-                  <p className="mt-3 text-sm leading-6 text-muted-foreground">{value.description}</p>
+            <div className="mt-10 grid border-y border-border/80 md:grid-cols-2 lg:grid-cols-4">
+              {operatingValues.map((value, index) => (
+                <div
+                  key={value.title}
+                  className="border-b border-border/70 p-5 last:border-b-0 md:[&:nth-last-child(-n+2)]:border-b-0 lg:border-b-0 lg:border-r lg:last:border-r-0"
+                >
+                  <span className="text-sm font-bold text-primary">{String(index + 1).padStart(2, "0")}</span>
+                  <h3 className="mt-5 text-xl font-semibold text-foreground">{value.title}</h3>
+                  <p className="mt-1 text-sm font-bold uppercase tracking-[0.12em] text-primary">{value.translation}</p>
+                  <p className="mt-4 text-sm leading-6 text-muted-foreground">{value.description}</p>
                 </div>
               ))}
             </div>
@@ -184,24 +197,31 @@ export default function GetInvolvedPage() {
               </p>
             </div>
 
-            <div className="mt-10 grid gap-4 lg:grid-cols-3">
+            <div className="mt-10 grid border-y border-border/80 lg:grid-cols-3">
               {partnerTypes.map((type) => (
-                <div key={type.value} className="editorial-card rounded-2xl p-5">
-                  <type.icon className="size-5 text-primary" />
-                  <h3 className="mt-5 text-xl font-semibold text-foreground">{type.title}</h3>
-                  <p className="body-copy mt-3 text-sm text-muted-foreground">{type.description}</p>
+                <div
+                  key={type.value}
+                  className="grid gap-4 border-b border-border/70 py-6 last:border-b-0 sm:grid-cols-[3rem_1fr] lg:block lg:border-b-0 lg:border-r lg:px-6 lg:last:border-r-0"
+                >
+                  <span className="flex size-11 items-center justify-center rounded-full border border-primary/35 bg-primary/15 text-primary">
+                    <type.icon className="size-5" />
+                  </span>
+                  <div>
+                    <h3 className="text-xl font-semibold text-foreground lg:mt-5">{type.title}</h3>
+                    <p className="body-copy mt-3 text-sm text-muted-foreground">{type.description}</p>
+                  </div>
                 </div>
               ))}
             </div>
 
             <div className="mt-10 grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-              <div className="editorial-card rounded-2xl p-5">
+              <div className="border-y border-border/80 py-6">
                 <h3 className="text-xl font-semibold text-foreground">What partnership can look like</h3>
-                <ul className="mt-5 grid gap-3 text-sm leading-6 text-muted-foreground">
-                  <li>Corporate visits, workshops, sponsorships, and event collaboration.</li>
-                  <li>Speaking, mentoring, portfolio feedback, and leadership development.</li>
-                  <li>Community collaborations such as STEM access initiatives and regional programs.</li>
-                  <li>Opt-in talent visibility that respects student consent and readiness.</li>
+                <ul className="mt-5 grid text-sm leading-6 text-muted-foreground">
+                  <li className="border-t border-border/70 py-3">Corporate visits, workshops, sponsorships, and event collaboration.</li>
+                  <li className="border-t border-border/70 py-3">Speaking, mentoring, portfolio feedback, and leadership development.</li>
+                  <li className="border-t border-border/70 py-3">Community collaborations such as STEM access initiatives and regional programs.</li>
+                  <li className="border-t border-border/70 py-3">Opt-in talent visibility that respects student consent and readiness.</li>
                 </ul>
               </div>
               <InterestForm kind="partnership" />

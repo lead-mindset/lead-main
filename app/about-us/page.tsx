@@ -4,6 +4,7 @@ import Link from "next/link";
 import { MainContainer } from "@/components/global/main-container";
 import { BrandScrollTrace } from "@/components/public/brand-scroll-trace";
 import { CinematicVideoPanel } from "@/components/public/cinematic-video-panel";
+import { ProofRail } from "@/components/public/proof-rail";
 import { SectionReveal } from "@/components/public/section-reveal";
 import { Button } from "@/components/ui/button";
 import {
@@ -52,13 +53,8 @@ export default function AboutPage() {
         <BrandScrollTrace />
         <SectionReveal className="relative z-10">
           <section className="relative z-10 border-y border-border bg-card/45 py-14">
-            <MainContainer className="relative z-10 grid gap-4 md:grid-cols-4">
-              {proofStats.map((stat) => (
-                <div key={stat.label} className="editorial-card rounded-2xl p-5">
-                  <p className="text-3xl font-bold text-foreground">{stat.value}</p>
-                  <p className="mt-1 text-sm text-muted-foreground">{stat.label}</p>
-                </div>
-              ))}
+            <MainContainer className="relative z-10">
+              <ProofRail stats={proofStats} />
             </MainContainer>
           </section>
         </SectionReveal>
@@ -81,31 +77,33 @@ export default function AboutPage() {
 
         <SectionReveal className="relative z-10">
           <section className="relative py-24">
-            <MainContainer className="relative z-10 grid gap-6 lg:grid-cols-2">
-              <div className="editorial-card rounded-2xl p-7">
-                <span className="eyebrow-label">Mission</span>
-                <h2 className="section-title mt-4">Empower the next generation of leaders.</h2>
-                <p className="body-copy mt-4 text-muted-foreground">
-                  LEAD empowers the next generation of leaders across Latin
-                  America and the United States so they can reach their full
-                  potential.
-                </p>
-              </div>
-              <div className="editorial-card rounded-2xl p-7">
-                <span className="eyebrow-label">Vision</span>
-                <h2 className="section-title mt-4">Transform Latin America into a global center.</h2>
-                <p className="body-copy mt-4 text-muted-foreground">
-                  LEAD works toward a Latin America recognized for technology,
-                  leadership, innovation, and students prepared to create
-                  meaningful regional impact.
-                </p>
+            <MainContainer className="relative z-10">
+              <div className="grid border-y border-border/80 lg:grid-cols-2">
+                <div className="border-b border-border/70 py-8 lg:border-b-0 lg:border-r lg:pr-10">
+                  <span className="eyebrow-label">Mission</span>
+                  <h2 className="section-title mt-4">Empower the next generation of leaders.</h2>
+                  <p className="body-copy mt-4 text-muted-foreground">
+                    LEAD empowers the next generation of leaders across Latin
+                    America and the United States so they can reach their full
+                    potential.
+                  </p>
+                </div>
+                <div className="py-8 lg:pl-10">
+                  <span className="eyebrow-label">Vision</span>
+                  <h2 className="section-title mt-4">Transform Latin America into a global center.</h2>
+                  <p className="body-copy mt-4 text-muted-foreground">
+                    LEAD works toward a Latin America recognized for technology,
+                    leadership, innovation, and students prepared to create
+                    meaningful regional impact.
+                  </p>
+                </div>
               </div>
             </MainContainer>
           </section>
         </SectionReveal>
 
         <SectionReveal className="relative z-10">
-          <section className="editorial-warm-band relative z-10 py-24">
+          <section id="values" className="editorial-warm-band relative z-10 scroll-mt-24 py-24">
             <MainContainer className="relative z-10">
               <div className="max-w-2xl">
                 <span className="eyebrow-label">Operating center</span>
@@ -116,12 +114,21 @@ export default function AboutPage() {
                   in culture, responsibility, and real student impact.
                 </p>
               </div>
-              <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                {operatingValues.map((value) => (
-                  <div key={value.title} className="editorial-card rounded-2xl p-5">
-                    <h3 className="text-xl font-semibold text-foreground">{value.title}</h3>
-                    <p className="mt-1 text-sm font-medium text-primary">{value.translation}</p>
-                    <p className="body-copy mt-4 text-sm text-muted-foreground">{value.description}</p>
+              <div className="mt-10 grid border-y border-border/80 md:grid-cols-2">
+                {operatingValues.map((value, index) => (
+                  <div
+                    key={value.title}
+                    className={`min-h-56 border-b border-border/70 p-6 md:p-8 ${
+                      index % 2 === 0 ? "md:border-r" : ""
+                    } ${index >= 2 ? "md:border-b-0" : ""} ${
+                      index === operatingValues.length - 1 ? "border-b-0" : ""
+                    }`}
+                  >
+                    <p className="font-headline text-5xl font-black leading-none text-primary/35">
+                      {value.title}
+                    </p>
+                    <p className="mt-3 text-sm font-bold uppercase tracking-[0.12em] text-primary">{value.translation}</p>
+                    <p className="body-copy mt-5 max-w-md text-sm text-muted-foreground">{value.description}</p>
                   </div>
                 ))}
               </div>
@@ -142,18 +149,22 @@ export default function AboutPage() {
                   Platform that helps students move from potential to proof.
                 </p>
               </div>
-              <div className="grid gap-4">
+              <ol className="border-y border-border/80">
                 {[
                   "Chapters are leadership development environments, not administrative units.",
                   "Partnerships connect students to industry standards and opportunity.",
                   "Pulse feedback helps LEAD listen, improve, and protect culture.",
                   "The Talent Platform is the operational layer, not the whole LEAD identity.",
-                ].map((item) => (
-                  <div key={item} className="editorial-card rounded-2xl p-5 text-muted-foreground">
-                    {item}
-                  </div>
+                ].map((item, index) => (
+                  <li
+                    key={item}
+                    className="grid gap-4 border-b border-border/70 py-5 last:border-b-0 sm:grid-cols-[3rem_1fr]"
+                  >
+                    <span className="text-sm font-bold text-primary">{String(index + 1).padStart(2, "0")}</span>
+                    <span className="body-copy text-muted-foreground">{item}</span>
+                  </li>
                 ))}
-              </div>
+              </ol>
             </MainContainer>
           </section>
         </SectionReveal>
