@@ -60,7 +60,7 @@ export default function AboutPage() {
         </SectionReveal>
 
         <SectionReveal className="relative z-10">
-          <section className="relative z-10 py-24">
+          <section className="relative z-10 py-16 sm:py-24">
             <MainContainer className="relative z-10">
               <CinematicVideoPanel
                 src="/video2.mp4"
@@ -103,7 +103,7 @@ export default function AboutPage() {
         </SectionReveal>
 
         <SectionReveal className="relative z-10">
-          <section id="values" className="editorial-warm-band relative z-10 scroll-mt-24 py-24">
+          <section id="values" className="editorial-warm-band relative z-10 scroll-mt-24 py-16 sm:py-24">
             <MainContainer className="relative z-10">
               <div className="max-w-2xl">
                 <span className="eyebrow-label">Operating center</span>
@@ -137,7 +137,7 @@ export default function AboutPage() {
         </SectionReveal>
 
         <SectionReveal className="relative z-10">
-          <section className="relative py-24">
+          <section className="relative py-16 sm:py-24">
             <MainContainer className="relative z-10 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
               <div>
                 <span className="eyebrow-label">Why it works</span>
@@ -170,7 +170,7 @@ export default function AboutPage() {
         </SectionReveal>
 
         <SectionReveal className="relative z-10">
-          <section className="editorial-warm-band relative z-10 py-24">
+          <section className="editorial-warm-band relative z-10 py-16 sm:py-24">
             <MainContainer className="relative z-10">
               <div className="max-w-2xl">
                 <span className="eyebrow-label">Leadership</span>
@@ -202,7 +202,8 @@ export default function AboutPage() {
           </section>
         </SectionReveal>
 
-        <section className="relative z-10 border-t border-border py-16">
+        <section className="relative z-10 overflow-hidden border-t border-border bg-[linear-gradient(135deg,rgba(122,87,209,0.22),rgba(8,13,59,0.96)_46%,rgba(186,78,94,0.16))] py-16">
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_24%,rgba(229,62,62,0.13),transparent_28rem),radial-gradient(circle_at_88%_34%,rgba(126,86,226,0.18),transparent_30rem)]" />
           <MainContainer className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-2xl">
               <h2 className="section-title">Take the next step with LEAD.</h2>
@@ -213,7 +214,7 @@ export default function AboutPage() {
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
               {finalPaths.map((path) => (
-                <Button key={path.label} asChild variant={path.label === "Join LEAD" ? "default" : "outline"}>
+                <Button key={path.label} asChild variant={path.label === "Join LEAD" ? "hero" : "glass"}>
                   <Link href={path.href} {...externalProps(path.href)}>{path.label}</Link>
                 </Button>
               ))}
