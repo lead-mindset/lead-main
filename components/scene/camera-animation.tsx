@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable react-hooks/immutability */
+
 import { useThree } from "@react-three/fiber";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
