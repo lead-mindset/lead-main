@@ -25,9 +25,18 @@ export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
     if (!video) return;
 
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const primeVideoFrame = () => {
+      if (video.currentTime > 0.4) return;
+
+      try {
+        video.currentTime = 1.35;
+      } catch {
+        // Seeking can fail before metadata is available.
+      }
+    };
 
     const syncPlayback = () => {
-      video.currentTime = 0;
+      primeVideoFrame();
 
       if (motionQuery.matches) {
         video.pause();
@@ -39,10 +48,14 @@ export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
       });
     };
 
+    video.addEventListener("loadedmetadata", primeVideoFrame);
     syncPlayback();
     motionQuery.addEventListener("change", syncPlayback);
 
-    return () => motionQuery.removeEventListener("change", syncPlayback);
+    return () => {
+      video.removeEventListener("loadedmetadata", primeVideoFrame);
+      motionQuery.removeEventListener("change", syncPlayback);
+    };
   }, [activeIndex]);
 
   const goTo = (nextIndex: number) => {
@@ -50,7 +63,7 @@ export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
   };
 
   return (
-    <section id="programs" className="relative isolate -mt-16 scroll-mt-24 overflow-visible pb-14 pt-32 sm:-mt-20 sm:pb-16 sm:pt-36">
+    <section id="programs" className="relative isolate -mt-10 scroll-mt-24 overflow-visible pb-12 pt-20 sm:-mt-16 sm:pb-16 sm:pt-28">
       <div className="lead-programs-aura" />
       <MainContainer>
         <div className="grid gap-5 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
@@ -75,11 +88,12 @@ export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
             if (event.key === "ArrowLeft") goTo(activeIndex - 1);
           }}
         >
-          <div className="relative min-h-[280px] bg-background sm:min-h-[320px] lg:min-h-[360px]">
+          <div className="relative min-h-[240px] bg-background sm:min-h-[320px] lg:min-h-[360px]">
             <video
               key={activeProgram.video}
               ref={videoRef}
-              className="absolute inset-0 h-full w-full object-cover"
+              aria-hidden="true"
+              className="absolute inset-0 h-full w-full object-cover object-center"
               src={activeProgram.video}
               poster={activeProgram.poster}
               muted

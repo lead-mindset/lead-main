@@ -122,7 +122,7 @@ export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
     <section
       ref={sectionRef}
       id="pathway"
-      className="lead-pathway relative -mt-20 scroll-mt-24 overflow-visible pb-24 pt-44 sm:-mt-24 sm:pb-28 sm:pt-52"
+      className="lead-pathway relative -mt-14 scroll-mt-24 overflow-visible pb-16 pt-32 sm:-mt-24 sm:pb-28 sm:pt-52"
     >
       <div className="pointer-events-none absolute inset-y-0 left-0 right-[-18vw] z-0 overflow-hidden lg:left-[40%] lg:right-[-10vw]">
         <svg
@@ -189,7 +189,7 @@ export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
                     } as PathwayStageStyle
                   }
                   className={cn(
-                    "pathway-stage grid gap-5 border-b border-border/70 py-7 last:border-b-0 sm:py-8 lg:grid-cols-[4rem_minmax(0,1fr)_18rem] lg:items-start",
+                    "pathway-stage grid gap-5 border-b border-border/70 py-6 last:border-b-0 sm:py-8 lg:grid-cols-[4rem_minmax(0,1fr)_18rem] lg:items-start",
                     index % 2 === 1 && "lg:ml-16"
                   )}
                 >
@@ -204,9 +204,9 @@ export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
                       {stage.promise}
                     </p>
                   </div>
-                  <div className="pathway-outcome rounded-xl border p-4">
+                  <div className="pathway-outcome border-l-2 py-1 pl-4 lg:rounded-xl lg:border lg:p-4">
                     <p className="text-xs font-semibold uppercase tracking-[0.12em]">
-                      What this builds
+                      Why it matters
                     </p>
                     <p className="mt-3 text-sm font-semibold leading-6 text-foreground">
                       {stage.outcome}

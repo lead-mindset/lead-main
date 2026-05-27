@@ -25,20 +25,25 @@ export function PartnerLogoMarquee({ logos }: { logos: PartnerLogo[] }) {
 
           <div className="overflow-hidden border-y border-[#080d3b]/12 py-5">
             <div className="lead-logo-marquee flex w-max items-center gap-8">
-              {marqueeLogos.map((logo, index) => (
+              {marqueeLogos.map((logo, index) => {
+                const isDuplicate = index >= logos.length;
+
+                return (
                 <div
                   key={`${logo.name}-${index}`}
+                  aria-hidden={isDuplicate}
                   className="flex h-16 w-44 shrink-0 items-center justify-center rounded-xl border border-[#080d3b]/10 bg-white/78 px-5 shadow-sm"
                 >
                   <Image
                     src={logo.src}
-                    alt={logo.name}
+                    alt={isDuplicate ? "" : logo.name}
                     width={150}
                     height={52}
-                    className="max-h-10 w-auto object-contain"
+                    className="h-auto max-h-10 w-auto object-contain"
                   />
                 </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

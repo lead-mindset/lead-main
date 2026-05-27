@@ -36,7 +36,7 @@ export function RegionalEarthStage() {
     <section
       ref={sectionRef}
       id="regional-footprint"
-      className="relative isolate -mt-20 scroll-mt-24 overflow-visible pb-20 pt-40 sm:-mt-24 sm:pb-24 sm:pt-48"
+      className="relative isolate -mt-14 scroll-mt-24 overflow-visible pb-14 pt-28 sm:-mt-24 sm:pb-24 sm:pt-48"
     >
       <div className="lead-regional-aura" />
       <MainContainer>
@@ -45,16 +45,17 @@ export function RegionalEarthStage() {
             <p className="text-sm font-semibold uppercase text-white/68">
               Regional footprint
             </p>
-            <h2 className="mt-4 text-3xl font-black leading-tight text-white sm:text-5xl">
-              One student network across LATAM and the U.S.
+            <h2 className="mt-4 text-[2.05rem] font-black leading-tight text-white sm:text-5xl">
+              One student network across the Americas.
             </h2>
             <p className="body-copy mt-5 text-white/76">
-              LEAD grows through chapters, partners, mentors, and student
-              leaders who turn local community into regional opportunity.
+              LEAD grows through chapters, partners, mentors, and student leaders
+              across Colombia, Peru, the United States, and the communities still
+              being built.
             </p>
           </div>
 
-          <div className="regional-earth-shell relative h-[460px] overflow-hidden rounded-2xl border border-white/12 bg-[#050824] shadow-[0_28px_90px_rgba(0,0,0,0.38)] sm:h-[500px]">
+          <div className="regional-earth-shell relative h-[340px] overflow-hidden rounded-2xl border border-white/12 bg-[#050824] shadow-[0_28px_90px_rgba(0,0,0,0.38)] sm:h-[430px] lg:h-[500px]">
             <Canvas
               className="!absolute !inset-0"
               camera={{ position: [0, 0, 5.65], fov: 38 }}

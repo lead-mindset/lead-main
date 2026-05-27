@@ -89,7 +89,7 @@ export function StarfieldImpactCounters({ stats }: { stats: ProofStat[] }) {
     <section
       ref={sectionRef}
       id="impact"
-      className="relative isolate -mt-20 scroll-mt-24 overflow-visible pb-20 pt-40 sm:-mt-24 sm:pb-24 sm:pt-48"
+      className="relative isolate -mt-14 scroll-mt-24 overflow-visible pb-14 pt-28 sm:-mt-24 sm:pb-24 sm:pt-48"
     >
       <div className="lead-impact-aura" />
       <MainContainer>
@@ -101,7 +101,7 @@ export function StarfieldImpactCounters({ stats }: { stats: ProofStat[] }) {
                 tileRefs.current[index] = node;
               }}
               className={cn(
-                "relative min-h-56 overflow-hidden rounded-2xl border border-white/12 bg-gradient-to-br p-6 text-center shadow-[0_24px_80px_rgba(0,0,0,0.28)] sm:min-h-64",
+                "relative min-h-44 overflow-hidden rounded-2xl border border-white/12 bg-gradient-to-br p-5 text-center shadow-[0_24px_80px_rgba(0,0,0,0.28)] sm:min-h-64 sm:p-6",
                 counterGradients[index % counterGradients.length]
               )}
             >

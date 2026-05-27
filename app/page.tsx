@@ -26,8 +26,8 @@ export default function HomePage() {
   return (
     <div className="lead-public-page relative isolate overflow-x-clip text-foreground">
       <VideoHero
-        videoSrc="/video3.mp4"
-        posterSrc="/about-us/1.jpg"
+        videoSrc="/video2.mp4"
+        posterSrc="/about-us/2.jpg"
         primaryHref={publicCtas.pathway}
         secondaryHref={publicCtas.partner}
       />
@@ -72,7 +72,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="mt-8 grid gap-3 lg:grid-cols-3">
+          <div className="mt-8 grid overflow-hidden rounded-2xl border border-white/12 bg-card/45 lg:grid-cols-2">
             {finalPaths.map((path, index) => {
               const Icon = path.icon;
               const detail = finalPathDetails[path.label] ?? {
@@ -85,26 +85,27 @@ export default function HomePage() {
                   key={path.label}
                   href={path.href}
                   {...externalProps(path.href)}
-                  className="group relative overflow-hidden rounded-2xl border border-white/12 bg-card/70 p-5 text-foreground shadow-[inset_0_1px_0_color-mix(in_oklab,white_10%,transparent)] transition duration-300 hover:-translate-y-0.5 hover:border-primary/55 hover:bg-card"
+                  className="group grid grid-cols-[auto_1fr] gap-4 border-b border-white/10 p-5 text-foreground transition duration-300 last:border-b-0 hover:bg-primary/12 sm:grid-cols-[auto_1fr_auto] sm:items-center lg:[&:nth-child(2n+1)]:border-r lg:[&:nth-last-child(-n+2)]:border-b-0"
                 >
-                  <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[var(--brand-logo-red-orange)] via-[var(--brand-logo-magenta)] to-primary opacity-70" />
-                  <div className="flex items-start justify-between gap-4">
-                    <span className="flex size-11 items-center justify-center rounded-full border border-primary/30 bg-primary/15 text-primary">
+                  <div className="relative">
+                    <span className="flex size-12 items-center justify-center rounded-full border border-primary/30 bg-primary/15 text-primary transition duration-300 group-hover:border-primary/60 group-hover:bg-primary/24">
                       <Icon className="size-5" />
                     </span>
-                    <span className="text-sm font-bold text-primary/80">
+                    <span className="absolute -right-1 -top-1 rounded-full bg-background px-1.5 text-[0.65rem] font-bold text-primary">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                   </div>
-                  <h3 className="mt-6 text-xl font-bold text-foreground">
-                    {path.label}
-                  </h3>
-                  <p className="mt-3 min-h-12 text-sm leading-6 text-muted-foreground">
-                    {detail.description}
-                  </p>
-                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary transition group-hover:translate-x-1">
+                  <div>
+                    <h3 className="text-lg font-bold text-foreground sm:text-xl">
+                      {path.label}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                      {detail.description}
+                    </p>
+                  </div>
+                  <span className="col-start-2 inline-flex items-center gap-2 text-sm font-semibold text-primary sm:col-start-auto">
                     {detail.action}
-                    <ArrowRight className="size-4" />
+                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
                   </span>
                 </Link>
               );
@@ -136,5 +137,9 @@ const finalPathDetails: Record<string, { description: string; action: string }> 
   "Partner with LEAD": {
     description: "Bring mentorship, events, resources, or opportunities to students.",
     action: "Start a partnership",
+  },
+  "Community Collaboration": {
+    description: "Build aligned STEM, leadership, or access initiatives with LEAD.",
+    action: "Start collaboration",
   },
 };

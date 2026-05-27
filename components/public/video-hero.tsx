@@ -26,6 +26,15 @@ export function VideoHero({
     if (!video) return;
 
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const primeVideoFrame = () => {
+      if (video.currentTime > 0.4) return;
+
+      try {
+        video.currentTime = 1.35;
+      } catch {
+        // Some browsers do not allow seeking before metadata is ready.
+      }
+    };
 
     const syncPlayback = () => {
       if (motionQuery.matches) {
@@ -34,23 +43,28 @@ export function VideoHero({
         return;
       }
 
+      primeVideoFrame();
       void video.play().catch(() => {
         video.pause();
       });
     };
 
+    video.addEventListener("loadedmetadata", primeVideoFrame);
     syncPlayback();
     motionQuery.addEventListener("change", syncPlayback);
 
-    return () => motionQuery.removeEventListener("change", syncPlayback);
+    return () => {
+      video.removeEventListener("loadedmetadata", primeVideoFrame);
+      motionQuery.removeEventListener("change", syncPlayback);
+    };
   }, []);
 
   return (
-    <section className="lead-video-hero relative isolate min-h-[94svh] overflow-hidden pt-16">
+    <section className="lead-video-hero relative isolate min-h-[88svh] overflow-hidden pt-16 sm:min-h-[94svh]">
       <video
         ref={videoRef}
         aria-hidden="true"
-        className="absolute inset-0 -z-20 h-full w-full object-cover"
+        className="absolute inset-0 -z-20 h-full w-full object-cover object-[58%_center]"
         src={videoSrc}
         poster={posterSrc}
         autoPlay
@@ -61,15 +75,15 @@ export function VideoHero({
         preload="metadata"
         tabIndex={-1}
       />
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,13,59,0.96)_0%,rgba(8,13,59,0.74)_42%,rgba(8,13,59,0.22)_100%),linear-gradient(180deg,rgba(8,13,59,0.24)_0%,rgba(8,13,59,0.28)_46%,#060a2e_100%)]" />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,13,59,0.92)_0%,rgba(8,13,59,0.66)_43%,rgba(8,13,59,0.16)_100%),linear-gradient(180deg,rgba(8,13,59,0.18)_0%,rgba(8,13,59,0.22)_48%,#060a2e_100%)]" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-44 bg-gradient-to-t from-[#060a2e] via-background/80 to-transparent" />
 
-      <MainContainer className="flex min-h-[calc(94svh-4rem)] flex-col justify-end pb-10 pt-20 sm:pb-14 lg:pb-16">
+      <MainContainer className="flex min-h-[calc(88svh-4rem)] flex-col justify-end pb-9 pt-20 sm:min-h-[calc(94svh-4rem)] sm:pb-14 lg:pb-16">
         <div className="max-w-4xl">
           <p className="text-sm font-semibold uppercase text-white/78">
             LEAD Americas
           </p>
-          <h1 className="mt-5 max-w-4xl text-[clamp(2.45rem,5.8vw,4.95rem)] font-black leading-[1.02] text-white">
+          <h1 className="mt-5 max-w-4xl text-[clamp(2.2rem,5.6vw,4.75rem)] font-black leading-[1.02] text-white">
             Building the{" "}
             <span className="inline-block bg-gradient-to-r from-[#d84c4c] via-[#ba4e5e] to-[#7e56e2] bg-clip-text text-transparent">
               next generation

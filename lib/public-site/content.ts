@@ -15,6 +15,7 @@ import { JOIN_LEAD_HREF } from "@/components/global/navigation/nav-links";
 export const publicCtas = {
   join: JOIN_LEAD_HREF,
   partner: "/get-involved#partners",
+  community: "/get-involved#partners",
   chapter: "/get-involved#chapters",
   programs: "/#programs",
   pathway: "/#pathway",
@@ -372,4 +373,5 @@ export const finalPaths = [
   { label: "Join LEAD", href: publicCtas.join, icon: ArrowRight },
   { label: "Submit Chapter Interest", href: publicCtas.chapter, icon: Star },
   { label: "Partner with LEAD", href: publicCtas.partner, icon: Sparkles },
+  { label: "Community Collaboration", href: publicCtas.community, icon: Users },
 ];

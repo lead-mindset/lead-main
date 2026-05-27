@@ -15,7 +15,7 @@ export function LeadHighlightsCarousel({ highlights }: { highlights: Highlight[]
   const carouselHighlights = [...highlights, ...highlights];
 
   return (
-    <section id="highlights" className="relative -mt-20 scroll-mt-24 overflow-hidden pb-20 pt-40 sm:-mt-24 sm:pb-24 sm:pt-48">
+    <section id="highlights" className="relative -mt-14 scroll-mt-24 overflow-hidden pb-14 pt-28 sm:-mt-24 sm:pb-24 sm:pt-48">
       <MainContainer>
         <div className="max-w-3xl">
           <p className="text-sm font-semibold uppercase text-primary">
@@ -33,14 +33,18 @@ export function LeadHighlightsCarousel({ highlights }: { highlights: Highlight[]
 
       <div className="mt-10 overflow-hidden">
         <div className="lead-highlights-track flex w-max gap-5 px-4 sm:px-6 lg:px-8">
-          {carouselHighlights.map((highlight, index) => (
+          {carouselHighlights.map((highlight, index) => {
+            const isDuplicate = index >= highlights.length;
+
+            return (
             <article
               key={`${highlight.title}-${index}`}
-              className="group relative h-[28rem] w-[20rem] shrink-0 overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_80px_rgba(0,0,0,0.22)] sm:w-[24rem]"
+              aria-hidden={isDuplicate}
+              className="group relative h-[23rem] w-[17rem] shrink-0 overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_80px_rgba(0,0,0,0.22)] sm:h-[28rem] sm:w-[24rem]"
             >
               <Image
                 src={highlight.image}
-                alt={highlight.title}
+                alt={isDuplicate ? "" : highlight.title}
                 fill
                 sizes="(min-width: 640px) 24rem, 20rem"
                 className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-105"
@@ -58,7 +62,8 @@ export function LeadHighlightsCarousel({ highlights }: { highlights: Highlight[]
                 </p>
               </div>
             </article>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
