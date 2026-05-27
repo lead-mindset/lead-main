@@ -45,7 +45,7 @@ export default function MobMenu({ pathname }: { pathname: string }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
-            className="fixed inset-x-4 top-20 rounded-lg border border-border bg-popover p-3 shadow-xl"
+            className="fixed inset-x-4 top-20 z-50 rounded-lg border border-border bg-popover p-3 shadow-xl"
           >
             <div className="grid gap-1">
               {PUBLIC_NAV_ITEMS.map((item) => {

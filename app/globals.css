@@ -57,8 +57,8 @@
 :root {
   --brand-background: #080d3b;
   --brand-foreground: #ffffff;
-  --brand-accent: #7a57d1;
-  --brand-header-warm-red: #d84c4c;
+  --brand-accent: #a18bff;
+  --brand-header-warm-red: #c43d45;
   --brand-header-muted-coral: #ba4e5e;
   --brand-header-deep-magenta: #9b2e8b;
   --brand-header-vibrant-purple: #7e56e2;
@@ -66,8 +66,8 @@
   --brand-logo-red-orange: #e53e3e;
   --brand-logo-magenta: #9f258c;
 
-  --md-sys-color-primary: #7a57d1;
-  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary: #a18bff;
+  --md-sys-color-on-primary: #080d3b;
   --md-sys-color-primary-container: #5d41b0;
   --md-sys-color-on-primary-container: #e6deff;
   --md-sys-color-secondary: #ba4e5e;
@@ -82,7 +82,7 @@
   --md-sys-color-on-surface: #ffffff;
   --md-sys-color-surface-variant: #1a1f4b;
   --md-sys-color-on-surface-variant: #e0e0ff;
-  --md-sys-color-outline: #7a57d1;
+  --md-sys-color-outline: #a18bff;
   --md-sys-color-outline-variant: #5d41b0;
   --md-sys-color-surface-container-lowest: #03061f;
   --md-sys-color-surface-container-low: #060a2e;
@@ -96,19 +96,19 @@
   --card-foreground: #ffffff;
   --popover: #1a1f4b;
   --popover-foreground: #ffffff;
-  --primary: #7a57d1;
-  --primary-foreground: #ffffff;
+  --primary: #a18bff;
+  --primary-foreground: #080d3b;
   --secondary: #ba4e5e;
   --secondary-foreground: #ffffff;
   --muted: #1a1f4b;
   --muted-foreground: #e0e0ff;
   --accent: #7e56e2;
   --accent-foreground: #ffffff;
-  --destructive: #d84c4c;
+  --destructive: #c43d45;
   --destructive-foreground: #ffffff;
   --border: #2a2f5b;
   --input: #1a1f4b;
-  --ring: #7a57d1;
+  --ring: #a18bff;
   --chart-1: #7a57d1;
   --chart-2: #ba4e5e;
   --chart-3: #9b2e8b;
@@ -123,12 +123,20 @@
   --info-foreground: #ffffff;
   --sidebar: #060a2e;
   --sidebar-foreground: #ffffff;
-  --sidebar-primary: #7a57d1;
-  --sidebar-primary-foreground: #ffffff;
+  --sidebar-primary: #a18bff;
+  --sidebar-primary-foreground: #080d3b;
   --sidebar-accent: #1a1f4b;
   --sidebar-accent-foreground: #ffffff;
   --sidebar-border: #2a2f5b;
-  --sidebar-ring: #7a57d1;
+  --sidebar-ring: #a18bff;
+
+  --lead-surface-deep: #050824;
+  --lead-surface-section: #060a2e;
+  --lead-surface-elevated: #0a0e35;
+  --lead-surface-inverse-soft: #f4f1ff;
+  --lead-gradient-primary: linear-gradient(135deg, var(--primary), var(--accent));
+  --lead-gradient-red-purple: linear-gradient(135deg, var(--brand-logo-red-orange), var(--brand-logo-magenta), var(--accent));
+  --lead-gradient-proof: linear-gradient(135deg, var(--brand-header-muted-coral), var(--brand-header-deep-magenta), var(--accent));
 
   --md-sys-elevation-0: none;
   --md-sys-elevation-1: 0 1px 2px rgba(122, 87, 209, 0.1), 0 1px 3px rgba(122, 87, 209, 0.05);
@@ -219,7 +227,7 @@
 }
 
 .button-gradient-primary {
-  background-image: linear-gradient(135deg, var(--primary), var(--accent));
+  background-image: var(--lead-gradient-primary);
 }
 
 .lead-public-page {
@@ -227,7 +235,21 @@
     radial-gradient(circle at 72% 8%, color-mix(in oklab, var(--primary) 16%, transparent), transparent 34rem),
     radial-gradient(circle at 18% 38%, color-mix(in oklab, var(--secondary) 11%, transparent), transparent 32rem),
     radial-gradient(circle at 74% 70%, color-mix(in oklab, var(--primary) 12%, transparent), transparent 36rem),
-    linear-gradient(180deg, #060a2e 0%, var(--background) 28%, #050824 54%, var(--background) 82%, #060a2e 100%);
+    linear-gradient(180deg, var(--lead-surface-section) 0%, var(--background) 28%, var(--lead-surface-deep) 54%, var(--background) 82%, var(--lead-surface-section) 100%);
+}
+
+.lead-soft-inverse-surface {
+  background:
+    radial-gradient(circle at 14% 8%, color-mix(in oklab, var(--primary) 22%, transparent), transparent 28rem),
+    linear-gradient(180deg, var(--lead-surface-inverse-soft), color-mix(in oklab, var(--lead-surface-inverse-soft) 92%, var(--background)));
+  color: var(--brand-background);
+}
+
+.lead-public-cta-surface {
+  background:
+    radial-gradient(circle at 18% 20%, color-mix(in oklab, var(--brand-logo-red-orange) 16%, transparent), transparent 28rem),
+    radial-gradient(circle at 82% 34%, color-mix(in oklab, var(--accent) 20%, transparent), transparent 32rem),
+    linear-gradient(135deg, var(--lead-surface-deep), var(--background));
 }
 
 .lead-impact-aura,

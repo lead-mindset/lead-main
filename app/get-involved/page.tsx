@@ -14,6 +14,7 @@ import {
 import { MainContainer } from "@/components/global/main-container";
 import { GetInvolvedRocketHero } from "@/components/public/get-involved-rocket-hero";
 import { InterestForm } from "@/components/public/interest-form";
+import { PublicRouteChooser } from "@/components/public/public-route-chooser";
 import { SectionReveal } from "@/components/public/section-reveal";
 import {
   AlertDialog,
@@ -335,28 +336,10 @@ export default function GetInvolvedPage() {
         </section>
       </SectionReveal>
 
-      <section className="border-t border-border/80 bg-[linear-gradient(135deg,rgba(122,87,209,0.22),rgba(8,13,59,0.96)_44%,rgba(186,78,94,0.16))] py-12 sm:py-16">
-        <MainContainer className="grid gap-7 lg:grid-cols-[1fr_auto] lg:items-center">
-          <div>
-            <p className="text-sm font-semibold uppercase text-primary">Next step</p>
-            <h2 className="section-title mt-3">Ready to choose your next step?</h2>
-            <p className="body-copy mt-3 max-w-2xl text-muted-foreground">
-              Start with the role that fits today. LEAD can guide the next step
-              from there.
-            </p>
-          </div>
-          <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-            <Button asChild size="lg" variant="hero">
-              <Link href={publicCtas.join} {...externalProps(publicCtas.join)}>
-                Join LEAD
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="glass">
-              <Link href="#roles">View paths</Link>
-            </Button>
-          </div>
-        </MainContainer>
-      </section>
+      <PublicRouteChooser
+        title="Ready to choose your next step?"
+        description="Start with the role that fits today. LEAD can guide the next step from there."
+      />
     </div>
   );
 }

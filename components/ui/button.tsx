@@ -22,7 +22,7 @@ const buttonVariants = cva(
         outline:
           "border border-border bg-background shadow-xs hover:bg-muted hover:text-foreground",
         secondary:
-          "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/85",
+          "bg-muted text-foreground ring-1 ring-border shadow-xs hover:bg-muted/80",
         ghost:
           "text-muted-foreground hover:bg-muted hover:text-foreground",
         glass:
@@ -31,7 +31,7 @@ const buttonVariants = cva(
         hero: "button-gradient-primary rounded-full px-7 font-semibold text-primary-foreground shadow-sm hover:shadow-md",
         link: "h-auto rounded-none px-0 text-primary underline-offset-4 hover:underline",
         filled: "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
-        tonal: "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/85",
+        tonal: "bg-muted text-foreground ring-1 ring-border shadow-xs hover:bg-muted/80",
         outlined: "border border-border bg-background shadow-xs hover:bg-muted hover:text-foreground",
         text: "h-auto rounded-none px-0 text-primary underline-offset-4 hover:underline",
       },

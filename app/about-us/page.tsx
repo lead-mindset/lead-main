@@ -5,10 +5,10 @@ import { MainContainer } from "@/components/global/main-container";
 import { BrandScrollTrace } from "@/components/public/brand-scroll-trace";
 import { CinematicVideoPanel } from "@/components/public/cinematic-video-panel";
 import { ProofRail } from "@/components/public/proof-rail";
+import { PublicRouteChooser } from "@/components/public/public-route-chooser";
 import { SectionReveal } from "@/components/public/section-reveal";
 import { Button } from "@/components/ui/button";
 import {
-  finalPaths,
   leadership,
   operatingValues,
   proofStats,
@@ -202,25 +202,10 @@ export default function AboutPage() {
           </section>
         </SectionReveal>
 
-        <section className="relative z-10 overflow-hidden border-t border-border bg-[linear-gradient(135deg,rgba(122,87,209,0.22),rgba(8,13,59,0.96)_46%,rgba(186,78,94,0.16))] py-16">
-          <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_24%,rgba(229,62,62,0.13),transparent_28rem),radial-gradient(circle_at_88%_34%,rgba(126,86,226,0.18),transparent_30rem)]" />
-          <MainContainer className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-            <div className="max-w-2xl">
-              <h2 className="section-title">Take the next step with LEAD.</h2>
-              <p className="body-copy mt-3 text-muted-foreground">
-                Join the community, submit serious chapter interest, or start a
-                partnership conversation.
-              </p>
-            </div>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              {finalPaths.map((path) => (
-                <Button key={path.label} asChild variant={path.label === "Join LEAD" ? "hero" : "glass"}>
-                  <Link href={path.href} {...externalProps(path.href)}>{path.label}</Link>
-                </Button>
-              ))}
-            </div>
-          </MainContainer>
-        </section>
+        <PublicRouteChooser
+          title="Take the next step with LEAD."
+          description="Join the community, submit chapter interest, or start a partnership conversation."
+        />
       </div>
     </div>
   );
