@@ -3,7 +3,6 @@ import Link from "next/link";
 
 import { MainContainer } from "@/components/global/main-container";
 import { BrandScrollTrace } from "@/components/public/brand-scroll-trace";
-import { CinematicVideoPanel } from "@/components/public/cinematic-video-panel";
 import { ProofRail } from "@/components/public/proof-rail";
 import { PublicRouteChooser } from "@/components/public/public-route-chooser";
 import { SectionReveal } from "@/components/public/section-reveal";
@@ -32,10 +31,10 @@ export default function AboutPage() {
             <span className="eyebrow-label">About LEAD</span>
             <h1 className="display-title mt-6">Talent is already here. Access should be too.</h1>
             <p className="section-subtitle mt-6 text-muted-foreground">
-              LEAD exists because students across Latin America and the United
-              States already carry ambition, creativity, and talent. LEAD helps
-              unlock access, structure, leadership practice, and opportunity
-              through STEM education, mentorship, chapters, and innovation.
+              LEAD exists because students across Latin America, the United
+              States, and the Americas already carry ambition, creativity, and
+              talent. LEAD helps turn that talent into access, leadership
+              practice, community, and opportunity.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg">
@@ -62,15 +61,59 @@ export default function AboutPage() {
         <SectionReveal className="relative z-10">
           <section className="relative z-10 py-16 sm:py-24">
             <MainContainer className="relative z-10">
-              <CinematicVideoPanel
-                src="/video2.mp4"
-                eyebrow="Community proof"
-                title="Trust comes from the people building it."
-              >
-                LEAD is carried by students, chapter leaders, volunteers,
-                mentors, and partners who turn access into real community
-                momentum.
-              </CinematicVideoPanel>
+              <div className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr] lg:items-stretch">
+                <div className="relative min-h-[26rem] overflow-hidden rounded-2xl border border-border bg-card shadow-[inset_0_1px_0_color-mix(in_oklab,white_12%,transparent)]">
+                  <Image
+                    src="/about-us/5.jpg"
+                    alt="LEAD students and partners gathered at a professional experience"
+                    fill
+                    sizes="(min-width: 1024px) 54vw, 100vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/48 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-5 sm:p-8">
+                    <span className="eyebrow-label">Community proof</span>
+                    <h2 className="mt-4 max-w-2xl text-2xl font-black leading-tight text-white sm:text-4xl">
+                      Trust comes from the people building it.
+                    </h2>
+                    <p className="body-copy mt-4 max-w-2xl text-white/78">
+                      LEAD is carried by students, chapter leaders, volunteers,
+                      mentors, and partners who turn access into real community
+                      momentum.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+                  {aboutProofMoments.map((moment) => (
+                    <article
+                      key={moment.title}
+                      className="grid min-h-44 overflow-hidden rounded-2xl border border-border bg-card/80 sm:grid-cols-[9rem_1fr] lg:grid-cols-[11rem_1fr]"
+                    >
+                      <div className="relative min-h-44">
+                        <Image
+                          src={moment.image}
+                          alt={moment.title}
+                          fill
+                          sizes="11rem"
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="p-5">
+                        <p className="text-sm font-semibold uppercase text-primary">
+                          {moment.eyebrow}
+                        </p>
+                        <h3 className="mt-3 text-xl font-bold leading-tight text-foreground">
+                          {moment.title}
+                        </h3>
+                        <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                          {moment.description}
+                        </p>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
             </MainContainer>
           </section>
         </SectionReveal>
@@ -83,18 +126,18 @@ export default function AboutPage() {
                   <span className="eyebrow-label">Mission</span>
                   <h2 className="section-title mt-4">Empower the next generation of leaders.</h2>
                   <p className="body-copy mt-4 text-muted-foreground">
-                    LEAD empowers the next generation of leaders across Latin
-                    America and the United States so they can reach their full
-                    potential.
+                    LEAD empowers students across Latin America, the United
+                    States, and the Americas through STEM education, leadership
+                    development, mentorship, and community.
                   </p>
                 </div>
                 <div className="py-8 lg:pl-10">
                   <span className="eyebrow-label">Vision</span>
-                  <h2 className="section-title mt-4">Transform Latin America into a global center.</h2>
+                  <h2 className="section-title mt-4">Build a visible network of student leadership.</h2>
                   <p className="body-copy mt-4 text-muted-foreground">
-                    LEAD works toward a Latin America recognized for technology,
-                    leadership, innovation, and students prepared to create
-                    meaningful regional impact.
+                    LEAD works toward a future where students in the Americas are
+                    recognized for technology, leadership, innovation, and the
+                    impact they create in their communities.
                   </p>
                 </div>
               </div>
@@ -105,32 +148,42 @@ export default function AboutPage() {
         <SectionReveal className="relative z-10">
           <section id="values" className="editorial-warm-band relative z-10 scroll-mt-24 py-16 sm:py-24">
             <MainContainer className="relative z-10">
-              <div className="max-w-2xl">
-                <span className="eyebrow-label">Operating center</span>
-                <h2 className="section-title mt-4">The standards behind LEAD growth.</h2>
-                <p className="body-copy mt-4 text-muted-foreground">
-                  These four values guide chapter activation, leadership
-                  development, and program quality. They keep LEAD growth rooted
-                  in culture, responsibility, and real student impact.
-                </p>
-              </div>
-              <div className="mt-10 grid border-y border-border/80 md:grid-cols-2">
-                {operatingValues.map((value, index) => (
-                  <div
-                    key={value.title}
-                    className={`min-h-56 border-b border-border/70 p-6 md:p-8 ${
-                      index % 2 === 0 ? "md:border-r" : ""
-                    } ${index >= 2 ? "md:border-b-0" : ""} ${
-                      index === operatingValues.length - 1 ? "border-b-0" : ""
-                    }`}
-                  >
-                    <p className="font-headline text-5xl font-black leading-none text-primary/35">
-                      {value.title}
-                    </p>
-                    <p className="mt-3 text-sm font-bold uppercase tracking-[0.12em] text-primary">{value.translation}</p>
-                    <p className="body-copy mt-5 max-w-md text-sm text-muted-foreground">{value.description}</p>
-                  </div>
-                ))}
+              <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
+                <div className="lg:sticky lg:top-24">
+                  <span className="eyebrow-label">Growth standards</span>
+                  <h2 className="section-title mt-4">What LEAD protects as it grows.</h2>
+                  <p className="body-copy mt-4 text-muted-foreground">
+                    LEAD can scale only if chapters, programs, and partnerships
+                    protect the same culture: purpose, preparation,
+                    responsibility, and student-first impact.
+                  </p>
+                </div>
+
+                <div className="border-y border-border/80">
+                  {operatingValues.map((value, index) => (
+                    <article
+                      key={value.title}
+                      className="grid gap-5 border-b border-border/70 py-6 last:border-b-0 sm:grid-cols-[5rem_1fr] sm:py-8"
+                    >
+                      <div>
+                        <span className="flex size-12 items-center justify-center rounded-full border border-primary/35 bg-primary/12 text-sm font-bold text-primary">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                      </div>
+                      <div>
+                        <p className="font-headline text-4xl font-black leading-none text-primary/42 sm:text-5xl">
+                          {value.title}
+                        </p>
+                        <p className="mt-3 text-sm font-bold uppercase tracking-[0.12em] text-primary">
+                          {value.translation}
+                        </p>
+                        <p className="body-copy mt-4 max-w-2xl text-muted-foreground">
+                          {value.description}
+                        </p>
+                      </div>
+                    </article>
+                  ))}
+                </div>
               </div>
             </MainContainer>
           </section>
@@ -140,8 +193,8 @@ export default function AboutPage() {
           <section className="relative py-16 sm:py-24">
             <MainContainer className="relative z-10 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
               <div>
-                <span className="eyebrow-label">Why it works</span>
-                <h2 className="section-title mt-4">LEAD is not only an event organizer.</h2>
+                <span className="eyebrow-label">Ecosystem logic</span>
+                <h2 className="section-title mt-4">More than events: a pathway students can use.</h2>
                 <p className="body-copy mt-4 text-muted-foreground">
                   Events matter when they create value. LEAD connects events to a
                   larger system: chapters, mentorship, practical projects,
@@ -176,12 +229,12 @@ export default function AboutPage() {
                 <span className="eyebrow-label">Leadership</span>
                 <h2 className="section-title mt-4">Built by students, professionals, volunteers, and chapter leaders.</h2>
                 <p className="body-copy mt-4 text-muted-foreground">
-                  This is a curated leadership view, not a full roster. LEAD is
-                  bigger than any one page: chapter leaders, volunteers, mentors,
-                  and students across the region carry the work forward.
+                  These are some of the people carrying the work forward. LEAD
+                  is bigger than one page: chapter leaders, volunteers, mentors,
+                  and students across the region build the momentum.
                 </p>
               </div>
-              <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="mt-10 grid auto-cols-[minmax(17rem,78vw)] grid-flow-col gap-4 overflow-x-auto pb-4 [scrollbar-width:none] sm:auto-cols-[minmax(19rem,45vw)] lg:grid-flow-row lg:grid-cols-3 lg:overflow-visible lg:pb-0">
                 {leadership.map((person) => (
                   <article key={person.name} className="overflow-hidden rounded-2xl border border-border bg-background/75">
                     <Image
@@ -210,6 +263,23 @@ export default function AboutPage() {
     </div>
   );
 }
+
+const aboutProofMoments = [
+  {
+    eyebrow: "Chapters",
+    title: "Students make LEAD local.",
+    description:
+      "Chapter leaders turn leadership into repeated practice, belonging, and visible campus momentum.",
+    image: "/chapters/chapter-1.jpg",
+  },
+  {
+    eyebrow: "Programs",
+    title: "Experiences make opportunity concrete.",
+    description:
+      "Workshops, visits, and summits help students see the rooms, tools, and standards around them.",
+    image: "/about-us/3.jpg",
+  },
+];
 
 function externalProps(href: string) {
   const external = isExternalHref(href);
