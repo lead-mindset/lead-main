@@ -19,6 +19,7 @@ export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeProgram = programs[activeIndex];
   const videoRef = useRef<HTMLVideoElement>(null);
+  const previewFrameSeconds = 5.1;
 
   useEffect(() => {
     const video = videoRef.current;
@@ -26,10 +27,10 @@ export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
 
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     const primeVideoFrame = () => {
-      if (video.currentTime > 0.4) return;
+      if (video.currentTime > previewFrameSeconds - 0.4) return;
 
       try {
-        video.currentTime = 1.35;
+        video.currentTime = previewFrameSeconds;
       } catch {
         // Seeking can fail before metadata is available.
       }
@@ -56,7 +57,7 @@ export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
       video.removeEventListener("loadedmetadata", primeVideoFrame);
       motionQuery.removeEventListener("change", syncPlayback);
     };
-  }, [activeIndex]);
+  }, [activeIndex, previewFrameSeconds]);
 
   const goTo = (nextIndex: number) => {
     setActiveIndex((nextIndex + programs.length) % programs.length);
