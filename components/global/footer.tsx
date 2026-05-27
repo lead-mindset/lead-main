@@ -49,6 +49,7 @@ export default function Footer() {
                 alt="LEAD"
                 width={40}
                 height={22}
+                className="h-auto w-10"
               />
               <span className="text-xl font-bold text-foreground">LEAD</span>
             </Link>
@@ -74,7 +75,7 @@ export default function Footer() {
             </h2>
             <ul className="mt-4 grid gap-3 text-sm">
               {PUBLIC_NAV_ITEMS.map((item) => (
-                <li key={item.href}>
+                <li key={`${item.label}-${item.href}`}>
                   <Link
                     href={item.href}
                     className="text-muted-foreground transition-colors hover:text-foreground"
@@ -120,7 +121,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col gap-3 border-t border-border/60 pt-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} LEAD. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} LEAD. All rights reserved.</p>
           <p>Built for students, chapters, mentors, partners, and community.</p>
         </div>
       </MainContainer>

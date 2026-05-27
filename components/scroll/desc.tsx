@@ -10,7 +10,7 @@ export default function Desc() {
     <p
       className="opacity-0 text-center text-[#0e100f] text-[2rem]"
     >
-      We are a network of professionals and students dedicated to empowering the next generation of Latino leaders across Latin America and the U.S
+      We are a network of professionals and students dedicated to empowering the next generation of leaders across Latin America and the U.S.
     </p>
   </div>
   <div className="w-[90vw]">

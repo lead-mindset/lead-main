@@ -320,16 +320,23 @@
 .eyebrow-label {
   display: inline-flex;
   align-items: center;
+  gap: 0.65rem;
   width: fit-content;
-  border-radius: 999px;
-  border: 1px solid color-mix(in oklab, var(--primary) 42%, transparent);
-  background: color-mix(in oklab, var(--primary) 16%, var(--background));
-  padding: 0.45rem 0.8rem;
   color: var(--primary);
   font-family: var(--font-montserrat), sans-serif;
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.eyebrow-label::before {
+  content: "";
+  display: inline-block;
+  width: 2rem;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--brand-logo-red-orange), var(--primary));
 }
 
 .pathway-stage {
@@ -389,11 +396,21 @@
 @media (max-width: 640px) {
   .display-title,
   .hero-title {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
   }
 
   .section-title {
-    font-size: 1.875rem;
+    font-size: 1.75rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .body-copy {
+    font-size: 0.95rem;
+    line-height: 1.65;
   }
 }
 

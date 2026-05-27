@@ -43,6 +43,7 @@ export default function NavBar() {
           width={38}
           height={21}
           priority
+          className="h-auto w-[38px]"
         />
         <span className="text-lg font-bold text-foreground">LEAD</span>
       </Link>
@@ -53,7 +54,7 @@ export default function NavBar() {
 
           return (
             <Link
-              key={item.href}
+              key={`${item.label}-${item.href}`}
               href={item.href}
               aria-current={active ? "page" : undefined}
               className={cn(

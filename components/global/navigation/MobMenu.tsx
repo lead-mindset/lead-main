@@ -53,13 +53,15 @@ export default function MobMenu({ pathname }: { pathname: string }) {
 
                 return (
                   <Link
-                    key={item.href}
+                    key={`${item.label}-${item.href}`}
                     href={item.href}
                     aria-current={active ? "page" : undefined}
                     className={cn(
                       "rounded-md px-3 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground",
                       active && "bg-muted text-foreground"
                     )}
+                    target={isExternalHref(item.href) ? "_blank" : undefined}
+                    rel={isExternalHref(item.href) ? "noreferrer" : undefined}
                     onClick={() => setIsOpen(false)}
                   >
                     {item.label}
