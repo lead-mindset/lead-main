@@ -2,18 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
-  Building2,
   GraduationCap,
   Handshake,
-  HeartHandshake,
   Rocket,
   Users,
+  X,
   type LucideIcon,
 } from "lucide-react";
 
 import { MainContainer } from "@/components/global/main-container";
 import { GetInvolvedRocketHero } from "@/components/public/get-involved-rocket-hero";
 import { InterestForm } from "@/components/public/interest-form";
+import { PartnerPathSelector } from "@/components/public/partner-path-selector";
 import { PublicRouteChooser } from "@/components/public/public-route-chooser";
 import { SectionReveal } from "@/components/public/section-reveal";
 import {
@@ -112,24 +112,6 @@ const chapterValues = [
   },
 ];
 
-const partnerPaths = [
-  {
-    title: "Company",
-    description: "Host visits, sponsor programs, share industry context, or support student opportunity.",
-    icon: Building2,
-  },
-  {
-    title: "Professional or mentor",
-    description: "Mentor, speak, review portfolios, coach leaders, or help students understand standards.",
-    icon: HeartHandshake,
-  },
-  {
-    title: "Community organization",
-    description: "Collaborate on STEM access, regional programs, community impact, or student outreach.",
-    icon: Users,
-  },
-];
-
 export default function GetInvolvedPage() {
   return (
     <div className="overflow-hidden bg-background text-foreground">
@@ -170,7 +152,7 @@ export default function GetInvolvedPage() {
               </p>
             </div>
 
-            <div className="mt-10 grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <div className="mt-10 grid auto-cols-[minmax(17rem,82vw)] grid-flow-col items-stretch gap-4 overflow-x-auto pb-4 [scrollbar-width:none] md:grid-flow-row md:grid-cols-2 md:overflow-visible md:pb-0 xl:grid-cols-4">
               {rolePaths.map((path, index) => (
                 <RolePathCard key={path.label} path={path} index={index} />
               ))}
@@ -307,26 +289,7 @@ export default function GetInvolvedPage() {
                 sponsorship, and aligned community work.
               </p>
 
-              <div className="mt-7 grid gap-3">
-                {partnerPaths.map((path) => {
-                  const Icon = path.icon;
-
-                  return (
-                    <div
-                      key={path.title}
-                      className="grid grid-cols-[3rem_1fr] gap-4 rounded-xl border border-border bg-card/75 p-4 transition-colors hover:border-primary/45"
-                    >
-                      <span className="flex size-12 items-center justify-center rounded-lg bg-primary/15 text-primary ring-1 ring-primary/30">
-                        <Icon className="size-5" />
-                      </span>
-                      <div>
-                        <h3 className="text-lg font-semibold text-foreground">{path.title}</h3>
-                        <p className="mt-1 text-sm leading-6 text-muted-foreground">{path.description}</p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+              <PartnerPathSelector />
 
               <div className="mt-7">
                 <PartnerInterestDialog />
@@ -406,9 +369,15 @@ function ChapterInterestDialog() {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button size="lg" variant="hero">Request chapter interest</Button>
+        <Button size="lg" variant="hero">Submit chapter interest</Button>
       </AlertDialogTrigger>
       <AlertDialogContent className="max-h-[88dvh] !max-w-[min(42rem,calc(100vw-2rem))] overflow-y-auto rounded-2xl">
+        <AlertDialogCancel
+          aria-label="Close chapter interest form"
+          className="absolute right-4 top-4 size-8 p-0"
+        >
+          <X className="size-4" />
+        </AlertDialogCancel>
         <AlertDialogHeader className="items-start text-left">
           <AlertDialogTitle>Request chapter interest</AlertDialogTitle>
           <AlertDialogDescription>
@@ -422,6 +391,7 @@ function ChapterInterestDialog() {
           defaultOpen
           showToggle={false}
           showHeader={false}
+          stickyFooter
           className="border-0 bg-transparent p-0 shadow-none"
         />
         <AlertDialogCancel className="w-full sm:w-fit">Close</AlertDialogCancel>
@@ -437,6 +407,12 @@ function PartnerInterestDialog() {
         <Button size="lg" variant="hero">Start a partnership conversation</Button>
       </AlertDialogTrigger>
       <AlertDialogContent className="max-h-[88dvh] !max-w-[min(42rem,calc(100vw-2rem))] overflow-y-auto rounded-2xl">
+        <AlertDialogCancel
+          aria-label="Close partnership form"
+          className="absolute right-4 top-4 size-8 p-0"
+        >
+          <X className="size-4" />
+        </AlertDialogCancel>
         <AlertDialogHeader className="items-start text-left">
           <AlertDialogTitle>Partner or collaborate with LEAD</AlertDialogTitle>
           <AlertDialogDescription>
@@ -449,6 +425,7 @@ function PartnerInterestDialog() {
           defaultOpen
           showToggle={false}
           showHeader={false}
+          stickyFooter
           className="border-0 bg-transparent p-0 shadow-none"
         />
         <AlertDialogCancel className="w-full sm:w-fit">Close</AlertDialogCancel>

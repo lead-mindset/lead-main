@@ -17,12 +17,14 @@ export function InterestForm({
   defaultOpen = false,
   showToggle = true,
   showHeader = true,
+  stickyFooter = false,
   className,
 }: {
   kind: InterestKind;
   defaultOpen?: boolean;
   showToggle?: boolean;
   showHeader?: boolean;
+  stickyFooter?: boolean;
   className?: string;
 }) {
   const [enabled, setEnabled] = useState(defaultOpen);
@@ -114,16 +116,24 @@ export function InterestForm({
             </>
           )}
 
-          <Button type="submit" disabled={status === "submitting"}>
-            {status === "submitting" ? "Sending..." : "Submit"}
-          </Button>
-          <p className="text-sm text-muted-foreground" aria-live="polite">
-            {status === "success"
-              ? "Thank you. LEAD received your structured interest."
-              : status === "error"
-                ? "Something went wrong. Please check the required fields and try again."
-                : "Required fields must be completed before submission."}
-          </p>
+          <div
+            className={cn(
+              "grid gap-2",
+              stickyFooter &&
+                "sticky bottom-0 z-20 -mx-1 border-t border-border bg-background/95 p-3 backdrop-blur"
+            )}
+          >
+            <Button type="submit" disabled={status === "submitting"} className="w-full">
+              {status === "submitting" ? "Sending..." : "Submit"}
+            </Button>
+            <p className="text-sm text-muted-foreground" aria-live="polite">
+              {status === "success"
+                ? "Thank you. LEAD received your structured interest."
+                : status === "error"
+                  ? "Something went wrong. Please check the required fields and try again."
+                  : "Required fields must be completed before submission."}
+            </p>
+          </div>
         </form>
       ) : null}
     </div>
