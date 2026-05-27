@@ -12,6 +12,7 @@
 
 # testing
 /coverage
+/test-results/
 
 # next.js
 /.next/
@@ -29,6 +30,18 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+
+# generated agent QA/planning artifacts
+/.agents/qa/
+/.agents/plans/
+
+# local loose asset exports; canonical copies live under public/allies
+/microsoft.svg
+/microsoftmini.png
+/peruviansinstem.jpg
+/shpe.webp
+/public/alpfa.png
+/public/LinkedIn Post*.pdf
 
 # env files (can opt-in for committing if needed)
 .env*
