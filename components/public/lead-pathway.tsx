@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, type CSSProperties } from "react";
 import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import gsap from "@/lib/gsap-setup";
 import { REDUCED_MOTION_QUERY } from "@/components/global/motion-guidelines";
@@ -10,8 +11,35 @@ import { cn } from "@/lib/utils";
 type PathwayStage = {
   title: string;
   promise: string;
-  example: string;
   outcome: string;
+};
+
+const pathwayStageTones = [
+  {
+    color: "var(--brand-logo-red-orange)",
+    contrast: "var(--foreground)",
+    textClassName: "text-[var(--brand-logo-red-orange)]",
+  },
+  {
+    color: "var(--brand-logo-magenta)",
+    contrast: "var(--foreground)",
+    textClassName: "text-[var(--brand-logo-magenta)]",
+  },
+  {
+    color: "var(--accent)",
+    contrast: "var(--foreground)",
+    textClassName: "text-accent",
+  },
+  {
+    color: "var(--foreground)",
+    contrast: "var(--background)",
+    textClassName: "text-foreground",
+  },
+];
+
+type PathwayStageStyle = CSSProperties & {
+  "--pathway-stage-color": string;
+  "--pathway-stage-contrast": string;
 };
 
 export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
@@ -29,6 +57,12 @@ export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
       const mm = gsap.matchMedia();
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const activateStage = (activeStage: HTMLElement) => {
+          stageRefs.current.forEach((stage) => {
+            stage?.classList.toggle("is-pathway-active", stage === activeStage);
+          });
+        };
+
         gsap.set(path, {
           strokeDasharray: length,
           strokeDashoffset: length,
@@ -39,14 +73,22 @@ export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
           ease: "none",
           scrollTrigger: {
             trigger: section,
-            start: "top 72%",
-            end: "bottom 48%",
-            scrub: 0.8,
+            start: "top 88%",
+            end: "bottom 12%",
+            scrub: 1.4,
           },
         });
 
         stageRefs.current.forEach((stage) => {
           if (!stage) return;
+
+          ScrollTrigger.create({
+            trigger: stage,
+            start: "top 52%",
+            end: "bottom 52%",
+            onEnter: () => activateStage(stage),
+            onEnterBack: () => activateStage(stage),
+          });
 
           gsap.fromTo(
             stage,
@@ -80,38 +122,26 @@ export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
     <section
       ref={sectionRef}
       id="pathway"
-      className="lead-pathway relative scroll-mt-24 overflow-hidden py-24 sm:py-28"
+      className="lead-pathway relative -mt-20 scroll-mt-24 overflow-visible pb-24 pt-44 sm:-mt-24 sm:pb-28 sm:pt-52"
     >
-      <div className="pointer-events-none absolute inset-0 z-0">
+      <div className="pointer-events-none absolute inset-y-0 left-0 right-[-18vw] z-0 overflow-hidden lg:left-[40%] lg:right-[-10vw]">
         <svg
-          className="absolute left-1/2 top-16 h-[calc(100%-8rem)] w-[min(84rem,92vw)] -translate-x-1/2"
+          className="absolute -left-10 top-6 h-[calc(100%-3rem)] w-[88vw] min-w-[56rem] lg:left-0 lg:w-[76vw]"
           viewBox="0 0 1200 1260"
           fill="none"
           preserveAspectRatio="none"
           aria-hidden="true"
         >
           <path
-            d="M156 56 C462 128 694 -20 896 158 C1096 336 1014 556 706 612 C358 674 142 764 258 956 C386 1168 786 1030 1044 1210"
-            stroke="url(#lead-pathway-base)"
-            strokeWidth="62"
-            strokeLinecap="round"
-            opacity="0.08"
-          />
-          <path
             ref={pathRef}
-            d="M156 56 C462 128 694 -20 896 158 C1096 336 1014 556 706 612 C358 674 142 764 258 956 C386 1168 786 1030 1044 1210"
+            d="M52 -120 C388 34 718 -18 918 184 C1112 380 908 512 610 590 C254 684 180 808 372 956 C574 1112 870 1050 1164 1376"
             stroke="url(#lead-pathway-draw)"
-            strokeWidth="30"
+            strokeWidth="76"
             strokeLinecap="round"
-            opacity="0.28"
+            opacity="0.58"
           />
           <defs>
-            <linearGradient id="lead-pathway-base" x1="156" y1="56" x2="1044" y2="1210" gradientUnits="userSpaceOnUse">
-              <stop stopColor="var(--brand-logo-red-orange)" />
-              <stop offset="0.45" stopColor="var(--brand-logo-magenta)" />
-              <stop offset="1" stopColor="var(--primary)" />
-            </linearGradient>
-            <linearGradient id="lead-pathway-draw" x1="156" y1="56" x2="1044" y2="1210" gradientUnits="userSpaceOnUse">
+            <linearGradient id="lead-pathway-draw" x1="52" y1="-120" x2="1164" y2="1376" gradientUnits="userSpaceOnUse">
               <stop stopColor="var(--brand-logo-red-orange)" />
               <stop offset="0.42" stopColor="var(--brand-logo-magenta)" />
               <stop offset="1" stopColor="var(--primary)" />
@@ -122,61 +152,69 @@ export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:gap-14">
-          <div className="lg:sticky lg:top-28 lg:h-fit">
-            <span className="eyebrow-label">The LEAD pathway</span>
-            <h2 className="section-title mt-4">
-              Learn. Explore. Aspire. Discover.
+          <div
+            data-pathway-intro
+            className="relative z-20 lg:sticky lg:top-24 lg:max-h-[calc(100svh-7rem)] lg:self-start"
+          >
+            <h2 className="flex flex-col font-headline text-[clamp(3.6rem,7.4vw,6rem)] font-black leading-[0.86] tracking-normal">
+              <span className="block text-[var(--brand-logo-red-orange)]">
+                Learn
+              </span>
+              <span className="block text-[var(--brand-logo-magenta)]">
+                Explore
+              </span>
+              <span className="block text-accent">
+                Aspire
+              </span>
+              <span className="block text-foreground">
+                Discover.
+              </span>
             </h2>
-            <p className="body-copy mt-4 text-muted-foreground">
-              The pathway is how LEAD turns access into growth. Community,
-              chapters, programs, mentors, and partners help students move from
-              possibility to proof.
-            </p>
           </div>
 
           <div className="border-y border-border/80">
-            {stages.map((stage, index) => (
-              <article
-                key={stage.title}
-                ref={(node) => {
-                  stageRefs.current[index] = node;
-                }}
-                className={cn(
-                  "grid gap-5 border-b border-border/70 py-7 last:border-b-0 sm:py-8 lg:grid-cols-[4rem_0.48fr_1fr] lg:items-start",
-                  index % 2 === 1 && "lg:ml-16"
-                )}
-              >
-                <div className="flex size-12 shrink-0 items-center justify-center rounded-full border border-primary/35 bg-primary/15 text-sm font-bold text-primary">
-                  {String(index + 1).padStart(2, "0")}
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-foreground">
-                    {stage.title}
-                  </h3>
-                  <p className="body-copy mt-3 text-muted-foreground">
-                    {stage.promise}
-                  </p>
-                </div>
-                <div className="grid gap-5 md:grid-cols-2">
-                  <div>
-                    <p className="border-t border-primary/45 pt-4 text-xs font-semibold uppercase tracking-[0.12em] text-primary">
-                      In practice
-                    </p>
-                    <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                      {stage.example}
-                    </p>
+            {stages.map((stage, index) => {
+              const tone = pathwayStageTones[index] ?? pathwayStageTones[0];
+
+              return (
+                <article
+                  key={stage.title}
+                  ref={(node) => {
+                    stageRefs.current[index] = node;
+                  }}
+                  style={
+                    {
+                      "--pathway-stage-color": tone.color,
+                      "--pathway-stage-contrast": tone.contrast,
+                    } as PathwayStageStyle
+                  }
+                  className={cn(
+                    "pathway-stage grid gap-5 border-b border-border/70 py-7 last:border-b-0 sm:py-8 lg:grid-cols-[4rem_minmax(0,1fr)_18rem] lg:items-start",
+                    index % 2 === 1 && "lg:ml-16"
+                  )}
+                >
+                  <div className="pathway-step-number flex size-12 shrink-0 items-center justify-center rounded-full border text-sm font-bold">
+                    {String(index + 1).padStart(2, "0")}
                   </div>
                   <div>
-                    <p className="border-t border-primary/45 pt-4 text-xs font-semibold uppercase tracking-[0.12em] text-primary">
-                      Student gains
+                    <h3 className={cn("text-2xl font-bold", tone.textClassName)}>
+                      {stage.title}
+                    </h3>
+                    <p className="body-copy mt-3 text-muted-foreground">
+                      {stage.promise}
                     </p>
-                    <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                  </div>
+                  <div className="pathway-outcome rounded-xl border p-4">
+                    <p className="text-xs font-semibold uppercase tracking-[0.12em]">
+                      What this builds
+                    </p>
+                    <p className="mt-3 text-sm font-semibold leading-6 text-foreground">
                       {stage.outcome}
                     </p>
                   </div>
-                </div>
-              </article>
-            ))}
+                </article>
+              );
+            })}
           </div>
         </div>
       </div>

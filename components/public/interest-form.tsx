@@ -7,12 +7,25 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { partnerTypes } from "@/lib/public-site/content";
+import { cn } from "@/lib/utils";
 
 type InterestKind = "chapter_interest" | "partnership";
 type SubmitState = "idle" | "submitting" | "success" | "error";
 
-export function InterestForm({ kind }: { kind: InterestKind }) {
-  const [enabled, setEnabled] = useState(false);
+export function InterestForm({
+  kind,
+  defaultOpen = false,
+  showToggle = true,
+  showHeader = true,
+  className,
+}: {
+  kind: InterestKind;
+  defaultOpen?: boolean;
+  showToggle?: boolean;
+  showHeader?: boolean;
+  className?: string;
+}) {
+  const [enabled, setEnabled] = useState(defaultOpen);
   const [status, setStatus] = useState<SubmitState>("idle");
 
   const isChapter = kind === "chapter_interest";
@@ -36,35 +49,45 @@ export function InterestForm({ kind }: { kind: InterestKind }) {
   }
 
   return (
-    <div className="editorial-card rounded-2xl p-5 shadow-xs">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h3 className="text-lg font-semibold text-foreground">{title}</h3>
-          <p className="mt-1 text-sm text-muted-foreground">
-            {isChapter
-              ? "Use this when you are ready to share serious chapter interest. Submission does not guarantee selection or approval."
-              : "Use this to start a structured partnership or community collaboration conversation with LEAD."}
-          </p>
+    <div className={cn("editorial-card rounded-2xl p-5 shadow-xs", className)}>
+      {showHeader ? (
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h3 className="text-lg font-semibold text-foreground">{title}</h3>
+            <p className="mt-1 text-sm text-muted-foreground">
+              {isChapter
+                ? "Use this when you are ready to share serious chapter interest. Submission does not guarantee selection or approval."
+                : "Use this to start a structured partnership or community collaboration conversation with LEAD."}
+            </p>
+          </div>
+          {showToggle ? (
+            <Button type="button" variant="outline" size="sm" onClick={() => setEnabled((value) => !value)}>
+              {enabled ? "Hide form" : "Open form"}
+            </Button>
+          ) : null}
         </div>
-        <Button type="button" variant="outline" size="sm" onClick={() => setEnabled((value) => !value)}>
-          {enabled ? "Hide form" : "Open form"}
-        </Button>
-      </div>
+      ) : null}
 
       {enabled ? (
-        <form className="mt-6 grid gap-4" onSubmit={onSubmit}>
+        <form className={cn("grid", showHeader ? "mt-6 gap-4" : "gap-3")} onSubmit={onSubmit}>
           <input type="hidden" name="source" value="lead-public-site" />
-          <Field id={`${kind}-name`} label="Name" name="name" required />
-          <Field id={`${kind}-email`} label="Email" name="email" type="email" required />
+          <div className="grid gap-3 sm:grid-cols-2">
+            <Field id={`${kind}-name`} label="Name" name="name" required />
+            <Field id={`${kind}-email`} label="Email" name="email" type="email" required />
+          </div>
 
           {isChapter ? (
             <>
-              <Field id="chapter-university" label="University" name="university" required />
-              <Field id="chapter-location" label="Country and city" name="location" required />
-              <Field id="chapter-team" label="Are you applying solo or with a team?" name="teamStatus" required />
-              <TextAreaField id="chapter-motivation" label="Why do you want to bring LEAD to your university?" name="motivation" required />
-              <TextAreaField id="chapter-impact" label="What impact would your chapter create?" name="intendedImpact" required />
-              <Field id="chapter-profile" label="LinkedIn or profile link (optional)" name="profile" />
+              <div className="grid gap-3 sm:grid-cols-2">
+                <Field id="chapter-university" label="University" name="university" required />
+                <Field id="chapter-location" label="Country and city" name="location" required />
+              </div>
+              <div className="grid gap-3 sm:grid-cols-2">
+                <Field id="chapter-team" label="Solo or with a team?" name="teamStatus" required />
+                <Field id="chapter-profile" label="LinkedIn or profile link (optional)" name="profile" />
+              </div>
+              <TextAreaField id="chapter-motivation" label="Why do you want to bring LEAD to your university?" name="motivation" required compact={!showHeader} />
+              <TextAreaField id="chapter-impact" label="What impact would your chapter create?" name="intendedImpact" required compact={!showHeader} />
             </>
           ) : (
             <>
@@ -133,16 +156,24 @@ function TextAreaField({
   label,
   name,
   required,
+  compact,
 }: {
   id: string;
   label: string;
   name: string;
   required?: boolean;
+  compact?: boolean;
 }) {
   return (
     <div className="grid gap-2">
       <Label htmlFor={id}>{label}</Label>
-      <Textarea id={id} name={name} required={required} aria-required={required} />
+      <Textarea
+        id={id}
+        name={name}
+        required={required}
+        aria-required={required}
+        className={compact ? "min-h-20" : undefined}
+      />
     </div>
   );
 }

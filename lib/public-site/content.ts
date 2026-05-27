@@ -24,7 +24,6 @@ export const proofStats = [
   { value: "1,135+", label: "members" },
   { value: "14", label: "university chapters" },
   { value: "100+", label: "events organized" },
-  { value: "LATAM + U.S.", label: "regional presence" },
 ];
 
 export const partnerLogos = [
@@ -74,27 +73,23 @@ export const audienceRoutes = [
 export const pathwayStages = [
   {
     title: "Learn",
-    promise: "Build foundations through STEM education, workshops, mentorship, and exposure to new skills.",
-    example: "Students meet real tools, mentors, and technical ideas before they are expected to have everything figured out.",
-    outcome: "Confidence, language, and a stronger starting point.",
+    promise: "Start where you are with workshops, mentors, and chapter activities that make STEM feel approachable.",
+    outcome: "A place to start, and the confidence to keep going.",
   },
   {
     title: "Explore",
-    promise: "Discover careers, industries, universities, companies, technologies, and possible futures.",
-    example: "Company visits, leadership summits, and chapter events help students see what bigger rooms actually look like.",
-    outcome: "Direction, context, and a clearer map of what exists.",
+    promise: "See careers, companies, universities, and technologies before choosing one perfect path.",
+    outcome: "A clearer sense of the rooms, roles, and futures they can choose from.",
   },
   {
     title: "Aspire",
-    promise: "Grow leadership, ambition, professional identity, and the belief that you can belong in those rooms.",
-    example: "Chapter leadership, LEAD HER, mentorship, and community role models turn inspiration into practiced responsibility.",
-    outcome: "Leadership practice, courage, and visible momentum.",
+    promise: "Build confidence through role models, mentorship, LEAD HER, and chapter leadership practice.",
+    outcome: "The belief and practice to belong, contribute, and lead.",
   },
   {
     title: "Discover",
-    promise: "Find concrete next steps through opportunities, mentors, chapters, projects, and community initiatives.",
-    example: "The Talent Platform, Pulse, Impact Metrics, and partner network help LEAD guide students toward the next move.",
-    outcome: "Proof of growth, access, and opportunity readiness.",
+    promise: "Find the next concrete move through programs, mentors, projects, chapters, and partner opportunities.",
+    outcome: "A next step they can act on with support.",
   },
 ];
 
@@ -187,31 +182,55 @@ export const programs = [
     title: "LEAD HER",
     description: "A programmatic system that supports women in LEAD toward STEM, leadership, mentorship, and growth.",
     nextStep: "Support women in leadership",
+    outcome: "Mentorship, visibility, and leadership practice for women in STEM.",
+    href: "/get-involved#partners",
+    video: "/video2.mp4",
+    poster: "/about-us/6.jpg",
   },
   {
     title: "LEAD Academia",
     description: "Early exposure for high school students through STEM learning, university access, and leadership.",
     nextStep: "Expand early access",
+    outcome: "Students discover STEM before college feels out of reach.",
+    href: "/get-involved#partners",
+    video: "/video.mp4",
+    poster: "/about-us/3.jpg",
   },
   {
     title: "Corporate Visits",
     description: "Industry exposure that helps students understand culture, standards, career paths, and opportunity.",
     nextStep: "Host a visit",
+    outcome: "Students see professional rooms, standards, and possible careers up close.",
+    href: "/get-involved#partners",
+    video: "/video3.mp4",
+    poster: "/about-us/5.jpg",
   },
   {
     title: "Regional Events",
     description: "Large experiences that connect chapters, partners, and student communities across the Americas.",
     nextStep: "Build regional proof",
+    outcome: "Chapters and partners gather around shared momentum and opportunity.",
+    href: "/#impact",
+    video: "/video2.mp4",
+    poster: "/chapters/chapter-2.jpg",
   },
   {
     title: "Bootcamps and Projects",
     description: "Practical learning experiences that turn curiosity into applied skill and visible outcomes.",
     nextStep: "Create proof of growth",
+    outcome: "Students turn learning into projects, confidence, and portfolio proof.",
+    href: "/get-involved#students",
+    video: "/video.mp4",
+    poster: "/about-us/7.jpg",
   },
   {
     title: "Leadership Development",
     description: "Workshops, coaching, and chapter practice that develop responsibility, confidence, and judgment.",
     nextStep: "Practice leadership",
+    outcome: "Student leaders build judgment through repeated responsibility.",
+    href: "/get-involved#chapters",
+    video: "/video3.mp4",
+    poster: "/chapters/chapter-5.jpg",
   },
 ];
 
@@ -222,6 +241,7 @@ export const impactHighlights = [
     served: "More than 400 applicants and students seeking real innovation exposure.",
     why: "Students saw industry standards up close and connected learning with problem solving.",
     pillar: "Professional Development",
+    image: "/about-us/5.jpg",
   },
   {
     title: "Microsoft Leadership Summit",
@@ -229,6 +249,7 @@ export const impactHighlights = [
     served: "University chapter leaders building local networks and collaboration.",
     why: "It strengthened the leadership structure needed for regional growth.",
     pillar: "Leadership",
+    image: "/chapters/chapter-2.jpg",
   },
   {
     title: "LEAD Discover Day",
@@ -236,6 +257,7 @@ export const impactHighlights = [
     served: "More than 100 high school students discovering STEM pathways.",
     why: "It created early access, curiosity, and confidence before college.",
     pillar: "LEAD Academia",
+    image: "/about-us/3.jpg",
   },
   {
     title: "LATAM Women's Hackathon",
@@ -243,6 +265,7 @@ export const impactHighlights = [
     served: "Women in technology building recognized solutions for sector leaders.",
     why: "It demonstrated the innovation and leadership already present in the community.",
     pillar: "Women Excellence",
+    image: "/about-us/6.jpg",
   },
   {
     title: "Rutgers Shadow Program",
@@ -250,6 +273,7 @@ export const impactHighlights = [
     served: "More than 80 high school students exploring STEM and college pathways.",
     why: "It connected access, creativity, and applied learning through partnership.",
     pillar: "Academic Excellence",
+    image: "/about-us/7.jpg",
   },
   {
     title: "LEAD UTP Little Einsteins",
@@ -257,6 +281,7 @@ export const impactHighlights = [
     served: "More than 50 children introduced to creativity, problem solving, and technology.",
     why: "It showed how LEAD chapters can create responsible community impact.",
     pillar: "Community Impact",
+    image: "/chapters/chapter-6.jpg",
   },
 ];
 

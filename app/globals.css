@@ -222,10 +222,70 @@
   background-image: linear-gradient(135deg, var(--primary), var(--accent));
 }
 
+.lead-public-page {
+  background:
+    radial-gradient(circle at 72% 8%, color-mix(in oklab, var(--primary) 16%, transparent), transparent 34rem),
+    radial-gradient(circle at 18% 38%, color-mix(in oklab, var(--secondary) 11%, transparent), transparent 32rem),
+    radial-gradient(circle at 74% 70%, color-mix(in oklab, var(--primary) 12%, transparent), transparent 36rem),
+    linear-gradient(180deg, #060a2e 0%, var(--background) 28%, #050824 54%, var(--background) 82%, #060a2e 100%);
+}
+
+.lead-impact-aura,
+.lead-regional-aura,
+.lead-programs-aura {
+  position: absolute;
+  inset: -9rem 0;
+  z-index: -1;
+  pointer-events: none;
+  mask-image: linear-gradient(180deg, transparent, black 24%, black 76%, transparent);
+}
+
+.lead-impact-aura {
+  background:
+    radial-gradient(circle at 50% 22%, rgba(126, 86, 226, 0.16), transparent 34rem),
+    radial-gradient(circle at 12% 78%, rgba(186, 78, 94, 0.1), transparent 28rem);
+}
+
+.lead-regional-aura {
+  background:
+    radial-gradient(circle at 74% 28%, rgba(126, 86, 226, 0.18), transparent 34rem),
+    radial-gradient(circle at 20% 70%, rgba(3, 6, 31, 0.72), transparent 36rem);
+}
+
+.lead-programs-aura {
+  background:
+    radial-gradient(circle at 16% 12%, color-mix(in oklab, var(--primary) 16%, transparent), transparent 30rem),
+    radial-gradient(circle at 84% 76%, color-mix(in oklab, var(--secondary) 10%, transparent), transparent 30rem);
+}
+
 .editorial-photo-hero {
   position: relative;
   min-height: 92dvh;
   isolation: isolate;
+}
+
+.lead-logo-marquee {
+  animation: lead-marquee 28s linear infinite;
+}
+
+.lead-highlights-track {
+  animation: lead-marquee 42s linear infinite;
+}
+
+.lead-logo-marquee:hover,
+.lead-highlights-track:hover,
+.lead-logo-marquee:focus-within,
+.lead-highlights-track:focus-within {
+  animation-play-state: paused;
+}
+
+@keyframes lead-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .editorial-photo-hero::after {
@@ -272,6 +332,50 @@
   letter-spacing: 0;
 }
 
+.pathway-stage {
+  --pathway-stage-color: var(--primary);
+  --pathway-stage-contrast: var(--foreground);
+}
+
+.pathway-step-number {
+  border-color: color-mix(in oklab, var(--pathway-stage-color) 40%, transparent);
+  background: color-mix(in oklab, var(--pathway-stage-color) 14%, var(--background));
+  color: color-mix(in oklab, var(--pathway-stage-color) 88%, var(--foreground));
+  box-shadow: 0 0 0 color-mix(in oklab, var(--pathway-stage-color) 0%, transparent);
+  transition:
+    background-color 320ms ease,
+    border-color 320ms ease,
+    box-shadow 320ms ease,
+    color 320ms ease,
+    transform 320ms ease;
+}
+
+.pathway-outcome {
+  border-color: color-mix(in oklab, var(--pathway-stage-color) 24%, transparent);
+  background: color-mix(in oklab, var(--pathway-stage-color) 9%, var(--card));
+  transition:
+    background-color 320ms ease,
+    border-color 320ms ease,
+    transform 320ms ease;
+}
+
+.pathway-outcome > p:first-child {
+  color: color-mix(in oklab, var(--pathway-stage-color) 82%, var(--foreground));
+}
+
+.pathway-stage.is-pathway-active .pathway-step-number {
+  border-color: color-mix(in oklab, var(--pathway-stage-color) 82%, transparent);
+  background: var(--pathway-stage-color);
+  color: var(--pathway-stage-contrast);
+  box-shadow: 0 16px 42px color-mix(in oklab, var(--pathway-stage-color) 32%, transparent);
+  transform: scale(1.08);
+}
+
+.pathway-stage.is-pathway-active .pathway-outcome {
+  border-color: color-mix(in oklab, var(--pathway-stage-color) 42%, transparent);
+  background: color-mix(in oklab, var(--pathway-stage-color) 14%, var(--card));
+}
+
 .mobile-menu-shell {
   display: block;
 }
@@ -300,6 +404,12 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
+  .lead-logo-marquee,
+  .lead-highlights-track {
+    animation: none !important;
+    transform: translateX(0) !important;
+  }
 }
 
 html {
@@ -310,7 +420,7 @@ html {
 html,
 body {
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .grid > *,

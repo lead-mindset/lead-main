@@ -32,6 +32,7 @@ export function SectionReveal({
             y: 0,
             duration: 0.55,
             ease: "power2.out",
+            immediateRender: false,
             scrollTrigger: {
               trigger: element,
               start: "top 82%",
