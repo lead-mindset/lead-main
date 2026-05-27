@@ -122,7 +122,7 @@ export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
     <section
       ref={sectionRef}
       id="pathway"
-      className="lead-pathway relative -mt-14 scroll-mt-24 overflow-visible pb-16 pt-32 sm:-mt-24 sm:pb-28 sm:pt-52"
+      className="lead-pathway relative scroll-mt-24 overflow-visible pb-16 pt-24 sm:pb-28 sm:pt-32"
     >
       <div className="pointer-events-none absolute inset-y-0 left-0 right-[-18vw] z-0 overflow-hidden lg:left-[40%] lg:right-[-10vw]">
         <svg

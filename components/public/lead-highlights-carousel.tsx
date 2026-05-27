@@ -15,7 +15,7 @@ export function LeadHighlightsCarousel({ highlights }: { highlights: Highlight[]
   const carouselHighlights = [...highlights, ...highlights];
 
   return (
-    <section id="highlights" className="relative -mt-14 scroll-mt-24 overflow-hidden pb-14 pt-28 sm:-mt-24 sm:pb-24 sm:pt-48">
+    <section id="highlights" className="relative scroll-mt-24 overflow-hidden pb-14 pt-20 sm:pb-24 sm:pt-28">
       <MainContainer>
         <div className="max-w-3xl">
           <p className="text-sm font-semibold uppercase text-primary">
@@ -32,7 +32,7 @@ export function LeadHighlightsCarousel({ highlights }: { highlights: Highlight[]
       </MainContainer>
 
       <div className="mt-10 overflow-hidden">
-        <div className="lead-highlights-track flex w-max gap-5 px-4 sm:px-6 lg:px-8">
+        <div className="lead-highlights-track flex w-max gap-4 px-4 sm:gap-5 sm:px-6 lg:px-8">
           {carouselHighlights.map((highlight, index) => {
             const isDuplicate = index >= highlights.length;
 
@@ -40,7 +40,7 @@ export function LeadHighlightsCarousel({ highlights }: { highlights: Highlight[]
             <article
               key={`${highlight.title}-${index}`}
               aria-hidden={isDuplicate}
-              className="group relative h-[23rem] w-[17rem] shrink-0 overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_80px_rgba(0,0,0,0.22)] sm:h-[28rem] sm:w-[24rem]"
+              className="group relative h-[24rem] w-[82vw] max-w-[21rem] shrink-0 overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_80px_rgba(0,0,0,0.22)] sm:h-[28rem] sm:w-[24rem] sm:max-w-none"
             >
               <Image
                 src={highlight.image}

@@ -36,7 +36,7 @@ export function RegionalEarthStage() {
     <section
       ref={sectionRef}
       id="regional-footprint"
-      className="relative isolate -mt-14 scroll-mt-24 overflow-visible pb-14 pt-28 sm:-mt-24 sm:pb-24 sm:pt-48"
+      className="relative isolate scroll-mt-24 overflow-visible pb-20 pt-20 sm:pb-28 sm:pt-32"
     >
       <div className="lead-regional-aura" />
       <MainContainer>
@@ -55,7 +55,7 @@ export function RegionalEarthStage() {
             </p>
           </div>
 
-          <div className="regional-earth-shell relative h-[340px] overflow-hidden rounded-2xl border border-white/12 bg-[#050824] shadow-[0_28px_90px_rgba(0,0,0,0.38)] sm:h-[430px] lg:h-[500px]">
+          <div className="regional-earth-shell relative h-[330px] overflow-hidden rounded-2xl border border-white/12 bg-[var(--lead-surface-deep)] shadow-[0_28px_90px_rgba(0,0,0,0.38)] sm:h-[420px] lg:h-[480px]">
             <Canvas
               className="!absolute !inset-0"
               camera={{ position: [0, 0, 5.65], fov: 38 }}
@@ -69,7 +69,7 @@ export function RegionalEarthStage() {
                 <RegionalEarthModel sectionRef={sectionRef} />
               </Suspense>
             </Canvas>
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#050824] to-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[var(--lead-surface-deep)] to-transparent" />
           </div>
         </div>
       </MainContainer>

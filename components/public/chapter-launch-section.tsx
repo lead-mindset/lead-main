@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 
 export function ChapterLaunchSection() {
   return (
-    <section id="chapters" className="relative -mt-16 scroll-mt-24 pb-16 pt-32 sm:-mt-20 sm:pb-20 sm:pt-36">
+    <section id="chapters" className="relative scroll-mt-24 pb-16 pt-20 sm:pb-20 sm:pt-28">
       <MainContainer>
         <div className="grid gap-7 lg:grid-cols-[0.86fr_1.14fr] lg:items-center">
           <div>
@@ -31,16 +31,17 @@ export function ChapterLaunchSection() {
             </p>
 
             <div className="mt-7">
-              <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button size="lg">Request a chapter</Button>
-                </AlertDialogTrigger>
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                  <Button size="lg" variant="hero">Submit chapter interest</Button>
+                  </AlertDialogTrigger>
                 <AlertDialogContent className="max-h-[88dvh] !max-w-[min(42rem,calc(100vw-2rem))] overflow-y-auto rounded-2xl">
                   <AlertDialogHeader className="items-start text-left">
                     <AlertDialogTitle>Request chapter interest</AlertDialogTitle>
                     <AlertDialogDescription>
                       Tell us where you are, who is building with you, and what
-                      kind of student community you want to create.
+                      kind of student community you want to create. This is a
+                      request for review, not chapter approval.
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <InterestForm
