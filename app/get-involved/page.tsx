@@ -49,9 +49,8 @@ const rolePaths: RolePath[] = [
     description: "Create your profile, find your community, and start discovering programs and opportunities.",
     cta: "Start as a student",
     icon: GraduationCap,
-    media: "/video.mp4",
-    mediaType: "video",
-    poster: "/about-us/2.jpg",
+    media: "/about-us/2.jpg",
+    mediaType: "image",
     tone: "from-[#e53e3e]/24 via-[#9f258c]/18 to-transparent",
   },
   {
@@ -72,9 +71,8 @@ const rolePaths: RolePath[] = [
     description: "Support students through visits, mentorship, sponsorship, workshops, or industry access.",
     cta: "Explore partnership",
     icon: Handshake,
-    media: "/video3.mp4",
-    mediaType: "video",
-    poster: "/about-us/5.jpg",
+    media: "/about-us/5.jpg",
+    mediaType: "image",
     tone: "from-[#7e56e2]/26 via-[#ba4e5e]/16 to-transparent",
   },
   {
@@ -158,7 +156,7 @@ export default function GetInvolvedPage() {
       </section>
 
       <SectionReveal>
-        <section id="roles" className="relative scroll-mt-24 border-y border-border/80 bg-card/45 py-16">
+        <section id="roles" className="relative scroll-mt-24 border-y border-border/80 bg-card/45 py-12 sm:py-16">
           <MainContainer>
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div className="max-w-2xl">
@@ -181,7 +179,7 @@ export default function GetInvolvedPage() {
       </SectionReveal>
 
       <SectionReveal>
-        <section id="students" className="scroll-mt-24 py-20">
+        <section id="students" className="scroll-mt-24 py-14 sm:py-20">
           <MainContainer className="grid gap-9 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
             <div className="relative overflow-hidden rounded-xl border border-border bg-card">
               <video
@@ -239,7 +237,7 @@ export default function GetInvolvedPage() {
       </SectionReveal>
 
       <SectionReveal>
-        <section id="chapters" className="editorial-warm-band scroll-mt-24 border-y border-border/80 py-20">
+        <section id="chapters" className="editorial-warm-band scroll-mt-24 border-y border-border/80 py-14 sm:py-20">
           <MainContainer className="grid gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-center">
             <div>
               <p className="text-sm font-semibold uppercase text-primary">Chapter interest</p>
@@ -281,7 +279,7 @@ export default function GetInvolvedPage() {
       </SectionReveal>
 
       <SectionReveal>
-        <section id="partners" className="scroll-mt-24 py-20">
+        <section id="partners" className="scroll-mt-24 py-14 sm:py-20">
           <MainContainer className="grid gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
             <div className="relative overflow-hidden rounded-xl border border-border bg-card">
               <Image
@@ -337,7 +335,7 @@ export default function GetInvolvedPage() {
         </section>
       </SectionReveal>
 
-      <section className="border-t border-border/80 bg-[linear-gradient(135deg,rgba(122,87,209,0.22),rgba(8,13,59,0.96)_44%,rgba(186,78,94,0.16))] py-16">
+      <section className="border-t border-border/80 bg-[linear-gradient(135deg,rgba(122,87,209,0.22),rgba(8,13,59,0.96)_44%,rgba(186,78,94,0.16))] py-12 sm:py-16">
         <MainContainer className="grid gap-7 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
             <p className="text-sm font-semibold uppercase text-primary">Next step</p>
@@ -365,6 +363,7 @@ export default function GetInvolvedPage() {
 
 function RolePathCard({ path, index }: { path: RolePath; index: number }) {
   const Icon = path.icon;
+  const shouldAutoplayVideo = path.mediaType === "video" && index === 0;
 
   return (
     <Link
@@ -377,12 +376,14 @@ function RolePathCard({ path, index }: { path: RolePath; index: number }) {
           <video
             aria-hidden="true"
             className="size-full object-cover transition duration-700 group-hover:scale-[1.04]"
-            autoPlay
+            autoPlay={shouldAutoplayVideo}
             muted
             loop
             playsInline
             preload="metadata"
             poster={path.poster}
+            tabIndex={-1}
+            disablePictureInPicture
           >
             <source src={path.media} type="video/mp4" />
           </video>
@@ -429,7 +430,8 @@ function ChapterInterestDialog() {
           <AlertDialogTitle>Request chapter interest</AlertDialogTitle>
           <AlertDialogDescription>
             Tell us where you are, who is building with you, and why LEAD would
-            matter on your campus.
+            matter on your campus. This is a request for review, not chapter
+            approval.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <InterestForm
@@ -455,8 +457,8 @@ function PartnerInterestDialog() {
         <AlertDialogHeader className="items-start text-left">
           <AlertDialogTitle>Partner or collaborate with LEAD</AlertDialogTitle>
           <AlertDialogDescription>
-            Share what you want to build with students, and LEAD can route the
-            conversation to the right next step.
+            Share what you want to build with students as a company, mentor,
+            professional, sponsor, or community organization.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <InterestForm
