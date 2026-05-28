@@ -110,10 +110,11 @@ export function StarfieldImpactCounters({ stats }: { stats: ProofStat[] }) {
     >
       <div className="lead-impact-aura" />
       <MainContainer>
-        <dl className="grid gap-5 lg:grid-cols-3">
+        <div className="grid gap-5 lg:grid-cols-3" role="list" aria-label="LEAD in numbers">
           {visibleStats.map((stat, index) => (
             <div
               key={stat.label}
+              role="listitem"
               ref={(node) => {
                 tileRefs.current[index] = node;
               }}
@@ -124,19 +125,17 @@ export function StarfieldImpactCounters({ stats }: { stats: ProofStat[] }) {
             >
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_0%,rgba(255,255,255,0.28),transparent_32%),linear-gradient(180deg,rgba(255,255,255,0.08),transparent)]" />
               <div className="relative flex h-full flex-col items-center justify-center">
-                <dt className="metric-label text-white/88">
+                <p className="metric-label text-white/88">
                   {formatLabel(stat.label)}
-                </dt>
-                <dd
-                  aria-label={stat.value}
-                  className={cn("metric-value mt-6 max-w-full text-white")}
-                >
+                </p>
+                <p className={cn("metric-value mt-6 max-w-full text-white")}>
+                  <span className="sr-only">{stat.value}</span>
                   <AnimatedCounterValue stat={stat} />
-                </dd>
+                </p>
               </div>
             </div>
           ))}
-        </dl>
+        </div>
       </MainContainer>
     </section>
   );
