@@ -344,8 +344,9 @@
 
 .lead-soft-inverse-surface {
   background:
-    radial-gradient(circle at 14% 8%, color-mix(in oklab, var(--primary) 22%, transparent), transparent 28rem),
-    linear-gradient(180deg, var(--lead-surface-inverse-soft), color-mix(in oklab, var(--lead-surface-inverse-soft) 92%, var(--background)));
+    radial-gradient(circle at 14% 8%, color-mix(in oklab, var(--primary) 18%, transparent), transparent 28rem),
+    radial-gradient(circle at 82% 80%, color-mix(in oklab, var(--brand-header-muted-coral) 11%, transparent), transparent 30rem),
+    linear-gradient(180deg, color-mix(in oklab, var(--lead-surface-inverse-soft) 88%, var(--background)), color-mix(in oklab, var(--lead-surface-inverse-soft) 82%, var(--background) 18%));
   color: var(--brand-background);
 }
 
@@ -392,11 +393,11 @@
 }
 
 .lead-logo-marquee {
-  animation: lead-marquee 28s linear infinite;
+  animation: none;
 }
 
 .lead-highlights-track {
-  animation: lead-marquee 42s linear infinite;
+  animation: none;
 }
 
 .lead-logo-marquee:hover,
@@ -412,6 +413,20 @@
   }
   to {
     transform: translateX(-50%);
+  }
+}
+
+@media (min-width: 768px) {
+  .lead-logo-marquee {
+    animation: lead-marquee 28s linear infinite;
+  }
+
+  .lead-highlights-track {
+    animation: lead-marquee 42s linear infinite;
+  }
+
+  .lead-marquee-window {
+    mask-image: linear-gradient(90deg, transparent, black 7%, black 93%, transparent);
   }
 }
 

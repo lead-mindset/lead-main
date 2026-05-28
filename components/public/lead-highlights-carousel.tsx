@@ -31,8 +31,8 @@ export function LeadHighlightsCarousel({ highlights }: { highlights: Highlight[]
         </div>
       </MainContainer>
 
-      <div className="mt-10 overflow-hidden">
-        <div className="lead-highlights-track flex w-max gap-4 px-4 sm:gap-5 sm:px-6 lg:px-8">
+      <div className="mt-10 overflow-x-auto pb-4 [scrollbar-width:none] md:overflow-hidden md:pb-0">
+        <div className="lead-highlights-track flex w-max snap-x snap-mandatory gap-4 px-4 sm:gap-5 sm:px-6 lg:px-8">
           {carouselHighlights.map((highlight, index) => {
             const isDuplicate = index >= highlights.length;
 
@@ -40,7 +40,7 @@ export function LeadHighlightsCarousel({ highlights }: { highlights: Highlight[]
             <article
               key={`${highlight.title}-${index}`}
               aria-hidden={isDuplicate}
-              className="group relative h-[24rem] w-[82vw] max-w-[21rem] shrink-0 overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_80px_rgba(0,0,0,0.22)] sm:h-[28rem] sm:w-[24rem] sm:max-w-none"
+              className="group relative h-[24rem] w-[82vw] max-w-[21rem] shrink-0 snap-start overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_80px_rgba(0,0,0,0.22)] sm:h-[28rem] sm:w-[24rem] sm:max-w-none"
             >
               <Image
                 src={highlight.image}
