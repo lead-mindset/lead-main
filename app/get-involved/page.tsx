@@ -120,12 +120,12 @@ export default function GetInvolvedPage() {
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_28%,rgba(122,87,209,0.16),transparent_34rem),radial-gradient(circle_at_62%_20%,rgba(229,62,62,0.08),transparent_30rem)]" />
         <GetInvolvedRocketHero />
         <MainContainer className="relative z-10 flex min-h-[calc(100svh-7rem)] items-center py-14">
-          <div className="max-w-[54rem] lg:max-w-[57rem]">
+          <div className="max-w-[54rem] lg:max-w-[48rem]">
             <p className="eyebrow-label">Get involved</p>
             <h1 className="display-title mt-5 max-w-3xl">
               Choose your path into LEAD.
             </h1>
-            <p className="section-subtitle mt-5 max-w-2xl text-muted-foreground">
+            <p className="section-subtitle mt-5 max-w-xl text-muted-foreground">
               Students, chapter builders, partners, and community organizations
               enter LEAD in different ways. Start with the role that matches
               where you are today.

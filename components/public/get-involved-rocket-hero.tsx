@@ -35,8 +35,8 @@ export function GetInvolvedRocketHero() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_74%_42%,rgba(122,87,209,0.28),transparent_34rem),radial-gradient(circle_at_86%_60%,rgba(229,62,62,0.12),transparent_24rem)]" />
         <RocketCanvas
           cameraPosition={[0, 0.1, 12.2]}
-          modelPosition={[2.18, -0.48, 0]}
-          modelScale={0.32}
+          modelPosition={[2.82, -0.52, 0]}
+          modelScale={0.3}
           floatY={-0.34}
         />
       </div>
