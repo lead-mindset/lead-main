@@ -198,7 +198,7 @@ export default function AboutPage() {
                         </span>
                       </div>
                       <div>
-                        <p className="feature-title text-primary/50">
+                        <p className="feature-title text-primary/85">
                           {value.title}
                         </p>
                         <p className="card-eyebrow mt-3">
@@ -261,18 +261,20 @@ export default function AboutPage() {
                   and students across the region build the momentum.
                 </p>
               </div>
-              <div className="mt-10 grid auto-cols-[minmax(17rem,78vw)] grid-flow-col gap-4 overflow-x-auto pb-4 [scrollbar-width:none] sm:auto-cols-[minmax(19rem,45vw)] lg:grid-flow-row lg:grid-cols-3 lg:overflow-visible lg:pb-0">
+              <div className="mt-10 grid auto-cols-[minmax(15rem,76vw)] grid-flow-col gap-4 overflow-x-auto pb-4 [scrollbar-width:none] sm:auto-cols-[minmax(16rem,42vw)] lg:grid-flow-row lg:grid-cols-6 lg:overflow-visible lg:pb-0">
                 {leadership.map((person) => (
-                  <article key={person.name} className="overflow-hidden rounded-2xl border border-border bg-background/75">
-                    <Image
-                      src={person.image}
-                      alt={person.name}
-                      width={420}
-                      height={320}
-                      className="aspect-[4/3] w-full object-cover"
-                    />
-                    <div className="p-5">
-                      <h3 className="card-title text-foreground">{person.name}</h3>
+                  <article key={person.name} className="overflow-hidden rounded-2xl border border-border bg-background/75 shadow-[inset_0_1px_0_color-mix(in_oklab,white_10%,transparent)]">
+                    <div className="relative aspect-[4/5] w-full overflow-hidden bg-card">
+                      <Image
+                        src={person.image}
+                        alt={person.name}
+                        fill
+                        sizes="(min-width: 1024px) 12rem, (min-width: 640px) 16rem, 76vw"
+                        className="object-cover object-top"
+                      />
+                    </div>
+                    <div className="p-4">
+                      <h3 className="card-title text-lg text-foreground">{person.name}</h3>
                       <p className="mt-1 text-sm text-muted-foreground">{person.role}</p>
                     </div>
                   </article>
