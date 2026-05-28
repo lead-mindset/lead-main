@@ -36,13 +36,15 @@ export function StarfieldImpactCounters({ stats }: { stats: ProofStat[] }) {
       if (!section) return;
 
       const mm = gsap.matchMedia();
-      const digitElements = Array.from(
-        section.querySelectorAll<HTMLElement>("[data-counter-digit]")
+      const counterElements = Array.from(
+        section.querySelectorAll<HTMLElement>("[data-counter-value]")
       );
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         gsap.set(tileRefs.current, { autoAlpha: 0, y: 34, scale: 0.96 });
-        gsap.set(digitElements, { yPercent: 0 });
+        counterElements.forEach((element) => {
+          element.textContent = formatCounterValue(0, element.dataset.counterSuffix ?? "");
+        });
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -61,22 +63,37 @@ export function StarfieldImpactCounters({ stats }: { stats: ProofStat[] }) {
           ease: "power3.out",
         });
 
-        tl.to(
-          digitElements,
-          {
-            yPercent: (_, element) => -Number(element.dataset.counterDigit ?? 0) * 10,
-            duration: 1.25,
-            stagger: 0.025,
-            ease: "power4.out",
-          },
-          0.18
-        );
+        counterElements.forEach((element, index) => {
+          const target = Number(element.dataset.counterTarget ?? 0);
+          const suffix = element.dataset.counterSuffix ?? "";
+          const state = { value: 0 };
+
+          tl.to(
+            state,
+            {
+              value: target,
+              duration: 0.9,
+              ease: "power3.out",
+              snap: { value: 1 },
+              onUpdate: () => {
+                element.textContent = formatCounterValue(state.value, suffix);
+              },
+              onComplete: () => {
+                element.textContent = formatCounterValue(target, suffix);
+              },
+            },
+            0.18 + index * 0.06
+          );
+        });
       });
 
       mm.add(REDUCED_MOTION_QUERY, () => {
         gsap.set(tileRefs.current, { autoAlpha: 1, y: 0, scale: 1 });
-        gsap.set(digitElements, {
-          yPercent: (_, element) => -Number(element.dataset.counterDigit ?? 0) * 10,
+        counterElements.forEach((element) => {
+          element.textContent = formatCounterValue(
+            Number(element.dataset.counterTarget ?? 0),
+            element.dataset.counterSuffix ?? ""
+          );
         });
       });
 
@@ -114,7 +131,7 @@ export function StarfieldImpactCounters({ stats }: { stats: ProofStat[] }) {
                   aria-label={stat.value}
                   className={cn("metric-value mt-6 max-w-full text-white")}
                 >
-                  <RollingValue value={stat.value} />
+                  <AnimatedCounterValue stat={stat} />
                 </dd>
               </div>
             </div>
@@ -125,41 +142,24 @@ export function StarfieldImpactCounters({ stats }: { stats: ProofStat[] }) {
   );
 }
 
-function RollingValue({ value }: { value: string }) {
-  return (
-    <span aria-hidden="true" className="inline-flex items-center justify-center tabular-nums">
-      {value.split("").map((character, index) => {
-        if (!/\d/.test(character)) {
-          return (
-            <span key={`${character}-${index}`} className="inline-flex h-[1em] items-center">
-              {character}
-            </span>
-          );
-        }
+function AnimatedCounterValue({ stat }: { stat: ProofStat }) {
+  const numericStat = parseStat(stat);
 
-        return (
-          <span
-            key={`${character}-${index}`}
-            className="inline-block h-[1em] w-[0.62em] overflow-hidden align-middle"
-          >
-            <span
-              data-counter-digit={character}
-              className="block leading-none will-change-transform"
-            >
-              {Array.from({ length: 10 }, (_, digit) => (
-                <span
-                  key={digit}
-                  className="flex h-[1em] items-center justify-center leading-none"
-                >
-                  {digit}
-                </span>
-              ))}
-            </span>
-          </span>
-        );
-      })}
+  return (
+    <span
+      aria-hidden="true"
+      data-counter-target={numericStat.target}
+      data-counter-suffix={numericStat.suffix}
+      data-counter-value
+      className="inline-flex min-w-[3.1ch] items-center justify-center tabular-nums"
+    >
+      {formatCounterValue(numericStat.target, numericStat.suffix)}
     </span>
   );
+}
+
+function formatCounterValue(value: number, suffix: string) {
+  return `${Math.round(value).toLocaleString("en-US")}${suffix}`;
 }
 
 function formatLabel(label: string) {
