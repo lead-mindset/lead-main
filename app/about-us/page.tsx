@@ -144,7 +144,12 @@ export default function AboutPage() {
                   and students across the region build the momentum.
                 </p>
               </div>
-              <div className="mt-10 grid auto-cols-[minmax(15rem,76vw)] grid-flow-col gap-4 overflow-x-auto pb-4 [scrollbar-width:none] sm:auto-cols-[minmax(16rem,42vw)] lg:grid-flow-row lg:grid-cols-6 lg:overflow-visible lg:pb-0">
+              <div
+                role="region"
+                aria-label="LEAD leadership team"
+                tabIndex={0}
+                className="mt-10 grid auto-cols-[minmax(15rem,76vw)] grid-flow-col gap-4 overflow-x-auto pb-4 outline-none [scrollbar-width:none] focus-visible:ring-2 focus-visible:ring-ring/45 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:auto-cols-[minmax(16rem,42vw)] lg:grid-flow-row lg:grid-cols-6 lg:overflow-visible lg:pb-0"
+              >
                 {leadership.map((person) => (
                   <article key={person.name} className="overflow-hidden rounded-2xl border border-border bg-background/75 shadow-[inset_0_1px_0_color-mix(in_oklab,white_10%,transparent)]">
                     <div className="relative aspect-[4/5] w-full overflow-hidden bg-card">

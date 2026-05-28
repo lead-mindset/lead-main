@@ -32,7 +32,12 @@ export function LeadHighlightsCarousel({ highlights }: { highlights: Highlight[]
       </MainContainer>
 
       <MainContainer>
-        <div className="mt-10 overflow-x-auto pb-4 [scrollbar-width:none] md:overflow-hidden md:pb-0">
+        <div
+          role="region"
+          aria-label="LEAD highlights carousel"
+          tabIndex={0}
+          className="mt-10 overflow-x-auto pb-4 outline-none [scrollbar-width:none] focus-visible:ring-2 focus-visible:ring-ring/45 focus-visible:ring-offset-2 focus-visible:ring-offset-background md:overflow-hidden md:pb-0"
+        >
           <div className="lead-highlights-track flex w-max snap-x snap-mandatory gap-4 sm:gap-5">
             {carouselHighlights.map((highlight, index) => {
               const isDuplicate = index >= highlights.length;

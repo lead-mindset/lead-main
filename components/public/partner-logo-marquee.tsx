@@ -17,7 +17,12 @@ export function PartnerLogoMarquee({ logos }: { logos: PartnerLogo[] }) {
           Orgs that support us
         </p>
 
-        <div className="lead-marquee-window mt-6 overflow-x-auto rounded-2xl border border-white/10 bg-card/35 py-5 shadow-[inset_0_1px_0_color-mix(in_oklab,white_8%,transparent)] [scrollbar-width:none] md:overflow-hidden">
+        <div
+          role="region"
+          aria-label="Organizations that support LEAD"
+          tabIndex={0}
+          className="lead-marquee-window mt-6 overflow-x-auto rounded-2xl border border-white/10 bg-card/35 py-5 shadow-[inset_0_1px_0_color-mix(in_oklab,white_8%,transparent)] outline-none [scrollbar-width:none] focus-visible:ring-2 focus-visible:ring-ring/45 focus-visible:ring-offset-2 focus-visible:ring-offset-background md:overflow-hidden"
+        >
           <div className="lead-logo-marquee flex w-max items-center gap-6 px-5">
             {marqueeLogos.map((logo, index) => {
               const isDuplicate = index >= logos.length;
