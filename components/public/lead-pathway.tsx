@@ -17,24 +17,20 @@ type PathwayStage = {
 
 const pathwayStageTones = [
   {
-    color: "var(--brand-logo-red-orange)",
+    color: "#ff5a5f",
     contrast: "var(--foreground)",
-    textClassName: "text-[var(--brand-logo-red-orange)]",
   },
   {
-    color: "var(--brand-logo-magenta)",
+    color: "#d14ad4",
     contrast: "var(--foreground)",
-    textClassName: "text-[var(--brand-logo-magenta)]",
   },
   {
-    color: "var(--accent)",
+    color: "#a18bff",
     contrast: "var(--foreground)",
-    textClassName: "text-accent",
   },
   {
     color: "var(--foreground)",
     contrast: "var(--background)",
-    textClassName: "text-foreground",
   },
 ];
 
@@ -74,9 +70,8 @@ export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
 
           gsap.fromTo(
             stage,
-            { autoAlpha: 0.72, y: 18 },
+            { y: 18 },
             {
-              autoAlpha: 1,
               y: 0,
               duration: 0.55,
               ease: "power2.out",
@@ -112,13 +107,13 @@ export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
             className="relative z-20 lg:sticky lg:top-24 lg:max-h-[calc(100svh-7rem)] lg:self-start"
           >
             <h2 className="pathway-display-title flex flex-col">
-              <span className="block text-[var(--brand-logo-red-orange)]">
+              <span className="block" style={{ color: "#ff5a5f" }}>
                 Learn
               </span>
-              <span className="block text-[var(--brand-logo-magenta)]">
+              <span className="block" style={{ color: "#d14ad4" }}>
                 Explore
               </span>
-              <span className="block text-accent">
+              <span className="block" style={{ color: "#a18bff" }}>
                 Aspire
               </span>
               <span className="block text-foreground">
@@ -152,7 +147,7 @@ export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
                     {String(index + 1).padStart(2, "0")}
                   </div>
                   <div>
-                    <h3 className={cn("card-title", tone.textClassName)}>
+                    <h3 className="card-title" style={{ color: tone.color }}>
                       {stage.title}
                     </h3>
                     <p className="body-copy mt-3 text-muted-foreground">
