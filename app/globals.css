@@ -351,9 +351,10 @@
 
 .lead-public-cta-surface {
   background:
-    radial-gradient(circle at 18% 20%, color-mix(in oklab, var(--brand-logo-red-orange) 16%, transparent), transparent 28rem),
-    radial-gradient(circle at 82% 34%, color-mix(in oklab, var(--accent) 20%, transparent), transparent 32rem),
-    linear-gradient(135deg, var(--lead-surface-deep), var(--background));
+    radial-gradient(circle at 18% 20%, color-mix(in oklab, var(--primary) 15%, transparent), transparent 30rem),
+    radial-gradient(circle at 86% 28%, color-mix(in oklab, var(--accent) 16%, transparent), transparent 34rem),
+    radial-gradient(circle at 50% 112%, color-mix(in oklab, var(--brand-header-deep-magenta) 10%, transparent), transparent 36rem),
+    linear-gradient(180deg, var(--lead-surface-deep), var(--background) 52%, var(--lead-surface-section));
 }
 
 .lead-impact-aura,
