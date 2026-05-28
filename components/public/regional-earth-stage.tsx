@@ -42,10 +42,10 @@ export function RegionalEarthStage() {
       <MainContainer>
         <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
           <div className="relative z-10 max-w-xl">
-            <p className="text-sm font-semibold uppercase text-white/68">
+            <p className="eyebrow-label eyebrow-label--light">
               Regional footprint
             </p>
-            <h2 className="mt-4 text-[2.05rem] font-black leading-tight text-white sm:text-5xl">
+            <h2 className="section-title mt-4 text-white">
               One student network across the Americas.
             </h2>
             <p className="body-copy mt-5 text-white/76">

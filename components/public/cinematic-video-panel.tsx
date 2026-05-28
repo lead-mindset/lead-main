@@ -66,7 +66,7 @@ export function CinematicVideoPanel({
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent sm:via-background/45" />
       <div className="absolute inset-x-0 bottom-0 p-5 sm:p-8">
         <span className="eyebrow-label">{eyebrow}</span>
-        <h3 className="mt-3 max-w-2xl text-xl font-bold leading-tight text-foreground sm:mt-4 sm:text-3xl">
+        <h3 className="card-title mt-3 max-w-2xl text-foreground sm:mt-4">
           {title}
         </h3>
         <p className="body-copy mt-3 max-w-2xl text-sm text-muted-foreground sm:text-base">{children}</p>

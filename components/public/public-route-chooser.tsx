@@ -55,7 +55,7 @@ export function PublicRouteChooser({
       <MainContainer>
         <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
           <div>
-            <p className="text-sm font-semibold uppercase text-primary">
+            <p className="eyebrow-label">
               {eyebrow}
             </p>
             <h2 className="section-title mt-4 max-w-xl">{title}</h2>
@@ -86,7 +86,7 @@ export function PublicRouteChooser({
                   </span>
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-foreground sm:text-xl">
+                  <h3 className="card-title text-foreground">
                     {path.label}
                   </h3>
                   <p className="mt-2 text-sm leading-6 text-muted-foreground">

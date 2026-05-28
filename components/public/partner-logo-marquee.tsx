@@ -15,10 +15,10 @@ export function PartnerLogoMarquee({ logos }: { logos: PartnerLogo[] }) {
       <MainContainer>
         <div className="grid gap-6 lg:grid-cols-[0.52fr_1.48fr] lg:items-center">
           <div>
-            <p className="text-sm font-semibold uppercase text-[var(--brand-header-vibrant-purple)]">
+            <p className="eyebrow-label eyebrow-label--inverse">
               Partners and allies
             </p>
-            <h2 className="mt-3 text-2xl font-black leading-tight sm:text-3xl">
+            <h2 className="section-title mt-3">
               Organizations that support LEAD.
             </h2>
           </div>

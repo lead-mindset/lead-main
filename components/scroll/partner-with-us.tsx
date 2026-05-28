@@ -42,8 +42,8 @@ export default function PartnerWithUs() {
 
   return (
     <>
-      <h2 className="text-3xl md:text-4xl font-bold">Partner with LEAD</h2>
-      <p className="text-white/80 text-xl md:text-2xl max-w-xl">
+      <h2 className="section-title">Partner with LEAD</h2>
+      <p className="section-subtitle max-w-xl text-white/80">
         If you believe in <span className="font-extrabold">investing</span> early in high-potential future leaders, we’d love to explore how we can <span className="font-extrabold">work together</span>.
       </p>
 

@@ -69,7 +69,7 @@ export function ControlledModelStage({
       </div>
       <div className={cn("absolute p-5 sm:p-7", copyPlacement)}>
         <span className="eyebrow-label">{eyebrow}</span>
-        <h3 className="mt-4 max-w-[18rem] text-xl font-bold leading-tight text-foreground sm:max-w-2xl sm:text-2xl">
+        <h3 className="card-title mt-4 max-w-[18rem] text-foreground sm:max-w-2xl">
           {title}
         </h3>
         <p className="body-copy mt-3 max-w-2xl text-muted-foreground">{description}</p>

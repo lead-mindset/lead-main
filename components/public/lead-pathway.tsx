@@ -156,7 +156,7 @@ export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
             data-pathway-intro
             className="relative z-20 lg:sticky lg:top-24 lg:max-h-[calc(100svh-7rem)] lg:self-start"
           >
-            <h2 className="flex flex-col font-headline text-[clamp(3.6rem,7.4vw,6rem)] font-black leading-[0.86] tracking-normal">
+            <h2 className="pathway-display-title flex flex-col">
               <span className="block text-[var(--brand-logo-red-orange)]">
                 Learn
               </span>
@@ -197,7 +197,7 @@ export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
                     {String(index + 1).padStart(2, "0")}
                   </div>
                   <div>
-                    <h3 className={cn("text-2xl font-bold", tone.textClassName)}>
+                    <h3 className={cn("card-title", tone.textClassName)}>
                       {stage.title}
                     </h3>
                     <p className="body-copy mt-3 text-muted-foreground">
@@ -205,7 +205,7 @@ export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
                     </p>
                   </div>
                   <div className="pathway-outcome border-l-2 py-1 pl-4 lg:rounded-xl lg:border lg:p-4">
-                    <p className="text-xs font-semibold uppercase tracking-[0.12em]">
+                    <p className="card-eyebrow">
                       Why it matters
                     </p>
                     <p className="mt-3 text-sm font-semibold leading-6 text-foreground">

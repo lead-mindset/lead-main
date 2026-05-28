@@ -29,7 +29,7 @@ export function SectionLabel({
   return (
     <span
       className={cn(
-        "mb-4 block font-bold uppercase tracking-normal",
+        "card-eyebrow mb-4 block",
         sectionLabelVariants[variant],
         sectionLabelSizes[size],
         className

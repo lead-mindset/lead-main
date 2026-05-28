@@ -80,10 +80,10 @@ export function PartnerPathSelector() {
           <ActiveIcon className="size-6" />
         </span>
         <div>
-          <p className="text-xs font-bold uppercase text-primary">
+          <p className="card-eyebrow">
             {activeType.title}
           </p>
-          <h3 className="mt-2 text-2xl font-bold leading-tight text-foreground">
+          <h3 className="card-title mt-2 text-foreground">
             {activeProof.outcome}
           </h3>
           <p className="body-copy mt-3 text-sm text-muted-foreground">

@@ -107,14 +107,12 @@ export function StarfieldImpactCounters({ stats }: { stats: ProofStat[] }) {
             >
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_0%,rgba(255,255,255,0.28),transparent_32%),linear-gradient(180deg,rgba(255,255,255,0.08),transparent)]" />
               <div className="relative flex h-full flex-col items-center justify-center">
-                <dt className="text-sm font-extrabold uppercase tracking-[0.08em] text-white/88 sm:text-base">
+                <dt className="metric-label text-white/88">
                   {formatLabel(stat.label)}
                 </dt>
                 <dd
                   aria-label={stat.value}
-                  className={cn(
-                    "mt-6 max-w-full font-headline text-[clamp(4rem,7vw,6.8rem)] font-black leading-none text-white"
-                  )}
+                  className={cn("metric-value mt-6 max-w-full text-white")}
                 >
                   <RollingValue value={stat.value} />
                 </dd>

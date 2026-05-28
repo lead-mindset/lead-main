@@ -21,7 +21,7 @@ const EmpowerSection = () => {
         />
       </div>
 
-      <AnimatedText className="text-4xl text-center font-bold">
+      <AnimatedText className="section-title text-center">
         EMPOWERING DREAMS
       </AnimatedText>
 

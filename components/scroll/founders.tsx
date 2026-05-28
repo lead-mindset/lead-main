@@ -28,7 +28,7 @@ const founders = [
 const Founders = () => {
   return (
     <div className="min-h-screen py-16 flex flex-col items-center justify-center relative">
-      <AnimatedText className="text-3xl md:text-6xl font-bold mb-12">
+      <AnimatedText className="section-title mb-12">
         Our Team
       </AnimatedText>
 
@@ -53,10 +53,10 @@ const Founders = () => {
                 />
 
               </div>
-              <AnimatedText className="text-2xl md:text-3xl font-bold">
+              <AnimatedText className="card-title">
                 {founder.name}
               </AnimatedText>
-              <AnimatedText className="text-xl md:text-2xl font-bold">
+              <AnimatedText className="body-copy font-semibold text-muted-foreground">
                 {founder.role}
               </AnimatedText>
             </Link>

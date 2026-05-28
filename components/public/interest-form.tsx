@@ -55,7 +55,7 @@ export function InterestForm({
       {showHeader ? (
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h3 className="text-lg font-semibold text-foreground">{title}</h3>
+            <h3 className="card-title text-foreground">{title}</h3>
             <p className="mt-1 text-sm text-muted-foreground">
               {isChapter
                 ? "Use this when you are ready to share serious chapter interest. Submission does not guarantee selection or approval."

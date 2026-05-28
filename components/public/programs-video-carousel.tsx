@@ -69,7 +69,7 @@ export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
       <MainContainer>
         <div className="grid gap-5 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
           <div>
-            <p className="text-sm font-semibold uppercase text-primary">
+            <p className="eyebrow-label">
               Programs and experiences
             </p>
             <h2 className="section-title mt-4 max-w-3xl">
@@ -106,10 +106,10 @@ export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/36 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
-              <p className="text-sm font-semibold uppercase text-white/70">
+              <p className="card-eyebrow text-white/70">
                 {String(activeIndex + 1).padStart(2, "0")} / {String(programs.length).padStart(2, "0")}
               </p>
-              <h3 className="mt-2 max-w-2xl text-3xl font-black text-white sm:text-4xl">
+              <h3 className="feature-title mt-2 max-w-2xl text-white">
                 {activeProgram.title}
               </h3>
               <p className="body-copy mt-3 max-w-2xl text-white/78">
@@ -158,10 +158,10 @@ export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
                     activeIndex === index ? "bg-primary/18" : "hover:bg-muted/70"
                   )}
                 >
-                  <span className="text-sm font-bold text-primary">
+                  <span className="card-eyebrow">
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <span className="text-lg font-bold text-foreground">
+                  <span className="card-title text-foreground">
                     {program.title}
                   </span>
                 </button>

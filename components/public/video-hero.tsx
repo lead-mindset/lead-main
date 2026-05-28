@@ -81,16 +81,16 @@ export function VideoHero({
 
       <MainContainer className="flex min-h-[calc(88svh-4rem)] flex-col justify-end pb-9 pt-20 sm:min-h-[calc(94svh-4rem)] sm:pb-14 lg:pb-16">
         <div className="max-w-4xl">
-          <p className="text-sm font-semibold uppercase text-white/78">
+          <p className="eyebrow-label eyebrow-label--light">
             LEAD Americas
           </p>
-          <h1 className="mt-5 max-w-4xl text-[clamp(2.1rem,5.4vw,4.55rem)] font-black leading-[1.04] text-white drop-shadow-[0_3px_22px_rgba(0,0,0,0.4)]">
+          <h1 className="public-hero-title mt-5 max-w-4xl text-white drop-shadow-[0_3px_22px_rgba(0,0,0,0.4)]">
             Building the{" "}
-            <span className="inline-block bg-[linear-gradient(90deg,#ff4f58,#d72a9a,#b9a7ff)] bg-clip-text text-transparent drop-shadow-[0_2px_16px_rgba(8,13,59,0.72)]">
+            <span className="lead-gradient-text inline-block drop-shadow-[0_2px_16px_rgba(8,13,59,0.72)]">
               next generation
             </span>{" "}
             of{" "}
-            <span className="inline-block bg-[linear-gradient(90deg,#ff4f58,#d72a9a,#b9a7ff)] bg-clip-text text-transparent drop-shadow-[0_2px_16px_rgba(8,13,59,0.72)]">
+            <span className="lead-gradient-text inline-block drop-shadow-[0_2px_16px_rgba(8,13,59,0.72)]">
               leaders
             </span>{" "}
             across the Americas.

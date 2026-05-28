@@ -45,7 +45,7 @@ export default function NavBar() {
           priority
           className="h-auto w-[38px]"
         />
-        <span className="text-lg font-bold text-foreground">LEAD</span>
+        <span className="font-headline text-lg font-bold text-foreground">LEAD</span>
       </Link>
 
       <div className="ml-auto hidden items-center gap-1 lg:flex">

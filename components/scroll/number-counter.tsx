@@ -51,7 +51,7 @@ export default function RollingNumber({
             {getDigits(number).map((_, i) => (
                 <div
                     key={i}
-                    className={`${whiteBg ? "w-12" : "w-6"} h-12 overflow-hidden rounded text-4xl text-foreground ${whiteBg ? "bg-gradient-to-r from-chart-2 to-primary" : "bg-transparent"
+                    className={`${whiteBg ? "w-12" : "w-6"} rolling-digit h-12 overflow-hidden rounded text-foreground ${whiteBg ? "bg-gradient-to-r from-chart-2 to-primary" : "bg-transparent"
                         }`}
                 >
                     <div ref={(el) => {

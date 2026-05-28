@@ -29,10 +29,10 @@ export function ProofRail({
             itemClassName
           )}
         >
-          <dt className="text-3xl font-bold leading-none text-foreground sm:text-4xl">
+          <dt className="feature-title text-foreground">
             {stat.value}
           </dt>
-          <dd className="mt-2 text-sm font-medium uppercase tracking-[0.08em] text-muted-foreground">
+          <dd className="metric-label mt-2 text-muted-foreground">
             {stat.label}
           </dd>
         </div>

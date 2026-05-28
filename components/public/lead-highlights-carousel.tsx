@@ -18,7 +18,7 @@ export function LeadHighlightsCarousel({ highlights }: { highlights: Highlight[]
     <section id="highlights" className="relative scroll-mt-24 overflow-hidden pb-14 pt-20 sm:pb-24 sm:pt-28">
       <MainContainer>
         <div className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase text-primary">
+          <p className="eyebrow-label">
             LEAD highlights
           </p>
           <h2 className="section-title mt-4">
@@ -51,10 +51,10 @@ export function LeadHighlightsCarousel({ highlights }: { highlights: Highlight[]
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/48 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-5">
-                <p className="text-xs font-bold uppercase text-primary">
+                <p className="card-eyebrow">
                   {highlight.pillar}
                 </p>
-                <h3 className="mt-3 text-2xl font-black leading-tight text-white">
+                <h3 className="card-title mt-3 text-white">
                   {highlight.title}
                 </h3>
                 <p className="mt-3 line-clamp-3 text-sm leading-6 text-white/76">

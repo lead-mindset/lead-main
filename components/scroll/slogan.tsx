@@ -35,7 +35,7 @@ export default function SloganReveal() {
       ref={containerRef}
       className="bg-yellow-500 mx-auto relative w-fit text-left"
     >
-      <h1 className="[&_.word]:opacity-0 font-bold text-7xl tracking-wide text-white">
+      <h1 className="pathway-display-title text-white [&_.word]:opacity-0">
         <span className="word block overflow-hidden will-change-transform">
           LEARN
         </span>

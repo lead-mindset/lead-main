@@ -70,7 +70,7 @@ export default function Footer() {
           </div>
 
           <nav aria-label="Footer navigation">
-            <h2 className="text-sm font-semibold uppercase text-muted-foreground">
+            <h2 className="footer-heading">
               Explore
             </h2>
             <ul className="mt-4 grid gap-3 text-sm">
@@ -88,7 +88,7 @@ export default function Footer() {
           </nav>
 
           <div>
-            <h2 className="text-sm font-semibold uppercase text-muted-foreground">
+            <h2 className="footer-heading">
               Pathways
             </h2>
             <ul className="mt-4 grid gap-3 text-sm">
