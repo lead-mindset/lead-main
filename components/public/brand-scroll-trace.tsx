@@ -9,7 +9,7 @@ const VIEWBOX_HEIGHT = 6200;
 const PATH_SAMPLE_COUNT = 900;
 const DRAW_ANCHOR_RATIO = 0.58;
 const TRACE_PATH =
-  "M-140 -173 C142 127 270 407 162 750 C34 1159 -112 1499 124 1817 C410 2203 920 1900 670 2232 C600 2437 590 2622 560 2852 C630 3127 780 3372 1050 3620 C1320 3873 1518 4217 1240 4540 C900 4943 462 5162 650 5638 C790 5993 1160 6056 1560 6344";
+  "M-160 -180 C-20 240 90 640 0 1080 C-120 1510 -70 1950 30 2300 C105 2620 -10 2920 70 3240 C150 3650 -30 4000 160 4300 C450 4750 1200 4650 1450 5100 C1660 5480 900 5980 1560 6360";
 
 export function BrandScrollTrace() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -24,7 +24,7 @@ export function BrandScrollTrace() {
     mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
       const length = path.getTotalLength();
       gsap.set(path, {
-        opacity: 0.58,
+        opacity: 0.44,
       });
       path.setAttribute("stroke-dasharray", String(length));
       path.setAttribute("stroke-dashoffset", String(length));
@@ -132,7 +132,7 @@ export function BrandScrollTrace() {
           ref={pathRef}
           d={TRACE_PATH}
           stroke="url(#lead-scroll-trace)"
-          strokeWidth="76"
+          strokeWidth="64"
           strokeLinecap="round"
           strokeLinejoin="round"
           opacity="0"
