@@ -16,7 +16,11 @@ type Program = {
 };
 
 export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const defaultActiveIndex = Math.max(
+    0,
+    programs.findIndex((program) => program.title === "Corporate Visits")
+  );
+  const [activeIndex, setActiveIndex] = useState(defaultActiveIndex);
   const activeProgram = programs[activeIndex];
   const videoRef = useRef<HTMLVideoElement>(null);
   const previewFrameSeconds = 5.1;
