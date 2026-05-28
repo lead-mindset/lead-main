@@ -11,7 +11,6 @@ import {
 } from "lucide-react";
 
 import { MainContainer } from "@/components/global/main-container";
-import { BrandScrollTrace } from "@/components/public/brand-scroll-trace";
 import { GetInvolvedRocketHero } from "@/components/public/get-involved-rocket-hero";
 import { InterestForm } from "@/components/public/interest-form";
 import { PartnerPathSelector } from "@/components/public/partner-path-selector";
@@ -116,7 +115,6 @@ const chapterValues = [
 export default function GetInvolvedPage() {
   return (
     <div className="lead-public-page relative isolate overflow-hidden text-foreground">
-      <BrandScrollTrace />
       <div className="relative z-10">
       <section className="get-involved-hero relative isolate min-h-[100svh] overflow-hidden pt-28">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_28%,rgba(122,87,209,0.16),transparent_34rem),radial-gradient(circle_at_62%_20%,rgba(229,62,62,0.08),transparent_30rem)]" />

@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { MainContainer } from "@/components/global/main-container";
-import { BrandScrollTrace } from "@/components/public/brand-scroll-trace";
 import { PublicRouteChooser } from "@/components/public/public-route-chooser";
 import { SectionReveal } from "@/components/public/section-reveal";
 import { Button } from "@/components/ui/button";
@@ -16,7 +15,6 @@ import { isExternalHref } from "@/components/global/navigation/nav-links";
 export default function AboutPage() {
   return (
     <div className="lead-public-page relative isolate overflow-hidden text-foreground">
-      <BrandScrollTrace />
       <section className="relative z-10 editorial-photo-hero pt-28">
         <Image
           src="/media/lead/about/community-at-ibm.webp"
