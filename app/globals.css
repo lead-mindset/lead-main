@@ -358,6 +358,33 @@
     linear-gradient(180deg, var(--lead-surface-deep), var(--background) 52%, var(--lead-surface-section));
 }
 
+.partner-media-panel {
+  min-height: 22rem;
+  background-position: center;
+  background-size: cover;
+}
+
+.role-path-card {
+  min-height: 7.5rem;
+}
+
+.role-card-media {
+  align-self: stretch;
+  min-height: 7.5rem;
+  width: 5.75rem;
+}
+
+.role-card-description {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .partner-media-panel {
+    min-height: 30rem;
+    height: 100%;
+  }
+}
+
 .lead-impact-aura,
 .lead-regional-aura,
 .lead-programs-aura {

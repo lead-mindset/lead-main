@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 
 import { MainContainer } from "@/components/global/main-container";
+import { BrandScrollTrace } from "@/components/public/brand-scroll-trace";
 import { GetInvolvedRocketHero } from "@/components/public/get-involved-rocket-hero";
 import { InterestForm } from "@/components/public/interest-form";
 import { PartnerPathSelector } from "@/components/public/partner-path-selector";
@@ -50,9 +51,8 @@ const rolePaths: RolePath[] = [
     description: "Create your profile, find your community, and start discovering programs and opportunities.",
     cta: "Start as a student",
     icon: GraduationCap,
-    media: "/media/lead/hero/lead-community-hero.mp4",
-    mediaType: "video",
-    poster: "/media/lead/hero/lead-community-hero.webp",
+    media: "/media/lead/hero/lead-community-hero.webp",
+    mediaType: "image",
     tone: "from-[#e53e3e]/24 via-[#9f258c]/18 to-transparent",
   },
   {
@@ -115,7 +115,9 @@ const chapterValues = [
 
 export default function GetInvolvedPage() {
   return (
-    <div className="overflow-hidden bg-background text-foreground">
+    <div className="lead-public-page relative isolate overflow-hidden text-foreground">
+      <BrandScrollTrace />
+      <div className="relative z-10">
       <section className="get-involved-hero relative isolate min-h-[100svh] overflow-hidden pt-28">
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,#050824_0%,#080d3b_56%,#090d35_100%)]" />
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_28%,rgba(122,87,209,0.24),transparent_34rem),radial-gradient(circle_at_62%_20%,rgba(229,62,62,0.11),transparent_30rem)]" />
@@ -140,20 +142,20 @@ export default function GetInvolvedPage() {
       </section>
 
       <SectionReveal>
-        <section id="roles" className="relative scroll-mt-24 border-y border-border/80 bg-card/45 py-12 sm:py-16">
+        <section id="roles" className="relative scroll-mt-24 py-8 sm:py-10">
           <MainContainer>
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div className="max-w-2xl">
                 <p className="eyebrow-label">Start here</p>
                 <h2 className="section-title mt-3">Pick the role that fits you.</h2>
               </div>
               <p className="body-copy max-w-xl text-muted-foreground">
-                Students, chapter builders, partners, and community organizations
-                each have a different next step. Choose the one closest to you.
+                Choose a starting point, then move into the deeper section that
+                matches your role.
               </p>
             </div>
 
-            <div className="mt-10 grid items-stretch gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div className="mt-6 grid items-stretch gap-3 sm:grid-cols-2 xl:grid-cols-4">
               {rolePaths.map((path, index) => (
                 <RolePathCard key={path.label} path={path} index={index} />
               ))}
@@ -221,7 +223,7 @@ export default function GetInvolvedPage() {
       </SectionReveal>
 
       <SectionReveal>
-        <section id="chapters" className="editorial-warm-band scroll-mt-24 border-y border-border/80 py-14 sm:py-20">
+        <section id="chapters" className="relative scroll-mt-24 py-14 sm:py-20">
           <MainContainer className="grid gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-center">
             <div>
               <p className="eyebrow-label">Chapter interest</p>
@@ -264,22 +266,30 @@ export default function GetInvolvedPage() {
 
       <SectionReveal>
         <section id="partners" className="scroll-mt-24 py-14 sm:py-20">
-          <MainContainer className="grid gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
-            <div className="relative overflow-hidden rounded-xl border border-border bg-card">
-              <Image
-                src="/media/lead/highlights/ibm-explore-day-speakers.webp"
-                alt="LEAD students and IBM partners in a professional setting"
-                width={900}
-                height={640}
-                className="aspect-[4/3] w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/82 via-background/8 to-transparent" />
-              <p className="media-caption-title absolute bottom-5 left-5 right-5 max-w-xl text-white">
-                Partnerships should make opportunity feel closer, clearer, and real.
-              </p>
+          <MainContainer className="grid gap-8 lg:grid-cols-2 lg:items-stretch">
+            <div className="order-2 lg:order-1">
+              <div
+                className="partner-media-panel relative overflow-hidden rounded-xl border border-border shadow-[inset_0_1px_0_color-mix(in_oklab,white_9%,transparent)]"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(180deg, rgba(8,13,59,0.12), rgba(8,13,59,0.88)), url('/media/lead/highlights/ibm-explore-day-speakers.webp')",
+                }}
+              >
+                <div className="absolute inset-x-0 bottom-0 p-5">
+                  <p className="media-caption-title max-w-xl text-white">
+                    Partnerships should make opportunity feel closer, clearer, and real.
+                  </p>
+                  <p className="mt-3 text-sm leading-6 text-white/78">
+                    One clear role, one useful contribution, and a student-facing result.
+                  </p>
+                  <div className="mt-5">
+                    <PartnerInterestDialog />
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div>
+            <div className="order-1 lg:order-2">
               <p className="eyebrow-label">Partners and collaborators</p>
               <h2 className="section-title mt-3">
                 Create access with students who are already moving.
@@ -291,10 +301,6 @@ export default function GetInvolvedPage() {
               </p>
 
               <PartnerPathSelector />
-
-              <div className="mt-7">
-                <PartnerInterestDialog />
-              </div>
             </div>
           </MainContainer>
         </section>
@@ -304,6 +310,7 @@ export default function GetInvolvedPage() {
         title="Ready to choose your next step?"
         description="Start with the role that fits today. LEAD can guide the next step from there."
       />
+      </div>
     </div>
   );
 }
@@ -316,9 +323,9 @@ function RolePathCard({ path, index }: { path: RolePath; index: number }) {
     <Link
       href={path.href}
       aria-label={`${path.label}: ${path.cta}`}
-      className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-background/70 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-primary/45 hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/45"
+      className="role-path-card group flex h-full flex-row overflow-hidden rounded-xl border border-border bg-background/66 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-primary/45 hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/45"
     >
-      <div className="relative aspect-[4/3] overflow-hidden">
+      <div className="role-card-media relative shrink-0 overflow-hidden">
         {path.mediaType === "video" ? (
           <video
             aria-hidden="true"
@@ -344,20 +351,20 @@ function RolePathCard({ path, index }: { path: RolePath; index: number }) {
           />
         )}
         <div className={`absolute inset-0 bg-gradient-to-t ${path.tone}`} />
-        <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-background/72 px-3 py-1 text-xs font-bold text-white backdrop-blur">
+        <span className="absolute left-3 top-3 rounded-full border border-white/20 bg-background/72 px-2.5 py-1 text-[0.68rem] font-bold text-white backdrop-blur">
           {String(index + 1).padStart(2, "0")}
         </span>
       </div>
-      <div className="flex flex-1 flex-col p-5">
+      <div className="flex flex-1 flex-col p-3 sm:p-4">
         <div className="flex items-center gap-3">
-          <span className="flex size-11 items-center justify-center rounded-lg bg-primary/15 text-primary ring-1 ring-primary/30">
-            <Icon className="size-5" />
+          <span className="hidden size-9 items-center justify-center rounded-lg bg-primary/15 text-primary ring-1 ring-primary/30 sm:flex">
+            <Icon className="size-4" />
           </span>
           <p className="card-eyebrow">{path.eyebrow}</p>
         </div>
-        <h3 className="card-title mt-5 text-foreground">{path.label}</h3>
-        <p className="mt-3 flex-1 text-sm leading-6 text-muted-foreground">{path.description}</p>
-        <span className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-primary">
+        <h3 className="mt-2 font-headline text-base font-bold leading-tight text-foreground sm:mt-4 sm:text-lg">{path.label}</h3>
+        <p className="role-card-description mt-2 flex-1 text-sm leading-6 text-muted-foreground">{path.description}</p>
+        <span className="mt-3 inline-flex min-h-8 items-center gap-2 text-sm font-bold text-primary sm:mt-4 sm:min-h-9">
           {path.cta}
           <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
         </span>
