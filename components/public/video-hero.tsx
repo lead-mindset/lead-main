@@ -2,11 +2,22 @@
 
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
 
 import { MainContainer } from "@/components/global/main-container";
 import { isExternalHref } from "@/components/global/navigation/nav-links";
 import { Button } from "@/components/ui/button";
+
+const heroWashStyle: CSSProperties = {
+  background:
+    "linear-gradient(90deg, rgba(8, 13, 59, 0.96) 0%, rgba(8, 13, 59, 0.76) 46%, rgba(8, 13, 59, 0.26) 100%), linear-gradient(180deg, rgba(8, 13, 59, 0.18) 0%, rgba(8, 13, 59, 0.26) 58%, rgba(8, 13, 59, 0.62) 100%)",
+};
+
+const heroBottomWashStyle: CSSProperties = {
+  height: "clamp(22rem, 60svh, 34rem)",
+  background:
+    "linear-gradient(to top, var(--background) 0%, var(--background) 38%, rgba(8, 13, 59, 0.95) 68%, rgba(8, 13, 59, 0) 100%)",
+};
 
 export function VideoHero({
   videoSrc,
@@ -76,10 +87,13 @@ export function VideoHero({
         preload="metadata"
         tabIndex={-1}
       />
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,13,59,0.96)_0%,rgba(8,13,59,0.76)_46%,rgba(8,13,59,0.26)_100%),linear-gradient(180deg,rgba(8,13,59,0.18)_0%,rgba(8,13,59,0.26)_58%,rgba(8,13,59,0.62)_100%)]" />
-      <div className="absolute inset-x-0 bottom-0 -z-10 h-[64%] bg-gradient-to-t from-background/78 via-background/34 to-transparent sm:h-[52%] sm:via-background/28" />
+      <div className="absolute inset-0 -z-10" style={heroWashStyle} />
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-0"
+        style={heroBottomWashStyle}
+      />
 
-      <MainContainer className="flex min-h-[calc(88svh-4rem)] flex-col justify-end pb-9 pt-20 sm:min-h-[calc(94svh-4rem)] sm:pb-14 lg:pb-16">
+      <MainContainer className="relative z-10 flex min-h-[calc(88svh-4rem)] flex-col justify-end pb-9 pt-20 sm:min-h-[calc(94svh-4rem)] sm:pb-14 lg:pb-16">
         <div className="max-w-4xl">
           <p className="eyebrow-label eyebrow-label--light">
             LEAD Americas
