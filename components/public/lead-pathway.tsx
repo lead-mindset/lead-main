@@ -138,7 +138,9 @@ export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
             stroke="url(#lead-pathway-draw)"
             strokeWidth="76"
             strokeLinecap="round"
+            strokeLinejoin="round"
             opacity="0.58"
+            vectorEffect="non-scaling-stroke"
           />
           <defs>
             <linearGradient id="lead-pathway-draw" x1="52" y1="-120" x2="1164" y2="1376" gradientUnits="userSpaceOnUse">

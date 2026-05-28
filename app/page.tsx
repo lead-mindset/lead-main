@@ -21,7 +21,7 @@ import {
 export default function HomePage() {
   return (
     <div className="lead-public-page relative isolate overflow-x-clip text-foreground">
-      <BrandScrollTrace />
+      <BrandScrollTrace suppressWithin="#pathway" />
       <div className="relative z-10">
         <VideoHero
           videoSrc="/media/lead/hero/lead-community-hero.mp4"

@@ -9,7 +9,11 @@ const VIEWBOX_HEIGHT = 4300;
 const PATH_SAMPLE_COUNT = 900;
 const DRAW_ANCHOR_RATIO = 0.62;
 
-export function BrandScrollTrace() {
+type BrandScrollTraceProps = {
+  suppressWithin?: string;
+};
+
+export function BrandScrollTrace({ suppressWithin }: BrandScrollTraceProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const ribbonRef = useRef<SVGGElement>(null);
   const basePathRef = useRef<SVGPathElement>(null);
@@ -26,7 +30,21 @@ export function BrandScrollTrace() {
     const mm = gsap.matchMedia();
 
     mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+      const shouldSuppressTrace = () => {
+        const suppressedElement = suppressWithin
+          ? document.querySelector<HTMLElement>(suppressWithin)
+          : null;
+        const suppressedRect = suppressedElement?.getBoundingClientRect();
+
+        return !!suppressedRect && suppressedRect.top < window.innerHeight && suppressedRect.bottom > 0;
+      };
+
+      const setTraceVisibility = () => {
+        gsap.set(ribbon, { autoAlpha: shouldSuppressTrace() ? 0 : 1 });
+      };
+
       gsap.set(ribbon, {
+        autoAlpha: shouldSuppressTrace() ? 0 : 1,
         yPercent: 0,
         transformOrigin: "50% 50%",
       });
@@ -80,7 +98,10 @@ export function BrandScrollTrace() {
         const offset = gsap.utils.clamp(0, length, length - drawnDistance);
 
         gsap.set(path, { strokeDashoffset: offset });
-        gsap.set(ribbon, { yPercent: sectionProgress * 1.5 });
+        gsap.set(ribbon, {
+          autoAlpha: shouldSuppressTrace() ? 0 : 1,
+          yPercent: sectionProgress * 1.5,
+        });
       };
 
       const scrollTrigger = ScrollTrigger.create({
@@ -91,10 +112,30 @@ export function BrandScrollTrace() {
         onRefresh: updateTrace,
       });
 
-      updateTrace();
-      requestAnimationFrame(() => scrollTrigger.refresh());
+      const suppressionTrigger = suppressWithin
+        ? ScrollTrigger.create({
+            trigger: suppressWithin,
+            start: "top bottom",
+            end: "bottom top",
+            onEnter: setTraceVisibility,
+            onEnterBack: setTraceVisibility,
+            onLeave: setTraceVisibility,
+            onLeaveBack: setTraceVisibility,
+            onRefresh: setTraceVisibility,
+            onUpdate: setTraceVisibility,
+          })
+        : null;
 
-      return () => scrollTrigger.kill();
+      updateTrace();
+      requestAnimationFrame(() => {
+        scrollTrigger.refresh();
+        suppressionTrigger?.refresh();
+      });
+
+      return () => {
+        scrollTrigger.kill();
+        suppressionTrigger?.kill();
+      };
     });
 
     mm.add("(prefers-reduced-motion: reduce)", () => {
@@ -103,7 +144,7 @@ export function BrandScrollTrace() {
     });
 
     return () => mm.revert();
-  }, []);
+  }, [suppressWithin]);
 
   return (
     <div
@@ -134,6 +175,8 @@ export function BrandScrollTrace() {
             strokeWidth="76"
             strokeLinecap="round"
             strokeLinejoin="round"
+            opacity="0.1"
+            vectorEffect="non-scaling-stroke"
           />
           <path
             ref={pathRef}
@@ -142,6 +185,8 @@ export function BrandScrollTrace() {
             strokeWidth="76"
             strokeLinecap="round"
             strokeLinejoin="round"
+            opacity="0"
+            vectorEffect="non-scaling-stroke"
           />
         </g>
       </svg>
