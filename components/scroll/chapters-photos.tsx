@@ -6,12 +6,12 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 const images = [
-  "/chapters/chapter-1.jpg",
-  "/chapters/chapter-2.jpg",
-  "/chapters/chapter-3.jpg",
-  "/chapters/chapter-4.jpg",
-  "/chapters/chapter-5.jpg",
-  "/chapters/chapter-6.jpg",
+  "/media/lead/highlights/lead-games-chapters.webp",
+  "/media/lead/highlights/microsoft-usil-integration.webp",
+  "/media/lead/get-involved/campus-lead-games.webp",
+  "/media/lead/about/chapter-energy-lead-games.webp",
+  "/media/lead/highlights/rutgers-group.webp",
+  "/media/lead/about/community-at-ibm.webp",
 ];
 
 export default function ChaptersPhotos() {

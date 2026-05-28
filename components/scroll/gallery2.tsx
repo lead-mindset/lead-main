@@ -7,11 +7,11 @@ import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import Image from "next/image";
 
 const images = [
-    "/about-us/1.jpg",
-    "/about-us/2.jpg",
-    "/about-us/6.jpg",
-    "/about-us/4.jpg",
-    "/about-us/5.jpg",
+    "/media/lead/about/community-at-ibm.webp",
+    "/media/lead/highlights/discover-day-students.webp",
+    "/media/lead/highlights/lead-her.webp",
+    "/media/lead/highlights/microsoft-usil-integration.webp",
+    "/media/lead/about/rutgers-americas.webp",
 ];
 
 export default function CurvedImageRibbon() {

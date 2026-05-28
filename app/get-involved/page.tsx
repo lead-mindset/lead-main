@@ -50,8 +50,9 @@ const rolePaths: RolePath[] = [
     description: "Create your profile, find your community, and start discovering programs and opportunities.",
     cta: "Start as a student",
     icon: GraduationCap,
-    media: "/about-us/2.jpg",
-    mediaType: "image",
+    media: "/media/lead/hero/lead-community-hero.mp4",
+    mediaType: "video",
+    poster: "/media/lead/hero/lead-community-hero.webp",
     tone: "from-[#e53e3e]/24 via-[#9f258c]/18 to-transparent",
   },
   {
@@ -61,7 +62,7 @@ const rolePaths: RolePath[] = [
     description: "Share your campus, your team, and the kind of student community you want to build.",
     cta: "Request chapter interest",
     icon: Rocket,
-    media: "/chapters/chapter-1.jpg",
+    media: "/media/lead/get-involved/campus-lead-games.webp",
     mediaType: "image",
     tone: "from-[#7a57d1]/26 via-[#9f258c]/18 to-transparent",
   },
@@ -72,7 +73,7 @@ const rolePaths: RolePath[] = [
     description: "Support students through visits, mentorship, sponsorship, workshops, or industry access.",
     cta: "Explore partnership",
     icon: Handshake,
-    media: "/about-us/5.jpg",
+    media: "/media/lead/get-involved/partner-ibm-team.webp",
     mediaType: "image",
     tone: "from-[#7e56e2]/26 via-[#ba4e5e]/16 to-transparent",
   },
@@ -83,7 +84,7 @@ const rolePaths: RolePath[] = [
     description: "Bring aligned STEM, leadership, or access initiatives into the LEAD ecosystem.",
     cta: "Start collaboration",
     icon: Users,
-    media: "/chapters/chapter-6.jpg",
+    media: "/media/lead/get-involved/community-little-einsteins-classroom.webp",
     mediaType: "image",
     tone: "from-white/18 via-[#7a57d1]/16 to-transparent",
   },
@@ -121,7 +122,7 @@ export default function GetInvolvedPage() {
         <GetInvolvedRocketHero />
         <MainContainer className="relative z-10 flex min-h-[calc(100svh-7rem)] items-center py-14">
           <div className="max-w-[54rem] lg:max-w-[57rem]">
-            <p className="text-sm font-semibold uppercase text-primary">Get involved</p>
+            <p className="eyebrow-label">Get involved</p>
             <h1 className="display-title mt-5 max-w-3xl">
               Choose your path into LEAD.
             </h1>
@@ -143,7 +144,7 @@ export default function GetInvolvedPage() {
           <MainContainer>
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div className="max-w-2xl">
-                <p className="text-sm font-semibold uppercase text-primary">Start here</p>
+                <p className="eyebrow-label">Start here</p>
                 <h2 className="section-title mt-3">Pick the role that fits you.</h2>
               </div>
               <p className="body-copy max-w-xl text-muted-foreground">
@@ -152,7 +153,7 @@ export default function GetInvolvedPage() {
               </p>
             </div>
 
-            <div className="mt-10 grid auto-cols-[minmax(17rem,82vw)] grid-flow-col items-stretch gap-4 overflow-x-auto pb-4 [scrollbar-width:none] md:grid-flow-row md:grid-cols-2 md:overflow-visible md:pb-0 xl:grid-cols-4">
+            <div className="mt-10 grid items-stretch gap-4 sm:grid-cols-2 xl:grid-cols-4">
               {rolePaths.map((path, index) => (
                 <RolePathCard key={path.label} path={path} index={index} />
               ))}
@@ -173,18 +174,18 @@ export default function GetInvolvedPage() {
                 loop
                 playsInline
                 preload="metadata"
-                poster="/about-us/2.jpg"
+                poster="/media/lead/hero/lead-community-hero.webp"
               >
-                <source src="/video2.mp4" type="video/mp4" />
+                <source src="/media/lead/hero/lead-community-hero.mp4" type="video/mp4" />
               </video>
               <div className="absolute inset-0 bg-gradient-to-t from-background/75 via-background/10 to-transparent" />
-              <p className="absolute bottom-5 left-5 right-5 max-w-xl text-xl font-bold leading-tight text-white sm:text-2xl">
+              <p className="media-caption-title absolute bottom-5 left-5 right-5 max-w-xl text-white">
                 Join the community. Build confidence. Find the next step.
               </p>
             </div>
 
             <div>
-              <p className="text-sm font-semibold uppercase text-primary">Student path</p>
+              <p className="eyebrow-label">Student path</p>
               <h2 className="section-title mt-3">
                 Join the community and enter the Talent Platform.
               </h2>
@@ -223,7 +224,7 @@ export default function GetInvolvedPage() {
         <section id="chapters" className="editorial-warm-band scroll-mt-24 border-y border-border/80 py-14 sm:py-20">
           <MainContainer className="grid gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-center">
             <div>
-              <p className="text-sm font-semibold uppercase text-primary">Chapter interest</p>
+              <p className="eyebrow-label">Chapter interest</p>
               <h2 className="section-title mt-3">
                 Bring LEAD to your campus with clarity.
               </h2>
@@ -251,8 +252,8 @@ export default function GetInvolvedPage() {
                   <span className="text-sm font-bold text-primary">
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="mt-4 text-2xl font-bold text-foreground">{value.title}</h3>
-                  <p className="mt-1 text-sm font-semibold text-primary">{value.translation}</p>
+                  <h3 className="card-title mt-4 text-foreground">{value.title}</h3>
+                  <p className="card-eyebrow mt-1">{value.translation}</p>
                   <p className="body-copy mt-4 text-sm text-muted-foreground">{value.description}</p>
                 </div>
               ))}
@@ -266,20 +267,20 @@ export default function GetInvolvedPage() {
           <MainContainer className="grid gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
             <div className="relative overflow-hidden rounded-xl border border-border bg-card">
               <Image
-                src="/about-us/5.jpg"
-                alt="LEAD students and partners in a professional setting"
+                src="/media/lead/highlights/ibm-explore-day-speakers.webp"
+                alt="LEAD students and IBM partners in a professional setting"
                 width={900}
                 height={640}
                 className="aspect-[4/3] w-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/82 via-background/8 to-transparent" />
-              <p className="absolute bottom-5 left-5 right-5 max-w-xl text-xl font-bold leading-tight text-white sm:text-2xl">
+              <p className="media-caption-title absolute bottom-5 left-5 right-5 max-w-xl text-white">
                 Partnerships should make opportunity feel closer, clearer, and real.
               </p>
             </div>
 
             <div>
-              <p className="text-sm font-semibold uppercase text-primary">Partners and collaborators</p>
+              <p className="eyebrow-label">Partners and collaborators</p>
               <h2 className="section-title mt-3">
                 Create access with students who are already moving.
               </h2>
@@ -352,9 +353,9 @@ function RolePathCard({ path, index }: { path: RolePath; index: number }) {
           <span className="flex size-11 items-center justify-center rounded-lg bg-primary/15 text-primary ring-1 ring-primary/30">
             <Icon className="size-5" />
           </span>
-          <p className="text-xs font-bold uppercase text-primary">{path.eyebrow}</p>
+          <p className="card-eyebrow">{path.eyebrow}</p>
         </div>
-        <h3 className="mt-5 text-2xl font-bold leading-tight text-foreground">{path.label}</h3>
+        <h3 className="card-title mt-5 text-foreground">{path.label}</h3>
         <p className="mt-3 flex-1 text-sm leading-6 text-muted-foreground">{path.description}</p>
         <span className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-primary">
           {path.cta}

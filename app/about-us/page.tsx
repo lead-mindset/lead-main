@@ -8,6 +8,7 @@ import { PublicRouteChooser } from "@/components/public/public-route-chooser";
 import { SectionReveal } from "@/components/public/section-reveal";
 import { Button } from "@/components/ui/button";
 import {
+  communityMoments,
   leadership,
   operatingValues,
   proofStats,
@@ -20,8 +21,8 @@ export default function AboutPage() {
     <div className="relative isolate overflow-hidden bg-background text-foreground">
       <section className="relative z-10 editorial-photo-hero pt-28">
         <Image
-          src="/about-us/2.jpg"
-          alt="LEAD community members at an event"
+          src="/media/lead/about/community-at-ibm.webp"
+          alt="LEAD students gathered at IBM Explore Day"
           fill
           priority
           className="absolute inset-0 -z-10 object-cover"
@@ -64,8 +65,8 @@ export default function AboutPage() {
               <div className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr] lg:items-stretch">
                 <div className="relative min-h-[26rem] overflow-hidden rounded-2xl border border-border bg-card shadow-[inset_0_1px_0_color-mix(in_oklab,white_12%,transparent)]">
                   <Image
-                    src="/about-us/5.jpg"
-                    alt="LEAD students and partners gathered at a professional experience"
+                    src="/media/lead/about/rutgers-americas.webp"
+                    alt="LEAD students and community members at Rutgers University"
                     fill
                     sizes="(min-width: 1024px) 54vw, 100vw"
                     className="object-cover"
@@ -73,7 +74,7 @@ export default function AboutPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/48 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 p-5 sm:p-8">
                     <span className="eyebrow-label">Community proof</span>
-                    <h2 className="mt-4 max-w-2xl text-2xl font-black leading-tight text-white sm:text-4xl">
+                    <h2 className="feature-title mt-4 max-w-2xl text-white">
                       Trust comes from the people building it.
                     </h2>
                     <p className="body-copy mt-4 max-w-2xl text-white/78">
@@ -100,10 +101,10 @@ export default function AboutPage() {
                         />
                       </div>
                       <div className="p-5">
-                        <p className="text-sm font-semibold uppercase text-primary">
+                        <p className="card-eyebrow">
                           {moment.eyebrow}
                         </p>
-                        <h3 className="mt-3 text-xl font-bold leading-tight text-foreground">
+                        <h3 className="card-title mt-3 text-foreground">
                           {moment.title}
                         </h3>
                         <p className="mt-3 text-sm leading-6 text-muted-foreground">
@@ -141,6 +142,32 @@ export default function AboutPage() {
                   </p>
                 </div>
               </div>
+
+              <div className="mt-8 grid gap-3 sm:grid-cols-3">
+                {communityMoments.map((moment) => (
+                  <figure
+                    key={moment.title}
+                    className="group relative min-h-[17rem] overflow-hidden rounded-2xl border border-border bg-card sm:min-h-[20rem]"
+                  >
+                    <Image
+                      src={moment.image}
+                      alt={moment.title}
+                      fill
+                      sizes="(min-width: 1024px) 30vw, (min-width: 640px) 33vw, 100vw"
+                      className="object-cover transition duration-700 group-hover:scale-[1.04]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/28 to-transparent" />
+                    <figcaption className="absolute inset-x-0 bottom-0 p-5">
+                      <p className="media-caption-title text-white">
+                        {moment.title}
+                      </p>
+                      <p className="mt-2 text-sm leading-6 text-white/74">
+                        {moment.description}
+                      </p>
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
             </MainContainer>
           </section>
         </SectionReveal>
@@ -171,10 +198,10 @@ export default function AboutPage() {
                         </span>
                       </div>
                       <div>
-                        <p className="font-headline text-4xl font-black leading-none text-primary/42 sm:text-5xl">
+                        <p className="feature-title text-primary/50">
                           {value.title}
                         </p>
-                        <p className="mt-3 text-sm font-bold uppercase tracking-[0.12em] text-primary">
+                        <p className="card-eyebrow mt-3">
                           {value.translation}
                         </p>
                         <p className="body-copy mt-4 max-w-2xl text-muted-foreground">
@@ -245,7 +272,7 @@ export default function AboutPage() {
                       className="aspect-[4/3] w-full object-cover"
                     />
                     <div className="p-5">
-                      <h3 className="text-lg font-semibold text-foreground">{person.name}</h3>
+                      <h3 className="card-title text-foreground">{person.name}</h3>
                       <p className="mt-1 text-sm text-muted-foreground">{person.role}</p>
                     </div>
                   </article>
@@ -270,14 +297,14 @@ const aboutProofMoments = [
     title: "Students make LEAD local.",
     description:
       "Chapter leaders turn leadership into repeated practice, belonging, and visible campus momentum.",
-    image: "/chapters/chapter-1.jpg",
+    image: "/media/lead/about/chapter-energy-lead-games.webp",
   },
   {
     eyebrow: "Programs",
     title: "Experiences make opportunity concrete.",
     description:
       "Workshops, visits, and summits help students see the rooms, tools, and standards around them.",
-    image: "/about-us/3.jpg",
+    image: "/media/lead/highlights/discover-day-students.webp",
   },
 ];
 

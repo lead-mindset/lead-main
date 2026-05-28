@@ -21,8 +21,8 @@ export default function HomePage() {
   return (
     <div className="lead-public-page relative isolate overflow-x-clip text-foreground">
       <VideoHero
-        videoSrc="/video2.mp4"
-        posterSrc="/about-us/2.jpg"
+        videoSrc="/media/lead/hero/lead-community-hero.mp4"
+        posterSrc="/media/lead/hero/lead-community-hero.webp"
         primaryHref={publicCtas.pathway}
         secondaryHref={publicCtas.partner}
       />

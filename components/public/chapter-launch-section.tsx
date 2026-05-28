@@ -19,7 +19,7 @@ export function ChapterLaunchSection() {
       <MainContainer>
         <div className="grid gap-7 lg:grid-cols-[0.86fr_1.14fr] lg:items-center">
           <div>
-            <p className="text-sm font-semibold uppercase text-primary">
+            <p className="eyebrow-label">
               Chapters
             </p>
             <h2 className="section-title mt-4 max-w-2xl">
@@ -62,15 +62,15 @@ export function ChapterLaunchSection() {
           <div className="overflow-hidden rounded-2xl border border-border bg-card">
             <div className="relative aspect-[16/10]">
               <Image
-                src="/chapters/chapter-1.jpg"
-                alt="LEAD chapter students at a campus gathering"
+                src="/media/lead/highlights/lead-games-chapters.webp"
+                alt="LEAD chapter students gathered during LEAD Games"
                 fill
                 sizes="(min-width: 1024px) 48vw, 100vw"
                 loading="eager"
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/78 via-background/8 to-transparent" />
-              <p className="absolute bottom-5 left-5 right-5 max-w-xl text-xl font-bold leading-tight text-white sm:text-2xl">
+              <p className="media-caption-title absolute bottom-5 left-5 right-5 max-w-xl text-white">
                 Chapters make LEAD local, visible, and student-led.
               </p>
             </div>

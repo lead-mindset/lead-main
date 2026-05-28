@@ -5,13 +5,13 @@ import Image from "next/image";
 import gsap from "@/lib/gsap-setup";
 
 const images = [
-  "/about-us/1.jpg",
-  "/about-us/2.jpg",
-  "/about-us/3.jpg",
-  "/about-us/4.jpg",
-  "/about-us/5.jpg",
-  "/about-us/6.jpg",
-  "/about-us/7.jpg",
+  "/media/lead/about/community-at-ibm.webp",
+  "/media/lead/highlights/discover-day-students.webp",
+  "/media/lead/highlights/ibm-explore-day-speakers.webp",
+  "/media/lead/highlights/microsoft-usil-integration.webp",
+  "/media/lead/about/rutgers-americas.webp",
+  "/media/lead/highlights/lead-her.webp",
+  "/media/lead/highlights/little-einsteins.webp",
 ];
 
 export default function Gallery() {
