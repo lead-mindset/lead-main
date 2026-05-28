@@ -34,6 +34,13 @@ yarn-error.log*
 # generated agent QA/planning artifacts
 /.agents/qa/
 /.agents/plans/
+/.agents/visual-regression/
+/.agents/linkedin-chrome-profile/
+/.agents/linkedin-download-test/
+/.agents/media/
+dev-server*.log
+*.pyc
+__pycache__/
 
 # local loose asset exports; canonical copies live under public/allies
 /microsoft.svg

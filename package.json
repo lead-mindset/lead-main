@@ -6,7 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "media:linkedin": "node tools/media/download-linkedin-videos-ytdlp.js",
+    "media:linkedin:taplio": "node tools/media/download-linkedin-videos-taplio.js",
+    "media:instagram": "node tools/media/download-instagram-gallery-dl.js",
+    "media:auth-browser": "node tools/media/open-media-auth-browser.js",
+    "media:auth-check": "node tools/media/check-media-auth.js",
+    "media:ig-import-cookies": "python tools/media/import-instagram-cookies-to-instaloader-session.py",
+    "media:inventory": "node tools/media/build-lead-media-inventory.js",
+    "media:archive": "node tools/media/archive-lead-media.js"
   },
   "dependencies": {
     "@base-ui/react": "^1.0.0",
