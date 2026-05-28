@@ -5,6 +5,7 @@ import { PartnerLogoMarquee } from "@/components/public/partner-logo-marquee";
 import { ProgramsVideoCarousel } from "@/components/public/programs-video-carousel";
 import { PublicRouteChooser } from "@/components/public/public-route-chooser";
 import { RegionalEarthStage } from "@/components/public/regional-earth-stage";
+import { BrandScrollTrace } from "@/components/public/brand-scroll-trace";
 import { SectionReveal } from "@/components/public/section-reveal";
 import { StarfieldImpactCounters } from "@/components/public/starfield-impact-counters";
 import { VideoHero } from "@/components/public/video-hero";
@@ -20,36 +21,39 @@ import {
 export default function HomePage() {
   return (
     <div className="lead-public-page relative isolate overflow-x-clip text-foreground">
-      <VideoHero
-        videoSrc="/media/lead/hero/lead-community-hero.mp4"
-        posterSrc="/media/lead/hero/lead-community-hero.webp"
-        primaryHref={publicCtas.pathway}
-        secondaryHref={publicCtas.partner}
-      />
+      <BrandScrollTrace />
+      <div className="relative z-10">
+        <VideoHero
+          videoSrc="/media/lead/hero/lead-community-hero.mp4"
+          posterSrc="/media/lead/hero/lead-community-hero.webp"
+          primaryHref={publicCtas.pathway}
+          secondaryHref={publicCtas.partner}
+        />
 
-      <StarfieldImpactCounters stats={proofStats} />
+        <StarfieldImpactCounters stats={proofStats} />
 
-      <RegionalEarthStage />
+        <RegionalEarthStage />
 
-      <LeadPathway stages={pathwayStages} />
+        <LeadPathway stages={pathwayStages} />
 
-      <SectionReveal>
-        <ProgramsVideoCarousel programs={programs} />
-      </SectionReveal>
+        <SectionReveal>
+          <ProgramsVideoCarousel programs={programs} />
+        </SectionReveal>
 
-      <SectionReveal>
-        <ChapterLaunchSection />
-      </SectionReveal>
+        <SectionReveal>
+          <ChapterLaunchSection />
+        </SectionReveal>
 
-      <SectionReveal>
-        <PartnerLogoMarquee logos={partnerLogos} />
-      </SectionReveal>
+        <SectionReveal>
+          <PartnerLogoMarquee logos={partnerLogos} />
+        </SectionReveal>
 
-      <SectionReveal>
-        <LeadHighlightsCarousel highlights={impactHighlights} />
-      </SectionReveal>
+        <SectionReveal>
+          <LeadHighlightsCarousel highlights={impactHighlights} />
+        </SectionReveal>
 
-      <PublicRouteChooser />
+        <PublicRouteChooser />
+      </div>
     </div>
   );
 }

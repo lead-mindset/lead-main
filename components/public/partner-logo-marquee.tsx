@@ -11,30 +11,22 @@ export function PartnerLogoMarquee({ logos }: { logos: PartnerLogo[] }) {
   const marqueeLogos = [...logos, ...logos];
 
   return (
-    <section id="partners" className="lead-soft-inverse-surface relative scroll-mt-24 overflow-hidden border-y border-primary/15 py-14 sm:py-16">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-background/42 to-transparent" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-background/28 to-transparent" />
+    <section id="partners" className="relative scroll-mt-24 overflow-hidden py-10 sm:py-12">
       <MainContainer className="relative z-10">
-        <div className="grid gap-6 lg:grid-cols-[0.52fr_1.48fr] lg:items-center">
-          <div>
-            <p className="eyebrow-label eyebrow-label--inverse">
-              Partners and allies
-            </p>
-            <h2 className="section-title mt-3">
-              Organizations that support LEAD.
-            </h2>
-          </div>
+        <p className="eyebrow-label">
+          Orgs that support us
+        </p>
 
-          <div className="lead-marquee-window overflow-hidden border-y border-[var(--brand-background)]/10 py-5">
-            <div className="lead-logo-marquee flex w-max items-center gap-8">
-              {marqueeLogos.map((logo, index) => {
-                const isDuplicate = index >= logos.length;
+        <div className="lead-marquee-window mt-6 overflow-x-auto rounded-2xl border border-white/10 bg-card/35 py-5 shadow-[inset_0_1px_0_color-mix(in_oklab,white_8%,transparent)] [scrollbar-width:none] md:overflow-hidden">
+          <div className="lead-logo-marquee flex w-max items-center gap-6 px-5">
+            {marqueeLogos.map((logo, index) => {
+              const isDuplicate = index >= logos.length;
 
-                return (
+              return (
                 <div
                   key={`${logo.name}-${index}`}
                   aria-hidden={isDuplicate}
-                  className="flex h-16 w-44 shrink-0 items-center justify-center rounded-xl border border-[var(--brand-background)]/10 bg-white/72 px-5 shadow-[0_12px_34px_rgba(8,13,59,0.08)] backdrop-blur"
+                  className="flex h-14 w-40 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/90 px-5 shadow-[0_12px_34px_rgba(0,0,0,0.16)]"
                 >
                   <Image
                     src={logo.src}
@@ -44,9 +36,8 @@ export function PartnerLogoMarquee({ logos }: { logos: PartnerLogo[] }) {
                     className="h-auto max-h-10 w-auto object-contain"
                   />
                 </div>
-                );
-              })}
-            </div>
+              );
+            })}
           </div>
         </div>
       </MainContainer>
