@@ -22,7 +22,7 @@ export default function HomePage() {
   return (
     <div className="lead-public-page relative isolate overflow-x-clip text-foreground">
       <div className="relative z-10">
-        <BrandScrollTrace />
+        <BrandScrollTrace route="home" />
         <div className="relative z-10">
           <VideoHero
             videoSrc="/media/lead/hero/lead-community-hero.mp4"
