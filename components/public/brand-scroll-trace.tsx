@@ -5,62 +5,33 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import gsap from "@/lib/gsap-setup";
 
-const VIEWBOX_HEIGHT = 4300;
+const VIEWBOX_HEIGHT = 6200;
 const PATH_SAMPLE_COUNT = 900;
-const DRAW_ANCHOR_RATIO = 0.62;
+const DRAW_ANCHOR_RATIO = 0.58;
+const TRACE_PATH =
+  "M-140 -173 C142 127 270 407 162 750 C34 1159 -112 1499 124 1817 C410 2203 920 1900 670 2232 C600 2437 590 2622 560 2852 C630 3127 780 3372 1050 3620 C1320 3873 1518 4217 1240 4540 C900 4943 462 5162 650 5638 C790 5993 1160 6056 1560 6344";
 
-type BrandScrollTraceProps = {
-  suppressWithin?: string;
-};
-
-export function BrandScrollTrace({ suppressWithin }: BrandScrollTraceProps) {
+export function BrandScrollTrace() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const ribbonRef = useRef<SVGGElement>(null);
-  const basePathRef = useRef<SVGPathElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
 
   useEffect(() => {
-    const ribbon = ribbonRef.current;
-    const basePath = basePathRef.current;
     const path = pathRef.current;
+    if (!path) return;
 
-    if (!ribbon || !basePath || !path) return;
-
-    const length = path.getTotalLength();
     const mm = gsap.matchMedia();
 
     mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
-      const shouldSuppressTrace = () => {
-        const suppressedElement = suppressWithin
-          ? document.querySelector<HTMLElement>(suppressWithin)
-          : null;
-        const suppressedRect = suppressedElement?.getBoundingClientRect();
-
-        return !!suppressedRect && suppressedRect.top < window.innerHeight && suppressedRect.bottom > 0;
-      };
-
-      const setTraceVisibility = () => {
-        gsap.set(ribbon, { autoAlpha: shouldSuppressTrace() ? 0 : 1 });
-      };
-
-      gsap.set(ribbon, {
-        autoAlpha: shouldSuppressTrace() ? 0 : 1,
-        yPercent: 0,
-        transformOrigin: "50% 50%",
-      });
-
-      gsap.set(basePath, {
-        opacity: 0.1,
-      });
-
+      const length = path.getTotalLength();
       gsap.set(path, {
-        strokeDasharray: length,
-        strokeDashoffset: length,
         opacity: 0.58,
       });
+      path.setAttribute("stroke-dasharray", String(length));
+      path.setAttribute("stroke-dashoffset", String(length));
 
       const samples = Array.from({ length: PATH_SAMPLE_COUNT + 1 }, (_, index) => {
         const distance = (length * index) / PATH_SAMPLE_COUNT;
+
         return {
           distance,
           y: path.getPointAtLength(distance).y,
@@ -79,6 +50,7 @@ export function BrandScrollTrace({ suppressWithin }: BrandScrollTraceProps) {
           if (targetY >= minY && targetY <= maxY) {
             const span = current.y - previous.y;
             const progress = span === 0 ? 0 : (targetY - previous.y) / span;
+
             return previous.distance + (current.distance - previous.distance) * progress;
           }
         }
@@ -86,72 +58,61 @@ export function BrandScrollTrace({ suppressWithin }: BrandScrollTraceProps) {
         return length;
       };
 
-      const updateTrace = () => {
+      const updateDrawnPath = () => {
         const container = containerRef.current;
         if (!container) return;
 
         const rect = container.getBoundingClientRect();
         const viewportAnchor = window.innerHeight * DRAW_ANCHOR_RATIO;
-        const sectionProgress = gsap.utils.clamp(0, 1, (viewportAnchor - rect.top) / rect.height);
-        const targetY = sectionProgress * VIEWBOX_HEIGHT;
-        const drawnDistance = distanceForY(targetY);
-        const offset = gsap.utils.clamp(0, length, length - drawnDistance);
+        const viewportY = gsap.utils.clamp(
+          0,
+          VIEWBOX_HEIGHT,
+          ((viewportAnchor - rect.top) / rect.height) * VIEWBOX_HEIGHT
+        );
+        const drawnDistance = distanceForY(viewportY);
+        const strokeDashoffset = gsap.utils.clamp(
+          0,
+          length,
+          length - drawnDistance
+        );
 
-        gsap.set(path, { strokeDashoffset: offset });
-        gsap.set(ribbon, {
-          autoAlpha: shouldSuppressTrace() ? 0 : 1,
-          yPercent: sectionProgress * 1.5,
-        });
+        path.setAttribute("stroke-dashoffset", String(strokeDashoffset));
       };
 
       const scrollTrigger = ScrollTrigger.create({
         trigger: containerRef.current,
         start: "top bottom",
         end: "bottom top",
-        onUpdate: updateTrace,
-        onRefresh: updateTrace,
+        onUpdate: updateDrawnPath,
+        onRefresh: updateDrawnPath,
       });
 
-      const suppressionTrigger = suppressWithin
-        ? ScrollTrigger.create({
-            trigger: suppressWithin,
-            start: "top bottom",
-            end: "bottom top",
-            onEnter: setTraceVisibility,
-            onEnterBack: setTraceVisibility,
-            onLeave: setTraceVisibility,
-            onLeaveBack: setTraceVisibility,
-            onRefresh: setTraceVisibility,
-            onUpdate: setTraceVisibility,
-          })
-        : null;
-
-      updateTrace();
-      requestAnimationFrame(() => {
-        scrollTrigger.refresh();
-        suppressionTrigger?.refresh();
-      });
+      updateDrawnPath();
+      requestAnimationFrame(() => scrollTrigger.refresh());
 
       return () => {
         scrollTrigger.kill();
-        suppressionTrigger?.kill();
       };
     });
 
     mm.add("(prefers-reduced-motion: reduce)", () => {
-      gsap.set(basePath, { opacity: 0.12 });
-      gsap.set(path, { autoAlpha: 0 });
+      gsap.set(path, {
+        opacity: 0.32,
+      });
+      path.setAttribute("stroke-dasharray", String(path.getTotalLength()));
+      path.setAttribute("stroke-dashoffset", "0");
     });
 
     return () => mm.revert();
-  }, [suppressWithin]);
+  }, []);
 
   return (
     <div
       ref={containerRef}
       data-brand-scroll-trace
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 z-0 hidden overflow-hidden md:block"
+      className="pointer-events-none absolute inset-0 hidden overflow-hidden md:block"
+      style={{ zIndex: 1 }}
     >
       <svg
         className="h-full w-full overflow-visible"
@@ -160,35 +121,23 @@ export function BrandScrollTrace({ suppressWithin }: BrandScrollTraceProps) {
         preserveAspectRatio="none"
       >
         <defs>
-          <linearGradient id="lead-scroll-trace" x1="-160" y1="0" x2="1560" y2="4200" gradientUnits="userSpaceOnUse">
+          <linearGradient id="lead-scroll-trace" x1="-160" y1="0" x2="1560" y2="6200" gradientUnits="userSpaceOnUse">
             <stop offset="0" stopColor="var(--brand-logo-red-orange)" />
             <stop offset="0.48" stopColor="var(--brand-logo-magenta)" />
             <stop offset="1" stopColor="var(--primary)" />
           </linearGradient>
         </defs>
 
-        <g ref={ribbonRef}>
-          <path
-            ref={basePathRef}
-            d="M-120 150 C178 42 306 224 204 520 C104 812 -138 908 -56 1210 C64 1654 760 1540 1080 1320 C1328 1150 1430 1262 1548 1468 C1718 1766 1150 1998 718 2240 C318 2464 -86 2740 28 3200 C142 3660 942 3580 1548 3970"
-            stroke="url(#lead-scroll-trace)"
-            strokeWidth="76"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            opacity="0.1"
-            vectorEffect="non-scaling-stroke"
-          />
-          <path
-            ref={pathRef}
-            d="M-120 150 C178 42 306 224 204 520 C104 812 -138 908 -56 1210 C64 1654 760 1540 1080 1320 C1328 1150 1430 1262 1548 1468 C1718 1766 1150 1998 718 2240 C318 2464 -86 2740 28 3200 C142 3660 942 3580 1548 3970"
-            stroke="url(#lead-scroll-trace)"
-            strokeWidth="76"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            opacity="0"
-            vectorEffect="non-scaling-stroke"
-          />
-        </g>
+        <path
+          ref={pathRef}
+          d={TRACE_PATH}
+          stroke="url(#lead-scroll-trace)"
+          strokeWidth="76"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          opacity="0"
+          vectorEffect="non-scaling-stroke"
+        />
       </svg>
     </div>
   );

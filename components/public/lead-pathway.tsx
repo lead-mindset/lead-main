@@ -44,16 +44,13 @@ type PathwayStageStyle = CSSProperties & {
 
 export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
   const sectionRef = useRef<HTMLElement>(null);
-  const pathRef = useRef<SVGPathElement>(null);
   const stageRefs = useRef<Array<HTMLElement | null>>([]);
 
   useGSAP(
     () => {
       const section = sectionRef.current;
-      const path = pathRef.current;
-      if (!section || !path) return;
+      if (!section) return;
 
-      const length = path.getTotalLength();
       const mm = gsap.matchMedia();
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
@@ -62,22 +59,6 @@ export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
             stage?.classList.toggle("is-pathway-active", stage === activeStage);
           });
         };
-
-        gsap.set(path, {
-          strokeDasharray: length,
-          strokeDashoffset: length,
-        });
-
-        gsap.to(path, {
-          strokeDashoffset: 0,
-          ease: "none",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 88%",
-            end: "bottom 12%",
-            scrub: 1.4,
-          },
-        });
 
         stageRefs.current.forEach((stage) => {
           if (!stage) return;
@@ -109,7 +90,6 @@ export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
       });
 
       mm.add(REDUCED_MOTION_QUERY, () => {
-        gsap.set(path, { strokeDashoffset: 0 });
         gsap.set(stageRefs.current, { autoAlpha: 1, y: 0 });
       });
 
@@ -124,34 +104,6 @@ export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
       id="pathway"
       className="lead-pathway relative scroll-mt-24 overflow-visible pb-16 pt-24 sm:pb-28 sm:pt-32"
     >
-      <div className="pointer-events-none absolute inset-y-0 left-0 right-[-18vw] z-0 overflow-hidden lg:left-[40%] lg:right-[-10vw]">
-        <svg
-          className="absolute -left-10 top-6 h-[calc(100%-3rem)] w-[88vw] min-w-[56rem] lg:left-0 lg:w-[76vw]"
-          viewBox="0 0 1200 1260"
-          fill="none"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          <path
-            ref={pathRef}
-            d="M52 -120 C388 34 718 -18 918 184 C1112 380 908 512 610 590 C254 684 180 808 372 956 C574 1112 870 1050 1164 1376"
-            stroke="url(#lead-pathway-draw)"
-            strokeWidth="76"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            opacity="0.58"
-            vectorEffect="non-scaling-stroke"
-          />
-          <defs>
-            <linearGradient id="lead-pathway-draw" x1="52" y1="-120" x2="1164" y2="1376" gradientUnits="userSpaceOnUse">
-              <stop stopColor="var(--brand-logo-red-orange)" />
-              <stop offset="0.42" stopColor="var(--brand-logo-magenta)" />
-              <stop offset="1" stopColor="var(--primary)" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:gap-14">
           <div
