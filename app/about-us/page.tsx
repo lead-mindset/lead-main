@@ -3,22 +3,20 @@ import Link from "next/link";
 
 import { MainContainer } from "@/components/global/main-container";
 import { BrandScrollTrace } from "@/components/public/brand-scroll-trace";
-import { ProofRail } from "@/components/public/proof-rail";
 import { PublicRouteChooser } from "@/components/public/public-route-chooser";
 import { SectionReveal } from "@/components/public/section-reveal";
 import { Button } from "@/components/ui/button";
 import {
   communityMoments,
   leadership,
-  operatingValues,
-  proofStats,
   publicCtas,
 } from "@/lib/public-site/content";
 import { isExternalHref } from "@/components/global/navigation/nav-links";
 
 export default function AboutPage() {
   return (
-    <div className="relative isolate overflow-hidden bg-background text-foreground">
+    <div className="lead-public-page relative isolate overflow-hidden text-foreground">
+      <BrandScrollTrace />
       <section className="relative z-10 editorial-photo-hero pt-28">
         <Image
           src="/media/lead/about/community-at-ibm.webp"
@@ -49,78 +47,9 @@ export default function AboutPage() {
         </MainContainer>
       </section>
 
-      <div className="relative z-0">
-        <BrandScrollTrace />
+      <div className="relative z-10">
         <SectionReveal className="relative z-10">
-          <section className="relative z-10 border-y border-border bg-card/45 py-14">
-            <MainContainer className="relative z-10">
-              <ProofRail stats={proofStats} />
-            </MainContainer>
-          </section>
-        </SectionReveal>
-
-        <SectionReveal className="relative z-10">
-          <section className="relative z-10 py-16 sm:py-24">
-            <MainContainer className="relative z-10">
-              <div className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr] lg:items-stretch">
-                <div className="relative min-h-[26rem] overflow-hidden rounded-2xl border border-border bg-card shadow-[inset_0_1px_0_color-mix(in_oklab,white_12%,transparent)]">
-                  <Image
-                    src="/media/lead/about/rutgers-americas.webp"
-                    alt="LEAD students and community members at Rutgers University"
-                    fill
-                    sizes="(min-width: 1024px) 54vw, 100vw"
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/48 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 p-5 sm:p-8">
-                    <span className="eyebrow-label">Community proof</span>
-                    <h2 className="feature-title mt-4 max-w-2xl text-white">
-                      Trust comes from the people building it.
-                    </h2>
-                    <p className="body-copy mt-4 max-w-2xl text-white/78">
-                      LEAD is carried by students, chapter leaders, volunteers,
-                      mentors, and partners who turn access into real community
-                      momentum.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-                  {aboutProofMoments.map((moment) => (
-                    <article
-                      key={moment.title}
-                      className="grid min-h-44 overflow-hidden rounded-2xl border border-border bg-card/80 sm:grid-cols-[9rem_1fr] lg:grid-cols-[11rem_1fr]"
-                    >
-                      <div className="relative min-h-44">
-                        <Image
-                          src={moment.image}
-                          alt={moment.title}
-                          fill
-                          sizes="11rem"
-                          className="object-cover"
-                        />
-                      </div>
-                      <div className="p-5">
-                        <p className="card-eyebrow">
-                          {moment.eyebrow}
-                        </p>
-                        <h3 className="card-title mt-3 text-foreground">
-                          {moment.title}
-                        </h3>
-                        <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                          {moment.description}
-                        </p>
-                      </div>
-                    </article>
-                  ))}
-                </div>
-              </div>
-            </MainContainer>
-          </section>
-        </SectionReveal>
-
-        <SectionReveal className="relative z-10">
-          <section className="relative py-24">
+          <section className="relative py-16 sm:py-24">
             <MainContainer className="relative z-10">
               <div className="grid border-y border-border/80 lg:grid-cols-2">
                 <div className="border-b border-border/70 py-8 lg:border-b-0 lg:border-r lg:pr-10">
@@ -167,50 +96,6 @@ export default function AboutPage() {
                     </figcaption>
                   </figure>
                 ))}
-              </div>
-            </MainContainer>
-          </section>
-        </SectionReveal>
-
-        <SectionReveal className="relative z-10">
-          <section id="values" className="editorial-warm-band relative z-10 scroll-mt-24 py-16 sm:py-24">
-            <MainContainer className="relative z-10">
-              <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
-                <div className="lg:sticky lg:top-24">
-                  <span className="eyebrow-label">Growth standards</span>
-                  <h2 className="section-title mt-4">What LEAD protects as it grows.</h2>
-                  <p className="body-copy mt-4 text-muted-foreground">
-                    LEAD can scale only if chapters, programs, and partnerships
-                    protect the same culture: purpose, preparation,
-                    responsibility, and student-first impact.
-                  </p>
-                </div>
-
-                <div className="border-y border-border/80">
-                  {operatingValues.map((value, index) => (
-                    <article
-                      key={value.title}
-                      className="grid gap-5 border-b border-border/70 py-6 last:border-b-0 sm:grid-cols-[5rem_1fr] sm:py-8"
-                    >
-                      <div>
-                        <span className="flex size-12 items-center justify-center rounded-full border border-primary/35 bg-primary/12 text-sm font-bold text-primary">
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                      </div>
-                      <div>
-                        <p className="feature-title text-primary/85">
-                          {value.title}
-                        </p>
-                        <p className="card-eyebrow mt-3">
-                          {value.translation}
-                        </p>
-                        <p className="body-copy mt-4 max-w-2xl text-muted-foreground">
-                          {value.description}
-                        </p>
-                      </div>
-                    </article>
-                  ))}
-                </div>
               </div>
             </MainContainer>
           </section>
@@ -292,23 +177,6 @@ export default function AboutPage() {
     </div>
   );
 }
-
-const aboutProofMoments = [
-  {
-    eyebrow: "Chapters",
-    title: "Students make LEAD local.",
-    description:
-      "Chapter leaders turn leadership into repeated practice, belonging, and visible campus momentum.",
-    image: "/media/lead/about/chapter-energy-lead-games.webp",
-  },
-  {
-    eyebrow: "Programs",
-    title: "Experiences make opportunity concrete.",
-    description:
-      "Workshops, visits, and summits help students see the rooms, tools, and standards around them.",
-    image: "/media/lead/highlights/discover-day-students.webp",
-  },
-];
 
 function externalProps(href: string) {
   const external = isExternalHref(href);
