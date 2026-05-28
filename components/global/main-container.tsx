@@ -28,8 +28,8 @@ const maxWidthClasses: Record<MainContainerMaxWidth, string> = {
   "3xl": "max-w-[60rem]",
   "4xl": "max-w-[70rem]",
   "5xl": "max-w-5xl",
-  "6xl": "max-w-[72rem]",
-  "7xl": "max-w-[80rem]",
+  "6xl": "max-w-[68rem]",
+  "7xl": "max-w-[72rem]",
 };
 
 export function MainContainer({
@@ -41,7 +41,7 @@ export function MainContainer({
   return (
     <div
       className={cn(
-        "mx-auto w-full min-w-0 px-4 sm:px-6 lg:px-8",
+        "mx-auto w-full min-w-0 px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12",
         maxWidthClasses[maxWidth],
         className
       )}

@@ -4,6 +4,7 @@ import { useRef, type CSSProperties } from "react";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import { MainContainer } from "@/components/global/main-container";
 import gsap from "@/lib/gsap-setup";
 import { REDUCED_MOTION_QUERY } from "@/components/global/motion-guidelines";
 import { cn } from "@/lib/utils";
@@ -104,7 +105,7 @@ export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
       id="pathway"
       className="lead-pathway relative scroll-mt-24 overflow-visible pb-16 pt-24 sm:pb-28 sm:pt-32"
     >
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <MainContainer className="relative z-10">
         <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:gap-14">
           <div
             data-pathway-intro
@@ -171,7 +172,7 @@ export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
             })}
           </div>
         </div>
-      </div>
+      </MainContainer>
     </section>
   );
 }
