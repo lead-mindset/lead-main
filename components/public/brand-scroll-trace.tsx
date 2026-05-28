@@ -32,13 +32,13 @@ export function BrandScrollTrace() {
       });
 
       gsap.set(basePath, {
-        opacity: 0.012,
+        opacity: 0.1,
       });
 
       gsap.set(path, {
         strokeDasharray: length,
         strokeDashoffset: length,
-        opacity: 0.24,
+        opacity: 0.58,
       });
 
       const samples = Array.from({ length: PATH_SAMPLE_COUNT + 1 }, (_, index) => {
@@ -98,7 +98,7 @@ export function BrandScrollTrace() {
     });
 
     mm.add("(prefers-reduced-motion: reduce)", () => {
-      gsap.set(basePath, { opacity: 0.05 });
+      gsap.set(basePath, { opacity: 0.12 });
       gsap.set(path, { autoAlpha: 0 });
     });
 
@@ -124,18 +124,6 @@ export function BrandScrollTrace() {
             <stop offset="0.48" stopColor="var(--brand-logo-magenta)" />
             <stop offset="1" stopColor="var(--primary)" />
           </linearGradient>
-          <filter id="lead-scroll-soft-glow" x="-25%" y="-15%" width="150%" height="130%" colorInterpolationFilters="sRGB">
-            <feGaussianBlur stdDeviation="18" result="blur" />
-            <feColorMatrix
-              in="blur"
-              type="matrix"
-              values="1 0 0 0 0.48  0 1 0 0 0.18  0 0 1 0 0.82  0 0 0 0.24 0"
-            />
-            <feMerge>
-              <feMergeNode />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
         </defs>
 
         <g ref={ribbonRef}>
@@ -143,19 +131,17 @@ export function BrandScrollTrace() {
             ref={basePathRef}
             d="M-120 150 C178 42 306 224 204 520 C104 812 -138 908 -56 1210 C64 1654 760 1540 1080 1320 C1328 1150 1430 1262 1548 1468 C1718 1766 1150 1998 718 2240 C318 2464 -86 2740 28 3200 C142 3660 942 3580 1548 3970"
             stroke="url(#lead-scroll-trace)"
-            strokeWidth="56"
+            strokeWidth="76"
             strokeLinecap="round"
             strokeLinejoin="round"
-            filter="url(#lead-scroll-soft-glow)"
           />
           <path
             ref={pathRef}
             d="M-120 150 C178 42 306 224 204 520 C104 812 -138 908 -56 1210 C64 1654 760 1540 1080 1320 C1328 1150 1430 1262 1548 1468 C1718 1766 1150 1998 718 2240 C318 2464 -86 2740 28 3200 C142 3660 942 3580 1548 3970"
             stroke="url(#lead-scroll-trace)"
-            strokeWidth="34"
+            strokeWidth="76"
             strokeLinecap="round"
             strokeLinejoin="round"
-            filter="url(#lead-scroll-soft-glow)"
           />
         </g>
       </svg>

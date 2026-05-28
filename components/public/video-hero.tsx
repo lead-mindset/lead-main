@@ -76,8 +76,8 @@ export function VideoHero({
         preload="metadata"
         tabIndex={-1}
       />
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,13,59,0.96)_0%,rgba(8,13,59,0.78)_46%,rgba(8,13,59,0.26)_100%),linear-gradient(180deg,rgba(8,13,59,0.2)_0%,rgba(8,13,59,0.3)_48%,var(--lead-surface-section)_100%)]" />
-      <div className="absolute inset-x-0 bottom-0 -z-10 h-[70%] bg-gradient-to-t from-[var(--lead-surface-section)] via-[rgba(8,13,59,0.9)] to-transparent sm:h-[56%] sm:via-background/82" />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,13,59,0.96)_0%,rgba(8,13,59,0.76)_46%,rgba(8,13,59,0.26)_100%),linear-gradient(180deg,rgba(8,13,59,0.18)_0%,rgba(8,13,59,0.26)_58%,rgba(8,13,59,0.62)_100%)]" />
+      <div className="absolute inset-x-0 bottom-0 -z-10 h-[64%] bg-gradient-to-t from-background/78 via-background/34 to-transparent sm:h-[52%] sm:via-background/28" />
 
       <MainContainer className="flex min-h-[calc(88svh-4rem)] flex-col justify-end pb-9 pt-20 sm:min-h-[calc(94svh-4rem)] sm:pb-14 lg:pb-16">
         <div className="max-w-4xl">

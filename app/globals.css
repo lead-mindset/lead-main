@@ -335,11 +335,11 @@
 }
 
 .lead-public-page {
-  background:
-    radial-gradient(circle at 72% 8%, color-mix(in oklab, var(--primary) 16%, transparent), transparent 34rem),
-    radial-gradient(circle at 18% 38%, color-mix(in oklab, var(--secondary) 11%, transparent), transparent 32rem),
-    radial-gradient(circle at 74% 70%, color-mix(in oklab, var(--primary) 12%, transparent), transparent 36rem),
-    linear-gradient(180deg, var(--lead-surface-section) 0%, var(--background) 28%, var(--lead-surface-deep) 54%, var(--background) 82%, var(--lead-surface-section) 100%);
+  background-color: var(--background);
+  background-image:
+    radial-gradient(circle at 76% 6%, color-mix(in oklab, var(--primary) 12%, transparent), transparent 36rem),
+    radial-gradient(circle at 18% 42%, color-mix(in oklab, var(--secondary) 8%, transparent), transparent 34rem),
+    radial-gradient(circle at 74% 76%, color-mix(in oklab, var(--accent) 9%, transparent), transparent 38rem);
 }
 
 .lead-soft-inverse-surface {
@@ -351,11 +351,7 @@
 }
 
 .lead-public-cta-surface {
-  background:
-    radial-gradient(circle at 18% 20%, color-mix(in oklab, var(--primary) 15%, transparent), transparent 30rem),
-    radial-gradient(circle at 86% 28%, color-mix(in oklab, var(--accent) 16%, transparent), transparent 34rem),
-    radial-gradient(circle at 50% 112%, color-mix(in oklab, var(--brand-header-deep-magenta) 10%, transparent), transparent 36rem),
-    linear-gradient(180deg, var(--lead-surface-deep), var(--background) 52%, var(--lead-surface-section));
+  background: transparent;
 }
 
 .partner-media-panel {
@@ -392,25 +388,7 @@
   inset: -9rem 0;
   z-index: -1;
   pointer-events: none;
-  mask-image: linear-gradient(180deg, transparent, black 24%, black 76%, transparent);
-}
-
-.lead-impact-aura {
-  background:
-    radial-gradient(circle at 50% 22%, rgba(126, 86, 226, 0.16), transparent 34rem),
-    radial-gradient(circle at 12% 78%, rgba(186, 78, 94, 0.1), transparent 28rem);
-}
-
-.lead-regional-aura {
-  background:
-    radial-gradient(circle at 74% 28%, rgba(126, 86, 226, 0.18), transparent 34rem),
-    radial-gradient(circle at 20% 70%, rgba(3, 6, 31, 0.72), transparent 36rem);
-}
-
-.lead-programs-aura {
-  background:
-    radial-gradient(circle at 16% 12%, color-mix(in oklab, var(--primary) 16%, transparent), transparent 30rem),
-    radial-gradient(circle at 84% 76%, color-mix(in oklab, var(--secondary) 10%, transparent), transparent 30rem);
+  background: transparent;
 }
 
 .editorial-photo-hero {
@@ -468,9 +446,7 @@
 }
 
 .editorial-warm-band {
-  background:
-    radial-gradient(circle at 15% 10%, color-mix(in oklab, var(--primary) 18%, transparent), transparent 30%),
-    linear-gradient(180deg, var(--md-sys-color-surface-container-high), var(--background));
+  background: transparent;
 }
 
 .editorial-card {

@@ -119,8 +119,7 @@ export default function GetInvolvedPage() {
       <BrandScrollTrace />
       <div className="relative z-10">
       <section className="get-involved-hero relative isolate min-h-[100svh] overflow-hidden pt-28">
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,#050824_0%,#080d3b_56%,#090d35_100%)]" />
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_28%,rgba(122,87,209,0.24),transparent_34rem),radial-gradient(circle_at_62%_20%,rgba(229,62,62,0.11),transparent_30rem)]" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_28%,rgba(122,87,209,0.16),transparent_34rem),radial-gradient(circle_at_62%_20%,rgba(229,62,62,0.08),transparent_30rem)]" />
         <GetInvolvedRocketHero />
         <MainContainer className="relative z-10 flex min-h-[calc(100svh-7rem)] items-center py-14">
           <div className="max-w-[54rem] lg:max-w-[57rem]">
