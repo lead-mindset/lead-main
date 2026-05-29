@@ -25,12 +25,14 @@ Generated for the LEAD public-site redesign on 2026-05-27.
 
 | Highlight | Public asset | Source evidence |
 | --- | --- | --- |
-| IBM Explore Day | `/media/lead/highlights/ibm-explore-day.webp` | Instagram `lead_americas`, 2025-04-15, post `DIckJSWsxOn`: IBM Explore Day recap. |
-| Microsoft Peru Visit | `/media/lead/highlights/microsoft-pucp-room.webp` | Instagram `lead_pucp`, 2026-02-08, post `DUgTN5dEebr`: Microsoft Peru visit. |
-| LEAD Discover Day | `/media/lead/highlights/discover-day-students-writing.webp` | Instagram `lead_americas`, 2025-10-09, post `DPjpoYIgBnM`: Discover Day student workshop moment. |
-| LEAD HER | `/media/lead/highlights/lead-her-community.webp` | Instagram `lead_americas`, 2026-04-11, post `DW_sIlADRRJ`: LEAD HER community moment. |
-| Rutgers University Moment | `/media/lead/highlights/rutgers-community.webp` | Instagram `lead_americas`, 2025-06-11, post `DKxobhySDA_`: Rutgers University event in the United States. |
-| LEAD UNI Little Einsteins | `/media/lead/highlights/little-einsteins.webp` | Instagram `lead_uni`, 2025-08-09, post `DNJhBOsAvSG`: Little Einsteins at IE Nuestra Senora de Lourdes. |
+| IBM Explore Day | `/media/lead/highlights/ibm-explore-day-static.webp` | Static image from Instagram `lead_americas`, 2025-04-15, post `DIckJSWsxOn`: IBM Explore Day recap. |
+| LEAD Discover Day | `/media/lead/highlights/discover-day-workshop.webp` | Static image from Instagram `lead_unmsm`, 2025-07-29, post `DMrGm-mxwAR`: LEAD Discover Day workshop and student activity. |
+| Microsoft Leadership Summit | `/media/lead/highlights/microsoft-leadership-summit.webp` | Static image from Instagram `lead_utp`, 2025-05-02, post `DJIzOMoRZgh`: executive-board leadership training at Microsoft Peru. |
+| LATAM Women's Hackathon | `/media/lead/highlights/latam-womens-hackathon-static.webp` | Closest static photo in archive from Instagram `lead_americas`, 2026-03-26, post `DWXPpQamJf9`: women-in-tech LEAD event at Microsoft Experience Center. No exact LATAM Women's Hackathon static photo was found in the downloaded image archive. |
+| Rutgers Shadow Program | `/media/lead/highlights/rutgers-shadow-program.webp` | Static image from Instagram `lead_americas`, 2025-06-11, post `DKxobhySDA_`: Rutgers shadow-program moment. |
+| LEAD UTP Little Einsteins | `/media/lead/highlights/little-einsteins-static.webp` | Static image from Instagram `lead_utp`, 2025-06-23, post `DLQMPlwudnJ`: Pequenos Einsteins classroom workshop. |
+| LEAD Gala | `/media/lead/highlights/lead-gala-static.webp` | Static image from Instagram `leadupn_trujillo`, 2026-01-22, post `DT1Bdy9AayF`: LEAD Gala recap. |
+| Agent Innovation Day | `/media/lead/highlights/agent-innovation-static.webp` | Closest static photo in archive from Instagram `lead_pucp`, 2025-11-11, post `DQ5sd8BjL5Q`: AI agents event room. Exact Agent Innovation Day evidence exists as video and a static flyer, but no exact post-event static photo was found in the downloaded image archive. |
 
 ## Get Involved And About
 
