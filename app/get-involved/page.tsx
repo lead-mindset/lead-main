@@ -116,27 +116,32 @@ export default function GetInvolvedPage() {
   return (
     <div className="lead-public-page relative isolate overflow-hidden text-foreground">
       <div className="relative z-10">
-      <section className="get-involved-hero relative isolate min-h-[100svh] overflow-hidden pt-28">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_28%,rgba(122,87,209,0.16),transparent_34rem),radial-gradient(circle_at_62%_20%,rgba(229,62,62,0.08),transparent_30rem)]" />
-        <GetInvolvedRocketHero />
-        <MainContainer className="relative z-10 flex min-h-[calc(100svh-7rem)] items-center py-14">
-          <div className="max-w-[54rem] lg:max-w-[48rem]">
-            <p className="eyebrow-label">Get involved</p>
-            <h1 className="display-title mt-5 max-w-3xl">
-              Choose your path into LEAD.
-            </h1>
-            <p className="section-subtitle mt-5 max-w-xl text-muted-foreground">
-              Students, chapter builders, partners, and community organizations
-              enter LEAD in different ways. Start with the role that matches
-              where you are today.
-            </p>
-            <p className="mt-8 inline-flex items-center gap-2 rounded-full border border-border bg-background/55 px-4 py-2 text-sm font-semibold text-muted-foreground backdrop-blur">
-              Student, chapter, partner, and community paths below.
-              <ArrowRight className="size-4 rotate-90 text-primary" />
-            </p>
-          </div>
-        </MainContainer>
-      </section>
+        <SectionReveal>
+          <section className="get-involved-hero relative isolate min-h-[100svh] overflow-hidden pt-28">
+            <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_28%,rgba(122,87,209,0.16),transparent_34rem),radial-gradient(circle_at_62%_20%,rgba(229,62,62,0.08),transparent_30rem)]" />
+            <GetInvolvedRocketHero />
+            <MainContainer className="relative z-10 flex min-h-[calc(100svh-7rem)] items-center py-14">
+              <div className="max-w-[54rem] lg:max-w-[48rem]">
+                <p className="eyebrow-label">Get involved</p>
+                <h1 className="display-title mt-5 max-w-3xl">
+                  Choose your path into LEAD.
+                </h1>
+                <p className="section-subtitle mt-5 max-w-xl text-muted-foreground">
+                  Students, chapter builders, partners, and community organizations
+                  enter LEAD in different ways. Start with the role that matches
+                  where you are today.
+                </p>
+                <p
+                  data-lead-motion="text"
+                  className="mt-8 inline-flex items-center gap-2 rounded-full border border-border bg-background/55 px-4 py-2 text-sm font-semibold text-muted-foreground backdrop-blur"
+                >
+                  Student, chapter, partner, and community paths below.
+                  <ArrowRight className="size-4 rotate-90 text-primary" />
+                </p>
+              </div>
+            </MainContainer>
+          </section>
+        </SectionReveal>
 
       <SectionReveal>
         <section id="roles" className="relative scroll-mt-24 py-8 sm:py-10">
@@ -197,6 +202,7 @@ export default function GetInvolvedPage() {
                 {["Create profile", "Find community", "Explore programs"].map((step, index) => (
                   <div
                     key={step}
+                    data-lead-motion="card"
                     className="border-b border-border/70 py-4 last:border-b-0 sm:border-b-0 sm:border-r sm:px-4 sm:first:pl-0 sm:last:border-r-0"
                   >
                     <p className="text-xs font-bold text-primary">{String(index + 1).padStart(2, "0")}</p>
@@ -245,6 +251,7 @@ export default function GetInvolvedPage() {
               {chapterValues.map((value, index) => (
                 <div
                   key={value.title}
+                  data-lead-motion="card"
                   className="relative overflow-hidden rounded-xl border border-border bg-background/55 p-5 shadow-sm"
                 >
                   <span className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary via-secondary to-transparent" />
@@ -303,10 +310,12 @@ export default function GetInvolvedPage() {
         </section>
       </SectionReveal>
 
-      <PublicRouteChooser
-        title="Ready to choose your next step?"
-        description="Start with the role that fits today. LEAD can guide the next step from there."
-      />
+      <SectionReveal>
+        <PublicRouteChooser
+          title="Ready to choose your next step?"
+          description="Start with the role that fits today. LEAD can guide the next step from there."
+        />
+      </SectionReveal>
       </div>
     </div>
   );

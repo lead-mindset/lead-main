@@ -75,6 +75,7 @@ export function PublicRouteChooser({
                 key={path.label}
                 href={path.href}
                 {...externalProps(path.href)}
+                data-lead-motion="card"
                 className="group grid grid-cols-[auto_1fr] gap-4 border-b border-white/10 p-5 text-foreground transition duration-300 last:border-b-0 hover:bg-primary/12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/45 sm:grid-cols-[auto_1fr_auto] sm:items-center lg:[&:nth-child(2n+1)]:border-r lg:[&:nth-last-child(-n+2)]:border-b-0"
               >
                 <div className="relative">

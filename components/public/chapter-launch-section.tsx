@@ -59,7 +59,7 @@ export function ChapterLaunchSection() {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-2xl border border-border bg-card">
+          <div data-lead-motion="card" className="overflow-hidden rounded-2xl border border-border bg-card">
             <div className="relative aspect-[16/10]">
               <Image
                 src="/media/lead/highlights/lead-games-chapters.webp"

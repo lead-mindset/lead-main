@@ -24,12 +24,14 @@ export default function HomePage() {
       <div className="relative z-10">
         <BrandScrollTrace route="home" />
         <div className="relative z-10">
-          <VideoHero
-            videoSrc="/media/lead/hero/lead-community-hero.mp4"
-            posterSrc="/media/lead/hero/lead-community-hero.webp"
-            primaryHref={publicCtas.pathway}
-            secondaryHref={publicCtas.partner}
-          />
+          <SectionReveal>
+            <VideoHero
+              videoSrc="/media/lead/hero/lead-community-hero.mp4"
+              posterSrc="/media/lead/hero/lead-community-hero.webp"
+              primaryHref={publicCtas.pathway}
+              secondaryHref={publicCtas.partner}
+            />
+          </SectionReveal>
 
           <StarfieldImpactCounters stats={proofStats} />
 
@@ -53,7 +55,9 @@ export default function HomePage() {
             <LeadHighlightsCarousel highlights={impactHighlights} />
           </SectionReveal>
 
-          <PublicRouteChooser />
+          <SectionReveal>
+            <PublicRouteChooser />
+          </SectionReveal>
         </div>
       </div>
     </div>

@@ -2,9 +2,14 @@
 
 import { useRef, type ReactNode } from "react";
 import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import gsap from "@/lib/gsap-setup";
-import { REDUCED_MOTION_QUERY } from "@/components/global/motion-guidelines";
+import {
+  PUBLIC_MOTION,
+  PUBLIC_MOTION_SELECTORS,
+  REDUCED_MOTION_QUERY,
+} from "@/components/global/motion-guidelines";
 import { cn } from "@/lib/utils";
 
 export function SectionReveal({
@@ -24,26 +29,107 @@ export function SectionReveal({
       const mm = gsap.matchMedia();
 
       mm.add(`(prefers-reduced-motion: no-preference)`, () => {
-        gsap.fromTo(
+        const cardTargets = queryTargets(
           element,
-          { autoAlpha: 0, y: 20 },
-          {
+          PUBLIC_MOTION_SELECTORS.card
+        );
+        const textTargets = queryTargets(
+          element,
+          PUBLIC_MOTION_SELECTORS.text
+        ).filter((target) => !isInsideAny(target, cardTargets));
+
+        const mediaTargets = cardTargets.filter(
+          (target) =>
+            target.matches("figure, .partner-media-panel") ||
+            target.querySelector("img, video")
+        );
+
+        const motionTargets = [...textTargets, ...cardTargets];
+
+        if (motionTargets.length > 0) {
+          gsap.set(motionTargets, {
+            autoAlpha: 0,
+            willChange: "transform, opacity",
+          });
+        }
+
+        if (textTargets.length > 0) {
+          gsap.set(textTargets, { y: PUBLIC_MOTION.text.y });
+        }
+
+        if (cardTargets.length > 0) {
+          gsap.set(cardTargets, {
+            y: PUBLIC_MOTION.card.y,
+            scale: PUBLIC_MOTION.card.scale,
+          });
+        }
+
+        if (mediaTargets.length > 0) {
+          gsap.set(mediaTargets, { transformOrigin: "50% 55%" });
+        }
+
+        const textTimeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: element,
+            start: PUBLIC_MOTION.sectionStart,
+            once: true,
+          },
+        });
+
+        if (textTargets.length > 0) {
+          textTimeline.to(textTargets, {
             autoAlpha: 1,
             y: 0,
-            duration: 0.55,
-            ease: "power2.out",
-            immediateRender: false,
-            scrollTrigger: {
-              trigger: element,
-              start: "top 82%",
-              once: true,
-            },
-          }
-        );
+            duration: PUBLIC_MOTION.text.duration,
+            ease: PUBLIC_MOTION.ease,
+            stagger: PUBLIC_MOTION.text.stagger,
+            clearProps: "willChange",
+          });
+        }
+
+        const cardTriggers =
+          cardTargets.length > 0
+            ? ScrollTrigger.batch(cardTargets, {
+                start: PUBLIC_MOTION.cardStart,
+                once: true,
+                interval: PUBLIC_MOTION.card.batchInterval,
+                batchMax: () => (window.innerWidth < 768 ? 2 : 4),
+                onEnter: (batch) => {
+                  gsap.to(batch, {
+                    autoAlpha: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: PUBLIC_MOTION.card.duration,
+                    ease: PUBLIC_MOTION.ease,
+                    stagger: PUBLIC_MOTION.card.stagger,
+                    overwrite: true,
+                    clearProps: "willChange",
+                  });
+                },
+              })
+            : [];
+
+        return () => {
+          textTimeline.scrollTrigger?.kill();
+          textTimeline.kill();
+          cardTriggers.forEach((trigger) => trigger.kill());
+        };
       });
 
       mm.add(REDUCED_MOTION_QUERY, () => {
-        gsap.set(element, { autoAlpha: 1, y: 0 });
+        gsap.set(
+          [
+            element,
+            ...queryTargets(element, PUBLIC_MOTION_SELECTORS.text),
+            ...queryTargets(element, PUBLIC_MOTION_SELECTORS.card),
+          ],
+          {
+            autoAlpha: 1,
+            y: 0,
+            scale: 1,
+            clearProps: "willChange",
+          }
+        );
       });
 
       return () => mm.revert();
@@ -52,8 +138,22 @@ export function SectionReveal({
   );
 
   return (
-    <div ref={ref} className={cn("opacity-100", className)}>
+    <div
+      ref={ref}
+      data-lead-motion-scope
+      className={cn("opacity-100", className)}
+    >
       {children}
     </div>
+  );
+}
+
+function queryTargets(scope: HTMLElement, selector: string) {
+  return Array.from(new Set(scope.querySelectorAll<HTMLElement>(selector)));
+}
+
+function isInsideAny(target: HTMLElement, containers: HTMLElement[]) {
+  return containers.some(
+    (container) => container !== target && container.contains(target)
   );
 }

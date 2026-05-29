@@ -15,35 +15,37 @@ import { isExternalHref } from "@/components/global/navigation/nav-links";
 export default function AboutPage() {
   return (
     <div className="lead-public-page relative isolate overflow-hidden text-foreground">
-      <section className="relative z-10 editorial-photo-hero pt-28">
-        <Image
-          src="/media/lead/about/community-at-ibm.webp"
-          alt="LEAD students gathered at IBM Explore Day"
-          fill
-          priority
-          className="absolute inset-0 -z-10 object-cover"
-        />
-        <MainContainer className="relative z-10 flex min-h-[calc(88dvh-7rem)] items-end py-16">
-          <div className="relative max-w-3xl before:absolute before:-inset-x-8 before:-inset-y-6 before:-z-10 before:bg-gradient-to-r before:from-background/80 before:via-background/55 before:to-transparent before:blur-2xl">
-            <span className="eyebrow-label">About LEAD</span>
-            <h1 className="display-title mt-6">Talent is already here. Access should be too.</h1>
-            <p className="section-subtitle mt-6 text-muted-foreground">
-              LEAD exists because students across Latin America, the United
-              States, and the Americas already carry ambition, creativity, and
-              talent. LEAD helps turn that talent into access, leadership
-              practice, community, and opportunity.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button asChild size="lg">
-                <Link href={publicCtas.join} {...externalProps(publicCtas.join)}>Join LEAD</Link>
-              </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link href={publicCtas.chapter}>Submit Chapter Interest</Link>
-              </Button>
+      <SectionReveal>
+        <section className="relative z-10 editorial-photo-hero pt-28">
+          <Image
+            src="/media/lead/about/community-at-ibm.webp"
+            alt="LEAD students gathered at IBM Explore Day"
+            fill
+            priority
+            className="absolute inset-0 -z-10 object-cover"
+          />
+          <MainContainer className="relative z-10 flex min-h-[calc(88dvh-7rem)] items-end py-16">
+            <div className="relative max-w-3xl before:absolute before:-inset-x-8 before:-inset-y-6 before:-z-10 before:bg-gradient-to-r before:from-background/80 before:via-background/55 before:to-transparent before:blur-2xl">
+              <span className="eyebrow-label">About LEAD</span>
+              <h1 className="display-title mt-6">Talent is already here. Access should be too.</h1>
+              <p className="section-subtitle mt-6 text-muted-foreground">
+                LEAD exists because students across Latin America, the United
+                States, and the Americas already carry ambition, creativity, and
+                talent. LEAD helps turn that talent into access, leadership
+                practice, community, and opportunity.
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Button asChild size="lg">
+                  <Link href={publicCtas.join} {...externalProps(publicCtas.join)}>Join LEAD</Link>
+                </Button>
+                <Button asChild variant="outline" size="lg">
+                  <Link href={publicCtas.chapter}>Submit Chapter Interest</Link>
+                </Button>
+              </div>
             </div>
-          </div>
-        </MainContainer>
-      </section>
+          </MainContainer>
+        </section>
+      </SectionReveal>
 
       <div className="relative z-10">
         <SectionReveal className="relative z-10">
@@ -172,10 +174,12 @@ export default function AboutPage() {
           </section>
         </SectionReveal>
 
-        <PublicRouteChooser
-          title="Take the next step with LEAD."
-          description="Join the community, submit chapter interest, or start a partnership conversation."
-        />
+        <SectionReveal>
+          <PublicRouteChooser
+            title="Take the next step with LEAD."
+            description="Join the community, submit chapter interest, or start a partnership conversation."
+          />
+        </SectionReveal>
       </div>
     </div>
   );
