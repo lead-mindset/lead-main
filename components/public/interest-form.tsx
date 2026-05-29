@@ -12,19 +12,26 @@ import { cn } from "@/lib/utils";
 type InterestKind = "chapter_interest" | "partnership";
 type SubmitState = "idle" | "submitting" | "success" | "error";
 
+const fieldSurfaceClass =
+  "group/form-field rounded-xl bg-white/[0.035] px-4 py-3 ring-1 ring-white/[0.065] transition-[background-color,box-shadow] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] focus-within:bg-white/[0.05] focus-within:ring-primary/35";
+const fieldLabelClass =
+  "text-[0.68rem] font-bold uppercase leading-[1.15] tracking-[0.08em] text-muted-foreground/76 transition-colors duration-300 group-focus-within/form-field:text-primary";
+const fieldControlClass =
+  "mt-2 h-8 rounded-none border-0 bg-transparent px-0 py-0 text-base shadow-none hover:border-transparent focus-visible:ring-0 focus-visible:ring-offset-0";
+const textareaControlClass =
+  "mt-2 min-h-20 rounded-none border-0 bg-transparent px-0 py-0 text-base shadow-none hover:border-transparent focus-visible:ring-0 focus-visible:ring-offset-0";
+
 export function InterestForm({
   kind,
   defaultOpen = false,
   showToggle = true,
   showHeader = true,
-  stickyFooter = false,
   className,
 }: {
   kind: InterestKind;
   defaultOpen?: boolean;
   showToggle?: boolean;
   showHeader?: boolean;
-  stickyFooter?: boolean;
   className?: string;
 }) {
   const [enabled, setEnabled] = useState(defaultOpen);
@@ -51,7 +58,12 @@ export function InterestForm({
   }
 
   return (
-    <div className={cn("editorial-card rounded-2xl p-5 shadow-xs", className)}>
+    <div
+      className={cn(
+        showHeader ? "editorial-card rounded-2xl p-5 shadow-xs" : undefined,
+        className
+      )}
+    >
       {showHeader ? (
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
@@ -71,7 +83,7 @@ export function InterestForm({
       ) : null}
 
       {enabled ? (
-        <form className={cn("grid", showHeader ? "mt-6 gap-4" : "gap-3")} onSubmit={onSubmit}>
+        <form className={cn("grid", showHeader ? "mt-6 gap-3.5" : "gap-3.5")} onSubmit={onSubmit}>
           <input type="hidden" name="source" value="lead-public-site" />
           <div className="grid gap-3 sm:grid-cols-2">
             <Field id={`${kind}-name`} label="Name" name="name" required />
@@ -93,13 +105,16 @@ export function InterestForm({
             </>
           ) : (
             <>
-              <div className="grid gap-2">
-                <Label htmlFor="partner-type">Partner type</Label>
+              <div className={fieldSurfaceClass}>
+                <Label htmlFor="partner-type" className={fieldLabelClass}>
+                  Partner type
+                  <span className="text-primary/80" aria-hidden="true">*</span>
+                </Label>
                 <select
                   id="partner-type"
                   name="partnerType"
                   required
-                  className="h-10 rounded-md border border-input bg-background px-3 text-sm text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
+                  className="mt-2 h-7 w-full cursor-pointer rounded-none border-0 bg-transparent px-0 py-0 text-base text-foreground outline-none"
                 >
                   <option value="">Select a path</option>
                   {partnerTypes.map((type) => (
@@ -116,23 +131,19 @@ export function InterestForm({
             </>
           )}
 
-          <div
-            className={cn(
-              "grid gap-2",
-              stickyFooter &&
-                "sticky bottom-0 z-20 -mx-1 border-t border-border bg-background/95 p-3 backdrop-blur"
-            )}
-          >
+          <div className="grid gap-2 pt-1">
             <Button type="submit" disabled={status === "submitting"} className="w-full">
               {status === "submitting" ? "Sending..." : "Submit"}
             </Button>
-            <p className="text-sm text-muted-foreground" aria-live="polite">
-              {status === "success"
-                ? "Thank you. LEAD received your structured interest."
-                : status === "error"
-                  ? "Something went wrong. Please check the required fields and try again."
-                  : "Required fields must be completed before submission."}
-            </p>
+            {status !== "idle" ? (
+              <p className="text-sm leading-6 text-muted-foreground" aria-live="polite">
+                {status === "success"
+                  ? "Thank you. LEAD received your structured interest."
+                  : status === "error"
+                    ? "Something went wrong. Please check the required fields and try again."
+                    : "Sending your interest..."}
+              </p>
+            ) : null}
           </div>
         </form>
       ) : null}
@@ -154,9 +165,23 @@ function Field({
   required?: boolean;
 }) {
   return (
-    <div className="grid gap-2">
-      <Label htmlFor={id}>{label}</Label>
-      <Input id={id} name={name} type={type} required={required} aria-required={required} />
+    <div className={fieldSurfaceClass}>
+      <Label htmlFor={id} className={fieldLabelClass}>
+        {label}
+        {required ? (
+          <span className="text-primary/80" aria-hidden="true">
+            *
+          </span>
+        ) : null}
+      </Label>
+      <Input
+        id={id}
+        name={name}
+        type={type}
+        required={required}
+        aria-required={required}
+        className={fieldControlClass}
+      />
     </div>
   );
 }
@@ -175,14 +200,21 @@ function TextAreaField({
   compact?: boolean;
 }) {
   return (
-    <div className="grid gap-2">
-      <Label htmlFor={id}>{label}</Label>
+    <div className={fieldSurfaceClass}>
+      <Label htmlFor={id} className={fieldLabelClass}>
+        {label}
+        {required ? (
+          <span className="text-primary/80" aria-hidden="true">
+            *
+          </span>
+        ) : null}
+      </Label>
       <Textarea
         id={id}
         name={name}
         required={required}
         aria-required={required}
-        className={compact ? "min-h-20" : undefined}
+        className={cn(textareaControlClass, compact ? "min-h-24" : undefined)}
       />
     </div>
   );

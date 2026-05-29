@@ -1,6 +1,11 @@
 import { MainContainer } from "@/components/global/main-container";
 import { InterestForm } from "@/components/public/interest-form";
 import {
+  publicInterestDialogCloseClass,
+  publicInterestDialogContentClass,
+  publicInterestDialogHeaderClass,
+} from "@/components/public/interest-dialog-styles";
+import {
   AlertDialog,
   AlertDialogCancel,
   AlertDialogContent,
@@ -34,14 +39,15 @@ export function ChapterLaunchSection() {
                 <AlertDialogTrigger asChild>
                   <Button size="lg" variant="hero">Submit chapter interest</Button>
                 </AlertDialogTrigger>
-                <AlertDialogContent className="max-h-[88dvh] !max-w-[min(42rem,calc(100vw-2rem))] overflow-y-auto rounded-2xl">
+                <AlertDialogContent className={publicInterestDialogContentClass}>
                   <AlertDialogCancel
+                    variant="ghost"
                     aria-label="Close chapter interest form"
-                    className="absolute right-4 top-4 size-8 p-0"
+                    className={publicInterestDialogCloseClass}
                   >
                     <X className="size-4" />
                   </AlertDialogCancel>
-                  <AlertDialogHeader className="items-start pr-10 text-left">
+                  <AlertDialogHeader className={publicInterestDialogHeaderClass}>
                     <AlertDialogTitle>Request chapter interest</AlertDialogTitle>
                     <AlertDialogDescription>
                       Tell us where you are, who is building with you, and what
@@ -54,12 +60,8 @@ export function ChapterLaunchSection() {
                     defaultOpen
                     showToggle={false}
                     showHeader={false}
-                    stickyFooter
                     className="border-0 bg-transparent p-0 shadow-none"
                   />
-                  <AlertDialogCancel className="w-full sm:w-fit">
-                    Close
-                  </AlertDialogCancel>
                 </AlertDialogContent>
               </AlertDialog>
             </div>

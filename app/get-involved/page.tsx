@@ -1,18 +1,14 @@
-import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowRight,
-  GraduationCap,
-  Handshake,
-  Rocket,
-  Users,
-  X,
-  type LucideIcon,
-} from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
 
 import { MainContainer } from "@/components/global/main-container";
 import { GetInvolvedRocketHero } from "@/components/public/get-involved-rocket-hero";
 import { InterestForm } from "@/components/public/interest-form";
+import {
+  publicInterestDialogCloseClass,
+  publicInterestDialogContentClass,
+  publicInterestDialogHeaderClass,
+} from "@/components/public/interest-dialog-styles";
 import { PartnerPathSelector } from "@/components/public/partner-path-selector";
 import { PublicRouteChooser } from "@/components/public/public-route-chooser";
 import { SectionReveal } from "@/components/public/section-reveal";
@@ -29,89 +25,6 @@ import { Button } from "@/components/ui/button";
 import { publicCtas } from "@/lib/public-site/content";
 import { isExternalHref } from "@/components/global/navigation/nav-links";
 
-type RolePath = {
-  label: string;
-  eyebrow: string;
-  href: string;
-  description: string;
-  cta: string;
-  icon: LucideIcon;
-  media: string;
-  mediaType: "image" | "video";
-  poster?: string;
-  tone: string;
-};
-
-const rolePaths: RolePath[] = [
-  {
-    label: "Join LEAD",
-    eyebrow: "Student path",
-    href: "#students",
-    description: "Create your profile, find your community, and start discovering programs and opportunities.",
-    cta: "Start as a student",
-    icon: GraduationCap,
-    media: "/media/lead/hero/lead-community-hero.webp",
-    mediaType: "image",
-    tone: "from-[#e53e3e]/24 via-[#9f258c]/18 to-transparent",
-  },
-  {
-    label: "Submit Chapter Interest",
-    eyebrow: "Campus path",
-    href: "#chapters",
-    description: "Share your campus, your team, and the kind of student community you want to build.",
-    cta: "Request chapter interest",
-    icon: Rocket,
-    media: "/media/lead/get-involved/campus-lead-games.webp",
-    mediaType: "image",
-    tone: "from-[#7a57d1]/26 via-[#9f258c]/18 to-transparent",
-  },
-  {
-    label: "Partner with LEAD",
-    eyebrow: "Professional path",
-    href: "#partners",
-    description: "Support students through visits, mentorship, sponsorship, workshops, or industry access.",
-    cta: "Explore partnership",
-    icon: Handshake,
-    media: "/media/lead/get-involved/partner-ibm-team.webp",
-    mediaType: "image",
-    tone: "from-[#7e56e2]/26 via-[#ba4e5e]/16 to-transparent",
-  },
-  {
-    label: "Collaborate as a community organization",
-    eyebrow: "Community path",
-    href: "#partners",
-    description: "Bring aligned STEM, leadership, or access initiatives into the LEAD ecosystem.",
-    cta: "Start collaboration",
-    icon: Users,
-    media: "/media/lead/get-involved/community-little-einsteins-classroom.webp",
-    mediaType: "image",
-    tone: "from-white/18 via-[#7a57d1]/16 to-transparent",
-  },
-];
-
-const chapterValues = [
-  {
-    title: "Mentalidad",
-    translation: "Mindset",
-    description: "A student-first founding team that understands LEAD's culture.",
-  },
-  {
-    title: "Proposito",
-    translation: "Purpose",
-    description: "A clear campus reason and a community that wants to grow.",
-  },
-  {
-    title: "Excelencia",
-    translation: "Excellence",
-    description: "Reliable follow-through, preparation, and care.",
-  },
-  {
-    title: "Impacto",
-    translation: "Impact",
-    description: "Momentum that creates value beyond a one-time activity.",
-  },
-];
-
 export default function GetInvolvedPage() {
   return (
     <div className="lead-public-page relative isolate overflow-hidden text-foreground">
@@ -127,44 +40,21 @@ export default function GetInvolvedPage() {
                   Choose your path into LEAD.
                 </h1>
                 <p className="section-subtitle mt-5 max-w-xl text-muted-foreground">
-                  Students, chapter builders, partners, and community organizations
-                  enter LEAD in different ways. Start with the role that matches
-                  where you are today.
+                  Start with the path that fits today. LEAD helps students,
+                  campus builders, partners, and community organizations turn
+                  interest into action.
                 </p>
                 <p
                   data-lead-motion="text"
                   className="mt-8 inline-flex items-center gap-2 rounded-full border border-border bg-background/55 px-4 py-2 text-sm font-semibold text-muted-foreground backdrop-blur"
                 >
-                  Student, chapter, partner, and community paths below.
+                  Scroll to the path that matches you.
                   <ArrowRight className="size-4 rotate-90 text-primary" />
                 </p>
               </div>
             </MainContainer>
           </section>
         </SectionReveal>
-
-      <SectionReveal>
-        <section id="roles" className="relative scroll-mt-24 py-8 sm:py-10">
-          <MainContainer>
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-              <div className="max-w-2xl">
-                <p className="eyebrow-label">Start here</p>
-                <h2 className="section-title mt-3">Pick the role that fits you.</h2>
-              </div>
-              <p className="body-copy max-w-xl text-muted-foreground">
-                Choose a starting point, then move into the deeper section that
-                matches your role.
-              </p>
-            </div>
-
-            <div className="mt-6 grid items-stretch gap-3 sm:grid-cols-2 xl:grid-cols-4">
-              {rolePaths.map((path, index) => (
-                <RolePathCard key={path.label} path={path} index={index} />
-              ))}
-            </div>
-          </MainContainer>
-        </section>
-      </SectionReveal>
 
       <SectionReveal>
         <section id="students" className="scroll-mt-24 py-14 sm:py-20">
@@ -198,12 +88,12 @@ export default function GetInvolvedPage() {
                 profile, connect with the community, explore programs, and keep
                 track of opportunities as they grow.
               </p>
-              <div className="mt-6 grid border-y border-border/80 sm:grid-cols-3">
+              <div className="mt-6 grid gap-3 sm:grid-cols-3">
                 {["Create profile", "Find community", "Explore programs"].map((step, index) => (
                   <div
                     key={step}
                     data-lead-motion="card"
-                    className="border-b border-border/70 py-4 last:border-b-0 sm:border-b-0 sm:border-r sm:px-4 sm:first:pl-0 sm:last:border-r-0"
+                    className="rounded-xl border border-border/65 bg-white/[0.025] px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]"
                   >
                     <p className="text-xs font-bold text-primary">{String(index + 1).padStart(2, "0")}</p>
                     <p className="mt-2 text-sm font-semibold text-foreground">{step}</p>
@@ -226,52 +116,46 @@ export default function GetInvolvedPage() {
       </SectionReveal>
 
       <SectionReveal>
-        <section id="chapters" className="relative scroll-mt-24 py-14 sm:py-20">
-          <MainContainer className="grid gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-center">
-            <div>
+        <section id="chapters" className="relative scroll-mt-24 py-12 sm:py-16">
+          <MainContainer className="grid gap-7 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+            <div className="max-w-2xl">
               <p className="eyebrow-label">Chapter interest</p>
               <h2 className="section-title mt-3">
-                Bring LEAD to your campus with clarity.
+                Want to bring LEAD to your campus?
               </h2>
               <p className="body-copy mt-4 max-w-2xl text-muted-foreground">
-                A request starts the conversation; it does not create a chapter
-                automatically. LEAD looks for aligned student leadership,
-                purpose, reliability, and sustainable impact.
+                Tell us your university, who is helping lead, and why LEAD
+                would matter there. Submitting interest starts a review
+                conversation; it does not guarantee a chapter.
               </p>
               <div className="mt-7">
                 <ChapterInterestDialog />
               </div>
-              <p className="mt-4 max-w-md text-sm leading-6 text-muted-foreground">
-                The form is intentionally short. It is a request for review, not
-                a public application checklist.
-              </p>
             </div>
 
-            <div data-lead-motion="card" className="rounded-2xl border border-border bg-background/55 p-5 shadow-sm sm:p-6">
-              <p className="card-eyebrow">What helps a request feel ready</p>
-              <div className="mt-5 grid gap-0 overflow-hidden rounded-xl border-y border-border/80 sm:grid-cols-2 sm:border-x">
-                {chapterValues.map((value, index) => (
+            <div
+              data-lead-motion="card"
+              className="rounded-2xl border border-border/70 bg-white/[0.025] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:p-6"
+            >
+              <p className="card-eyebrow">What to include</p>
+              <div className="mt-5 grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+                {["University", "Student team", "Why LEAD matters"].map((item, index) => (
                   <div
-                    key={value.title}
-                    className="grid grid-cols-[2.5rem_1fr] gap-4 border-b border-border/70 py-4 last:border-b-0 sm:border-r sm:px-4 sm:[&:nth-child(2n)]:border-r-0 sm:[&:nth-last-child(-n+2)]:border-b-0"
+                    key={item}
+                    className="rounded-xl bg-background/40 p-4 ring-1 ring-border/60"
                   >
-                    <span className="flex size-10 items-center justify-center rounded-full bg-primary/15 text-sm font-bold text-primary ring-1 ring-primary/25">
+                    <p className="text-xs font-bold text-primary">
                       {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <div>
-                      <h3 className="font-headline text-lg font-bold leading-tight text-foreground">
-                        {value.title}
-                      </h3>
-                      <p className="mt-1 text-xs font-bold uppercase tracking-[0.16em] text-primary/85">
-                        {value.translation}
-                      </p>
-                      <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                        {value.description}
-                      </p>
-                    </div>
+                    </p>
+                    <p className="mt-2 text-sm font-bold leading-snug text-foreground">
+                      {item}
+                    </p>
                   </div>
                 ))}
               </div>
+              <p className="mt-5 text-sm leading-6 text-muted-foreground">
+                Keep it simple. The form is only the first step.
+              </p>
             </div>
           </MainContainer>
         </section>
@@ -321,70 +205,12 @@ export default function GetInvolvedPage() {
 
       <SectionReveal>
         <PublicRouteChooser
-          title="Ready to choose your next step?"
-          description="Start with the role that fits today. LEAD can guide the next step from there."
+          title="Still deciding? Choose one clear next step."
+          description="Join as a student, request chapter review, or start a partner conversation. LEAD can guide the next move from there."
         />
       </SectionReveal>
       </div>
     </div>
-  );
-}
-
-function RolePathCard({ path, index }: { path: RolePath; index: number }) {
-  const Icon = path.icon;
-  const shouldAutoplayVideo = path.mediaType === "video" && index === 0;
-
-  return (
-    <Link
-      href={path.href}
-      aria-label={`${path.label}: ${path.cta}`}
-      className="role-path-card group flex h-full flex-row overflow-hidden rounded-xl border border-border bg-background/66 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-primary/45 hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/45"
-    >
-      <div className="role-card-media relative shrink-0 overflow-hidden">
-        {path.mediaType === "video" ? (
-          <video
-            aria-hidden="true"
-            className="size-full object-cover transition duration-700 group-hover:scale-[1.04]"
-            autoPlay={shouldAutoplayVideo}
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster={path.poster}
-            tabIndex={-1}
-            disablePictureInPicture
-          >
-            <source src={path.media} type="video/mp4" />
-          </video>
-        ) : (
-          <Image
-            src={path.media}
-            alt=""
-            fill
-            sizes="(min-width: 1280px) 24vw, (min-width: 768px) 48vw, 100vw"
-            className="object-cover transition duration-700 group-hover:scale-[1.04]"
-          />
-        )}
-        <div className={`absolute inset-0 bg-gradient-to-t ${path.tone}`} />
-        <span className="absolute left-3 top-3 rounded-full border border-white/20 bg-background/72 px-2.5 py-1 text-[0.68rem] font-bold text-white backdrop-blur">
-          {String(index + 1).padStart(2, "0")}
-        </span>
-      </div>
-      <div className="flex flex-1 flex-col p-3 sm:p-4">
-        <div className="flex items-center gap-3">
-          <span className="hidden size-9 items-center justify-center rounded-lg bg-primary/15 text-primary ring-1 ring-primary/30 sm:flex">
-            <Icon className="size-4" />
-          </span>
-          <p className="card-eyebrow">{path.eyebrow}</p>
-        </div>
-        <h3 className="mt-2 font-headline text-base font-bold leading-tight text-foreground sm:mt-4 sm:text-lg">{path.label}</h3>
-        <p className="role-card-description mt-2 flex-1 text-sm leading-6 text-muted-foreground">{path.description}</p>
-        <span className="mt-3 inline-flex min-h-8 items-center gap-2 text-sm font-bold text-primary sm:mt-4 sm:min-h-9">
-          {path.cta}
-          <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-        </span>
-      </div>
-    </Link>
   );
 }
 
@@ -394,14 +220,15 @@ function ChapterInterestDialog() {
       <AlertDialogTrigger asChild>
         <Button size="lg" variant="hero">Submit chapter interest</Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className="max-h-[88dvh] !max-w-[min(42rem,calc(100vw-2rem))] overflow-y-auto rounded-2xl">
+      <AlertDialogContent className={publicInterestDialogContentClass}>
         <AlertDialogCancel
+          variant="ghost"
           aria-label="Close chapter interest form"
-          className="absolute right-4 top-4 size-8 p-0"
+          className={publicInterestDialogCloseClass}
         >
           <X className="size-4" />
         </AlertDialogCancel>
-        <AlertDialogHeader className="items-start pr-10 text-left">
+        <AlertDialogHeader className={publicInterestDialogHeaderClass}>
           <AlertDialogTitle>Request chapter interest</AlertDialogTitle>
           <AlertDialogDescription>
             Tell us where you are, who is building with you, and why LEAD would
@@ -414,10 +241,8 @@ function ChapterInterestDialog() {
           defaultOpen
           showToggle={false}
           showHeader={false}
-          stickyFooter
           className="border-0 bg-transparent p-0 shadow-none"
         />
-        <AlertDialogCancel className="w-full sm:w-fit">Close</AlertDialogCancel>
       </AlertDialogContent>
     </AlertDialog>
   );
@@ -429,14 +254,15 @@ function PartnerInterestDialog() {
       <AlertDialogTrigger asChild>
         <Button size="lg" variant="hero">Start a partnership conversation</Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className="max-h-[88dvh] !max-w-[min(42rem,calc(100vw-2rem))] overflow-y-auto rounded-2xl">
+      <AlertDialogContent className={publicInterestDialogContentClass}>
         <AlertDialogCancel
+          variant="ghost"
           aria-label="Close partnership form"
-          className="absolute right-4 top-4 size-8 p-0"
+          className={publicInterestDialogCloseClass}
         >
           <X className="size-4" />
         </AlertDialogCancel>
-        <AlertDialogHeader className="items-start pr-10 text-left">
+        <AlertDialogHeader className={publicInterestDialogHeaderClass}>
           <AlertDialogTitle className="max-w-[28rem]">Partner or collaborate with LEAD</AlertDialogTitle>
           <AlertDialogDescription>
             Share what you want to build with students as a company, mentor,
@@ -448,10 +274,8 @@ function PartnerInterestDialog() {
           defaultOpen
           showToggle={false}
           showHeader={false}
-          stickyFooter
           className="border-0 bg-transparent p-0 shadow-none"
         />
-        <AlertDialogCancel className="w-full sm:w-fit">Close</AlertDialogCancel>
       </AlertDialogContent>
     </AlertDialog>
   );
