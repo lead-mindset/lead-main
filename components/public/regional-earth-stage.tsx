@@ -55,7 +55,10 @@ export function RegionalEarthStage() {
             </p>
           </div>
 
-          <div className="regional-earth-shell relative h-[330px] overflow-hidden rounded-2xl border border-white/12 bg-[var(--lead-surface-deep)] shadow-[0_28px_90px_rgba(0,0,0,0.38)] sm:h-[420px] lg:h-[480px]">
+          <div
+            data-lead-motion="card"
+            className="regional-earth-shell relative h-[330px] overflow-hidden rounded-2xl border border-white/12 bg-[var(--lead-surface-deep)] shadow-[0_28px_90px_rgba(0,0,0,0.38)] sm:h-[420px] lg:h-[480px]"
+          >
             <Canvas
               className="!absolute !inset-0"
               camera={{ position: [0, 0, 5.65], fov: 38 }}

@@ -35,7 +35,9 @@ export default function HomePage() {
 
           <StarfieldImpactCounters stats={proofStats} />
 
-          <RegionalEarthStage />
+          <SectionReveal>
+            <RegionalEarthStage />
+          </SectionReveal>
 
           <LeadPathway stages={pathwayStages} />
 
