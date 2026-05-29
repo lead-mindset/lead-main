@@ -2,6 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { MainContainer } from "@/components/global/main-container";
+import {
+  AboutPillarsBridge,
+  AboutPillarsWheel,
+} from "@/components/public/about-pillars-wheel";
+import { AboutValuesSection } from "@/components/public/about-values-section";
 import { PublicRouteChooser } from "@/components/public/public-route-chooser";
 import { SectionReveal } from "@/components/public/section-reveal";
 import { Button } from "@/components/ui/button";
@@ -12,9 +17,15 @@ import {
 } from "@/lib/public-site/content";
 import { isExternalHref } from "@/components/global/navigation/nav-links";
 
+const founderNames = new Set(["Luis Coronel", "Antonny Porlles"]);
+const teamRoster = [
+  ...leadership.filter((person) => founderNames.has(person.name)),
+  ...leadership.filter((person) => !founderNames.has(person.name)),
+];
+
 export default function AboutPage() {
   return (
-    <div className="lead-public-page relative isolate overflow-hidden text-foreground">
+    <div className="lead-public-page relative isolate text-foreground">
       <SectionReveal>
         <section className="relative z-10 editorial-photo-hero pt-28">
           <Image
@@ -141,47 +152,74 @@ export default function AboutPage() {
           </section>
         </SectionReveal>
 
+        <AboutValuesSection />
+
+        <AboutPillarsBridge />
+
+        <AboutPillarsWheel />
+
         <SectionReveal className="relative z-10">
           <section className="editorial-warm-band relative z-10 py-16 sm:py-24">
             <MainContainer className="relative z-10">
-              <div className="max-w-2xl">
-                <span className="eyebrow-label">Team</span>
-                <h2 className="section-title mt-4 text-primary">Our Team</h2>
-                <p className="body-copy mt-4 text-muted-foreground">
-                  At LEAD, we are a team united by a single mission: to empower
-                  the next generation of leaders. From tech experts to student
-                  mentors, we bring passion, creativity, and real-world
-                  experience to every program, workshop, and event. Together, we
-                  inspire, educate, and connect students, helping them unlock
-                  their potential and make an impact in their communities.
+              <div className="grid gap-8 border-y border-border/80 py-9 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
+                <div>
+                  <span className="eyebrow-label">Team</span>
+                  <h2 className="section-title mt-4">Our Team</h2>
+                </div>
+                <p className="max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8 lg:justify-self-end">
+                  A student-first operating team across technology, programs,
+                  operations, legal, marketing, chapters, and community.
                 </p>
               </div>
+
               <div
-                role="region"
+                role="list"
                 aria-label="LEAD team"
-                tabIndex={0}
-                className="mt-10 grid gap-x-8 gap-y-7 outline-none focus-visible:ring-2 focus-visible:ring-ring/45 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-10"
+                className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:gap-5"
               >
-                {leadership.map((person) => (
-                  <article
-                    key={person.name}
-                    className="grid grid-cols-[auto_1fr] items-center gap-4"
-                  >
-                    <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border-2 border-white/80 bg-card shadow-[0_12px_36px_rgba(0,0,0,0.28)]">
-                      <Image
-                        src={person.image}
-                        alt={person.name}
-                        fill
-                        sizes="5rem"
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="min-w-0">
-                      <h3 className="card-title text-base leading-tight text-foreground">{person.name}</h3>
-                      <p className="mt-1 text-xs font-semibold leading-tight text-muted-foreground sm:text-sm">{person.role}</p>
-                    </div>
-                  </article>
-                ))}
+                {teamRoster.map((person) => {
+                  const isFounder = founderNames.has(person.name);
+
+                  return (
+                    <article
+                      key={person.name}
+                      role="listitem"
+                      className={[
+                        "group/team relative flex min-h-[7.4rem] items-center gap-4 rounded-xl border p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.045)] transition duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:bg-primary/[0.035]",
+                        isFounder
+                          ? "border-primary/28 bg-[linear-gradient(135deg,rgba(229,62,62,0.055),rgba(159,37,140,0.045)_48%,rgba(122,87,209,0.055))] hover:border-primary/42"
+                          : "border-white/[0.08] bg-white/[0.025] hover:border-primary/24",
+                      ].join(" ")}
+                    >
+                      <div
+                        className={[
+                          "relative shrink-0 rounded-full bg-gradient-to-br from-[var(--brand-logo-red-orange)] via-[var(--brand-logo-magenta)] to-primary p-[2px] shadow-[0_18px_42px_rgba(0,0,0,0.18)] transition duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover/team:scale-[1.04]",
+                          isFounder ? "size-[5.05rem]" : "size-[4.65rem]",
+                        ].join(" ")}
+                      >
+                        <div className="size-full overflow-hidden rounded-full bg-card">
+                          <Image
+                            src={person.image}
+                            alt={person.name}
+                            width={104}
+                            height={104}
+                            sizes="(min-width: 1024px) 81px, 74px"
+                            loading="eager"
+                            className="size-full object-cover transition duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover/team:scale-[1.07]"
+                          />
+                        </div>
+                      </div>
+                      <div className="min-w-0">
+                        <h3 className="font-headline text-[1.08rem] font-bold leading-tight text-foreground sm:text-lg">
+                          {person.name}
+                        </h3>
+                        <p className="mt-1 max-w-[14rem] text-sm font-semibold leading-snug text-muted-foreground">
+                          {person.role}
+                        </p>
+                      </div>
+                    </article>
+                  );
+                })}
               </div>
             </MainContainer>
           </section>
