@@ -138,34 +138,40 @@ export default function AboutPage() {
           <section className="editorial-warm-band relative z-10 py-16 sm:py-24">
             <MainContainer className="relative z-10">
               <div className="max-w-2xl">
-                <span className="eyebrow-label">Leadership</span>
-                <h2 className="section-title mt-4">Built by students, professionals, volunteers, and chapter leaders.</h2>
+                <span className="eyebrow-label">Team</span>
+                <h2 className="section-title mt-4 text-primary">Our Team</h2>
                 <p className="body-copy mt-4 text-muted-foreground">
-                  These are some of the people carrying the work forward. LEAD
-                  is bigger than one page: chapter leaders, volunteers, mentors,
-                  and students across the region build the momentum.
+                  At LEAD, we are a team united by a single mission: to empower
+                  the next generation of leaders. From tech experts to student
+                  mentors, we bring passion, creativity, and real-world
+                  experience to every program, workshop, and event. Together, we
+                  inspire, educate, and connect students, helping them unlock
+                  their potential and make an impact in their communities.
                 </p>
               </div>
               <div
                 role="region"
-                aria-label="LEAD leadership team"
+                aria-label="LEAD team"
                 tabIndex={0}
-                className="mt-10 grid auto-cols-[minmax(15rem,76vw)] grid-flow-col gap-4 overflow-x-auto pb-4 outline-none [scrollbar-width:none] focus-visible:ring-2 focus-visible:ring-ring/45 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:auto-cols-[minmax(16rem,42vw)] lg:grid-flow-row lg:grid-cols-6 lg:overflow-visible lg:pb-0"
+                className="mt-10 grid gap-x-8 gap-y-7 outline-none focus-visible:ring-2 focus-visible:ring-ring/45 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-10"
               >
                 {leadership.map((person) => (
-                  <article key={person.name} className="overflow-hidden rounded-2xl border border-border bg-background/75 shadow-[inset_0_1px_0_color-mix(in_oklab,white_10%,transparent)]">
-                    <div className="relative aspect-[4/5] w-full overflow-hidden bg-card">
+                  <article
+                    key={person.name}
+                    className="grid grid-cols-[auto_1fr] items-center gap-4"
+                  >
+                    <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border-2 border-white/80 bg-card shadow-[0_12px_36px_rgba(0,0,0,0.28)]">
                       <Image
                         src={person.image}
                         alt={person.name}
                         fill
-                        sizes="(min-width: 1024px) 12rem, (min-width: 640px) 16rem, 76vw"
-                        className="object-cover object-top"
+                        sizes="5rem"
+                        className="object-cover"
                       />
                     </div>
-                    <div className="p-4">
-                      <h3 className="card-title text-lg text-foreground">{person.name}</h3>
-                      <p className="mt-1 text-sm text-muted-foreground">{person.role}</p>
+                    <div className="min-w-0">
+                      <h3 className="card-title text-base leading-tight text-foreground">{person.name}</h3>
+                      <p className="mt-1 text-xs font-semibold leading-tight text-muted-foreground sm:text-sm">{person.role}</p>
                     </div>
                   </article>
                 ))}
