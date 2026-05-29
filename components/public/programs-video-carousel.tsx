@@ -67,6 +67,9 @@ export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
     setActiveIndex((nextIndex + programs.length) % programs.length);
   };
 
+  const panelMotion =
+    "motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-bottom-2 motion-safe:duration-500 motion-safe:ease-[cubic-bezier(0.32,0.72,0,1)]";
+
   return (
     <section id="programs" className="relative isolate -mt-10 scroll-mt-24 overflow-visible pb-12 pt-20 sm:-mt-16 sm:pb-16 sm:pt-28">
       <div className="lead-programs-aura" />
@@ -94,43 +97,47 @@ export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
           }}
         >
           <div className="relative min-h-[340px] overflow-hidden bg-background lg:min-h-[360px]">
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 scale-110 bg-cover bg-center opacity-70 blur-2xl"
-              style={{ backgroundImage: `url(${activeProgram.poster})` }}
-            />
-            <div className="absolute inset-0 bg-background/25" />
-            <video
-              key={activeProgram.video}
-              ref={videoRef}
-              aria-hidden="true"
-              className="absolute inset-0 h-full w-full object-contain object-center"
-              src={activeProgram.video}
-              poster={activeProgram.poster}
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              disablePictureInPicture
-              tabIndex={-1}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/36 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
-              <p className="card-eyebrow text-white/70">
-                {String(activeIndex + 1).padStart(2, "0")} / {String(programs.length).padStart(2, "0")}
-              </p>
-              <h3 className="feature-title mt-2 max-w-2xl text-white">
-                {activeProgram.title}
-              </h3>
-              <p className="body-copy mt-3 max-w-2xl text-white/78">
-                {activeProgram.outcome}
-              </p>
+            <div key={activeProgram.title} className={cn("absolute inset-0", panelMotion)}>
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 scale-110 bg-cover bg-center opacity-70 blur-2xl"
+                style={{ backgroundImage: `url(${activeProgram.poster})` }}
+              />
+              <div className="absolute inset-0 bg-background/25" />
+              <video
+                ref={videoRef}
+                aria-hidden="true"
+                className="absolute inset-0 h-full w-full object-contain object-center"
+                src={activeProgram.video}
+                poster={activeProgram.poster}
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                disablePictureInPicture
+                tabIndex={-1}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/36 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+                <p className="card-eyebrow text-white/70">
+                  {String(activeIndex + 1).padStart(2, "0")} / {String(programs.length).padStart(2, "0")}
+                </p>
+                <h3 className="feature-title mt-2 max-w-2xl text-white">
+                  {activeProgram.title}
+                </h3>
+                <p className="body-copy mt-3 max-w-2xl text-white/78">
+                  {activeProgram.outcome}
+                </p>
+              </div>
             </div>
           </div>
 
           <div className="flex flex-col lg:min-h-full">
             <div className="flex items-start justify-between gap-4 border-b border-border p-5 sm:p-6">
-              <p className="body-copy text-muted-foreground">
+              <p
+                key={activeProgram.description}
+                className={cn("body-copy text-muted-foreground", panelMotion)}
+              >
                 {activeProgram.description}
               </p>
               <div className="flex shrink-0 gap-2">
@@ -164,7 +171,7 @@ export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
                   aria-selected={activeIndex === index}
                   onClick={() => goTo(index)}
                   className={cn(
-                    "group grid gap-1 border-b border-border px-5 py-3 text-left transition-colors last:border-b-0 sm:px-6",
+                    "group grid gap-1 border-b border-border px-5 py-3 text-left transition-[background-color,color,box-shadow] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/45 sm:px-6",
                     activeIndex === index ? "bg-primary/18" : "hover:bg-muted/70"
                   )}
                 >

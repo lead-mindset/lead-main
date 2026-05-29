@@ -2,6 +2,12 @@
 
 import { useMemo, useRef } from "react";
 import { useGSAP } from "@gsap/react";
+import {
+  CalendarCheck2,
+  GraduationCap,
+  UsersRound,
+  type LucideIcon,
+} from "lucide-react";
 
 import { MainContainer } from "@/components/global/main-container";
 import { REDUCED_MOTION_QUERY } from "@/components/global/motion-guidelines";
@@ -23,6 +29,12 @@ const counterGradients = [
   "from-[#d84c4c] via-[#ba4e5e] to-[#7a57d1]",
   "from-[#9b2e8b] via-[#7e56e2] to-[#5d41b0]",
   "from-[#ba4e5e] via-[#9b2e8b] to-[#7e56e2]",
+];
+
+const counterIcons: LucideIcon[] = [
+  UsersRound,
+  GraduationCap,
+  CalendarCheck2,
 ];
 
 export function StarfieldImpactCounters({ stats }: { stats: ProofStat[] }) {
@@ -111,32 +123,42 @@ export function StarfieldImpactCounters({ stats }: { stats: ProofStat[] }) {
       <div className="lead-impact-aura" />
       <MainContainer>
         <div className="grid gap-5 lg:grid-cols-3" role="list" aria-label="LEAD in numbers">
-          {visibleStats.map((stat, index) => (
-            <div
-              key={stat.label}
-              role="listitem"
-              ref={(node) => {
-                tileRefs.current[index] = node;
-              }}
-              className={cn(
-                "relative min-h-44 overflow-hidden rounded-2xl border border-white/12 bg-gradient-to-br p-5 text-center shadow-[0_24px_80px_rgba(0,0,0,0.28)] sm:min-h-64 sm:p-6",
-                counterGradients[index % counterGradients.length]
-              )}
-            >
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_0%,rgba(255,255,255,0.28),transparent_32%),linear-gradient(180deg,rgba(255,255,255,0.08),transparent)]" />
-              <div className="relative flex h-full flex-col items-center justify-center">
-                <p className="metric-label text-white/88">
-                  {formatLabel(stat.label)}
-                </p>
-                <p
-                  className={cn("metric-value mt-6 max-w-full text-white")}
-                  aria-label={stat.value}
+          {visibleStats.map((stat, index) => {
+            const Icon = counterIcons[index % counterIcons.length];
+
+            return (
+              <div
+                key={stat.label}
+                role="listitem"
+                ref={(node) => {
+                  tileRefs.current[index] = node;
+                }}
+                className={cn(
+                  "relative min-h-40 overflow-hidden rounded-2xl border border-white/12 bg-gradient-to-br p-5 text-center shadow-[0_24px_80px_rgba(0,0,0,0.28)] sm:min-h-56 sm:p-6",
+                  counterGradients[index % counterGradients.length]
+                )}
+              >
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_0%,rgba(255,255,255,0.28),transparent_32%),linear-gradient(180deg,rgba(255,255,255,0.08),transparent)]" />
+                <span
+                  aria-hidden="true"
+                  className="absolute right-4 top-4 grid size-8 place-items-center rounded-full border border-white/24 bg-white/14 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.16),0_10px_26px_rgba(3,7,30,0.14)] backdrop-blur sm:right-5 sm:top-5 sm:size-9"
                 >
-                  <AnimatedCounterValue stat={stat} />
-                </p>
+                  <Icon className="size-4 sm:size-[1.125rem]" strokeWidth={2.2} />
+                </span>
+                <div className="relative flex h-full flex-col items-center justify-center gap-5 sm:gap-6">
+                  <p className="metric-label text-white/88">
+                    {formatLabel(stat.label)}
+                  </p>
+                  <p
+                    className={cn("metric-value max-w-full text-white")}
+                    aria-label={stat.value}
+                  >
+                    <AnimatedCounterValue stat={stat} />
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </MainContainer>
     </section>

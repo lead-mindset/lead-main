@@ -28,6 +28,8 @@ export function PartnerPathSelector() {
     partnerProof[activeType.value as keyof typeof partnerProof] ??
     partnerProof.company;
   const ActiveIcon = activeType.icon;
+  const panelMotion =
+    "motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-bottom-1 motion-safe:duration-300 motion-safe:ease-[cubic-bezier(0.32,0.72,0,1)]";
 
   return (
     <div className="mt-6 overflow-hidden rounded-xl border border-border bg-card/62">
@@ -47,9 +49,9 @@ export function PartnerPathSelector() {
               role="tab"
               aria-selected={active}
               className={cn(
-                "flex min-h-11 w-full items-center gap-2 rounded-lg px-3 py-2 text-left transition-colors sm:flex-1 sm:min-w-0",
+                "flex min-h-11 w-full items-center gap-2 rounded-lg px-3 py-2 text-left transition-[background-color,color,box-shadow,transform] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.99] sm:flex-1 sm:min-w-0",
                 active
-                  ? "bg-primary/16 text-foreground"
+                  ? "bg-primary/16 text-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
                   : "text-muted-foreground hover:bg-muted/70 hover:text-foreground"
               )}
               onClick={() => setActiveValue(type.value)}
@@ -73,8 +75,12 @@ export function PartnerPathSelector() {
       </div>
 
       <div
+        key={activeType.value}
         role="tabpanel"
-        className="grid gap-4 p-4 sm:grid-cols-[auto_1fr] sm:p-5"
+        className={cn(
+          "grid min-h-[17rem] gap-4 p-4 sm:min-h-[14rem] sm:grid-cols-[auto_1fr] sm:p-5",
+          panelMotion
+        )}
       >
         <span className="flex size-11 items-center justify-center rounded-xl bg-primary/15 text-primary ring-1 ring-primary/30">
           <ActiveIcon className="size-5" />
