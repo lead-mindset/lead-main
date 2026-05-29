@@ -87,6 +87,19 @@ export function SectionReveal({
           });
         }
 
+        const revealCards = (targets: Element[] | HTMLElement[]) => {
+          gsap.to(targets, {
+            autoAlpha: 1,
+            y: 0,
+            scale: 1,
+            duration: PUBLIC_MOTION.card.duration,
+            ease: PUBLIC_MOTION.ease,
+            stagger: PUBLIC_MOTION.card.stagger,
+            overwrite: true,
+            clearProps: "willChange",
+          });
+        };
+
         const cardTriggers =
           cardTargets.length > 0
             ? ScrollTrigger.batch(cardTargets, {
@@ -94,20 +107,14 @@ export function SectionReveal({
                 once: true,
                 interval: PUBLIC_MOTION.card.batchInterval,
                 batchMax: () => (window.innerWidth < 768 ? 2 : 4),
-                onEnter: (batch) => {
-                  gsap.to(batch, {
-                    autoAlpha: 1,
-                    y: 0,
-                    scale: 1,
-                    duration: PUBLIC_MOTION.card.duration,
-                    ease: PUBLIC_MOTION.ease,
-                    stagger: PUBLIC_MOTION.card.stagger,
-                    overwrite: true,
-                    clearProps: "willChange",
-                  });
-                },
+                onEnter: revealCards,
               })
             : [];
+
+        const visibleCards = cardTargets.filter(isInViewport);
+        if (visibleCards.length > 0) {
+          requestAnimationFrame(() => revealCards(visibleCards));
+        }
 
         return () => {
           textTimeline.scrollTrigger?.kill();
@@ -156,4 +163,9 @@ function isInsideAny(target: HTMLElement, containers: HTMLElement[]) {
   return containers.some(
     (container) => container !== target && container.contains(target)
   );
+}
+
+function isInViewport(target: HTMLElement) {
+  const rect = target.getBoundingClientRect();
+  return rect.top < window.innerHeight * 0.98 && rect.bottom > 0;
 }
