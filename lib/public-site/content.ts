@@ -134,16 +134,19 @@ export const communityMoments = [
     title: "Students in motion",
     description: "Real LEAD moments make the pathway feel human before a student joins.",
     image: "/media/lead/hero/lead-community-hero.webp",
+    video: "/media/lead/about/students-in-motion.mp4",
   },
   {
     title: "Chapter energy",
     description: "Chapters turn leadership into repeated practice, local ownership, and community trust.",
     image: "/media/lead/about/chapter-energy-lead-games.webp",
+    video: "/media/lead/about/chapter-energy.mp4",
   },
   {
     title: "Shared standards",
     description: "Mentors, partners, and student leaders help students understand what opportunity requires.",
-    image: "/media/lead/highlights/ibm-explore-day-speakers.webp",
+    image: "/media/lead/highlights/microsoft-leadership-summit.webp",
+    video: "/media/lead/about/shared-standards.mp4",
   },
 ];
 

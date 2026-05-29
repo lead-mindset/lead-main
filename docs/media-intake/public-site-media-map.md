@@ -44,3 +44,6 @@ Generated for the LEAD public-site redesign on 2026-05-27.
 | Community organization card | `/media/lead/get-involved/community-little-einsteins-classroom.webp` | Instagram `lead_uni`, 2025-08-09, post `DNJhBOsAvSG`: Little Einsteins school visit. |
 | About hero | `/media/lead/about/community-at-ibm.webp` | Instagram `lead_americas`, 2025-04-15, post `DIckJSWsxOn`: IBM Explore Day group photo. |
 | About U.S. community proof | `/media/lead/about/rutgers-americas.webp` | Instagram `lead_americas`, 2025-06-11, post `DKxobhySDA_`: Rutgers University event. |
+| About proof: Students in motion | `/media/lead/about/students-in-motion.mp4` | Short muted clip from `/media/lead/hero/lead-community-hero.mp4`, sourced from Instagram `lead_americas`, 2025-04-17, post `DIj1WwkSsOz`: LEAD ideas becoming projects, connections, and future possibilities. |
+| About proof: Chapter energy | `/media/lead/about/chapter-energy.mp4` | Short muted clip from `/media/lead/programs/regional-events-lead-games.mp4`, sourced from Instagram `lead_utp`, 2025-08-10, post `DNKBM_cRB-i`: Lead Games 2025 with 10 universities. |
+| About proof: Shared standards | `/media/lead/about/shared-standards.mp4` | Short muted clip from `/media/lead/programs/leadership-development-microsoft.mp4`, sourced from LinkedIn `lead-origin-community`: Microsoft Peru leadership and mentorship context. |

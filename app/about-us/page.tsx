@@ -78,13 +78,20 @@ export default function AboutPage() {
                     key={moment.title}
                     className="group relative min-h-[17rem] overflow-hidden rounded-2xl border border-border bg-card sm:min-h-[20rem]"
                   >
-                    <Image
-                      src={moment.image}
-                      alt={moment.title}
-                      fill
-                      sizes="(min-width: 1024px) 30vw, (min-width: 640px) 33vw, 100vw"
-                      className="object-cover transition duration-700 group-hover:scale-[1.04]"
-                    />
+                    <video
+                      aria-hidden="true"
+                      className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      poster={moment.image}
+                      disablePictureInPicture
+                      tabIndex={-1}
+                    >
+                      <source src={moment.video} type="video/mp4" />
+                    </video>
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-background/28 to-transparent" />
                     <figcaption className="absolute inset-x-0 bottom-0 p-5">
                       <p className="media-caption-title text-white">
