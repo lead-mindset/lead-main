@@ -93,12 +93,18 @@ export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
             if (event.key === "ArrowLeft") goTo(activeIndex - 1);
           }}
         >
-          <div className="relative min-h-[240px] bg-background sm:min-h-[320px] lg:min-h-[360px]">
+          <div className="relative min-h-[340px] overflow-hidden bg-background lg:min-h-[360px]">
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 scale-110 bg-cover bg-center opacity-70 blur-2xl"
+              style={{ backgroundImage: `url(${activeProgram.poster})` }}
+            />
+            <div className="absolute inset-0 bg-background/25" />
             <video
               key={activeProgram.video}
               ref={videoRef}
               aria-hidden="true"
-              className="absolute inset-0 h-full w-full object-cover object-center"
+              className="absolute inset-0 h-full w-full object-contain object-center"
               src={activeProgram.video}
               poster={activeProgram.poster}
               muted
@@ -122,7 +128,7 @@ export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
             </div>
           </div>
 
-          <div className="flex min-h-full flex-col">
+          <div className="flex flex-col lg:min-h-full">
             <div className="flex items-start justify-between gap-4 border-b border-border p-5 sm:p-6">
               <p className="body-copy text-muted-foreground">
                 {activeProgram.description}
