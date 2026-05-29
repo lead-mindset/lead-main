@@ -10,6 +10,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
+import { X } from "lucide-react";
 
 export function ChapterLaunchSection() {
   return (
@@ -34,7 +35,13 @@ export function ChapterLaunchSection() {
                   <Button size="lg" variant="hero">Submit chapter interest</Button>
                 </AlertDialogTrigger>
                 <AlertDialogContent className="max-h-[88dvh] !max-w-[min(42rem,calc(100vw-2rem))] overflow-y-auto rounded-2xl">
-                  <AlertDialogHeader className="items-start text-left">
+                  <AlertDialogCancel
+                    aria-label="Close chapter interest form"
+                    className="absolute right-4 top-4 size-8 p-0"
+                  >
+                    <X className="size-4" />
+                  </AlertDialogCancel>
+                  <AlertDialogHeader className="items-start pr-10 text-left">
                     <AlertDialogTitle>Request chapter interest</AlertDialogTitle>
                     <AlertDialogDescription>
                       Tell us where you are, who is building with you, and what
@@ -47,6 +54,7 @@ export function ChapterLaunchSection() {
                     defaultOpen
                     showToggle={false}
                     showHeader={false}
+                    stickyFooter
                     className="border-0 bg-transparent p-0 shadow-none"
                   />
                   <AlertDialogCancel className="w-full sm:w-fit">

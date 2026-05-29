@@ -93,22 +93,22 @@ const chapterValues = [
   {
     title: "Mentalidad",
     translation: "Mindset",
-    description: "A founding team that understands LEAD's culture and puts students first.",
+    description: "A student-first founding team that understands LEAD's culture.",
   },
   {
     title: "Proposito",
     translation: "Purpose",
-    description: "A clear reason for why LEAD should exist on that campus.",
+    description: "A clear campus reason and a community that wants to grow.",
   },
   {
     title: "Excelencia",
     translation: "Excellence",
-    description: "Reliability, preparation, and the ability to follow through.",
+    description: "Reliable follow-through, preparation, and care.",
   },
   {
     title: "Impacto",
     translation: "Impact",
-    description: "A community that can create value beyond activity.",
+    description: "Momentum that creates value beyond a one-time activity.",
   },
 ];
 
@@ -247,22 +247,31 @@ export default function GetInvolvedPage() {
               </p>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-2">
-              {chapterValues.map((value, index) => (
-                <div
-                  key={value.title}
-                  data-lead-motion="card"
-                  className="relative overflow-hidden rounded-xl border border-border bg-background/55 p-5 shadow-sm"
-                >
-                  <span className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary via-secondary to-transparent" />
-                  <span className="text-sm font-bold text-primary">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="card-title mt-4 text-foreground">{value.title}</h3>
-                  <p className="card-eyebrow mt-1">{value.translation}</p>
-                  <p className="body-copy mt-4 text-sm text-muted-foreground">{value.description}</p>
-                </div>
-              ))}
+            <div data-lead-motion="card" className="rounded-2xl border border-border bg-background/55 p-5 shadow-sm sm:p-6">
+              <p className="card-eyebrow">What helps a request feel ready</p>
+              <div className="mt-5 grid gap-0 overflow-hidden rounded-xl border-y border-border/80 sm:grid-cols-2 sm:border-x">
+                {chapterValues.map((value, index) => (
+                  <div
+                    key={value.title}
+                    className="grid grid-cols-[2.5rem_1fr] gap-4 border-b border-border/70 py-4 last:border-b-0 sm:border-r sm:px-4 sm:[&:nth-child(2n)]:border-r-0 sm:[&:nth-last-child(-n+2)]:border-b-0"
+                  >
+                    <span className="flex size-10 items-center justify-center rounded-full bg-primary/15 text-sm font-bold text-primary ring-1 ring-primary/25">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <h3 className="font-headline text-lg font-bold leading-tight text-foreground">
+                        {value.title}
+                      </h3>
+                      <p className="mt-1 text-xs font-bold uppercase tracking-[0.16em] text-primary/85">
+                        {value.translation}
+                      </p>
+                      <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                        {value.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </MainContainer>
         </section>
@@ -271,7 +280,7 @@ export default function GetInvolvedPage() {
       <SectionReveal>
         <section id="partners" className="scroll-mt-24 py-14 sm:py-20">
           <MainContainer className="grid gap-8 lg:grid-cols-2 lg:items-stretch">
-            <div className="order-2 lg:order-1">
+            <div className="order-1 lg:order-1">
               <div
                 className="partner-media-panel relative overflow-hidden rounded-xl border border-border shadow-[inset_0_1px_0_color-mix(in_oklab,white_9%,transparent)]"
                 style={{
@@ -293,7 +302,7 @@ export default function GetInvolvedPage() {
               </div>
             </div>
 
-            <div className="order-1 lg:order-2">
+            <div className="order-2 lg:order-2">
               <p className="eyebrow-label">Partners and collaborators</p>
               <h2 className="section-title mt-3">
                 Create access with students who are already moving.
@@ -392,7 +401,7 @@ function ChapterInterestDialog() {
         >
           <X className="size-4" />
         </AlertDialogCancel>
-        <AlertDialogHeader className="items-start text-left">
+        <AlertDialogHeader className="items-start pr-10 text-left">
           <AlertDialogTitle>Request chapter interest</AlertDialogTitle>
           <AlertDialogDescription>
             Tell us where you are, who is building with you, and why LEAD would
@@ -427,8 +436,8 @@ function PartnerInterestDialog() {
         >
           <X className="size-4" />
         </AlertDialogCancel>
-        <AlertDialogHeader className="items-start text-left">
-          <AlertDialogTitle>Partner or collaborate with LEAD</AlertDialogTitle>
+        <AlertDialogHeader className="items-start pr-10 text-left">
+          <AlertDialogTitle className="max-w-[28rem]">Partner or collaborate with LEAD</AlertDialogTitle>
           <AlertDialogDescription>
             Share what you want to build with students as a company, mentor,
             professional, sponsor, or community organization.
