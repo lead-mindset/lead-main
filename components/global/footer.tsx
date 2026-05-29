@@ -78,7 +78,7 @@ export default function Footer() {
                 <li key={`${item.label}-${item.href}`}>
                   <Link
                     href={item.href}
-                    className="text-muted-foreground transition-colors hover:text-foreground"
+                    className="inline-flex min-h-9 items-center text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/45"
                   >
                     {item.label}
                   </Link>
@@ -96,7 +96,7 @@ export default function Footer() {
                 <li key={`${item.href}-${item.label}`}>
                   <Link
                     href={item.href}
-                    className="text-muted-foreground transition-colors hover:text-foreground"
+                    className="inline-flex min-h-9 items-center text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/45"
                   >
                     {item.label}
                   </Link>

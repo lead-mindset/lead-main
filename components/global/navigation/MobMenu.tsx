@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -23,6 +23,17 @@ function isActivePath(pathname: string, href: string) {
 export default function MobMenu({ pathname }: { pathname: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const joinIsExternal = isExternalHref(JOIN_LEAD_HREF);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setIsOpen(false);
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
 
   return (
     <div className="mobile-menu-shell">
@@ -45,6 +56,8 @@ export default function MobMenu({ pathname }: { pathname: string }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
+            role="dialog"
+            aria-label="Mobile navigation"
             className="fixed inset-x-4 top-20 z-50 rounded-lg border border-border bg-popover p-3 shadow-xl"
           >
             <div className="grid gap-1">
