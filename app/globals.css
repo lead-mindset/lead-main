@@ -115,6 +115,7 @@
   --chart-4: #7e56e2;
   --chart-5: #e53e3e;
   --radius: 0.625rem;
+  --lead-radius-button: 9999px;
   --success: oklch(0.62 0.17 158);
   --success-foreground: #ffffff;
   --warning: oklch(0.72 0.18 62);
@@ -465,7 +466,6 @@
 .eyebrow-label {
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
   width: fit-content;
   color: var(--primary);
   font-family: var(--font-montserrat), sans-serif;
@@ -475,25 +475,12 @@
   text-transform: uppercase;
 }
 
-.eyebrow-label::before {
-  content: "";
-  display: inline-block;
-  width: 2rem;
-  height: 2px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--brand-logo-red-orange), var(--primary));
-}
-
 .eyebrow-label--light {
   color: rgba(255, 255, 255, 0.78);
 }
 
 .eyebrow-label--inverse {
   color: var(--brand-header-vibrant-purple);
-}
-
-.eyebrow-label--compact::before {
-  width: 1.35rem;
 }
 
 .pathway-stage {

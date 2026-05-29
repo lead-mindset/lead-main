@@ -40,7 +40,7 @@ export default function MobMenu({ pathname }: { pathname: string }) {
       <Button
         type="button"
         variant="ghost"
-        size="icon-sm"
+        size="icon-lg"
         className="border border-white/15 bg-white/10 text-white hover:bg-white/15 hover:text-white"
         aria-label={isOpen ? "Close navigation" : "Open navigation"}
         aria-expanded={isOpen}
@@ -55,10 +55,10 @@ export default function MobMenu({ pathname }: { pathname: string }) {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.18, ease: "easeOut" }}
+            transition={{ duration: 0.28, ease: [0.32, 0.72, 0, 1] }}
             role="dialog"
             aria-label="Mobile navigation"
-            className="fixed inset-x-4 top-20 z-50 rounded-lg border border-border bg-popover p-3 shadow-xl"
+            className="fixed inset-x-4 top-20 z-50 rounded-xl border border-border bg-popover p-3 shadow-[0_24px_80px_rgba(0,0,0,0.28),inset_0_1px_0_rgba(255,255,255,0.08)]"
           >
             <div className="grid gap-1">
               {PUBLIC_NAV_ITEMS.map((item) => {
@@ -70,7 +70,7 @@ export default function MobMenu({ pathname }: { pathname: string }) {
                     href={item.href}
                     aria-current={active ? "page" : undefined}
                     className={cn(
-                      "rounded-md px-3 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground",
+                      "rounded-[var(--lead-radius-button)] px-3 py-3 text-sm font-medium text-muted-foreground transition-[background-color,color] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-muted hover:text-foreground",
                       active && "bg-muted text-foreground"
                     )}
                     target={isExternalHref(item.href) ? "_blank" : undefined}
@@ -81,7 +81,7 @@ export default function MobMenu({ pathname }: { pathname: string }) {
                   </Link>
                 );
               })}
-              <Button asChild className="mt-2 w-full" size="sm">
+              <Button asChild className="mt-2 w-full">
                 <Link
                   href={JOIN_LEAD_HREF}
                   target={joinIsExternal ? "_blank" : undefined}

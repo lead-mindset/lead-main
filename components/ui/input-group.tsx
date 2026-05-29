@@ -64,7 +64,7 @@ function InputGroupAddon({
 }
 
 const inputGroupButtonVariants = cva(
-  "gap-2 rounded-4xl text-sm shadow-none flex items-center",
+  "gap-2 rounded-[var(--lead-radius-button)] text-sm shadow-none flex items-center",
   {
     variants: {
       size: {

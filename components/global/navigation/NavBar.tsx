@@ -36,7 +36,7 @@ export default function NavBar() {
 
   return (
     <MainContainer className="flex h-16 items-center gap-4">
-      <Link href="/" className="flex shrink-0 items-center gap-3">
+      <Link href="/" className="flex min-h-11 shrink-0 items-center gap-3">
         <Image
           src="/leadl2.svg"
           alt="LEAD"
@@ -58,7 +58,7 @@ export default function NavBar() {
               href={item.href}
               aria-current={active ? "page" : undefined}
               className={cn(
-                "rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted/80 hover:text-foreground",
+                "inline-flex min-h-10 items-center rounded-[var(--lead-radius-button)] px-3 py-2 text-sm font-medium text-muted-foreground transition-[background-color,color] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-muted/80 hover:text-foreground",
                 active && "bg-muted text-foreground"
               )}
               {...navLinkProps(item.href)}
@@ -70,7 +70,7 @@ export default function NavBar() {
       </div>
 
       <div className="flex items-center gap-2 lg:ml-0">
-        <Button asChild className="hidden sm:inline-flex" size="sm">
+        <Button asChild className="hidden sm:inline-flex">
           <Link
             href={JOIN_LEAD_HREF}
             target={joinIsExternal ? "_blank" : undefined}
