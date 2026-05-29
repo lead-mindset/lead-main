@@ -39,7 +39,9 @@ Generated for the LEAD public-site redesign on 2026-05-27.
 | Site surface | Public asset | Source evidence |
 | --- | --- | --- |
 | Student path video | `/media/lead/hero/lead-community-hero.mp4` | Broad LEAD community motion from Instagram `DIj1WwkSsOz`. |
-| Chapter interest card | `/media/lead/get-involved/campus-lead-games.webp` | Instagram `lead_utp`, 2025-08-13, post `DNKBM_cRB-i`: chapter energy through Lead Games 2025. |
+| Chapter launch video | `/media/lead/chapters/villarreal-chapter-team.mp4` | Short muted montage from Instagram `lead.villarreal`, 2025-04-18, post `DIkTpQ1JMIe`: LEAD Villarreal chapter leaders introducing their campus team. Used in the home chapter-interest section so this moment is distinct from the LEAD Games videos already used elsewhere. |
+| Chapter launch poster | `/media/lead/chapters/villarreal-chapter-team.webp` | Poster frame from the same LEAD Villarreal chapter-team clip, used only as the video fallback/loading state. |
+| Chapter interest role card | `/media/lead/get-involved/campus-lead-games.webp` | Instagram `lead_utp`, 2025-08-13, post `DNKBM_cRB-i`: chapter energy through Lead Games 2025. |
 | Partner card | `/media/lead/get-involved/partner-ibm-team.webp` | Instagram `lead_americas`, 2025-04-15, post `DIckJSWsxOn`: LEAD and IBM team moment. |
 | Community organization card | `/media/lead/get-involved/community-little-einsteins-classroom.webp` | Instagram `lead_uni`, 2025-08-09, post `DNJhBOsAvSG`: Little Einsteins school visit. |
 | About hero | `/media/lead/about/community-at-ibm.webp` | Instagram `lead_americas`, 2025-04-15, post `DIckJSWsxOn`: IBM Explore Day group photo. |

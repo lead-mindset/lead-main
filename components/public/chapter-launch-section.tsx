@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import { MainContainer } from "@/components/global/main-container";
 import { InterestForm } from "@/components/public/interest-form";
 import {
@@ -31,10 +29,10 @@ export function ChapterLaunchSection() {
             </p>
 
             <div className="mt-7">
-                <AlertDialog>
-                  <AlertDialogTrigger asChild>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
                   <Button size="lg" variant="hero">Submit chapter interest</Button>
-                  </AlertDialogTrigger>
+                </AlertDialogTrigger>
                 <AlertDialogContent className="max-h-[88dvh] !max-w-[min(42rem,calc(100vw-2rem))] overflow-y-auto rounded-2xl">
                   <AlertDialogHeader className="items-start text-left">
                     <AlertDialogTitle>Request chapter interest</AlertDialogTitle>
@@ -61,14 +59,23 @@ export function ChapterLaunchSection() {
 
           <div data-lead-motion="card" className="overflow-hidden rounded-2xl border border-border bg-card">
             <div className="relative aspect-[16/10]">
-              <Image
-                src="/media/lead/highlights/lead-games-chapters.webp"
-                alt="LEAD chapter students gathered during LEAD Games"
-                fill
-                sizes="(min-width: 1024px) 48vw, 100vw"
-                loading="eager"
-                className="object-cover"
-              />
+              <video
+                aria-hidden="true"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                poster="/media/lead/chapters/villarreal-chapter-team.webp"
+                disablePictureInPicture
+                tabIndex={-1}
+                className="h-full w-full object-cover object-center"
+              >
+                <source
+                  src="/media/lead/chapters/villarreal-chapter-team.mp4"
+                  type="video/mp4"
+                />
+              </video>
               <div className="absolute inset-0 bg-gradient-to-t from-background/78 via-background/8 to-transparent" />
               <p className="media-caption-title absolute bottom-5 left-5 right-5 max-w-xl text-white">
                 Chapters make LEAD local, visible, and student-led.
