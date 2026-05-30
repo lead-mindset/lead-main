@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 
 import { partnerTypes } from "@/lib/public-site/content";
 import { cn } from "@/lib/utils";
@@ -22,6 +22,7 @@ const partnerProof = {
 
 export function PartnerPathSelector() {
   const [activeValue, setActiveValue] = useState(partnerTypes[0].value);
+  const panelId = useId();
   const activeType =
     partnerTypes.find((type) => type.value === activeValue) ?? partnerTypes[0];
   const activeProof =
@@ -48,8 +49,9 @@ export function PartnerPathSelector() {
               type="button"
               role="tab"
               aria-selected={active}
+              aria-controls={panelId}
               className={cn(
-                "flex min-h-11 w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-2 text-left transition-[background-color,color,box-shadow,transform] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.99] sm:flex-1 sm:min-w-0",
+                "flex min-h-11 w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-2 text-left transition-[background-color,color,box-shadow,transform] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/45 sm:flex-1 sm:min-w-0",
                 active
                   ? "bg-primary/16 text-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
                   : "text-muted-foreground hover:bg-muted/70 hover:text-foreground"
@@ -75,6 +77,7 @@ export function PartnerPathSelector() {
       </div>
 
       <div
+        id={panelId}
         key={activeType.value}
         role="tabpanel"
         className={cn(

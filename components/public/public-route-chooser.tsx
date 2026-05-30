@@ -40,7 +40,7 @@ type PublicRouteChooserProps = {
 };
 
 export function PublicRouteChooser({
-  eyebrow = "Next step",
+  eyebrow = "Choose a path",
   title = "Find your next LEAD step.",
   description = "Join as a student, request chapter review, or build access with LEAD as a partner or community organization.",
   className,

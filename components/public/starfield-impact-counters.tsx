@@ -26,9 +26,9 @@ type NumericStat = {
 };
 
 const counterGradients = [
-  "from-[#d84c4c] via-[#ba4e5e] to-[#7a57d1]",
-  "from-[#9b2e8b] via-[#7e56e2] to-[#5d41b0]",
-  "from-[#ba4e5e] via-[#9b2e8b] to-[#7e56e2]",
+  "from-[var(--brand-logo-red-orange)] via-[var(--brand-header-muted-coral)] to-[var(--brand-header-vibrant-purple)]",
+  "from-[var(--brand-logo-magenta)] via-[var(--brand-header-vibrant-purple)] to-[var(--md-sys-color-primary-container)]",
+  "from-[var(--brand-header-muted-coral)] via-[var(--brand-header-deep-magenta)] to-[var(--accent)]",
 ];
 
 const counterIcons: LucideIcon[] = [

@@ -25,7 +25,7 @@ const teamRoster = [
 
 export default function AboutPage() {
   return (
-    <div className="lead-public-page relative isolate text-foreground">
+    <div className="lead-public-page relative isolate overflow-x-clip text-foreground">
       <SectionReveal>
         <section className="relative z-10 editorial-photo-hero pt-28">
           <Image
@@ -40,10 +40,9 @@ export default function AboutPage() {
               <span className="eyebrow-label">About LEAD</span>
               <h1 className="display-title mt-6">Talent is already here. Access should be too.</h1>
               <p className="section-subtitle mt-6 text-muted-foreground">
-                LEAD exists because students across Latin America, the United
-                States, and the Americas already carry ambition, creativity, and
-                talent. LEAD helps turn that talent into access, leadership
-                practice, community, and opportunity.
+                LEAD exists because students across the Americas already carry
+                ambition, creativity, and talent. LEAD helps turn that talent
+                into access, leadership practice, community, and opportunity.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button asChild size="lg">
@@ -67,9 +66,9 @@ export default function AboutPage() {
                   <span className="eyebrow-label">Mission</span>
                   <h2 className="section-title mt-4">Empower the next generation of leaders.</h2>
                   <p className="body-copy mt-4 text-muted-foreground">
-                    LEAD empowers students across Latin America, the United
-                    States, and the Americas through STEM education, leadership
-                    development, mentorship, and community.
+                    LEAD empowers students across the Americas through STEM
+                    education, leadership development, mentorship, and
+                    community.
                   </p>
                 </div>
                 <div className="py-8 lg:pl-10">

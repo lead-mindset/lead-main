@@ -17,15 +17,15 @@ type PathwayStage = {
 
 const pathwayStageTones = [
   {
-    color: "#ff5a5f",
+    color: "var(--brand-logo-red-orange)",
     contrast: "var(--foreground)",
   },
   {
-    color: "#d14ad4",
+    color: "var(--brand-logo-magenta)",
     contrast: "var(--foreground)",
   },
   {
-    color: "#a18bff",
+    color: "var(--primary)",
     contrast: "var(--foreground)",
   },
   {
@@ -107,18 +107,15 @@ export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
             className="relative z-10 w-fit max-w-full lg:sticky lg:top-24 lg:max-h-[calc(100svh-7rem)] lg:self-start"
           >
             <h2 className="pathway-display-title flex flex-col">
-              <span className="block" style={{ color: "#ff5a5f" }}>
-                Learn
-              </span>
-              <span className="block" style={{ color: "#d14ad4" }}>
-                Explore
-              </span>
-              <span className="block" style={{ color: "#a18bff" }}>
-                Aspire
-              </span>
-              <span className="block text-foreground">
-                Discover.
-              </span>
+              {pathwayStageTones.map((tone, index) => (
+                <span
+                  key={stages[index]?.title ?? index}
+                  className="block"
+                  style={{ color: tone.color }}
+                >
+                  {index === 3 ? "Discover." : stages[index]?.title}
+                </span>
+              ))}
             </h2>
           </div>
 

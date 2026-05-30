@@ -37,8 +37,8 @@ export default function GetInvolvedPage() {
                   data-lead-motion="text"
                   className="mt-8 inline-flex items-center gap-2 rounded-full border border-border bg-background/55 px-4 py-2 text-sm font-semibold text-muted-foreground backdrop-blur"
                 >
-                  Scroll to the path that matches you.
-                  <ArrowRight className="size-4 rotate-90 text-primary" />
+                  Students, chapters, partners, community.
+                  <ArrowRight className="size-4 text-primary" />
                 </p>
               </div>
             </MainContainer>

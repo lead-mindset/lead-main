@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -22,27 +22,44 @@ function isActivePath(pathname: string, href: string) {
 
 export default function MobMenu({ pathname }: { pathname: string }) {
   const [isOpen, setIsOpen] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
   const joinIsExternal = isExternalHref(JOIN_LEAD_HREF);
+  const mobileNavId = "lead-mobile-navigation";
 
   useEffect(() => {
     if (!isOpen) return;
 
+    const focusTimer = window.setTimeout(() => {
+      menuRef.current
+        ?.querySelector<HTMLElement>("a[href], button:not(:disabled)")
+        ?.focus();
+    }, 80);
+
     function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setIsOpen(false);
+      if (event.key === "Escape") {
+        setIsOpen(false);
+        triggerRef.current?.focus();
+      }
     }
 
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    return () => {
+      window.clearTimeout(focusTimer);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, [isOpen]);
 
   return (
     <div className="mobile-menu-shell">
       <Button
+        ref={triggerRef}
         type="button"
         variant="ghost"
         size="icon-lg"
         className="border border-white/15 bg-white/10 text-white hover:bg-white/15 hover:text-white"
         aria-label={isOpen ? "Close navigation" : "Open navigation"}
+        aria-controls={mobileNavId}
         aria-expanded={isOpen}
         onClick={() => setIsOpen((current) => !current)}
       >
@@ -52,11 +69,13 @@ export default function MobMenu({ pathname }: { pathname: string }) {
       <AnimatePresence>
         {isOpen ? (
           <motion.div
+            ref={menuRef}
+            id={mobileNavId}
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.28, ease: [0.32, 0.72, 0, 1] }}
-            role="dialog"
+            role="region"
             aria-label="Mobile navigation"
             className="fixed inset-x-4 top-20 z-50 rounded-xl border border-border bg-popover p-3 shadow-[0_24px_80px_rgba(0,0,0,0.28),inset_0_1px_0_rgba(255,255,255,0.08)]"
           >
@@ -70,7 +89,7 @@ export default function MobMenu({ pathname }: { pathname: string }) {
                     href={item.href}
                     aria-current={active ? "page" : undefined}
                     className={cn(
-                      "rounded-[var(--lead-radius-button)] px-3 py-3 text-sm font-medium text-muted-foreground transition-[background-color,color] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-muted hover:text-foreground",
+                      "rounded-[var(--lead-radius-button)] px-3 py-3 text-sm font-medium text-muted-foreground transition-[background-color,color] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/45 focus-visible:ring-offset-2 focus-visible:ring-offset-popover",
                       active && "bg-muted text-foreground"
                     )}
                     target={isExternalHref(item.href) ? "_blank" : undefined}

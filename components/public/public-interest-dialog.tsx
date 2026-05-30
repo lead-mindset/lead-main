@@ -2,7 +2,7 @@
 
 import { X } from "lucide-react";
 import { createPortal } from "react-dom";
-import { useEffect, useId, useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from "react";
 
 import { InterestForm } from "@/components/public/interest-form";
 import {
@@ -69,7 +69,13 @@ function PublicInterestDialog({
   const [open, setOpen] = useState(false);
   const titleId = useId();
   const descriptionId = useId();
+  const triggerRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
+
+  const closeDialog = useCallback(() => {
+    setOpen(false);
+    window.setTimeout(() => triggerRef.current?.focus(), 0);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -86,7 +92,30 @@ function PublicInterestDialog({
     }, 0);
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Escape") {
+        closeDialog();
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const focusableElements = getFocusableElements(dialogRef.current);
+      if (!focusableElements.length) {
+        event.preventDefault();
+        dialogRef.current?.focus();
+        return;
+      }
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
     };
 
     window.addEventListener("keydown", onKeyDown);
@@ -96,11 +125,12 @@ function PublicInterestDialog({
       window.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = previousOverflow;
     };
-  }, [open]);
+  }, [closeDialog, open]);
 
   return (
     <>
       <button
+        ref={triggerRef}
         type="button"
         className={buttonVariants({ size: "lg", variant: "hero" })}
         onClick={() => setOpen(true)}
@@ -113,7 +143,7 @@ function PublicInterestDialog({
             <div
               className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xs"
               onMouseDown={(event) => {
-                if (event.target === event.currentTarget) setOpen(false);
+                if (event.target === event.currentTarget) closeDialog();
               }}
             >
               <div
@@ -135,7 +165,7 @@ function PublicInterestDialog({
                     buttonVariants({ variant: "ghost", size: "icon-sm" }),
                     publicInterestDialogCloseClass
                   )}
-                  onClick={() => setOpen(false)}
+                  onClick={closeDialog}
                 >
                   <X className="size-4" />
                 </button>
@@ -163,4 +193,21 @@ function PublicInterestDialog({
         : null}
     </>
   );
+}
+
+function getFocusableElements(container: HTMLElement | null) {
+  if (!container) return [];
+
+  return Array.from(
+    container.querySelectorAll<HTMLElement>(
+      [
+        "a[href]",
+        "button:not([disabled])",
+        "textarea:not([disabled])",
+        "input:not([disabled]):not([type='hidden'])",
+        "select:not([disabled])",
+        "[tabindex]:not([tabindex='-1'])",
+      ].join(",")
+    )
+  ).filter((element) => element.offsetParent !== null);
 }

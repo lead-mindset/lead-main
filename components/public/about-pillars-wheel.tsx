@@ -112,15 +112,14 @@ export function AboutPillarsBridge() {
           <div className="pointer-events-none absolute left-1/2 top-1/2 size-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-3xl" />
           <div className="relative mx-auto grid max-w-4xl gap-5 text-center">
             <p className="text-sm font-extrabold uppercase text-primary">
-              Grounded in LEAD values
+              Values in practice
             </p>
             <h2 className="font-headline text-3xl font-extrabold leading-tight text-foreground sm:text-5xl">
-              <span className="lead-gradient-text">Seven pillars</span> keep
-              LEAD aligned.
+              One standard for how <span className="lead-gradient-text">LEAD grows</span>.
             </h2>
             <p className="mx-auto max-w-2xl text-base leading-7 text-muted-foreground">
-              They make the values practical: how chapters lead, how programs
-              run, how mentors show up, and how students keep moving forward.
+              Chapters, programs, mentors, and student leaders move with shared
+              expectations.
             </p>
           </div>
         </div>
