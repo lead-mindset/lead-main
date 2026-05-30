@@ -171,7 +171,7 @@ export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
                   aria-selected={activeIndex === index}
                   onClick={() => goTo(index)}
                   className={cn(
-                    "group grid gap-1 border-b border-border px-5 py-3 text-left transition-[background-color,color,box-shadow] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/45 sm:px-6",
+                    "group grid cursor-pointer gap-1 border-b border-border px-5 py-3 text-left transition-[background-color,color,box-shadow] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/45 sm:px-6",
                     activeIndex === index ? "bg-primary/18" : "hover:bg-muted/70"
                   )}
                 >

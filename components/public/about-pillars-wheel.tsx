@@ -239,7 +239,7 @@ export function AboutPillarsWheel() {
                     aria-label={pillar.title}
                     aria-pressed={active}
                     onClick={() => setActiveIndex(index)}
-                    className="group/pillar absolute grid size-24 place-items-center rounded-full bg-background/90 p-[2px] text-center transition-[background-image,color,box-shadow,transform] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/55"
+                    className="group/pillar absolute grid size-24 cursor-pointer place-items-center rounded-full bg-background/90 p-[2px] text-center transition-[background-image,color,box-shadow,transform] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/55"
                     style={{
                       left: `${getPillarPosition(index).left}%`,
                       top: `${getPillarPosition(index).top}%`,
@@ -306,7 +306,7 @@ export function AboutPillarsWheel() {
                   type="button"
                   onClick={() => setActiveIndex(index)}
                   aria-pressed={index === activeIndex}
-                  className="flex min-h-12 items-center justify-between gap-3 border-b border-border/60 py-3 text-left text-sm font-bold text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/45 aria-pressed:text-foreground"
+                  className="flex min-h-12 cursor-pointer items-center justify-between gap-3 border-b border-border/60 py-3 text-left text-sm font-bold text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/45 aria-pressed:text-foreground"
                 >
                   <span className="flex items-center gap-3">
                     <span
