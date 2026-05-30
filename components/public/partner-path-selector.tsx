@@ -7,16 +7,16 @@ import { cn } from "@/lib/utils";
 
 const partnerProof = {
   company: {
-    outcome: "Sponsor programs, host company visits, and give students clearer industry context.",
-    examples: ["Corporate exposure", "Program sponsorship", "Student opportunity"],
+    outcome: "Host a visit, sponsor a program, or create student-facing access.",
+    examples: ["Company visits", "Program support", "Opportunity access"],
   },
   professional_or_mentor: {
-    outcome: "Support students through mentoring, speaking, portfolio review, and leadership coaching.",
-    examples: ["Mentorship", "Career standards", "Leadership practice"],
+    outcome: "Mentor, speak, review work, or help students understand professional standards.",
+    examples: ["Mentorship", "Portfolio review", "Career standards"],
   },
   community_organization: {
-    outcome: "Collaborate on STEM access, regional initiatives, outreach, and community impact.",
-    examples: ["Aligned outreach", "STEM access", "Community initiatives"],
+    outcome: "Collaborate on STEM access, outreach, or a local student initiative.",
+    examples: ["STEM access", "Outreach", "Local initiatives"],
   },
 };
 
@@ -49,7 +49,7 @@ export function PartnerPathSelector() {
               role="tab"
               aria-selected={active}
               className={cn(
-                "flex min-h-11 w-full items-center gap-2 rounded-lg px-3 py-2 text-left transition-[background-color,color,box-shadow,transform] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.99] sm:flex-1 sm:min-w-0",
+                "flex min-h-11 w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-2 text-left transition-[background-color,color,box-shadow,transform] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.99] sm:flex-1 sm:min-w-0",
                 active
                   ? "bg-primary/16 text-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
                   : "text-muted-foreground hover:bg-muted/70 hover:text-foreground"

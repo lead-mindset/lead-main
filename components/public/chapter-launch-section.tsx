@@ -1,21 +1,5 @@
 import { MainContainer } from "@/components/global/main-container";
-import { InterestForm } from "@/components/public/interest-form";
-import {
-  publicInterestDialogCloseClass,
-  publicInterestDialogContentClass,
-  publicInterestDialogHeaderClass,
-} from "@/components/public/interest-dialog-styles";
-import {
-  AlertDialog,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
-import { X } from "lucide-react";
+import { ChapterInterestDialog } from "@/components/public/public-interest-dialog";
 
 export function ChapterLaunchSection() {
   return (
@@ -35,35 +19,7 @@ export function ChapterLaunchSection() {
             </p>
 
             <div className="mt-7">
-              <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button size="lg" variant="hero">Submit chapter interest</Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent className={publicInterestDialogContentClass}>
-                  <AlertDialogCancel
-                    variant="ghost"
-                    aria-label="Close chapter interest form"
-                    className={publicInterestDialogCloseClass}
-                  >
-                    <X className="size-4" />
-                  </AlertDialogCancel>
-                  <AlertDialogHeader className={publicInterestDialogHeaderClass}>
-                    <AlertDialogTitle>Request chapter interest</AlertDialogTitle>
-                    <AlertDialogDescription>
-                      Tell us where you are, who is building with you, and what
-                      kind of student community you want to create. This is a
-                      request for review, not chapter approval.
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <InterestForm
-                    kind="chapter_interest"
-                    defaultOpen
-                    showToggle={false}
-                    showHeader={false}
-                    className="border-0 bg-transparent p-0 shadow-none"
-                  />
-                </AlertDialogContent>
-              </AlertDialog>
+              <ChapterInterestDialog />
             </div>
           </div>
 

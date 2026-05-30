@@ -1,26 +1,15 @@
 import Link from "next/link";
-import { ArrowRight, X } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { MainContainer } from "@/components/global/main-container";
 import { GetInvolvedRocketHero } from "@/components/public/get-involved-rocket-hero";
-import { InterestForm } from "@/components/public/interest-form";
-import {
-  publicInterestDialogCloseClass,
-  publicInterestDialogContentClass,
-  publicInterestDialogHeaderClass,
-} from "@/components/public/interest-dialog-styles";
 import { PartnerPathSelector } from "@/components/public/partner-path-selector";
+import {
+  ChapterInterestDialog,
+  PartnerInterestDialog,
+} from "@/components/public/public-interest-dialog";
 import { PublicRouteChooser } from "@/components/public/public-route-chooser";
 import { SectionReveal } from "@/components/public/section-reveal";
-import {
-  AlertDialog,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { publicCtas } from "@/lib/public-site/content";
 import { isExternalHref } from "@/components/global/navigation/nav-links";
@@ -174,10 +163,10 @@ export default function GetInvolvedPage() {
               >
                 <div className="absolute inset-x-0 bottom-0 p-5">
                   <p className="media-caption-title max-w-xl text-white">
-                    Partnerships should make opportunity feel closer, clearer, and real.
+                    Bring students closer to real opportunity.
                   </p>
                   <p className="mt-3 text-sm leading-6 text-white/78">
-                    One clear role, one useful contribution, and a student-facing result.
+                    Start with one useful contribution and a clear student outcome.
                   </p>
                   <div className="mt-5">
                     <PartnerInterestDialog />
@@ -187,14 +176,13 @@ export default function GetInvolvedPage() {
             </div>
 
             <div className="order-2 lg:order-2">
-              <p className="eyebrow-label">Partners and collaborators</p>
+              <p className="eyebrow-label">Partner with LEAD</p>
               <h2 className="section-title mt-3">
-                Create access with students who are already moving.
+                Choose how you can help.
               </h2>
               <p className="body-copy mt-4 max-w-2xl text-muted-foreground">
-                Companies, mentors, professionals, and community organizations
-                can support LEAD through exposure, programs, mentorship,
-                sponsorship, and aligned community work.
+                Companies, mentors, and community organizations can open doors
+                through one focused path.
               </p>
 
               <PartnerPathSelector />
@@ -211,73 +199,6 @@ export default function GetInvolvedPage() {
       </SectionReveal>
       </div>
     </div>
-  );
-}
-
-function ChapterInterestDialog() {
-  return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <Button size="lg" variant="hero">Submit chapter interest</Button>
-      </AlertDialogTrigger>
-      <AlertDialogContent className={publicInterestDialogContentClass}>
-        <AlertDialogCancel
-          variant="ghost"
-          aria-label="Close chapter interest form"
-          className={publicInterestDialogCloseClass}
-        >
-          <X className="size-4" />
-        </AlertDialogCancel>
-        <AlertDialogHeader className={publicInterestDialogHeaderClass}>
-          <AlertDialogTitle>Request chapter interest</AlertDialogTitle>
-          <AlertDialogDescription>
-            Tell us where you are, who is building with you, and why LEAD would
-            matter on your campus. This is a request for review, not chapter
-            approval.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <InterestForm
-          kind="chapter_interest"
-          defaultOpen
-          showToggle={false}
-          showHeader={false}
-          className="border-0 bg-transparent p-0 shadow-none"
-        />
-      </AlertDialogContent>
-    </AlertDialog>
-  );
-}
-
-function PartnerInterestDialog() {
-  return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <Button size="lg" variant="hero">Start a partnership conversation</Button>
-      </AlertDialogTrigger>
-      <AlertDialogContent className={publicInterestDialogContentClass}>
-        <AlertDialogCancel
-          variant="ghost"
-          aria-label="Close partnership form"
-          className={publicInterestDialogCloseClass}
-        >
-          <X className="size-4" />
-        </AlertDialogCancel>
-        <AlertDialogHeader className={publicInterestDialogHeaderClass}>
-          <AlertDialogTitle className="max-w-[28rem]">Partner or collaborate with LEAD</AlertDialogTitle>
-          <AlertDialogDescription>
-            Share what you want to build with students as a company, mentor,
-            professional, sponsor, or community organization.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <InterestForm
-          kind="partnership"
-          defaultOpen
-          showToggle={false}
-          showHeader={false}
-          className="border-0 bg-transparent p-0 shadow-none"
-        />
-      </AlertDialogContent>
-    </AlertDialog>
   );
 }
 

@@ -378,21 +378,21 @@ export const partnerTypes = [
     value: "company",
     icon: Building2,
     description:
-      "Support students through sponsorships, corporate visits, speaker sessions, mentorship, events, and consent-first talent visibility.",
+      "For teams that can host, sponsor, or open industry exposure.",
   },
   {
     title: "Professional or Mentor",
     value: "professional_or_mentor",
     icon: HeartHandshake,
     description:
-      "Contribute through mentoring, speaking, workshops, career coaching, leadership development, and professional standards.",
+      "For people who can mentor, speak, review work, or coach leaders.",
   },
   {
     title: "Community Organization",
     value: "community_organization",
     icon: Users,
     description:
-      "Collaborate around STEM access, leadership, community impact, regional initiatives, and aligned student opportunity.",
+      "For organizations building STEM access or student opportunity.",
   },
 ];
 
