@@ -247,7 +247,8 @@
 }
 
 .pathway-display-title {
-  font-size: 3.35rem;
+  width: max-content;
+  font-size: clamp(3.1rem, 13vw, 3.65rem);
   font-family: var(--font-raleway), sans-serif;
   font-weight: 800;
   letter-spacing: 0;
@@ -420,13 +421,13 @@
   }
 
   .pathway-display-title {
-    font-size: 4.85rem;
+    font-size: clamp(4rem, 5.45vw, 4.95rem);
   }
 }
 
 @media (min-width: 1280px) {
   .pathway-display-title {
-    font-size: 5.35rem;
+    font-size: clamp(4.9rem, 5.1vw, 5.35rem);
   }
 }
 
@@ -536,6 +537,65 @@
   --pathway-stage-contrast: var(--foreground);
 }
 
+.pathway-stage-list {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--lead-surface-elevated) 18%, transparent),
+      transparent 18rem
+    );
+}
+
+.pathway-stage-copy {
+  max-width: 42rem;
+  text-wrap: pretty;
+}
+
+@media (min-width: 1024px) {
+  .pathway-stage {
+    position: relative;
+  }
+
+  .pathway-stage::before {
+    content: "";
+    position: absolute;
+    left: 1.55rem;
+    top: 4.35rem;
+    width: clamp(2.25rem, 4vw, 4.75rem);
+    height: calc(100% - 3.2rem);
+    border-bottom: 1px solid color-mix(in oklab, var(--pathway-stage-color) 34%, transparent);
+    border-left: 1px solid color-mix(in oklab, var(--pathway-stage-color) 28%, transparent);
+    border-bottom-left-radius: 999px;
+    opacity: 0.5;
+    transform: skewX(-7deg);
+  }
+
+  .pathway-stage:last-child::before {
+    display: none;
+  }
+
+  .pathway-stage--drift-right {
+    margin-left: clamp(1rem, 3vw, 2.75rem);
+  }
+
+  .pathway-stage--drift-right::before {
+    width: clamp(3rem, 5vw, 5.5rem);
+    transform: skewX(7deg);
+  }
+
+  .pathway-stage--drift-left {
+    margin-right: clamp(0.5rem, 2vw, 2rem);
+  }
+
+  .pathway-stage--drift-right .pathway-outcome {
+    margin-left: clamp(0.5rem, 3vw, 2.5rem);
+  }
+
+  .pathway-stage--drift-left .pathway-outcome {
+    margin-right: clamp(0.5rem, 2vw, 2rem);
+  }
+}
+
 .pathway-step-number {
   border-color: color-mix(in oklab, var(--pathway-stage-color) 40%, transparent);
   background: color-mix(in oklab, var(--pathway-stage-color) 14%, var(--background));
@@ -551,7 +611,11 @@
 
 .pathway-outcome {
   border-color: color-mix(in oklab, var(--pathway-stage-color) 24%, transparent);
-  background: color-mix(in oklab, var(--pathway-stage-color) 9%, var(--card));
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--pathway-stage-color) 12%, var(--card)),
+    color-mix(in oklab, var(--lead-surface-elevated) 86%, transparent)
+  );
   transition:
     background-color 320ms ease,
     border-color 320ms ease,
@@ -572,7 +636,11 @@
 
 .pathway-stage.is-pathway-active .pathway-outcome {
   border-color: color-mix(in oklab, var(--pathway-stage-color) 42%, transparent);
-  background: color-mix(in oklab, var(--pathway-stage-color) 14%, var(--card));
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--pathway-stage-color) 18%, var(--card)),
+    color-mix(in oklab, var(--lead-surface-elevated) 84%, transparent)
+  );
 }
 
 .mobile-menu-shell {
