@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useMemo, useRef } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Html, Stars, useGLTF } from "@react-three/drei";
 import { useGSAP } from "@gsap/react";
@@ -15,34 +15,64 @@ const ROCKET_SRC = "/models/rocket.glb";
 export function GetInvolvedRocketHero() {
   return (
     <>
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-20 z-0 h-[42svh] min-h-80 overflow-hidden opacity-55 lg:hidden"
-      >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_48%,rgba(122,87,209,0.36),transparent_17rem)]" />
-        <RocketFallbackArt compact />
-        <RocketCanvas
-          cameraPosition={[0, 0.04, 11.8]}
-          modelPosition={[0.52, -0.38, 0]}
-          modelScale={0.25}
-          floatY={-0.24}
-        />
-      </div>
+      <RocketVisualLayer
+        compact
+        className="inset-x-0 top-20 h-[42svh] min-h-80 opacity-55 lg:hidden"
+        auraClassName="bg-[radial-gradient(circle_at_72%_48%,rgba(122,87,209,0.36),transparent_17rem)]"
+        cameraPosition={[0, 0.04, 11.8]}
+        modelPosition={[0.52, -0.38, 0]}
+        modelScale={0.25}
+        floatY={-0.24}
+      />
 
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-0 hidden overflow-hidden lg:block"
-      >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_74%_42%,rgba(122,87,209,0.28),transparent_34rem),radial-gradient(circle_at_86%_60%,rgba(229,62,62,0.12),transparent_24rem)]" />
-        <RocketFallbackArt />
-        <RocketCanvas
-          cameraPosition={[0, 0.1, 12.2]}
-          modelPosition={[2.82, -0.52, 0]}
-          modelScale={0.3}
-          floatY={-0.34}
-        />
-      </div>
+      <RocketVisualLayer
+        className="inset-0 hidden lg:block"
+        auraClassName="bg-[radial-gradient(circle_at_74%_42%,rgba(122,87,209,0.28),transparent_34rem),radial-gradient(circle_at_86%_60%,rgba(229,62,62,0.12),transparent_24rem)]"
+        cameraPosition={[0, 0.1, 12.2]}
+        modelPosition={[2.82, -0.52, 0]}
+        modelScale={0.3}
+        floatY={-0.34}
+      />
     </>
+  );
+}
+
+function RocketVisualLayer({
+  compact = false,
+  className,
+  auraClassName,
+  cameraPosition,
+  modelPosition,
+  modelScale,
+  floatY,
+}: {
+  compact?: boolean;
+  className: string;
+  auraClassName: string;
+  cameraPosition: [number, number, number];
+  modelPosition: [number, number, number];
+  modelScale: number;
+  floatY: number;
+}) {
+  const [modelReady, setModelReady] = useState(false);
+  const handleModelReady = useCallback(() => setModelReady(true), []);
+
+  return (
+    <div
+      aria-hidden="true"
+      className={`pointer-events-none absolute z-0 overflow-hidden ${className}`}
+      data-model-ready={modelReady ? "true" : "false"}
+    >
+      <div className={`absolute inset-0 ${auraClassName}`} />
+      <RocketFallbackArt compact={compact} hidden={modelReady} />
+      <RocketCanvas
+        cameraPosition={cameraPosition}
+        modelPosition={modelPosition}
+        modelScale={modelScale}
+        floatY={floatY}
+        onReady={handleModelReady}
+      />
+    </div>
   );
 }
 
@@ -51,11 +81,13 @@ function RocketCanvas({
   modelPosition,
   modelScale,
   floatY,
+  onReady,
 }: {
   cameraPosition: [number, number, number];
   modelPosition: [number, number, number];
   modelScale: number;
   floatY: number;
+  onReady: () => void;
 }) {
   return (
     <Canvas camera={{ position: cameraPosition, fov: 42 }} dpr={[1, 1.5]} className="!absolute !inset-0 z-10">
@@ -64,21 +96,28 @@ function RocketCanvas({
       <pointLight position={[-3, -2, 3]} intensity={0.75} color="#9f258c" />
       <Stars radius={34} depth={18} count={320} factor={3.2} saturation={0} fade speed={0.25} />
       <Suspense fallback={<ModelFallback />}>
-        <HeroRocketModel modelPosition={modelPosition} modelScale={modelScale} floatY={floatY} />
+        <HeroRocketModel
+          modelPosition={modelPosition}
+          modelScale={modelScale}
+          floatY={floatY}
+          onReady={onReady}
+        />
       </Suspense>
     </Canvas>
   );
 }
 
-function RocketFallbackArt({ compact = false }: { compact?: boolean }) {
+function RocketFallbackArt({ compact = false, hidden = false }: { compact?: boolean; hidden?: boolean }) {
   return (
     <div
       aria-hidden="true"
+      data-3d-fallback="rocket"
       className={[
-        "pointer-events-none absolute z-0 rotate-[-14deg]",
+        "pointer-events-none absolute z-0 rotate-[-14deg] transition-opacity duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]",
         compact
-          ? "right-6 top-8 h-56 w-40 opacity-70"
-          : "right-[9%] top-[17%] h-[32rem] w-[22rem] opacity-78",
+          ? "right-6 top-8 h-56 w-40"
+          : "right-[9%] top-[17%] h-[32rem] w-[22rem]",
+        hidden ? "invisible opacity-0" : compact ? "visible opacity-70" : "visible opacity-78",
       ].join(" ")}
     >
       <div className="absolute left-1/2 top-1/2 h-[72%] w-[34%] -translate-x-1/2 -translate-y-1/2 rounded-[999px_999px_40%_40%] border border-white/16 bg-[linear-gradient(160deg,rgba(255,255,255,0.96),rgba(161,139,255,0.78)_46%,rgba(122,87,209,0.5))] shadow-[0_28px_90px_rgba(122,87,209,0.26)]" />
@@ -95,14 +134,21 @@ function HeroRocketModel({
   modelPosition,
   modelScale,
   floatY,
+  onReady,
 }: {
   modelPosition: [number, number, number];
   modelScale: number;
   floatY: number;
+  onReady: () => void;
 }) {
   const groupRef = useRef<Group>(null);
   const gltf = useGLTF(ROCKET_SRC) as GLTF & { scene: Group };
   const scene = useMemo(() => gltf.scene.clone(true), [gltf.scene]);
+
+  useEffect(() => {
+    const readyFrame = window.requestAnimationFrame(onReady);
+    return () => window.cancelAnimationFrame(readyFrame);
+  }, [onReady, scene]);
 
   useGSAP(() => {
     const group = groupRef.current;

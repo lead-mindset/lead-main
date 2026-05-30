@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useMemo, useRef, type RefObject } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState, type RefObject } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
 import { Html, Line, Stars, useGLTF } from "@react-three/drei";
 import { useGSAP } from "@gsap/react";
@@ -31,6 +31,8 @@ const regionMarkers = [
 
 export function RegionalEarthStage() {
   const sectionRef = useRef<HTMLElement>(null);
+  const [earthReady, setEarthReady] = useState(false);
+  const handleEarthReady = useCallback(() => setEarthReady(true), []);
 
   return (
     <section
@@ -58,8 +60,9 @@ export function RegionalEarthStage() {
           <div
             data-lead-motion="card"
             className="regional-earth-shell relative h-[330px] overflow-hidden rounded-2xl border border-white/12 bg-[var(--lead-surface-deep)] shadow-[0_28px_90px_rgba(0,0,0,0.38)] sm:h-[420px] lg:h-[480px]"
+            data-model-ready={earthReady ? "true" : "false"}
           >
-            <RegionalMapFallback />
+            <RegionalMapFallback hidden={earthReady} />
             <Canvas
               className="!absolute !inset-0 z-10"
               camera={{ position: [0, 0, 5.65], fov: 38 }}
@@ -69,7 +72,7 @@ export function RegionalEarthStage() {
               <directionalLight position={[4, 3, 4]} intensity={2.1} />
               <Stars radius={90} depth={40} count={900} factor={3.6} saturation={0} fade speed={0.35} />
               <Suspense fallback={<EarthFallback />}>
-                <RegionalEarthModel sectionRef={sectionRef} />
+                <RegionalEarthModel sectionRef={sectionRef} onReady={handleEarthReady} />
               </Suspense>
             </Canvas>
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[var(--lead-surface-deep)] to-transparent" />
@@ -80,11 +83,15 @@ export function RegionalEarthStage() {
   );
 }
 
-function RegionalMapFallback() {
+function RegionalMapFallback({ hidden = false }: { hidden?: boolean }) {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 z-0 overflow-hidden bg-[radial-gradient(circle_at_54%_42%,rgba(122,87,209,0.24),transparent_17rem),radial-gradient(circle_at_54%_42%,rgba(43,196,140,0.12),transparent_12rem)]"
+      data-3d-fallback="regional-earth"
+      className={[
+        "pointer-events-none absolute inset-0 z-0 overflow-hidden bg-[radial-gradient(circle_at_54%_42%,rgba(122,87,209,0.24),transparent_17rem),radial-gradient(circle_at_54%_42%,rgba(43,196,140,0.12),transparent_12rem)] transition-opacity duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]",
+        hidden ? "invisible opacity-0" : "visible opacity-100",
+      ].join(" ")}
     >
       <div className="absolute left-1/2 top-[46%] h-[18rem] w-[18rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 bg-[radial-gradient(circle_at_38%_32%,rgba(43,196,140,0.36),transparent_34%),linear-gradient(135deg,rgba(122,87,209,0.68),rgba(80,57,164,0.48))] shadow-[0_28px_80px_rgba(0,0,0,0.28)] sm:h-[24rem] sm:w-[24rem]" />
       <div className="absolute left-[52%] top-[34%] h-16 w-20 -translate-x-1/2 rounded-[58%_42%_48%_52%] bg-emerald-300/32 blur-[1px] sm:h-20 sm:w-28" />
@@ -115,8 +122,10 @@ function FallbackRegionLabel({
 
 function RegionalEarthModel({
   sectionRef,
+  onReady,
 }: {
   sectionRef: RefObject<HTMLElement>;
+  onReady: () => void;
 }) {
   const groupRef = useRef<Group>(null);
   const gltf = useGLTF("/models/earthbase.glb") as GLTF & { scene: Group };
@@ -126,6 +135,11 @@ function RegionalEarthModel({
   const modelScale = isMobileCanvas ? 1.16 : 1.82;
   const basePosition = isMobileCanvas ? [0.1, -0.08, 0] : [0.14, -0.1, 0];
   const baseRotation = [0.1, -0.46, 0.02];
+
+  useEffect(() => {
+    const readyFrame = window.requestAnimationFrame(onReady);
+    return () => window.cancelAnimationFrame(readyFrame);
+  }, [onReady, scene]);
 
   useGSAP(
     () => {
