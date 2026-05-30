@@ -46,7 +46,7 @@ export function LeadHighlightsCarousel({ highlights }: { highlights: Highlight[]
                 <article
                   key={`${highlight.title}-${index}`}
                   aria-hidden={isDuplicate}
-                  className="group relative h-[24rem] w-[82vw] max-w-[21rem] shrink-0 snap-start overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_80px_rgba(0,0,0,0.22)] sm:h-[28rem] sm:w-[24rem] sm:max-w-none"
+                  className="relative h-[24rem] w-[82vw] max-w-[21rem] shrink-0 snap-start overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_80px_rgba(0,0,0,0.22)] sm:h-[28rem] sm:w-[24rem] sm:max-w-none"
                 >
                   <Image
                     src={highlight.image}
@@ -55,7 +55,7 @@ export function LeadHighlightsCarousel({ highlights }: { highlights: Highlight[]
                     sizes="(min-width: 640px) 24rem, 20rem"
                     loading={isDuplicate ? "lazy" : "eager"}
                     unoptimized
-                    className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-105"
+                    className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/34 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 p-5">

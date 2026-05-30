@@ -87,11 +87,11 @@ export default function AboutPage() {
                 {communityMoments.map((moment) => (
                   <figure
                     key={moment.title}
-                    className="group relative min-h-[17rem] overflow-hidden rounded-2xl border border-border bg-card sm:min-h-[20rem]"
+                    className="relative min-h-[17rem] overflow-hidden rounded-2xl border border-border bg-card sm:min-h-[20rem]"
                   >
                     <video
                       aria-hidden="true"
-                      className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+                      className="absolute inset-0 h-full w-full object-cover"
                       autoPlay
                       muted
                       loop
@@ -185,15 +185,15 @@ export default function AboutPage() {
                       key={person.name}
                       role="listitem"
                       className={[
-                        "group/team relative flex min-h-[7.4rem] items-center gap-4 rounded-xl border p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.045)] transition duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:bg-primary/[0.035]",
+                        "relative flex min-h-[7.4rem] items-center gap-4 rounded-xl border p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.045)]",
                         isFounder
-                          ? "border-primary/28 bg-[linear-gradient(135deg,rgba(229,62,62,0.055),rgba(159,37,140,0.045)_48%,rgba(122,87,209,0.055))] hover:border-primary/42"
-                          : "border-white/[0.08] bg-white/[0.025] hover:border-primary/24",
+                          ? "border-primary/28 bg-[linear-gradient(135deg,rgba(229,62,62,0.055),rgba(159,37,140,0.045)_48%,rgba(122,87,209,0.055))]"
+                          : "border-white/[0.08] bg-white/[0.025]",
                       ].join(" ")}
                     >
                       <div
                         className={[
-                          "relative shrink-0 rounded-full bg-gradient-to-br from-[var(--brand-logo-red-orange)] via-[var(--brand-logo-magenta)] to-primary p-[2px] shadow-[0_18px_42px_rgba(0,0,0,0.18)] transition duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover/team:scale-[1.04]",
+                          "relative shrink-0 rounded-full bg-gradient-to-br from-[var(--brand-logo-red-orange)] via-[var(--brand-logo-magenta)] to-primary p-[2px] shadow-[0_18px_42px_rgba(0,0,0,0.18)]",
                           isFounder ? "size-[5.05rem]" : "size-[4.65rem]",
                         ].join(" ")}
                       >
@@ -205,7 +205,7 @@ export default function AboutPage() {
                             height={104}
                             sizes="(min-width: 1024px) 81px, 74px"
                             loading="eager"
-                            className="size-full object-cover transition duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover/team:scale-[1.07]"
+                            className="size-full object-cover"
                           />
                         </div>
                       </div>
