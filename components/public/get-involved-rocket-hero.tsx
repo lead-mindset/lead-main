@@ -20,6 +20,7 @@ export function GetInvolvedRocketHero() {
         className="pointer-events-none absolute inset-x-0 top-20 z-0 h-[42svh] min-h-80 overflow-hidden opacity-55 lg:hidden"
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_48%,rgba(122,87,209,0.36),transparent_17rem)]" />
+        <RocketFallbackArt compact />
         <RocketCanvas
           cameraPosition={[0, 0.04, 11.8]}
           modelPosition={[0.52, -0.38, 0]}
@@ -33,6 +34,7 @@ export function GetInvolvedRocketHero() {
         className="pointer-events-none absolute inset-0 z-0 hidden overflow-hidden lg:block"
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_74%_42%,rgba(122,87,209,0.28),transparent_34rem),radial-gradient(circle_at_86%_60%,rgba(229,62,62,0.12),transparent_24rem)]" />
+        <RocketFallbackArt />
         <RocketCanvas
           cameraPosition={[0, 0.1, 12.2]}
           modelPosition={[2.82, -0.52, 0]}
@@ -56,7 +58,7 @@ function RocketCanvas({
   floatY: number;
 }) {
   return (
-    <Canvas camera={{ position: cameraPosition, fov: 42 }} dpr={[1, 1.5]} className="relative z-10">
+    <Canvas camera={{ position: cameraPosition, fov: 42 }} dpr={[1, 1.5]} className="!absolute !inset-0 z-10">
       <ambientLight intensity={1.25} />
       <directionalLight position={[3, 4, 5]} intensity={2.1} />
       <pointLight position={[-3, -2, 3]} intensity={0.75} color="#9f258c" />
@@ -65,6 +67,27 @@ function RocketCanvas({
         <HeroRocketModel modelPosition={modelPosition} modelScale={modelScale} floatY={floatY} />
       </Suspense>
     </Canvas>
+  );
+}
+
+function RocketFallbackArt({ compact = false }: { compact?: boolean }) {
+  return (
+    <div
+      aria-hidden="true"
+      className={[
+        "pointer-events-none absolute z-0 rotate-[-14deg]",
+        compact
+          ? "right-6 top-8 h-56 w-40 opacity-70"
+          : "right-[9%] top-[17%] h-[32rem] w-[22rem] opacity-78",
+      ].join(" ")}
+    >
+      <div className="absolute left-1/2 top-1/2 h-[72%] w-[34%] -translate-x-1/2 -translate-y-1/2 rounded-[999px_999px_40%_40%] border border-white/16 bg-[linear-gradient(160deg,rgba(255,255,255,0.96),rgba(161,139,255,0.78)_46%,rgba(122,87,209,0.5))] shadow-[0_28px_90px_rgba(122,87,209,0.26)]" />
+      <div className="absolute left-1/2 top-[26%] size-[22%] -translate-x-1/2 rounded-full border border-white/28 bg-[radial-gradient(circle,rgba(8,13,59,0.98),rgba(122,87,209,0.72))]" />
+      <div className="absolute bottom-[13%] left-[20%] h-[20%] w-[20%] rounded-[80%_20%_80%_20%] bg-[linear-gradient(135deg,var(--brand-logo-red-orange),var(--brand-logo-magenta))]" />
+      <div className="absolute bottom-[13%] right-[20%] h-[20%] w-[20%] rounded-[20%_80%_20%_80%] bg-[linear-gradient(135deg,var(--brand-logo-magenta),var(--primary))]" />
+      <div className="absolute bottom-[-13%] left-1/2 h-[34%] w-[18%] -translate-x-1/2 rounded-full bg-[linear-gradient(180deg,rgba(255,90,95,0.92),rgba(126,86,226,0.08))] blur-xl" />
+      <div className="absolute bottom-[-8%] left-[12%] h-[3px] w-[58%] rounded-full bg-primary/38 blur-[1px]" />
+    </div>
   );
 }
 

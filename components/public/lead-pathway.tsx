@@ -101,7 +101,7 @@ export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
       className="lead-pathway relative scroll-mt-24 overflow-visible pb-16 pt-24 sm:pb-28 sm:pt-32"
     >
       <MainContainer className="relative z-10">
-        <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:gap-14">
+        <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:gap-14">
           <div
             data-pathway-intro
             className="relative z-20 lg:sticky lg:top-24 lg:max-h-[calc(100svh-7rem)] lg:self-start"

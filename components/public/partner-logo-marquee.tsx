@@ -38,6 +38,8 @@ export function PartnerLogoMarquee({ logos }: { logos: PartnerLogo[] }) {
                     alt={isDuplicate ? "" : logo.name}
                     width={150}
                     height={52}
+                    loading="eager"
+                    unoptimized
                     className="h-auto max-h-10 w-auto object-contain"
                   />
                 </div>

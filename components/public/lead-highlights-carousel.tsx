@@ -53,9 +53,11 @@ export function LeadHighlightsCarousel({ highlights }: { highlights: Highlight[]
                     alt={isDuplicate ? "" : highlight.title}
                     fill
                     sizes="(min-width: 640px) 24rem, 20rem"
+                    loading={isDuplicate ? "lazy" : "eager"}
+                    unoptimized
                     className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/48 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/34 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 p-5">
                     <p className="card-eyebrow">
                       {highlight.pillar}

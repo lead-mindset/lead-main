@@ -213,13 +213,17 @@
 }
 
 .pathway-display-title {
-  font-size: clamp(3.6rem, 7.4vw, 6rem);
+  font-size: 3.35rem;
   font-family: var(--font-raleway), sans-serif;
   font-weight: 800;
   letter-spacing: 0;
-  line-height: 0.86;
+  line-height: 0.9;
   max-width: 100%;
   overflow-wrap: break-word;
+}
+
+.pathway-display-title > span {
+  white-space: nowrap;
 }
 
 .section-title {
@@ -379,6 +383,16 @@
   .partner-media-panel {
     min-height: 30rem;
     height: 100%;
+  }
+
+  .pathway-display-title {
+    font-size: 4.85rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .pathway-display-title {
+    font-size: 5.35rem;
   }
 }
 

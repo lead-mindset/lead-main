@@ -59,12 +59,12 @@ export function RegionalEarthStage() {
             data-lead-motion="card"
             className="regional-earth-shell relative h-[330px] overflow-hidden rounded-2xl border border-white/12 bg-[var(--lead-surface-deep)] shadow-[0_28px_90px_rgba(0,0,0,0.38)] sm:h-[420px] lg:h-[480px]"
           >
+            <RegionalMapFallback />
             <Canvas
-              className="!absolute !inset-0"
+              className="!absolute !inset-0 z-10"
               camera={{ position: [0, 0, 5.65], fov: 38 }}
               dpr={[1, 1.5]}
             >
-              <color attach="background" args={["#050824"]} />
               <ambientLight intensity={1.35} />
               <directionalLight position={[4, 3, 4]} intensity={2.1} />
               <Stars radius={90} depth={40} count={900} factor={3.6} saturation={0} fade speed={0.35} />
@@ -77,6 +77,39 @@ export function RegionalEarthStage() {
         </div>
       </MainContainer>
     </section>
+  );
+}
+
+function RegionalMapFallback() {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 z-0 overflow-hidden bg-[radial-gradient(circle_at_54%_42%,rgba(122,87,209,0.24),transparent_17rem),radial-gradient(circle_at_54%_42%,rgba(43,196,140,0.12),transparent_12rem)]"
+    >
+      <div className="absolute left-1/2 top-[46%] h-[18rem] w-[18rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 bg-[radial-gradient(circle_at_38%_32%,rgba(43,196,140,0.36),transparent_34%),linear-gradient(135deg,rgba(122,87,209,0.68),rgba(80,57,164,0.48))] shadow-[0_28px_80px_rgba(0,0,0,0.28)] sm:h-[24rem] sm:w-[24rem]" />
+      <div className="absolute left-[52%] top-[34%] h-16 w-20 -translate-x-1/2 rounded-[58%_42%_48%_52%] bg-emerald-300/32 blur-[1px] sm:h-20 sm:w-28" />
+      <div className="absolute left-[48%] top-[43%] h-24 w-14 rounded-[42%_58%_45%_55%] bg-emerald-300/38 blur-[1px] sm:h-32 sm:w-20" />
+      <FallbackRegionLabel className="left-[49%] top-[27%]" label="United States" />
+      <FallbackRegionLabel className="left-[58%] top-[48%]" label="Colombia" />
+      <FallbackRegionLabel className="left-[56%] top-[61%]" label="Peru" />
+    </div>
+  );
+}
+
+function FallbackRegionLabel({
+  className,
+  label,
+}: {
+  className: string;
+  label: string;
+}) {
+  return (
+    <div
+      className={`absolute flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/16 bg-background/78 px-2.5 py-1.5 text-[0.68rem] font-bold leading-none text-white shadow-[0_10px_30px_rgba(0,0,0,0.28)] backdrop-blur sm:px-3 sm:py-2 sm:text-xs ${className}`}
+    >
+      <span className="size-2 rounded-full bg-secondary shadow-[0_0_18px_rgba(186,78,94,0.75)]" />
+      <span className="whitespace-nowrap">{label}</span>
+    </div>
   );
 }
 
