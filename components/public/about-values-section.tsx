@@ -104,8 +104,8 @@ export function AboutValuesSection() {
   );
 
   return (
-    <section ref={sectionRef} className="relative">
-      <div className="flex min-h-[86svh] items-center py-14 sm:py-20">
+    <section id="values" ref={sectionRef} className="relative scroll-mt-28">
+      <div className="flex min-h-[86svh] items-center pb-14 pt-20 sm:py-20">
         <MainContainer>
           <div className="grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-center">
             <div className="max-w-xl">

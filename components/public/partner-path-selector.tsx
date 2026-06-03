@@ -36,7 +36,7 @@ export function PartnerPathSelector() {
     <div className="mt-6 overflow-hidden rounded-xl border border-border bg-card/62">
       <div
         className="grid gap-2 border-b border-border/80 p-2 sm:flex sm:flex-wrap"
-        role="tablist"
+        role="group"
         aria-label="Choose partner path"
       >
         {partnerTypes.map((type) => {
@@ -47,8 +47,7 @@ export function PartnerPathSelector() {
             <button
               key={type.value}
               type="button"
-              role="tab"
-              aria-selected={active}
+              aria-pressed={active}
               aria-controls={panelId}
               className={cn(
                 "flex min-h-11 w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-2 text-left transition-[background-color,color,box-shadow,transform] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/45 sm:flex-1 sm:min-w-0",
@@ -79,9 +78,10 @@ export function PartnerPathSelector() {
       <div
         id={panelId}
         key={activeType.value}
-        role="tabpanel"
+        role="region"
+        aria-live="polite"
         className={cn(
-          "grid min-h-[17rem] gap-4 p-4 sm:min-h-[14rem] sm:grid-cols-[auto_1fr] sm:p-5",
+          "grid min-h-[13.5rem] gap-4 p-4 sm:min-h-[12.5rem] sm:grid-cols-[auto_1fr] sm:p-5",
           panelMotion
         )}
       >

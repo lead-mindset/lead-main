@@ -106,7 +106,7 @@ function getPillarPosition(index: number, rotation = 0) {
 
 export function AboutPillarsBridge() {
   return (
-    <section className="relative overflow-hidden py-10 sm:py-14">
+    <section className="relative scroll-mt-28 overflow-hidden py-10 sm:py-14">
       <MainContainer>
         <div className="relative overflow-hidden py-10 sm:py-14">
           <div className="pointer-events-none absolute left-1/2 top-1/2 size-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-3xl" />
@@ -213,7 +213,7 @@ export function AboutPillarsWheel() {
   );
 
   return (
-    <section ref={sectionRef} className="relative py-12 sm:py-20 md:min-h-[300svh]">
+    <section id="pillars" ref={sectionRef} className="relative scroll-mt-28 pb-12 pt-20 sm:pb-20 sm:pt-24 md:min-h-[300svh] md:py-20">
       <MainContainer className="md:sticky md:top-24">
         <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div className="relative mx-auto hidden aspect-square w-full max-w-[35rem] md:block">

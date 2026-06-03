@@ -49,7 +49,7 @@ export default function AboutPage() {
                   <Link href={publicCtas.join} {...externalProps(publicCtas.join)}>Join LEAD</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg">
-                  <Link href={publicCtas.chapter}>Submit Chapter Interest</Link>
+                  <Link href={publicCtas.chapter}>Submit chapter interest</Link>
                 </Button>
               </div>
             </div>
@@ -158,7 +158,7 @@ export default function AboutPage() {
         <AboutPillarsWheel />
 
         <SectionReveal className="relative z-10">
-          <section className="editorial-warm-band relative z-10 py-16 sm:py-24">
+          <section id="team" className="editorial-warm-band relative z-10 scroll-mt-28 py-16 sm:py-24">
             <MainContainer className="relative z-10">
               <div className="grid gap-8 border-y border-border/80 py-9 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
                 <div>
@@ -184,7 +184,7 @@ export default function AboutPage() {
                       key={person.name}
                       role="listitem"
                       className={[
-                        "relative flex min-h-[7.4rem] items-center gap-4 rounded-xl border p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.045)]",
+                        "relative flex min-h-[6rem] items-center gap-3 rounded-xl border p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.045)] sm:min-h-[7.4rem] sm:gap-4 sm:p-4",
                         isFounder
                           ? "border-primary/28 bg-[linear-gradient(135deg,rgba(229,62,62,0.055),rgba(159,37,140,0.045)_48%,rgba(122,87,209,0.055))]"
                           : "border-white/[0.08] bg-white/[0.025]",
@@ -193,7 +193,7 @@ export default function AboutPage() {
                       <div
                         className={[
                           "relative shrink-0 rounded-full bg-gradient-to-br from-[var(--brand-logo-red-orange)] via-[var(--brand-logo-magenta)] to-primary p-[2px] shadow-[0_18px_42px_rgba(0,0,0,0.18)]",
-                          isFounder ? "size-[5.05rem]" : "size-[4.65rem]",
+                          isFounder ? "size-[4.25rem] sm:size-[5.05rem]" : "size-[3.9rem] sm:size-[4.65rem]",
                         ].join(" ")}
                       >
                         <div className="size-full overflow-hidden rounded-full bg-card">
@@ -209,10 +209,10 @@ export default function AboutPage() {
                         </div>
                       </div>
                       <div className="min-w-0">
-                        <h3 className="font-headline text-[1.08rem] font-bold leading-tight text-foreground sm:text-lg">
+                        <h3 className="font-headline text-base font-bold leading-tight text-foreground sm:text-lg">
                           {person.name}
                         </h3>
-                        <p className="mt-1 max-w-[14rem] text-sm font-semibold leading-snug text-muted-foreground">
+                        <p className="mt-1 max-w-[14rem] text-xs font-semibold leading-snug text-muted-foreground sm:text-sm">
                           {person.role}
                         </p>
                       </div>

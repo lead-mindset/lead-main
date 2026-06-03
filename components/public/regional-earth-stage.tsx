@@ -14,18 +14,21 @@ import gsap from "@/lib/gsap-setup";
 const regionMarkers = [
   {
     name: "United States",
-    anchor: [0.04, 0.42, 0.96] as [number, number, number],
-    label: [0.44, 0.64, 1.08] as [number, number, number],
+    anchor: [-0.04, 0.55, 1.0] as [number, number, number],
+    label: [0.22, 0.68, 1.1] as [number, number, number],
+    mobileLabel: [0.18, 0.68, 1.12] as [number, number, number],
   },
   {
     name: "Colombia",
-    anchor: [0.22, 0.05, 1.06] as [number, number, number],
-    label: [0.62, 0.1, 1.12] as [number, number, number],
+    anchor: [0.38, 0.04, 1.04] as [number, number, number],
+    label: [0.62, 0.12, 1.12] as [number, number, number],
+    mobileLabel: [0.56, 0.14, 1.14] as [number, number, number],
   },
   {
     name: "Peru",
-    anchor: [0.27, -0.23, 1.02] as [number, number, number],
-    label: [0.62, -0.04, 1.1] as [number, number, number],
+    anchor: [0.38, -0.2, 1.03] as [number, number, number],
+    label: [0.62, -0.2, 1.11] as [number, number, number],
+    mobileLabel: [0.66, -0.24, 1.1] as [number, number, number],
   },
 ];
 
@@ -198,7 +201,7 @@ function RegionalEarthModel({
           key={marker.name}
           name={marker.name}
           anchor={marker.anchor}
-          label={marker.label}
+          label={isMobileCanvas ? marker.mobileLabel : marker.label}
           isMobileCanvas={isMobileCanvas}
         />
       ))}
@@ -237,9 +240,9 @@ function EarthHtmlMarker({
       >
         <div
           data-region-label={name}
-          className="pointer-events-none flex items-center gap-2 rounded-full border border-white/18 bg-background/86 px-2.5 py-1.5 text-[0.68rem] font-bold leading-none text-white shadow-[0_10px_30px_rgba(0,0,0,0.32)] backdrop-blur sm:px-3 sm:py-2 sm:text-xs"
+          className="pointer-events-none flex items-center gap-1.5 rounded-full border border-white/18 bg-background/86 px-2 py-1 text-[0.62rem] font-bold leading-none text-white shadow-[0_10px_30px_rgba(0,0,0,0.32)] backdrop-blur sm:gap-2 sm:px-3 sm:py-2 sm:text-xs"
         >
-          <span className="size-2 rounded-full bg-secondary shadow-[0_0_18px_rgba(186,78,94,0.9)]" />
+          <span className="size-1.5 rounded-full bg-secondary shadow-[0_0_18px_rgba(186,78,94,0.9)] sm:size-2" />
           <span className="whitespace-nowrap">{name}</span>
         </div>
       </Html>

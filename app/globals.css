@@ -236,7 +236,7 @@
 }
 
 .public-hero-title {
-  font-size: clamp(2.1rem, 5.4vw, 4.55rem);
+  font-size: clamp(1.95rem, 5.4vw, 4.55rem);
   font-family: var(--font-raleway), sans-serif;
   font-weight: 800;
   letter-spacing: 0;
@@ -277,6 +277,10 @@
   line-height: 1.7;
   max-width: 100%;
   overflow-wrap: break-word;
+}
+
+.public-hero-subtitle {
+  max-width: 32ch;
 }
 
 .body-copy {
@@ -395,7 +399,7 @@
 }
 
 .partner-media-panel {
-  min-height: 22rem;
+  min-height: 18rem;
   background-position: center;
   background-size: cover;
 }
@@ -420,8 +424,18 @@
     height: 100%;
   }
 
+  .public-hero-subtitle {
+    max-width: 42rem;
+  }
+
   .pathway-display-title {
     font-size: clamp(4rem, 5.45vw, 4.95rem);
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .partner-media-panel {
+    min-height: 22rem;
   }
 }
 
@@ -599,7 +613,7 @@
 .pathway-step-number {
   border-color: color-mix(in oklab, var(--pathway-stage-color) 40%, transparent);
   background: color-mix(in oklab, var(--pathway-stage-color) 14%, var(--background));
-  color: color-mix(in oklab, var(--pathway-stage-color) 88%, var(--foreground));
+  color: color-mix(in oklab, var(--pathway-stage-color) 30%, var(--foreground));
   box-shadow: 0 0 0 color-mix(in oklab, var(--pathway-stage-color) 0%, transparent);
   transition:
     background-color 320ms ease,

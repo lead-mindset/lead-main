@@ -151,8 +151,8 @@ export function StarfieldImpactCounters({ stats }: { stats: ProofStat[] }) {
                   </p>
                   <p
                     className={cn("metric-value max-w-full text-white")}
-                    aria-label={stat.value}
                   >
+                    <span className="sr-only">{stat.value}</span>
                     <AnimatedCounterValue stat={stat} />
                   </p>
                 </div>

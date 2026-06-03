@@ -116,6 +116,17 @@ export function SectionReveal({
           requestAnimationFrame(() => revealCards(visibleCards));
         }
 
+        const visibleText = textTargets.filter(isInViewport);
+        if (visibleText.length > 0) {
+          requestAnimationFrame(() => {
+            gsap.set(visibleText, {
+              autoAlpha: 1,
+              y: 0,
+              clearProps: "willChange",
+            });
+          });
+        }
+
         return () => {
           textTimeline.scrollTrigger?.kill();
           textTimeline.kill();

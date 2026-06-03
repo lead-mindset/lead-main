@@ -100,16 +100,16 @@ export function VideoHero({
           </p>
           <h1 className="public-hero-title mt-5 max-w-4xl text-white drop-shadow-[0_3px_22px_rgba(0,0,0,0.4)]">
             Building the{" "}
-            <span className="lead-gradient-text inline-block drop-shadow-[0_2px_16px_rgba(8,13,59,0.72)]">
+            <span className="lead-gradient-text drop-shadow-[0_2px_16px_rgba(8,13,59,0.72)]">
               next generation
             </span>{" "}
             of{" "}
-            <span className="lead-gradient-text inline-block drop-shadow-[0_2px_16px_rgba(8,13,59,0.72)]">
+            <span className="lead-gradient-text drop-shadow-[0_2px_16px_rgba(8,13,59,0.72)]">
               leaders
             </span>{" "}
             across the Americas.
           </h1>
-          <p className="section-subtitle mt-6 max-w-2xl text-white/82">
+          <p className="public-hero-subtitle section-subtitle mt-6 text-white/82">
             LEAD connects students with STEM learning, leadership experiences,
             community, and real pathways to opportunity.
           </p>
