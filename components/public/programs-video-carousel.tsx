@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { MainContainer } from "@/components/global/main-container";
@@ -77,26 +77,26 @@ export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
         <div className="grid gap-5 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
           <div>
             <p className="eyebrow-label">
-              Programs and experiences
+              Programs
             </p>
             <h2 className="section-title mt-4 max-w-3xl">
-              Programs students can see in motion.
+              Experiences students can see in motion.
             </h2>
           </div>
           <p className="body-copy max-w-xl text-muted-foreground lg:justify-self-end">
-            Switch between the experiences that help students learn, lead,
-            connect, and build momentum.
+            Workshops, visits, summits, mentorship, and projects help students
+            learn, lead, connect, and build momentum.
           </p>
         </div>
 
         <div
-          className="mt-7 grid overflow-hidden rounded-2xl border border-border bg-card shadow-[inset_0_1px_0_color-mix(in_oklab,white_10%,transparent)] lg:grid-cols-[1.12fr_0.88fr]"
+          className="mt-6 grid overflow-hidden rounded-2xl border border-border bg-card shadow-[inset_0_1px_0_color-mix(in_oklab,white_10%,transparent)] lg:mt-7 lg:grid-cols-[1.12fr_0.88fr]"
           onKeyDown={(event) => {
             if (event.key === "ArrowRight") goTo(activeIndex + 1);
             if (event.key === "ArrowLeft") goTo(activeIndex - 1);
           }}
         >
-          <div className="relative min-h-[340px] overflow-hidden bg-background lg:min-h-[360px]">
+          <div className="relative min-h-[238px] overflow-hidden bg-background sm:min-h-[300px] lg:min-h-[360px]">
             <div key={activeProgram.title} className={cn("absolute inset-0", panelMotion)}>
               <div
                 aria-hidden="true"
@@ -118,22 +118,22 @@ export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
                 tabIndex={-1}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/36 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+              <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6">
                 <p className="card-eyebrow text-white/70">
                   {String(activeIndex + 1).padStart(2, "0")} / {String(programs.length).padStart(2, "0")}
                 </p>
-                <h3 className="feature-title mt-2 max-w-2xl text-white">
+                <h3 className="mt-2 max-w-2xl font-headline text-2xl font-extrabold leading-tight text-white sm:text-3xl lg:text-[2.5rem]">
                   {activeProgram.title}
                 </h3>
-                <p className="body-copy mt-3 max-w-2xl text-white/78">
+                <p className="mt-2 max-w-2xl text-sm font-medium leading-6 text-white/78 sm:mt-3 sm:text-base sm:leading-7">
                   {activeProgram.outcome}
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="flex flex-col lg:min-h-full">
-            <div className="flex items-start justify-between gap-4 border-b border-border p-5 sm:p-6">
+          <div className="flex min-w-0 flex-col border-t border-border lg:min-h-full lg:border-t-0">
+            <div className="order-2 flex items-start justify-between gap-4 border-b border-border p-4 sm:p-5 lg:order-1 lg:p-6">
               <p
                 key={activeProgram.description}
                 className={cn("body-copy text-muted-foreground", panelMotion)}
@@ -162,17 +162,49 @@ export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
               </div>
             </div>
 
-            <div className="grid flex-1 border-border" role="tablist" aria-label="Choose a LEAD program">
+            <div className="order-1 border-b border-border p-4 lg:hidden">
+              <label
+                htmlFor="mobile-program-selector"
+                className="card-eyebrow"
+              >
+                Choose experience
+              </label>
+              <div className="relative mt-2">
+                <select
+                  id="mobile-program-selector"
+                  value={activeIndex}
+                  onChange={(event) => goTo(Number(event.target.value))}
+                  className="min-h-12 w-full cursor-pointer appearance-none rounded-xl border border-primary/28 bg-background/72 px-4 py-3 pr-11 font-headline text-base font-bold leading-tight text-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] outline-none transition-[border-color,box-shadow,background-color] duration-300 focus:border-primary/70 focus:ring-2 focus:ring-ring/45"
+                >
+                  {programs.map((program, index) => (
+                    <option key={program.title} value={index}>
+                      {String(index + 1).padStart(2, "0")} - {program.title}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown
+                  aria-hidden="true"
+                  className="pointer-events-none absolute right-4 top-1/2 size-4 -translate-y-1/2 text-primary"
+                />
+              </div>
+            </div>
+
+            <div
+              className="order-2 hidden flex-1 border-border lg:grid"
+              role="group"
+              aria-label="Choose a LEAD program"
+            >
               {programs.map((program, index) => (
                 <button
                   key={program.title}
                   type="button"
-                  role="tab"
-                  aria-selected={activeIndex === index}
+                  aria-pressed={activeIndex === index}
                   onClick={() => goTo(index)}
                   className={cn(
-                    "group grid cursor-pointer gap-1 border-b border-border px-5 py-3 text-left transition-[background-color,color,box-shadow] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/45 sm:px-6",
-                    activeIndex === index ? "bg-primary/18" : "hover:bg-muted/70"
+                    "group grid cursor-pointer gap-1 border-b border-border px-6 py-3 text-left transition-[background-color,color,box-shadow] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/45",
+                    activeIndex === index
+                      ? "bg-primary/18 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
+                      : "hover:bg-muted/70"
                   )}
                 >
                   <span className="card-eyebrow">
