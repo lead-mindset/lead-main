@@ -58,7 +58,7 @@ export default function NavBar() {
               href={item.href}
               aria-current={active ? "page" : undefined}
               className={cn(
-                "inline-flex min-h-10 items-center rounded-[var(--lead-radius-button)] px-3 py-2 text-sm font-medium text-muted-foreground transition-[background-color,color] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-muted/80 hover:text-foreground",
+                "inline-flex min-h-10 items-center whitespace-nowrap rounded-[var(--lead-radius-button)] px-3 py-2 text-sm font-medium text-muted-foreground transition-[background-color,color] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-muted/80 hover:text-foreground",
                 active && "bg-muted text-foreground"
               )}
               {...navLinkProps(item.href)}

@@ -15,7 +15,7 @@ const routeDetails: Record<
       "Create your profile and start finding programs, chapters, and opportunities.",
     action: "Join the community",
   },
-  "Submit Chapter Interest": {
+  "Submit chapter interest": {
     description:
       "Tell us about your university and why LEAD should grow there.",
     action: "Submit interest",

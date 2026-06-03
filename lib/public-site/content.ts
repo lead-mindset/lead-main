@@ -48,7 +48,7 @@ export const audienceRoutes = [
   {
     title: "Submit chapter interest",
     description:
-      "Submit interest to bring LEAD to your university through a selective review process.",
+      "Share interest in bringing a LEAD chapter to your university for team review.",
     href: publicCtas.chapter,
     icon: Rocket,
     cta: "Submit interest",
@@ -97,11 +97,11 @@ export const pathwayStages = [
 export const ecosystemItems = [
   {
     title: "Chapters",
-    description: "Student-led communities that develop leadership through structure, responsibility, and local impact.",
+    description: "University-based communities that develop leadership through structure, responsibility, and local impact.",
   },
   {
     title: "Programs",
-    description: "Focused initiatives such as LEAD HER, LEAD Academia, bootcamps, visits, and leadership development.",
+    description: "Focused experiences students can join, including LEAD HER, LEAD Academia, bootcamps, visits, and leadership development.",
   },
   {
     title: "Events",
@@ -352,7 +352,7 @@ export const leadership = [
 export const chapterProcess = [
   {
     title: "Interest submitted",
-    description: "You share your university context, motivation, team status, and intended impact.",
+    description: "You share your university context, who is building with you, motivation, and intended impact.",
   },
   {
     title: "Initial review",
@@ -398,7 +398,7 @@ export const partnerTypes = [
 
 export const finalPaths = [
   { label: "Join LEAD", href: publicCtas.join, icon: UserRoundPlus },
-  { label: "Submit Chapter Interest", href: publicCtas.chapter, icon: MapPinPlus },
+  { label: "Submit chapter interest", href: publicCtas.chapter, icon: MapPinPlus },
   { label: "Partner with LEAD", href: publicCtas.partner, icon: Handshake },
   { label: "Community Collaboration", href: publicCtas.community, icon: Waypoints },
 ];

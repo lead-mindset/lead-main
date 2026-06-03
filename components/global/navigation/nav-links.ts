@@ -7,7 +7,7 @@ export const PUBLIC_NAV_ITEMS: PublicNavItem[] = [
   { label: "About", href: "/about-us" },
   { label: "Pathway", href: "/#pathway" },
   { label: "Programs", href: "/#programs" },
-  { label: "Chapters", href: "/get-involved#chapters" },
+  { label: "University Chapters", href: "/get-involved#chapters" },
   { label: "Partners", href: "/get-involved#partners" },
   { label: "Impact", href: "/#impact" },
 ];

@@ -83,7 +83,7 @@ function buildPlainText(intent: Intent, body: Record<string, unknown>) {
           ["Email", body.email],
           ["University", body.university],
           ["Country and city", body.location],
-          ["Solo/team status", body.teamStatus],
+          ["Who is building this with you", body.teamStatus],
           ["Motivation", body.motivation],
           ["Intended impact", body.intendedImpact],
           ["Profile", body.profile],

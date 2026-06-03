@@ -27,12 +27,14 @@ export function InterestForm({
   showToggle = true,
   showHeader = true,
   className,
+  onSuccessAction,
 }: {
   kind: InterestKind;
   defaultOpen?: boolean;
   showToggle?: boolean;
   showHeader?: boolean;
   className?: string;
+  onSuccessAction?: () => void;
 }) {
   const [enabled, setEnabled] = useState(defaultOpen);
   const [status, setStatus] = useState<SubmitState>("idle");
@@ -57,6 +59,11 @@ export function InterestForm({
     if (response.ok) event.currentTarget.reset();
   }
 
+  function goToPrograms() {
+    onSuccessAction?.();
+    window.location.assign("/#programs");
+  }
+
   return (
     <div
       className={cn(
@@ -70,7 +77,7 @@ export function InterestForm({
             <h3 className="card-title text-foreground">{title}</h3>
             <p className="mt-1 text-sm text-muted-foreground">
               {isChapter
-                ? "Use this when you are ready to share serious chapter interest. Submission does not guarantee selection or approval."
+                ? "Use this to share chapter interest for a university. Submission starts review; it does not guarantee selection or approval."
                 : "Use this to start a structured partnership or community collaboration conversation with LEAD."}
             </p>
           </div>
@@ -82,7 +89,32 @@ export function InterestForm({
         </div>
       ) : null}
 
-      {enabled ? (
+      {enabled && status === "success" ? (
+        <div
+          className={cn(
+            "grid gap-4 rounded-xl bg-white/[0.035] p-5 ring-1 ring-white/[0.08]",
+            showHeader ? "mt-6" : undefined
+          )}
+          aria-live="polite"
+        >
+          <div>
+            <p className="card-eyebrow text-primary">Received</p>
+            <h3 className="mt-2 font-headline text-xl font-bold leading-tight text-foreground">
+              {isChapter ? "Chapter interest received." : "Message received."}
+            </h3>
+            <p className="mt-3 text-sm leading-6 text-muted-foreground">
+              {isChapter
+                ? "Thank you. Your chapter interest was received by the LEAD team. We will review your message and follow up if there is alignment with current chapter priorities."
+                : "Thank you. Your message was received by the LEAD team."}
+            </p>
+          </div>
+          {isChapter ? (
+            <Button type="button" variant="glass" size="sm" className="justify-self-start" onClick={goToPrograms}>
+              Explore LEAD programs
+            </Button>
+          ) : null}
+        </div>
+      ) : enabled ? (
         <form className={cn("grid", showHeader ? "mt-6 gap-3.5" : "gap-3.5")} onSubmit={onSubmit}>
           <input type="hidden" name="source" value="lead-public-site" />
           <div className="grid gap-3 sm:grid-cols-2">
@@ -96,8 +128,15 @@ export function InterestForm({
                 <Field id="chapter-university" label="University" name="university" required />
                 <Field id="chapter-location" label="Country and city" name="location" required />
               </div>
-              <div className="grid gap-3 sm:grid-cols-2">
-                <Field id="chapter-team" label="Solo or with a team?" name="teamStatus" required />
+              <div className="grid gap-3">
+                <TextAreaField
+                  id="chapter-team"
+                  label="Who is building this with you?"
+                  name="teamStatus"
+                  helper="Share names, roles, or a short description of the students involved."
+                  required
+                  compact={!showHeader}
+                />
                 <Field id="chapter-profile" label="LinkedIn or profile link (optional)" name="profile" />
               </div>
               <TextAreaField id="chapter-motivation" label="Why do you want to bring LEAD to your university?" name="motivation" required compact={!showHeader} />
@@ -136,13 +175,13 @@ export function InterestForm({
               {status === "submitting" ? "Sending..." : "Submit"}
             </Button>
             {status !== "idle" ? (
-              <p className="text-sm leading-6 text-muted-foreground" aria-live="polite">
-                {status === "success"
-                  ? "Thank you. LEAD received your structured interest."
-                  : status === "error"
+              <div className="grid gap-3" aria-live="polite">
+                <p className="text-sm leading-6 text-muted-foreground">
+                  {status === "error"
                     ? "Something went wrong. Please check the required fields and try again."
                     : "Sending your interest..."}
-              </p>
+                </p>
+              </div>
             ) : null}
           </div>
         </form>
@@ -156,14 +195,18 @@ function Field({
   label,
   name,
   type = "text",
+  helper,
   required,
 }: {
   id: string;
   label: string;
   name: string;
   type?: string;
+  helper?: string;
   required?: boolean;
 }) {
+  const helperId = helper ? `${id}-helper` : undefined;
+
   return (
     <div className={fieldSurfaceClass}>
       <Label htmlFor={id} className={fieldLabelClass}>
@@ -180,8 +223,14 @@ function Field({
         type={type}
         required={required}
         aria-required={required}
+        aria-describedby={helperId}
         className={fieldControlClass}
       />
+      {helper ? (
+        <p id={helperId} className="mt-2 text-xs leading-5 text-muted-foreground/78">
+          {helper}
+        </p>
+      ) : null}
     </div>
   );
 }
@@ -192,13 +241,17 @@ function TextAreaField({
   name,
   required,
   compact,
+  helper,
 }: {
   id: string;
   label: string;
   name: string;
   required?: boolean;
   compact?: boolean;
+  helper?: string;
 }) {
+  const helperId = helper ? `${id}-helper` : undefined;
+
   return (
     <div className={fieldSurfaceClass}>
       <Label htmlFor={id} className={fieldLabelClass}>
@@ -214,8 +267,14 @@ function TextAreaField({
         name={name}
         required={required}
         aria-required={required}
+        aria-describedby={helperId}
         className={cn(textareaControlClass, compact ? "min-h-24" : undefined)}
       />
+      {helper ? (
+        <p id={helperId} className="mt-2 text-xs leading-5 text-muted-foreground/78">
+          {helper}
+        </p>
+      ) : null}
     </div>
   );
 }

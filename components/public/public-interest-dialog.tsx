@@ -18,7 +18,7 @@ type PublicInterestDialogProps = {
   closeLabel: string;
   title: string;
   description: string;
-  children: ReactNode;
+  children: ReactNode | ((helpers: { closeDialog: () => void }) => ReactNode);
 };
 
 export function ChapterInterestDialog() {
@@ -27,15 +27,18 @@ export function ChapterInterestDialog() {
       triggerLabel="Submit chapter interest"
       closeLabel="Close chapter interest form"
       title="Request chapter interest"
-      description="Tell us where you are, who is building with you, and why LEAD would matter on your campus. This is a request for review, not chapter approval."
+      description="Tell us where you are, who is building with you, and why LEAD would matter at your university. This is a request for review, not chapter approval."
     >
-      <InterestForm
-        kind="chapter_interest"
-        defaultOpen
-        showToggle={false}
-        showHeader={false}
-        className="border-0 bg-transparent p-0 shadow-none"
-      />
+      {({ closeDialog }) => (
+        <InterestForm
+          kind="chapter_interest"
+          defaultOpen
+          showToggle={false}
+          showHeader={false}
+          onSuccessAction={closeDialog}
+          className="border-0 bg-transparent p-0 shadow-none"
+        />
+      )}
     </PublicInterestDialog>
   );
 }
@@ -75,6 +78,10 @@ function PublicInterestDialog({
   const closeDialog = useCallback(() => {
     setOpen(false);
     window.setTimeout(() => triggerRef.current?.focus(), 0);
+  }, []);
+
+  const closeForNavigation = useCallback(() => {
+    setOpen(false);
   }, []);
 
   useEffect(() => {
@@ -185,7 +192,7 @@ function PublicInterestDialog({
                   </p>
                 </div>
 
-                {children}
+                {typeof children === "function" ? children({ closeDialog: closeForNavigation }) : children}
               </div>
             </div>,
             document.body

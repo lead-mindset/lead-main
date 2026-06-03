@@ -8,7 +8,6 @@ import {
   ChapterInterestDialog,
   PartnerInterestDialog,
 } from "@/components/public/public-interest-dialog";
-import { PublicRouteChooser } from "@/components/public/public-route-chooser";
 import { SectionReveal } from "@/components/public/section-reveal";
 import { Button } from "@/components/ui/button";
 import { publicCtas } from "@/lib/public-site/content";
@@ -108,9 +107,9 @@ export default function GetInvolvedPage() {
         <section id="chapters" className="relative scroll-mt-24 py-12 sm:py-16">
           <MainContainer className="grid gap-7 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
             <div className="max-w-2xl">
-              <p className="eyebrow-label">Chapter interest</p>
+              <p className="eyebrow-label">University chapters</p>
               <h2 className="section-title mt-3">
-                Want to bring LEAD to your campus?
+                Want to bring LEAD to your university?
               </h2>
               <p className="body-copy mt-4 max-w-2xl text-muted-foreground">
                 Tell us your university, who is helping lead, and why LEAD
@@ -189,13 +188,6 @@ export default function GetInvolvedPage() {
             </div>
           </MainContainer>
         </section>
-      </SectionReveal>
-
-      <SectionReveal>
-        <PublicRouteChooser
-          title="Still deciding? Choose one clear next step."
-          description="Join as a student, request chapter review, or start a partner conversation. LEAD can guide the next move from there."
-        />
       </SectionReveal>
       </div>
     </div>
