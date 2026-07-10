@@ -116,13 +116,13 @@ export function VideoHero({
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg">
               <Link href={primaryHref} {...externalProps(primaryHref)}>
-                Explore the Pathway
+                Action Button 1
                 <ArrowRight className="size-4" />
               </Link>
             </Button>
             <Button asChild variant="glass" size="lg">
               <Link href={secondaryHref} {...externalProps(secondaryHref)}>
-                Partner with LEAD
+                Action Button 2
               </Link>
             </Button>
           </div>

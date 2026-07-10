@@ -4,12 +4,8 @@ export type PublicNavItem = {
 };
 
 export const PUBLIC_NAV_ITEMS: PublicNavItem[] = [
+  { label: "Home", href: "/" },
   { label: "About", href: "/about-us" },
-  { label: "Pathway", href: "/#pathway" },
-  { label: "Programs", href: "/#programs" },
-  { label: "University Chapters", href: "/get-involved#chapters" },
-  { label: "Partners", href: "/get-involved#partners" },
-  { label: "Impact", href: "/#impact" },
 ];
 
 export const JOIN_LEAD_HREF =

@@ -8,15 +8,12 @@ import { cn } from "@/lib/utils";
 const partnerProof = {
   company: {
     outcome: "Host a visit, sponsor a program, or create student-facing access.",
-    examples: ["Company visits", "Program support", "Opportunity access"],
   },
   professional_or_mentor: {
     outcome: "Mentor, speak, review work, or help students understand professional standards.",
-    examples: ["Mentorship", "Portfolio review", "Career standards"],
   },
   community_organization: {
     outcome: "Collaborate on STEM access, outreach, or a local student initiative.",
-    examples: ["STEM access", "Outreach", "Local initiatives"],
   },
 };
 
@@ -98,16 +95,7 @@ export function PartnerPathSelector() {
           <p className="mt-3 text-sm leading-6 text-muted-foreground">
             {activeType.description}
           </p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            {activeProof.examples.map((example) => (
-              <span
-                key={example}
-                className="rounded-full border border-primary/25 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary"
-              >
-                {example}
-              </span>
-            ))}
-          </div>
+
         </div>
       </div>
     </div>

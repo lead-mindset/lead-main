@@ -6,21 +6,6 @@ import { MainContainer } from "@/components/global/main-container";
 import { isExternalHref } from "@/components/global/navigation/nav-links";
 import { Button } from "@/components/ui/button";
 
-const exploreLinks = [
-  { label: "About", href: "/about-us" },
-  { label: "Pathway", href: "/#pathway" },
-  { label: "Programs", href: "/#programs" },
-  { label: "University Chapters", href: "/get-involved#chapters" },
-  { label: "Partners", href: "/get-involved#partners" },
-  { label: "Impact", href: "/#impact" },
-];
-
-const actionLinks = [
-  { label: "Join as a student", href: "/get-involved#students" },
-  { label: "Submit chapter interest", href: "/get-involved#chapters" },
-  { label: "Partner or collaborate", href: "/get-involved#partners" },
-];
-
 const socialLinks = [
   {
     label: "Email LEAD",
@@ -92,39 +77,6 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="grid gap-7 rounded-2xl border border-white/10 bg-white/[0.018] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.045)] sm:grid-cols-[minmax(0,1.25fr)_minmax(0,0.95fr)] sm:p-6 lg:gap-9">
-            <nav aria-label="Footer navigation">
-              <h2 className="footer-heading">Explore</h2>
-              <ul className="mt-3 grid grid-cols-2 gap-x-6 gap-y-1.5 text-sm">
-                {exploreLinks.map((item) => (
-                  <li key={`${item.label}-${item.href}`}>
-                    <Link
-                      href={item.href}
-                      className="inline-flex min-h-8 items-center rounded-[var(--lead-radius-button)] text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/45"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-
-            <nav aria-label="Footer action links">
-              <h2 className="footer-heading">Get involved</h2>
-              <ul className="mt-3 grid gap-1.5 text-sm">
-                {actionLinks.map((item) => (
-                  <li key={`${item.href}-${item.label}`}>
-                    <Link
-                      href={item.href}
-                      className="inline-flex min-h-8 items-center rounded-[var(--lead-radius-button)] text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/45"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
         </div>
 
         <div className="mt-8 flex flex-col gap-3 border-t border-white/10 pt-5 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">

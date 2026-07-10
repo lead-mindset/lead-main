@@ -118,38 +118,7 @@ export default function AboutPage() {
           </section>
         </SectionReveal>
 
-        <SectionReveal className="relative z-10">
-          <section className="relative py-16 sm:py-24">
-            <MainContainer className="relative z-10 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-              <div>
-                <span className="eyebrow-label">Ecosystem logic</span>
-                <h2 className="section-title mt-4">More than events: a pathway students can use.</h2>
-                <p className="body-copy mt-4 text-muted-foreground">
-                  Events matter when they create value. LEAD connects events to a
-                  larger system: chapters, mentorship, practical projects,
-                  leadership practice, partner exposure, feedback, and a Talent
-                  Platform that helps students move from potential to proof.
-                </p>
-              </div>
-              <ol className="border-y border-border/80">
-                {[
-                  "Chapters are leadership development environments, not administrative units.",
-                  "Partnerships connect students to industry standards and opportunity.",
-                  "Pulse feedback helps LEAD listen, improve, and protect culture.",
-                  "The Talent Platform is the operational layer, not the whole LEAD identity.",
-                ].map((item, index) => (
-                  <li
-                    key={item}
-                    className="grid gap-4 border-b border-border/70 py-5 last:border-b-0 sm:grid-cols-[3rem_1fr]"
-                  >
-                    <span className="text-sm font-bold text-primary">{String(index + 1).padStart(2, "0")}</span>
-                    <span className="body-copy text-muted-foreground">{item}</span>
-                  </li>
-                ))}
-              </ol>
-            </MainContainer>
-          </section>
-        </SectionReveal>
+
 
         <AboutValuesSection />
 
