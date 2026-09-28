@@ -4,6 +4,7 @@ const zones = [
     { path: "/talent", url: process.env.TALENT_URL },
     { path: "/pulse", url: process.env.PULSE_URL },
     { path: "/aspire", url: process.env.ASPIRE_URL },
+    { path: "/design-template ", url: process.env.DESIGN_TEMPLATE_URL },
 ];
 
 const nextConfig = {
