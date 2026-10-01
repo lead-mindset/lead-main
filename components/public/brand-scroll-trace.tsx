@@ -223,8 +223,8 @@ export function BrandScrollTrace({
       >
         <defs>
           <linearGradient id={`lead-scroll-trace-${routeConfig.id}`} x1="-160" y1="0" x2="1560" y2="6200" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stopColor="var(--brand-logo-red-orange)" />
-            <stop offset="0.48" stopColor="var(--brand-logo-magenta)" />
+            <stop offset="0" stopColor="var(--brand-red)" />
+            <stop offset="0.48" stopColor="var(--brand-rose)" />
             <stop offset="1" stopColor="var(--primary)" />
           </linearGradient>
         </defs>

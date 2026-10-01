@@ -10,7 +10,7 @@ import {
   PUBLIC_MOTION_SELECTORS,
   REDUCED_MOTION_QUERY,
 } from "@/components/global/motion-guidelines";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
 
 export function SectionReveal({
   children,

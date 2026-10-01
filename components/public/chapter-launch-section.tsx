@@ -7,13 +7,13 @@ export function ChapterLaunchSection() {
       <MainContainer>
         <div className="grid gap-7 lg:grid-cols-[0.86fr_1.14fr] lg:items-center">
           <div>
-            <p className="eyebrow-label">
+            <p className="text-overline font-sans font-bold uppercase text-primary">
               University chapters
             </p>
-            <h2 className="section-title mt-4 max-w-2xl">
+            <h2 className="text-h1 font-display font-semibold mt-4 max-w-2xl">
               Want to bring LEAD to your university?
             </h2>
-            <p className="body-copy mt-4 max-w-xl text-muted-foreground">
+            <p className="text-body font-sans mt-4 max-w-xl text-muted-foreground">
               Share your university, your team, and why LEAD would matter there.
               A request starts the conversation; it does not create a chapter automatically.
             </p>
@@ -43,7 +43,7 @@ export function ChapterLaunchSection() {
                 />
               </video>
               <div className="absolute inset-0 bg-gradient-to-t from-background/78 via-background/8 to-transparent" />
-              <p className="media-caption-title absolute bottom-5 left-5 right-5 max-w-xl text-white">
+              <p className="text-h3 font-display font-semibold absolute bottom-5 left-5 right-5 max-w-xl text-foreground">
                 University chapters make LEAD local, visible, and student-led.
               </p>
             </div>

@@ -43,13 +43,13 @@ export default function PartnerWithUs() {
   return (
     <>
       <h2 className="section-title">Partner with LEAD</h2>
-      <p className="section-subtitle max-w-xl text-white/80">
+      <p className="section-subtitle max-w-xl text-foreground/80">
         If you believe in <span className="font-extrabold">investing</span> early in high-potential future leaders, we’d love to explore how we can <span className="font-extrabold">work together</span>.
       </p>
 
       <form className="space-y-4 mt-4" onSubmit={handleSubmit}>
         <div>
-          <label className="text-lg font-bold">Organization Name</label>
+          <label className="text-body-lg font-bold">Organization Name</label>
           <input
             type="text"
             name="organization"
@@ -61,7 +61,7 @@ export default function PartnerWithUs() {
         </div>
 
         <div>
-          <label className="text-lg font-bold">Email</label>
+          <label className="text-body-lg font-bold">Email</label>
           <input
             type="email"
             name="email"
@@ -73,7 +73,7 @@ export default function PartnerWithUs() {
         </div>
 
         <div>
-          <label className="text-lg font-bold">Subject</label>
+          <label className="text-body-lg font-bold">Subject</label>
           <input
             type="text"
             name="subject"
@@ -85,7 +85,7 @@ export default function PartnerWithUs() {
         </div>
 
         <div>
-          <label className="text-lg font-bold">Message</label>
+          <label className="text-body-lg font-bold">Message</label>
           <textarea
             name="message"
             rows={4}

@@ -2,8 +2,10 @@
 
 import { useId, useState } from "react";
 
+import { Card, CardContent } from "@/components/ui/card";
+import { IconTile } from "@/components/ui/icon-tile";
 import { partnerTypes } from "@/lib/public-site/content";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
 
 const partnerProof = {
   company: {
@@ -26,13 +28,11 @@ export function PartnerPathSelector() {
     partnerProof[activeType.value as keyof typeof partnerProof] ??
     partnerProof.company;
   const ActiveIcon = activeType.icon;
-  const panelMotion =
-    "motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-bottom-1 motion-safe:duration-300 motion-safe:ease-[cubic-bezier(0.32,0.72,0,1)]";
 
   return (
-    <div className="mt-6 overflow-hidden rounded-xl border border-border bg-card/62">
+    <Card className="mt-6">
       <div
-        className="grid gap-2 border-b border-border/80 p-2 sm:flex sm:flex-wrap"
+        className="grid gap-2 border-b border-border p-3 sm:flex sm:flex-wrap"
         role="group"
         aria-label="Choose partner path"
       >
@@ -47,24 +47,24 @@ export function PartnerPathSelector() {
               aria-pressed={active}
               aria-controls={panelId}
               className={cn(
-                "flex min-h-11 w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-2 text-left transition-[background-color,color,box-shadow,transform] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/45 sm:flex-1 sm:min-w-0",
+                "flex min-h-11 w-full cursor-pointer items-center gap-2 rounded-lg px-3 py-2 text-left transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 sm:flex-1 sm:min-w-0",
                 active
-                  ? "bg-primary/16 text-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
-                  : "text-muted-foreground hover:bg-muted/70 hover:text-foreground"
+                  ? "bg-primary/15 text-foreground"
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
               )}
               onClick={() => setActiveValue(type.value)}
             >
-              <span
+              <IconTile
                 className={cn(
-                  "flex size-8 shrink-0 items-center justify-center rounded-md ring-1",
+                  "size-8",
                   active
-                    ? "bg-primary text-primary-foreground ring-primary/30"
-                    : "bg-primary/12 text-primary ring-primary/25"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-muted-foreground"
                 )}
               >
                 <Icon className="size-4" />
-              </span>
-              <span className="text-xs font-bold leading-tight sm:text-sm">
+              </IconTile>
+              <span className="text-small font-semibold">
                 {type.title}
               </span>
             </button>
@@ -72,32 +72,28 @@ export function PartnerPathSelector() {
         })}
       </div>
 
-      <div
+      <CardContent
         id={panelId}
         key={activeType.value}
         role="region"
         aria-live="polite"
-        className={cn(
-          "grid min-h-[13.5rem] gap-4 p-4 sm:min-h-[12.5rem] sm:grid-cols-[auto_1fr] sm:p-5",
-          panelMotion
-        )}
+        className="grid min-h-[13.5rem] gap-4 sm:min-h-[12.5rem] sm:grid-cols-[auto_1fr]"
       >
-        <span className="flex size-11 items-center justify-center rounded-xl bg-primary/15 text-primary ring-1 ring-primary/30">
-          <ActiveIcon className="size-5" />
-        </span>
+        <IconTile className="size-12 bg-primary/15 text-primary">
+          <ActiveIcon className="size-6" />
+        </IconTile>
         <div>
-          <p className="card-eyebrow">
+          <p className="text-small font-sans font-bold uppercase text-primary">
             {activeType.title}
           </p>
-          <h3 className="mt-2 font-headline text-lg font-bold leading-tight text-foreground sm:text-xl">
+          <h3 className="mt-2 font-display text-h2 font-bold leading-tight text-foreground">
             {activeProof.outcome}
           </h3>
-          <p className="mt-3 text-sm leading-6 text-muted-foreground">
+          <p className="mt-3 text-body leading-6 text-muted-foreground">
             {activeType.description}
           </p>
-
         </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }

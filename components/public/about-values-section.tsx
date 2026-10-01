@@ -10,22 +10,22 @@ const values = [
   {
     title: "Mindset",
     description: "Students are trusted as builders before they have every answer.",
-    className: "from-[var(--brand-logo-red-orange)] via-[var(--brand-header-muted-coral)] to-[var(--brand-logo-magenta)]",
+    className: "from-[var(--brand-red)] via-[var(--brand-red-light)] to-[var(--brand-rose)]",
   },
   {
     title: "Purpose",
     description: "Every program should connect to a clearer next step for students.",
-    className: "from-[var(--brand-logo-magenta)] via-[var(--brand-header-deep-magenta)] to-primary",
+    className: "from-[var(--brand-rose)] via-[var(--brand-rose)] to-primary",
   },
   {
     title: "Excellence",
     description: "Preparation, responsibility, and follow-through protect the culture.",
-    className: "from-primary via-[var(--brand-header-vibrant-purple)] to-[var(--accent)]",
+    className: "from-primary via-[var(--brand-purple-light)] to-[var(--accent)]",
   },
   {
     title: "Impact",
     description: "Activity matters only when it creates access, confidence, and proof.",
-    className: "from-white via-primary to-[var(--brand-logo-magenta)]",
+    className: "from-foreground via-primary to-[var(--brand-rose)]",
   },
 ];
 
@@ -109,11 +109,11 @@ export function AboutValuesSection() {
         <MainContainer>
           <div className="grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-center">
             <div className="max-w-xl">
-              <span className="eyebrow-label">Values</span>
-              <h2 className="section-title mt-4">
+              <span className="text-overline font-sans font-bold uppercase text-primary">Values</span>
+              <h2 className="text-h1 font-display font-semibold mt-4">
                 The culture LEAD protects as it grows.
               </h2>
-              <p className="body-copy mt-4 text-muted-foreground">
+              <p className="text-body font-sans mt-4 text-muted-foreground">
                 These are not decorative words. They are the standards behind
                 how LEAD chooses programs, chapters, partnerships, and
                 leadership opportunities.
@@ -122,12 +122,12 @@ export function AboutValuesSection() {
 
             <div
               ref={stageRef}
-              className="relative min-h-[28rem] overflow-hidden rounded-[2rem] border border-white/10 bg-background/42 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] sm:min-h-[34rem] sm:p-8"
+              className="relative min-h-[28rem] overflow-hidden rounded-3xl border border-foreground/10 bg-background/42 p-5 shadow-[inset_0_1px_0_color-mix(in_oklch,white_8%,transparent)] sm:min-h-[34rem] sm:p-8"
             >
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_48%,rgba(161,139,255,0.16),transparent_20rem)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_48%,color-mix(in_oklch,var(--brand-purple-light)_16%,transparent),transparent_20rem)]" />
               <p
                 data-values-label
-                className="absolute left-1/2 top-1/2 z-0 hidden max-w-[14rem] -translate-x-1/2 -translate-y-1/2 text-center font-headline text-3xl font-extrabold leading-none text-white/72 sm:text-5xl md:block"
+                className="absolute left-1/2 top-1/2 z-0 hidden max-w-[14rem] -translate-x-1/2 -translate-y-1/2 text-center font-display text-h1 font-extrabold leading-none text-foreground/72 sm:text-display md:block"
               >
                 Our Values
               </p>
@@ -137,20 +137,20 @@ export function AboutValuesSection() {
                 <article
                   key={value.title}
                   data-value-circle
-                  className={`absolute left-1/2 top-1/2 grid size-56 place-items-center rounded-full bg-gradient-to-br ${value.className} p-[2px] text-center shadow-[0_24px_80px_rgba(3,7,30,0.34)]`}
+                  className={`absolute left-1/2 top-1/2 grid size-56 place-items-center rounded-full bg-gradient-to-br ${value.className} p-[2px] text-center shadow-[0_24px_80px_color-mix(in_oklch,var(--background)_34%,transparent)]`}
                   style={{
                     zIndex: index + 1,
                     transform: `translate(calc(-50% + ${desktopValuePositions[index].x}px), calc(-50% + ${desktopValuePositions[index].y}px)) rotate(${desktopValuePositions[index].rotate}deg) scale(${desktopValuePositions[index].scale})`,
                   }}
                 >
-                    <div className="grid size-full place-items-center rounded-full bg-background/18 px-5 ring-1 ring-white/20">
+                    <div className="grid size-full place-items-center rounded-full bg-background/18 px-5 ring-1 ring-foreground/20">
                       <div>
-                        <h3 className="font-headline text-2xl font-extrabold text-white sm:text-3xl">
+                        <h3 className="font-display text-h2 font-extrabold text-foreground sm:text-h1">
                           {value.title}
                         </h3>
                         <p
                           data-value-copy
-                          className="mt-2 text-xs font-semibold leading-5 text-white/82 sm:text-sm"
+                          className="mt-2 text-caption font-semibold leading-5 text-foreground/82 sm:text-small"
                         >
                           {value.description}
                         </p>
@@ -164,7 +164,7 @@ export function AboutValuesSection() {
                 {values.map((value, index) => (
                   <article
                     key={value.title}
-                    className={`absolute grid size-32 place-items-center rounded-full bg-gradient-to-br ${value.className} p-[2px] text-center shadow-[0_18px_54px_rgba(3,7,30,0.3)]`}
+                    className={`absolute grid size-32 place-items-center rounded-full bg-gradient-to-br ${value.className} p-[2px] text-center shadow-[0_18px_54px_color-mix(in_oklch,var(--background)_30%,transparent)]`}
                     style={{
                       zIndex: index + 1,
                       transform: [
@@ -175,8 +175,8 @@ export function AboutValuesSection() {
                       ][index],
                     }}
                   >
-                    <div className="grid size-full place-items-center rounded-full bg-background/18 px-4 ring-1 ring-white/20">
-                      <h3 className="font-headline text-xl font-extrabold text-white">
+                    <div className="grid size-full place-items-center rounded-full bg-background/18 px-4 ring-1 ring-foreground/20">
+                      <h3 className="font-display text-h3 font-extrabold text-foreground">
                         {value.title}
                       </h3>
                     </div>
@@ -191,10 +191,10 @@ export function AboutValuesSection() {
                   key={value.title}
                   className="border-b border-border/60 pb-3 last:border-b-0"
                 >
-                  <p className="font-headline text-lg font-bold text-foreground">
+                  <p className="font-display text-body-lg font-bold text-foreground">
                     {value.title}
                   </p>
-                  <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                  <p className="mt-1 text-small leading-6 text-muted-foreground">
                     {value.description}
                   </p>
                 </div>

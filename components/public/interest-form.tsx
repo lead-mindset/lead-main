@@ -4,22 +4,14 @@ import { useState, type FormEvent } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Field, FieldLabel, FieldDescription } from "@/components/ui/field";
+import { Label } from "@/components/ui/label";
 import { partnerTypes } from "@/lib/public-site/content";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
 
 type InterestKind = "chapter_interest" | "partnership";
 type SubmitState = "idle" | "submitting" | "success" | "error";
-
-const fieldSurfaceClass =
-  "group/form-field rounded-xl bg-white/[0.035] px-4 py-3 ring-1 ring-white/[0.065] transition-[background-color,box-shadow] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] focus-within:bg-white/[0.05] focus-within:ring-primary/35";
-const fieldLabelClass =
-  "text-[0.68rem] font-bold uppercase leading-[1.15] tracking-[0.08em] text-muted-foreground/76 transition-colors duration-300 group-focus-within/form-field:text-primary";
-const fieldControlClass =
-  "mt-2 h-8 rounded-none border-0 bg-transparent px-0 py-0 text-base shadow-none hover:border-transparent focus-visible:ring-0 focus-visible:ring-offset-0";
-const textareaControlClass =
-  "mt-2 min-h-20 rounded-none border-0 bg-transparent px-0 py-0 text-base shadow-none hover:border-transparent focus-visible:ring-0 focus-visible:ring-offset-0";
 
 export function InterestForm({
   kind,
@@ -67,15 +59,15 @@ export function InterestForm({
   return (
     <div
       className={cn(
-        showHeader ? "editorial-card rounded-2xl p-5 shadow-xs" : undefined,
+        showHeader ? "rounded-2xl border border-border bg-card p-6" : undefined,
         className
       )}
     >
       {showHeader ? (
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h3 className="card-title text-foreground">{title}</h3>
-            <p className="mt-1 text-sm text-muted-foreground">
+            <h3 className="text-h2 font-display font-semibold text-foreground">{title}</h3>
+            <p className="mt-2 text-body text-muted-foreground">
               {isChapter
                 ? "Use this to share chapter interest for a university. Submission starts review; it does not guarantee selection or approval."
                 : "Use this to start a structured partnership or community collaboration conversation with LEAD."}
@@ -92,68 +84,159 @@ export function InterestForm({
       {enabled && status === "success" ? (
         <div
           className={cn(
-            "grid gap-4 rounded-xl bg-white/[0.035] p-5 ring-1 ring-white/[0.08]",
+            "rounded-xl border border-border bg-muted/30 p-6",
             showHeader ? "mt-6" : undefined
           )}
           aria-live="polite"
         >
           <div>
-            <p className="card-eyebrow text-primary">Received</p>
-            <h3 className="mt-2 font-headline text-xl font-bold leading-tight text-foreground">
+            <p className="text-small font-sans font-bold uppercase text-primary">Received</p>
+            <h3 className="mt-2 font-display text-h3 font-bold leading-tight text-foreground">
               {isChapter ? "Chapter interest received." : "Message received."}
             </h3>
-            <p className="mt-3 text-sm leading-6 text-muted-foreground">
+            <p className="mt-3 text-body leading-6 text-muted-foreground">
               {isChapter
                 ? "Thank you. Your chapter interest was received by the LEAD team. We will review your message and follow up if there is alignment with current chapter priorities."
                 : "Thank you. Your message was received by the LEAD team."}
             </p>
           </div>
           {isChapter ? (
-            <Button type="button" variant="glass" size="sm" className="justify-self-start" onClick={goToPrograms}>
+            <Button type="button" variant="outline" size="sm" className="mt-4 justify-self-start" onClick={goToPrograms}>
               Explore LEAD programs
             </Button>
           ) : null}
         </div>
       ) : enabled ? (
-        <form className={cn("grid", showHeader ? "mt-6 gap-3.5" : "gap-3.5")} onSubmit={onSubmit}>
+        <form className={cn("grid gap-4", showHeader ? "mt-6" : undefined)} onSubmit={onSubmit}>
           <input type="hidden" name="source" value="lead-public-site" />
-          <div className="grid gap-3 sm:grid-cols-2">
-            <Field id={`${kind}-name`} label="Name" name="name" required />
-            <Field id={`${kind}-email`} label="Email" name="email" type="email" required />
-          </div>
+          
+          <Field>
+            <FieldLabel htmlFor={`${kind}-name`}>
+              Name
+              <span className="text-primary" aria-hidden="true">*</span>
+            </FieldLabel>
+            <Input
+              id={`${kind}-name`}
+              name="name"
+              required
+              aria-required="true"
+            />
+          </Field>
+
+          <Field>
+            <FieldLabel htmlFor={`${kind}-email`}>
+              Email
+              <span className="text-primary" aria-hidden="true">*</span>
+            </FieldLabel>
+            <Input
+              id={`${kind}-email`}
+              name="email"
+              type="email"
+              required
+              aria-required="true"
+            />
+          </Field>
 
           {isChapter ? (
             <>
-              <div className="grid gap-3 sm:grid-cols-2">
-                <Field id="chapter-university" label="University" name="university" required />
-                <Field id="chapter-location" label="Country and city" name="location" required />
+              <div className="grid gap-4 sm:grid-cols-2">
+                <Field>
+                  <FieldLabel htmlFor="chapter-university">
+                    University
+                    <span className="text-primary" aria-hidden="true">*</span>
+                  </FieldLabel>
+                  <Input
+                    id="chapter-university"
+                    name="university"
+                    required
+                    aria-required="true"
+                  />
+                </Field>
+
+                <Field>
+                  <FieldLabel htmlFor="chapter-location">
+                    Country and city
+                    <span className="text-primary" aria-hidden="true">*</span>
+                  </FieldLabel>
+                  <Input
+                    id="chapter-location"
+                    name="location"
+                    required
+                    aria-required="true"
+                  />
+                </Field>
               </div>
-              <div className="grid gap-3">
-                <TextAreaField
+
+              <Field>
+                <FieldLabel htmlFor="chapter-team">
+                  Who is building this with you?
+                  <span className="text-primary" aria-hidden="true">*</span>
+                </FieldLabel>
+                <Textarea
                   id="chapter-team"
-                  label="Who is building this with you?"
                   name="teamStatus"
-                  helper="Share names, roles, or a short description of the students involved."
                   required
-                  compact={!showHeader}
+                  aria-required="true"
+                  rows={3}
                 />
-                <Field id="chapter-profile" label="LinkedIn or profile link (optional)" name="profile" />
-              </div>
-              <TextAreaField id="chapter-motivation" label="Why do you want to bring LEAD to your university?" name="motivation" required compact={!showHeader} />
-              <TextAreaField id="chapter-impact" label="What impact would your chapter create?" name="intendedImpact" required compact={!showHeader} />
+                <FieldDescription>
+                  Share names, roles, or a short description of the students involved.
+                </FieldDescription>
+              </Field>
+
+              <Field>
+                <FieldLabel htmlFor="chapter-profile">
+                  LinkedIn or profile link
+                  <span className="text-muted-foreground text-small font-normal">(optional)</span>
+                </FieldLabel>
+                <Input
+                  id="chapter-profile"
+                  name="profile"
+                  type="url"
+                />
+              </Field>
+
+              <Field>
+                <FieldLabel htmlFor="chapter-motivation">
+                  Why do you want to bring LEAD to your university?
+                  <span className="text-primary" aria-hidden="true">*</span>
+                </FieldLabel>
+                <Textarea
+                  id="chapter-motivation"
+                  name="motivation"
+                  required
+                  aria-required="true"
+                  rows={4}
+                />
+              </Field>
+
+              <Field>
+                <FieldLabel htmlFor="chapter-impact">
+                  What impact would your chapter create?
+                  <span className="text-primary" aria-hidden="true">*</span>
+                </FieldLabel>
+                <Textarea
+                  id="chapter-impact"
+                  name="intendedImpact"
+                  required
+                  aria-required="true"
+                  rows={4}
+                />
+              </Field>
             </>
           ) : (
             <>
-              <div className={fieldSurfaceClass}>
-                <Label htmlFor="partner-type" className={fieldLabelClass}>
+              <Field>
+                <FieldLabel htmlFor="partner-type">
                   Partner type
-                  <span className="text-primary/80" aria-hidden="true">*</span>
-                </Label>
+                  <span className="text-primary" aria-hidden="true">*</span>
+                </FieldLabel>
                 <select
                   id="partner-type"
                   name="partnerType"
                   required
-                  className="mt-2 h-7 w-full cursor-pointer rounded-none border-0 bg-transparent px-0 py-0 text-base text-foreground outline-none"
+                  aria-required="true"
+                  className="h-10 w-full rounded-lg border border-input bg-background px-3 py-2 text-body text-foreground outline-none transition-colors focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50"
                 >
                   <option value="">Select a path</option>
                   {partnerTypes.map((type) => (
@@ -162,118 +245,71 @@ export function InterestForm({
                     </option>
                   ))}
                 </select>
-              </div>
-              <Field id="partner-organization" label="Organization (when relevant)" name="organization" />
-              <Field id="partner-region" label="Region or country" name="region" required />
-              <TextAreaField id="partner-explore" label="What would you like to explore with LEAD?" name="explore" required />
-              <Field id="partner-profile" label="Website or LinkedIn (optional)" name="profile" />
+              </Field>
+
+              <Field>
+                <FieldLabel htmlFor="partner-organization">
+                  Organization
+                  <span className="text-muted-foreground text-small font-normal">(when relevant)</span>
+                </FieldLabel>
+                <Input
+                  id="partner-organization"
+                  name="organization"
+                />
+              </Field>
+
+              <Field>
+                <FieldLabel htmlFor="partner-region">
+                  Region or country
+                  <span className="text-primary" aria-hidden="true">*</span>
+                </FieldLabel>
+                <Input
+                  id="partner-region"
+                  name="region"
+                  required
+                  aria-required="true"
+                />
+              </Field>
+
+              <Field>
+                <FieldLabel htmlFor="partner-explore">
+                  What would you like to explore with LEAD?
+                  <span className="text-primary" aria-hidden="true">*</span>
+                </FieldLabel>
+                <Textarea
+                  id="partner-explore"
+                  name="explore"
+                  required
+                  aria-required="true"
+                  rows={4}
+                />
+              </Field>
+
+              <Field>
+                <FieldLabel htmlFor="partner-profile">
+                  Website or LinkedIn
+                  <span className="text-muted-foreground text-small font-normal">(optional)</span>
+                </FieldLabel>
+                <Input
+                  id="partner-profile"
+                  name="profile"
+                  type="url"
+                />
+              </Field>
             </>
           )}
 
-          <div className="grid gap-2 pt-1">
+          <div className="pt-2">
             <Button type="submit" disabled={status === "submitting"} className="w-full">
               {status === "submitting" ? "Sending..." : "Submit"}
             </Button>
-            {status !== "idle" ? (
-              <div className="grid gap-3" aria-live="polite">
-                <p className="text-sm leading-6 text-muted-foreground">
-                  {status === "error"
-                    ? "Something went wrong. Please check the required fields and try again."
-                    : "Sending your interest..."}
-                </p>
-              </div>
-            ) : null}
+            {status === "error" && (
+              <p className="mt-3 text-small text-destructive" role="alert">
+                Something went wrong. Please check the required fields and try again.
+              </p>
+            )}
           </div>
         </form>
-      ) : null}
-    </div>
-  );
-}
-
-function Field({
-  id,
-  label,
-  name,
-  type = "text",
-  helper,
-  required,
-}: {
-  id: string;
-  label: string;
-  name: string;
-  type?: string;
-  helper?: string;
-  required?: boolean;
-}) {
-  const helperId = helper ? `${id}-helper` : undefined;
-
-  return (
-    <div className={fieldSurfaceClass}>
-      <Label htmlFor={id} className={fieldLabelClass}>
-        {label}
-        {required ? (
-          <span className="text-primary/80" aria-hidden="true">
-            *
-          </span>
-        ) : null}
-      </Label>
-      <Input
-        id={id}
-        name={name}
-        type={type}
-        required={required}
-        aria-required={required}
-        aria-describedby={helperId}
-        className={fieldControlClass}
-      />
-      {helper ? (
-        <p id={helperId} className="mt-2 text-xs leading-5 text-muted-foreground/78">
-          {helper}
-        </p>
-      ) : null}
-    </div>
-  );
-}
-
-function TextAreaField({
-  id,
-  label,
-  name,
-  required,
-  compact,
-  helper,
-}: {
-  id: string;
-  label: string;
-  name: string;
-  required?: boolean;
-  compact?: boolean;
-  helper?: string;
-}) {
-  const helperId = helper ? `${id}-helper` : undefined;
-
-  return (
-    <div className={fieldSurfaceClass}>
-      <Label htmlFor={id} className={fieldLabelClass}>
-        {label}
-        {required ? (
-          <span className="text-primary/80" aria-hidden="true">
-            *
-          </span>
-        ) : null}
-      </Label>
-      <Textarea
-        id={id}
-        name={name}
-        required={required}
-        aria-required={required}
-        aria-describedby={helperId}
-        className={cn(textareaControlClass, compact ? "min-h-24" : undefined)}
-      />
-      {helper ? (
-        <p id={helperId} className="mt-2 text-xs leading-5 text-muted-foreground/78">
-          {helper}
-        </p>
       ) : null}
     </div>
   );

@@ -47,13 +47,13 @@ export function RegionalEarthStage() {
       <MainContainer>
         <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
           <div className="relative z-10 max-w-xl">
-            <p className="eyebrow-label eyebrow-label--light">
+            <p className="text-overline font-sans font-bold uppercase text-foreground/78">
               Regional footprint
             </p>
-            <h2 className="section-title mt-4 text-white">
+            <h2 className="text-h1 font-display font-semibold mt-4 text-foreground">
               One student network across the Americas.
             </h2>
-            <p className="body-copy mt-5 text-white/76">
+            <p className="text-body font-sans mt-5 text-foreground/76">
               LEAD grows through chapters, partners, mentors, and student leaders
               across Colombia, Peru, the United States, and the communities still
               being built.
@@ -62,7 +62,7 @@ export function RegionalEarthStage() {
 
           <div
             data-lead-motion="card"
-            className="regional-earth-shell relative h-[330px] overflow-hidden rounded-2xl border border-white/12 bg-[var(--lead-surface-deep)] shadow-[0_28px_90px_rgba(0,0,0,0.38)] sm:h-[420px] lg:h-[480px]"
+            className="regional-earth-shell relative h-[330px] overflow-hidden rounded-2xl border border-foreground/12 bg-background shadow-[0_28px_90px_color-mix(in_oklch,black_38%,transparent)] sm:h-[420px] lg:h-[480px]"
             data-model-ready={earthReady ? "true" : "false"}
           >
             <RegionalMapFallback hidden={earthReady} />
@@ -78,7 +78,7 @@ export function RegionalEarthStage() {
                 <RegionalEarthModel sectionRef={sectionRef} onReady={handleEarthReady} />
               </Suspense>
             </Canvas>
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[var(--lead-surface-deep)] to-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-background to-transparent" />
           </div>
         </div>
       </MainContainer>
@@ -92,11 +92,11 @@ function RegionalMapFallback({ hidden = false }: { hidden?: boolean }) {
       aria-hidden="true"
       data-3d-fallback="regional-earth"
       className={[
-        "pointer-events-none absolute inset-0 z-0 overflow-hidden bg-[radial-gradient(circle_at_54%_42%,rgba(122,87,209,0.24),transparent_17rem),radial-gradient(circle_at_54%_42%,rgba(43,196,140,0.12),transparent_12rem)] transition-opacity duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]",
+        "pointer-events-none absolute inset-0 z-0 overflow-hidden bg-[radial-gradient(circle_at_54%_42%,color-mix(in_oklch,var(--primary)_24%,transparent),transparent_17rem),radial-gradient(circle_at_54%_42%,color-mix(in_oklch,var(--success)_12%,transparent),transparent_12rem)] transition-opacity duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]",
         hidden ? "invisible opacity-0" : "visible opacity-100",
       ].join(" ")}
     >
-      <div className="absolute left-1/2 top-[46%] h-[18rem] w-[18rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 bg-[radial-gradient(circle_at_38%_32%,rgba(43,196,140,0.36),transparent_34%),linear-gradient(135deg,rgba(122,87,209,0.68),rgba(80,57,164,0.48))] shadow-[0_28px_80px_rgba(0,0,0,0.28)] sm:h-[24rem] sm:w-[24rem]" />
+      <div className="absolute left-1/2 top-[46%] h-[18rem] w-[18rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-foreground/10 bg-[radial-gradient(circle_at_38%_32%,color-mix(in_oklch,var(--success)_36%,transparent),transparent_34%),linear-gradient(135deg,color-mix(in_oklch,var(--primary)_68%,transparent),color-mix(in_oklch,var(--brand-purple)_48%,transparent))] shadow-[0_28px_80px_color-mix(in_oklch,black_28%,transparent)] sm:h-[24rem] sm:w-[24rem]" />
       <div className="absolute left-[52%] top-[34%] h-16 w-20 -translate-x-1/2 rounded-[58%_42%_48%_52%] bg-emerald-300/32 blur-[1px] sm:h-20 sm:w-28" />
       <div className="absolute left-[48%] top-[43%] h-24 w-14 rounded-[42%_58%_45%_55%] bg-emerald-300/38 blur-[1px] sm:h-32 sm:w-20" />
       <FallbackRegionLabel className="left-[49%] top-[27%]" label="United States" />
@@ -115,9 +115,9 @@ function FallbackRegionLabel({
 }) {
   return (
     <div
-      className={`absolute flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/16 bg-background/78 px-2.5 py-1.5 text-[0.68rem] font-bold leading-none text-white shadow-[0_10px_30px_rgba(0,0,0,0.28)] backdrop-blur sm:px-3 sm:py-2 sm:text-xs ${className}`}
+      className={`absolute flex -translate-x-1/2 items-center gap-2 rounded-full border border-foreground/16 bg-background/78 px-2.5 py-1.5 text-caption font-bold leading-none text-foreground shadow-[0_10px_30px_color-mix(in_oklch,black_28%,transparent)] backdrop-blur sm:px-3 sm:py-2 sm:text-caption ${className}`}
     >
-      <span className="size-2 rounded-full bg-secondary shadow-[0_0_18px_rgba(186,78,94,0.75)]" />
+      <span className="size-2 rounded-full bg-secondary shadow-[0_0_18px_color-mix(in_oklch,var(--brand-red-light)_75%,transparent)]" />
       <span className="whitespace-nowrap">{label}</span>
     </div>
   );
@@ -240,9 +240,9 @@ function EarthHtmlMarker({
       >
         <div
           data-region-label={name}
-          className="pointer-events-none flex items-center gap-1.5 rounded-full border border-white/18 bg-background/86 px-2 py-1 text-[0.62rem] font-bold leading-none text-white shadow-[0_10px_30px_rgba(0,0,0,0.32)] backdrop-blur sm:gap-2 sm:px-3 sm:py-2 sm:text-xs"
+          className="pointer-events-none flex items-center gap-1.5 rounded-full border border-foreground/18 bg-background/86 px-2 py-1 text-caption font-bold leading-none text-foreground shadow-[0_10px_30px_color-mix(in_oklch,black_32%,transparent)] backdrop-blur sm:gap-2 sm:px-3 sm:py-2 sm:text-caption"
         >
-          <span className="size-1.5 rounded-full bg-secondary shadow-[0_0_18px_rgba(186,78,94,0.9)] sm:size-2" />
+          <span className="size-1.5 rounded-full bg-secondary shadow-[0_0_18px_color-mix(in_oklch,var(--brand-red-light)_90%,transparent)] sm:size-2" />
           <span className="whitespace-nowrap">{name}</span>
         </div>
       </Html>
@@ -253,7 +253,7 @@ function EarthHtmlMarker({
 function EarthFallback() {
   return (
     <Html center>
-      <div className="rounded-full border border-white/12 bg-background/80 px-4 py-2 text-sm text-white/76">
+      <div className="rounded-full border border-foreground/12 bg-background/80 px-4 py-2 text-small text-foreground/76">
         Loading regional map
       </div>
     </Html>

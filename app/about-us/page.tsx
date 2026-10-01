@@ -37,9 +37,9 @@ export default function AboutPage() {
           />
           <MainContainer className="relative z-10 flex min-h-[calc(88dvh-7rem)] items-end py-16">
             <div className="relative max-w-3xl before:absolute before:-inset-x-8 before:-inset-y-6 before:-z-10 before:bg-gradient-to-r before:from-background/80 before:via-background/55 before:to-transparent before:blur-2xl">
-              <span className="eyebrow-label">About LEAD</span>
-              <h1 className="display-title mt-6">Talent is already here. Access should be too.</h1>
-              <p className="section-subtitle mt-6 text-muted-foreground">
+              <span className="text-overline font-sans font-bold uppercase text-primary">About LEAD</span>
+              <h1 className="text-display font-display font-bold mt-6">Talent is already here. Access should be too.</h1>
+              <p className="text-body-lg font-sans mt-6 text-muted-foreground">
                 LEAD exists because students across the Americas already carry
                 ambition, creativity, and talent. LEAD helps turn that talent
                 into access, leadership practice, community, and opportunity.
@@ -63,18 +63,18 @@ export default function AboutPage() {
             <MainContainer className="relative z-10">
               <div className="grid border-y border-border/80 lg:grid-cols-2">
                 <div className="border-b border-border/70 py-8 lg:border-b-0 lg:border-r lg:pr-10">
-                  <span className="eyebrow-label">Mission</span>
-                  <h2 className="section-title mt-4">Empower the next generation of leaders.</h2>
-                  <p className="body-copy mt-4 text-muted-foreground">
+                  <span className="text-overline font-sans font-bold uppercase text-primary">Mission</span>
+                  <h2 className="text-h1 font-display font-semibold mt-4">Empower the next generation of leaders.</h2>
+                  <p className="text-body font-sans mt-4 text-muted-foreground">
                     LEAD empowers students across the Americas through STEM
                     education, leadership development, mentorship, and
                     community.
                   </p>
                 </div>
                 <div className="py-8 lg:pl-10">
-                  <span className="eyebrow-label">Vision</span>
-                  <h2 className="section-title mt-4">Build a visible network of student leadership.</h2>
-                  <p className="body-copy mt-4 text-muted-foreground">
+                  <span className="text-overline font-sans font-bold uppercase text-primary">Vision</span>
+                  <h2 className="text-h1 font-display font-semibold mt-4">Build a visible network of student leadership.</h2>
+                  <p className="text-body font-sans mt-4 text-muted-foreground">
                     LEAD works toward a future where students in the Americas are
                     recognized for technology, leadership, innovation, and the
                     impact they create in their communities.
@@ -104,10 +104,10 @@ export default function AboutPage() {
                     </video>
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-background/28 to-transparent" />
                     <figcaption className="absolute inset-x-0 bottom-0 p-5">
-                      <p className="media-caption-title text-white">
+                      <p className="text-h3 font-display font-semibold text-foreground">
                         {moment.title}
                       </p>
-                      <p className="mt-2 text-sm leading-6 text-white/74">
+                      <p className="mt-2 text-small leading-6 text-foreground/74">
                         {moment.description}
                       </p>
                     </figcaption>
@@ -131,10 +131,10 @@ export default function AboutPage() {
             <MainContainer className="relative z-10">
               <div className="grid gap-8 border-y border-border/80 py-9 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
                 <div>
-                  <span className="eyebrow-label">Team</span>
-                  <h2 className="section-title mt-4">Our Team</h2>
+                  <span className="text-overline font-sans font-bold uppercase text-primary">Team</span>
+                  <h2 className="text-h1 font-display font-semibold mt-4">Our Team</h2>
                 </div>
-                <p className="max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8 lg:justify-self-end">
+                <p className="max-w-2xl text-body leading-7 text-muted-foreground sm:text-body-lg sm:leading-8 lg:justify-self-end">
                   A student-first operating team across technology, programs,
                   operations, legal, marketing, chapters, and community.
                 </p>
@@ -152,19 +152,19 @@ export default function AboutPage() {
                     <article
                       key={person.name}
                       role="listitem"
-                      className={[
-                        "relative flex min-h-[6rem] items-center gap-3 rounded-xl border p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.045)] sm:min-h-[7.4rem] sm:gap-4 sm:p-4",
-                        isFounder
-                          ? "border-primary/28 bg-[linear-gradient(135deg,rgba(229,62,62,0.055),rgba(159,37,140,0.045)_48%,rgba(122,87,209,0.055))]"
-                          : "border-white/[0.08] bg-white/[0.025]",
-                      ].join(" ")}
-                    >
-                      <div
                         className={[
-                          "relative shrink-0 rounded-full bg-gradient-to-br from-[var(--brand-logo-red-orange)] via-[var(--brand-logo-magenta)] to-primary p-[2px] shadow-[0_18px_42px_rgba(0,0,0,0.18)]",
-                          isFounder ? "size-[4.25rem] sm:size-[5.05rem]" : "size-[3.9rem] sm:size-[4.65rem]",
+                          "relative flex min-h-24 items-center gap-3 rounded-xl border p-3 shadow-[inset_0_1px_0_color-mix(in_oklch,white_4.5%,transparent)] sm:min-h-[7.4rem] sm:gap-4 sm:p-4",
+                          isFounder
+                            ? "border-primary/28 bg-[linear-gradient(135deg,color-mix(in_oklch,var(--brand-red)_5.5%,transparent),color-mix(in_oklch,var(--brand-rose)_4.5%,transparent)_48%,color-mix(in_oklch,var(--primary)_5.5%,transparent))]"
+                            : "border-foreground/[0.08] bg-foreground/[0.025]",
                         ].join(" ")}
                       >
+                        <div
+                          className={[
+                            "relative shrink-0 rounded-full bg-gradient-to-br from-brand-red via-brand-rose to-primary p-[2px] shadow-[0_18px_42px_color-mix(in_oklch,black_18%,transparent)]",
+                            isFounder ? "size-[4.25rem] sm:size-[5.05rem]" : "size-[3.9rem] sm:size-[4.65rem]",
+                          ].join(" ")}
+                        >
                         <div className="size-full overflow-hidden rounded-full bg-card">
                           <Image
                             src={person.image}
@@ -178,10 +178,10 @@ export default function AboutPage() {
                         </div>
                       </div>
                       <div className="min-w-0">
-                        <h3 className="font-headline text-base font-bold leading-tight text-foreground sm:text-lg">
+                        <h3 className="font-display text-body font-bold leading-tight text-foreground sm:text-body-lg">
                           {person.name}
                         </h3>
-                        <p className="mt-1 max-w-[14rem] text-xs font-semibold leading-snug text-muted-foreground sm:text-sm">
+                        <p className="mt-1 max-w-[14rem] text-caption font-semibold leading-snug text-muted-foreground sm:text-small">
                           {person.role}
                         </p>
                       </div>

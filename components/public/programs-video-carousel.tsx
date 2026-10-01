@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { MainContainer } from "@/components/global/main-container";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
 
 type Program = {
   title: string;
@@ -76,14 +76,14 @@ export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
       <MainContainer>
         <div className="grid gap-5 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
           <div>
-            <p className="eyebrow-label">
+            <p className="text-overline font-sans font-bold uppercase text-primary">
               Programs
             </p>
-            <h2 className="section-title mt-4 max-w-3xl">
+            <h2 className="text-h1 font-display font-semibold mt-4 max-w-3xl">
               Experiences students can see in motion.
             </h2>
           </div>
-          <p className="body-copy max-w-xl text-muted-foreground lg:justify-self-end">
+          <p className="text-body font-sans max-w-xl text-muted-foreground lg:justify-self-end">
             Workshops, visits, summits, mentorship, and projects help students
             learn, lead, connect, and build momentum.
           </p>
@@ -119,13 +119,13 @@ export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/36 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6">
-                <p className="card-eyebrow text-white/70">
+                <p className="text-small font-sans font-bold uppercase text-foreground/70">
                   {String(activeIndex + 1).padStart(2, "0")} / {String(programs.length).padStart(2, "0")}
                 </p>
-                <h3 className="mt-2 max-w-2xl font-headline text-2xl font-extrabold leading-tight text-white sm:text-3xl lg:text-[2.5rem]">
+                <h3 className="mt-2 max-w-2xl font-display text-h2 font-extrabold leading-tight text-foreground sm:text-h1 lg:text-display">
                   {activeProgram.title}
                 </h3>
-                <p className="mt-2 max-w-2xl text-sm font-medium leading-6 text-white/78 sm:mt-3 sm:text-base sm:leading-7">
+                <p className="mt-2 max-w-2xl text-small font-medium leading-6 text-foreground/78 sm:mt-3 sm:text-body sm:leading-7">
                   {activeProgram.outcome}
                 </p>
               </div>
@@ -136,7 +136,7 @@ export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
             <div className="order-2 flex items-start justify-between gap-4 border-b border-border p-4 sm:p-5 lg:order-1 lg:p-6">
               <p
                 key={activeProgram.description}
-                className={cn("body-copy text-muted-foreground", panelMotion)}
+                className={cn("text-body font-sans text-muted-foreground", panelMotion)}
               >
                 {activeProgram.description}
               </p>
@@ -165,7 +165,7 @@ export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
             <div className="order-1 border-b border-border p-4 lg:hidden">
               <label
                 htmlFor="mobile-program-selector"
-                className="card-eyebrow"
+                className="text-small font-sans font-bold uppercase text-primary"
               >
                 Choose experience
               </label>
@@ -174,7 +174,7 @@ export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
                   id="mobile-program-selector"
                   value={activeIndex}
                   onChange={(event) => goTo(Number(event.target.value))}
-                  className="min-h-12 w-full cursor-pointer appearance-none rounded-xl border border-primary/28 bg-background/72 px-4 py-3 pr-11 font-headline text-base font-bold leading-tight text-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] outline-none transition-[border-color,box-shadow,background-color] duration-300 focus:border-primary/70 focus:ring-2 focus:ring-ring/45"
+                  className="h-12 w-full cursor-pointer appearance-none rounded-lg border border-input bg-background px-4 py-2 text-body text-foreground outline-none transition-colors focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50"
                 >
                   {programs.map((program, index) => (
                     <option key={program.title} value={index}>
@@ -184,7 +184,7 @@ export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
                 </select>
                 <ChevronDown
                   aria-hidden="true"
-                  className="pointer-events-none absolute right-4 top-1/2 size-4 -translate-y-1/2 text-primary"
+                  className="pointer-events-none absolute right-4 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
                 />
               </div>
             </div>
@@ -203,14 +203,14 @@ export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
                   className={cn(
                     "group grid cursor-pointer gap-1 border-b border-border px-6 py-3 text-left transition-[background-color,color,box-shadow] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] last:border-b-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/45",
                     activeIndex === index
-                      ? "bg-primary/18 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
+                      ? "bg-primary/18 shadow-[inset_0_1px_0_color-mix(in_oklch,white_8%,transparent)]"
                       : "hover:bg-muted/70"
                   )}
                 >
-                  <span className="card-eyebrow">
+                  <span className="text-small font-sans font-bold uppercase text-primary">
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <span className="card-title text-foreground">
+                  <span className="text-h2 font-display font-semibold text-foreground">
                     {program.title}
                   </span>
                 </button>

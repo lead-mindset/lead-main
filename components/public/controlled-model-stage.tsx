@@ -9,7 +9,7 @@ import type { GLTF } from "three-stdlib";
 
 import gsap from "@/lib/gsap-setup";
 import { REDUCED_MOTION_QUERY } from "@/components/global/motion-guidelines";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
 
 type ModelKind = "earth" | "rocket";
 
@@ -68,11 +68,11 @@ export function ControlledModelStage({
         </Canvas>
       </div>
       <div className={cn("absolute p-5 sm:p-7", copyPlacement)}>
-        <span className="eyebrow-label">{eyebrow}</span>
-        <h3 className="card-title mt-4 max-w-[18rem] text-foreground sm:max-w-2xl">
+        <span className="text-overline font-sans font-bold uppercase text-primary">{eyebrow}</span>
+        <h3 className="text-h2 font-display font-semibold mt-4 max-w-[18rem] text-foreground sm:max-w-2xl">
           {title}
         </h3>
-        <p className="body-copy mt-3 max-w-2xl text-muted-foreground">{description}</p>
+        <p className="text-body font-sans mt-3 max-w-2xl text-muted-foreground">{description}</p>
       </div>
     </div>
   );
@@ -147,7 +147,7 @@ function AnimatedModel({ kind }: { kind: ModelKind }) {
 function ModelFallback() {
   return (
     <Html center>
-      <div className="rounded-full border border-border bg-background px-4 py-2 text-sm text-muted-foreground">
+      <div className="rounded-full border border-border bg-background px-4 py-2 text-small text-muted-foreground">
         Loading LEAD visual
       </div>
     </Html>

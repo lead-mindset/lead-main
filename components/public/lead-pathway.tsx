@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MainContainer } from "@/components/global/main-container";
 import gsap from "@/lib/gsap-setup";
 import { REDUCED_MOTION_QUERY } from "@/components/global/motion-guidelines";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
 
 type PathwayStage = {
   title: string;
@@ -17,11 +17,11 @@ type PathwayStage = {
 
 const pathwayStageTones = [
   {
-    color: "var(--brand-logo-red-orange)",
+    color: "var(--brand-red)",
     contrast: "var(--foreground)",
   },
   {
-    color: "var(--brand-logo-magenta)",
+    color: "var(--brand-rose)",
     contrast: "var(--foreground)",
   },
   {
@@ -106,7 +106,7 @@ export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
             data-pathway-intro
             className="relative z-10 w-fit max-w-full lg:sticky lg:top-24 lg:max-h-[calc(100svh-7rem)] lg:self-start"
           >
-            <h2 className="pathway-display-title flex flex-col">
+            <h2 className="text-display font-display font-bold flex flex-col">
               {pathwayStageTones.map((tone, index) => (
                 <span
                   key={stages[index]?.title ?? index}
@@ -142,19 +142,19 @@ export function LeadPathway({ stages }: { stages: PathwayStage[] }) {
                       : "pathway-stage--drift-left"
                   )}
                 >
-                  <div className="pathway-step-number flex size-12 shrink-0 items-center justify-center rounded-full border text-sm font-bold sm:size-[3.25rem]">
+                  <div className="pathway-step-number flex size-12 shrink-0 items-center justify-center rounded-full border text-small font-bold sm:size-[3.25rem]">
                     {String(index + 1).padStart(2, "0")}
                   </div>
                   <div className="min-w-0">
-                    <h3 className="card-title" style={{ color: tone.color }}>
+                    <h3 className="text-h2 font-display font-semibold" style={{ color: tone.color }}>
                       {stage.title}
                     </h3>
-                    <p className="pathway-stage-copy body-copy mt-3 text-muted-foreground">
+                    <p className="pathway-stage-copy text-body font-sans mt-3 text-muted-foreground">
                       {stage.promise}
                     </p>
                   </div>
                   <div className="pathway-outcome col-start-2 border-l-2 py-2 pl-4 sm:max-w-[38rem] lg:rounded-xl lg:border lg:px-5 lg:py-4">
-                    <p className="text-sm font-semibold leading-6 text-foreground sm:text-[0.95rem]">
+                    <p className="text-small font-semibold leading-6 text-foreground sm:text-body">
                       {stage.outcome}
                     </p>
                   </div>

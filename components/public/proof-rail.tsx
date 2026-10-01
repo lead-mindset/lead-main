@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
 
 type ProofStat = {
   value: string;
@@ -29,10 +29,10 @@ export function ProofRail({
             itemClassName
           )}
         >
-          <dt className="feature-title text-foreground">
+          <dt className="text-h1 font-display font-bold text-foreground">
             {stat.value}
           </dt>
-          <dd className="metric-label mt-2 text-muted-foreground">
+          <dd className="text-small font-sans font-bold uppercase mt-2 text-muted-foreground">
             {stat.label}
           </dd>
         </div>

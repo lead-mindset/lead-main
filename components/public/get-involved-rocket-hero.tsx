@@ -18,7 +18,7 @@ export function GetInvolvedRocketHero() {
       <RocketVisualLayer
         compact
         className="inset-x-0 top-20 h-[42svh] min-h-80 opacity-55 lg:hidden"
-        auraClassName="bg-[radial-gradient(circle_at_72%_48%,rgba(122,87,209,0.36),transparent_17rem)]"
+        auraClassName="bg-[radial-gradient(circle_at_72%_48%,color-mix(in_oklch,var(--primary)_36%,transparent),transparent_17rem)]"
         cameraPosition={[0, 0.04, 11.8]}
         modelPosition={[0.52, -0.38, 0]}
         modelScale={0.25}
@@ -27,7 +27,7 @@ export function GetInvolvedRocketHero() {
 
       <RocketVisualLayer
         className="inset-0 hidden lg:block"
-        auraClassName="bg-[radial-gradient(circle_at_74%_42%,rgba(122,87,209,0.28),transparent_34rem),radial-gradient(circle_at_86%_60%,rgba(229,62,62,0.12),transparent_24rem)]"
+        auraClassName="bg-[radial-gradient(circle_at_74%_42%,color-mix(in_oklch,var(--primary)_28%,transparent),transparent_34rem),radial-gradient(circle_at_86%_60%,color-mix(in_oklch,var(--brand-red)_12%,transparent),transparent_24rem)]"
         cameraPosition={[0, 0.1, 12.2]}
         modelPosition={[2.82, -0.52, 0]}
         modelScale={0.3}
@@ -120,11 +120,11 @@ function RocketFallbackArt({ compact = false, hidden = false }: { compact?: bool
         hidden ? "invisible opacity-0" : compact ? "visible opacity-70" : "visible opacity-78",
       ].join(" ")}
     >
-      <div className="absolute left-1/2 top-1/2 h-[72%] w-[34%] -translate-x-1/2 -translate-y-1/2 rounded-[999px_999px_40%_40%] border border-white/16 bg-[linear-gradient(160deg,rgba(255,255,255,0.96),rgba(161,139,255,0.78)_46%,rgba(122,87,209,0.5))] shadow-[0_28px_90px_rgba(122,87,209,0.26)]" />
-      <div className="absolute left-1/2 top-[26%] size-[22%] -translate-x-1/2 rounded-full border border-white/28 bg-[radial-gradient(circle,rgba(8,13,59,0.98),rgba(122,87,209,0.72))]" />
-      <div className="absolute bottom-[13%] left-[20%] h-[20%] w-[20%] rounded-[80%_20%_80%_20%] bg-[linear-gradient(135deg,var(--brand-logo-red-orange),var(--brand-logo-magenta))]" />
-      <div className="absolute bottom-[13%] right-[20%] h-[20%] w-[20%] rounded-[20%_80%_20%_80%] bg-[linear-gradient(135deg,var(--brand-logo-magenta),var(--primary))]" />
-      <div className="absolute bottom-[-13%] left-1/2 h-[34%] w-[18%] -translate-x-1/2 rounded-full bg-[linear-gradient(180deg,rgba(255,90,95,0.92),rgba(126,86,226,0.08))] blur-xl" />
+      <div className="absolute left-1/2 top-1/2 h-[72%] w-[34%] -translate-x-1/2 -translate-y-1/2 rounded-[999px_999px_40%_40%] border border-foreground/16 bg-[linear-gradient(160deg,color-mix(in_oklch,white_96%,transparent),color-mix(in_oklch,var(--brand-purple-light)_78%,transparent)_46%,color-mix(in_oklch,var(--primary)_50%,transparent))] shadow-[0_28px_90px_color-mix(in_oklch,var(--primary)_26%,transparent)]" />
+      <div className="absolute left-1/2 top-[26%] size-[22%] -translate-x-1/2 rounded-full border border-foreground/28 bg-[radial-gradient(circle,color-mix(in_oklch,var(--background)_98%,transparent),color-mix(in_oklch,var(--primary)_72%,transparent))]" />
+      <div className="absolute bottom-[13%] left-[20%] h-[20%] w-[20%] rounded-[80%_20%_80%_20%] bg-[linear-gradient(135deg,var(--brand-red),var(--brand-rose))]" />
+      <div className="absolute bottom-[13%] right-[20%] h-[20%] w-[20%] rounded-[20%_80%_20%_80%] bg-[linear-gradient(135deg,var(--brand-rose),var(--primary))]" />
+      <div className="absolute bottom-[-13%] left-1/2 h-[34%] w-[18%] -translate-x-1/2 rounded-full bg-[linear-gradient(180deg,color-mix(in_oklch,var(--brand-red)_92%,transparent),color-mix(in_oklch,var(--brand-purple-light)_8%,transparent))] blur-xl" />
       <div className="absolute bottom-[-8%] left-[12%] h-[3px] w-[58%] rounded-full bg-primary/38 blur-[1px]" />
     </div>
   );
@@ -200,7 +200,7 @@ function HeroRocketModel({
 function ModelFallback() {
   return (
     <Html center>
-      <div className="rounded-full border border-border bg-background/90 px-4 py-2 text-xs font-semibold text-muted-foreground">
+      <div className="rounded-full border border-border bg-background/90 px-4 py-2 text-caption font-semibold text-muted-foreground">
         Loading LEAD launch
       </div>
     </Html>

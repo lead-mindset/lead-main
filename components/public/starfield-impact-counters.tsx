@@ -9,10 +9,12 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
+import { Card, CardContent } from "@/components/ui/card";
+import { IconTile } from "@/components/ui/icon-tile";
 import { MainContainer } from "@/components/global/main-container";
 import { REDUCED_MOTION_QUERY } from "@/components/global/motion-guidelines";
 import gsap from "@/lib/gsap-setup";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
 
 type ProofStat = {
   value: string;
@@ -25,17 +27,15 @@ type NumericStat = {
   isNumeric: boolean;
 };
 
-const counterGradients = [
-  "from-[var(--brand-logo-red-orange)] via-[var(--brand-header-muted-coral)] to-[var(--brand-header-vibrant-purple)]",
-  "from-[var(--brand-logo-magenta)] via-[var(--brand-header-vibrant-purple)] to-[var(--md-sys-color-primary-container)]",
-  "from-[var(--brand-header-muted-coral)] via-[var(--brand-header-deep-magenta)] to-[var(--accent)]",
-];
-
 const counterIcons: LucideIcon[] = [
   UsersRound,
   GraduationCap,
   CalendarCheck2,
 ];
+
+// Fixed digit heights based on size (matches Tailwind h-12/h-16 and h-10/h-12)
+const LARGE_DIGIT_HEIGHT = 64; // sm:h-16
+const SMALL_DIGIT_HEIGHT = 48; // sm:h-12
 
 export function StarfieldImpactCounters({ stats }: { stats: ProofStat[] }) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -54,8 +54,10 @@ export function StarfieldImpactCounters({ stats }: { stats: ProofStat[] }) {
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         gsap.set(tileRefs.current, { autoAlpha: 0, y: 34, scale: 0.96 });
-        counterElements.forEach((element) => {
-          element.textContent = formatCounterValue(0, element.dataset.counterSuffix ?? "");
+
+        const allDigitContainers = section.querySelectorAll<HTMLElement>("[data-counter-digit]");
+        allDigitContainers.forEach((container) => {
+          gsap.set(container, { y: 0 });
         });
 
         const tl = gsap.timeline({
@@ -78,34 +80,43 @@ export function StarfieldImpactCounters({ stats }: { stats: ProofStat[] }) {
         counterElements.forEach((element, index) => {
           const target = Number(element.dataset.counterTarget ?? 0);
           const suffix = element.dataset.counterSuffix ?? "";
-          const state = { value: 0 };
-
-          tl.to(
-            state,
-            {
-              value: target,
-              duration: 0.9,
-              ease: "power3.out",
-              snap: { value: 1 },
-              onUpdate: () => {
-                element.textContent = formatCounterValue(state.value, suffix);
-              },
-              onComplete: () => {
-                element.textContent = formatCounterValue(target, suffix);
-              },
-            },
-            0.18 + index * 0.06
+          const formatted = formatCounterValue(target, suffix);
+          const isLarge = element.dataset.size === "large";
+          const digitHeight = isLarge ? LARGE_DIGIT_HEIGHT : SMALL_DIGIT_HEIGHT;
+          const digitContainers = Array.from(
+            element.querySelectorAll<HTMLElement>("[data-counter-digit]")
           );
+
+          digitContainers.forEach((container, i) => {
+            const digit = parseInt(container.dataset.digit ?? "0");
+            tl.to(
+              container,
+              {
+                y: -digit * digitHeight,
+                duration: 1.2,
+                ease: "power3.out",
+              },
+              0.18 + index * 0.06
+            );
+          });
         });
       });
 
       mm.add(REDUCED_MOTION_QUERY, () => {
         gsap.set(tileRefs.current, { autoAlpha: 1, y: 0, scale: 1 });
         counterElements.forEach((element) => {
-          element.textContent = formatCounterValue(
-            Number(element.dataset.counterTarget ?? 0),
-            element.dataset.counterSuffix ?? ""
+          const target = Number(element.dataset.counterTarget ?? 0);
+          const suffix = element.dataset.counterSuffix ?? "";
+          const formatted = formatCounterValue(target, suffix);
+          const isLarge = element.dataset.size === "large";
+          const digitHeight = isLarge ? LARGE_DIGIT_HEIGHT : SMALL_DIGIT_HEIGHT;
+          const digitContainers = Array.from(
+            element.querySelectorAll<HTMLElement>("[data-counter-digit]")
           );
+          digitContainers.forEach((container) => {
+            const digit = parseInt(container.dataset.digit ?? "0");
+            container.style.transform = `translateY(-${digit * digitHeight}px)`;
+          });
         });
       });
 
@@ -113,6 +124,9 @@ export function StarfieldImpactCounters({ stats }: { stats: ProofStat[] }) {
     },
     { dependencies: [visibleStats], scope: sectionRef }
   );
+
+  const primaryStat = visibleStats[0];
+  const secondaryStats = visibleStats.slice(1);
 
   return (
     <section
@@ -122,40 +136,38 @@ export function StarfieldImpactCounters({ stats }: { stats: ProofStat[] }) {
     >
       <div className="lead-impact-aura" />
       <MainContainer>
-        <div className="grid gap-5 lg:grid-cols-3" role="list" aria-label="LEAD in numbers">
-          {visibleStats.map((stat, index) => {
-            const Icon = counterIcons[index % counterIcons.length];
+        {primaryStat && (
+          <div
+            role="listitem"
+            ref={(node) => {
+              tileRefs.current[0] = node;
+            }}
+            className="mb-8"
+          >
+            <CounterDisplay
+              stat={primaryStat}
+              icon={counterIcons[0]}
+              size="large"
+            />
+          </div>
+        )}
 
+        <div className="grid gap-6 sm:grid-cols-2">
+          {secondaryStats.map((stat, index) => {
+            const Icon = counterIcons[(index + 1) % counterIcons.length];
             return (
               <div
                 key={stat.label}
                 role="listitem"
                 ref={(node) => {
-                  tileRefs.current[index] = node;
+                  tileRefs.current[index + 1] = node;
                 }}
-                className={cn(
-                  "relative min-h-40 overflow-hidden rounded-2xl border border-white/12 bg-gradient-to-br p-5 text-center shadow-[0_24px_80px_rgba(0,0,0,0.28)] sm:min-h-56 sm:p-6",
-                  counterGradients[index % counterGradients.length]
-                )}
               >
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_0%,rgba(255,255,255,0.28),transparent_32%),linear-gradient(180deg,rgba(255,255,255,0.08),transparent)]" />
-                <span
-                  aria-hidden="true"
-                  className="absolute right-4 top-4 grid size-8 place-items-center rounded-full border border-white/24 bg-white/14 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.16),0_10px_26px_rgba(3,7,30,0.14)] backdrop-blur sm:right-5 sm:top-5 sm:size-9"
-                >
-                  <Icon className="size-4 sm:size-[1.125rem]" strokeWidth={2.2} />
-                </span>
-                <div className="relative flex h-full flex-col items-center justify-center gap-5 sm:gap-6">
-                  <p className="metric-label text-white/88">
-                    {formatLabel(stat.label)}
-                  </p>
-                  <p
-                    className={cn("metric-value max-w-full text-white")}
-                  >
-                    <span className="sr-only">{stat.value}</span>
-                    <AnimatedCounterValue stat={stat} />
-                  </p>
-                </div>
+                <CounterDisplay
+                  stat={stat}
+                  icon={Icon}
+                  size="small"
+                />
               </div>
             );
           })}
@@ -165,19 +177,99 @@ export function StarfieldImpactCounters({ stats }: { stats: ProofStat[] }) {
   );
 }
 
-function AnimatedCounterValue({ stat }: { stat: ProofStat }) {
+function CounterDisplay({
+  stat,
+  icon: Icon,
+  size,
+}: {
+  stat: ProofStat;
+  icon: LucideIcon;
+  size: "large" | "small";
+}) {
   const numericStat = parseStat(stat);
+  const formatted = formatCounterValue(numericStat.target, numericStat.suffix);
+  const isLarge = size === "large";
 
   return (
-    <span
-      aria-hidden="true"
-      data-counter-target={numericStat.target}
-      data-counter-suffix={numericStat.suffix}
-      data-counter-value
-      className="inline-flex min-w-[3.1ch] items-center justify-center tabular-nums"
-    >
-      {formatCounterValue(numericStat.target, numericStat.suffix)}
-    </span>
+    <Card className={cn("relative overflow-hidden", isLarge ? "p-6 sm:p-10" : "p-6")}>
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent" />
+      <CardContent className="relative flex flex-col items-center gap-4 p-0">
+        <IconTile
+          className={cn(
+            "rounded-full bg-primary/10 text-primary",
+            isLarge ? "size-12" : "size-10"
+          )}
+        >
+          <Icon className={cn(isLarge ? "size-6" : "size-5")} strokeWidth={1.6} />
+        </IconTile>
+
+        <div
+          data-counter-value
+          data-counter-target={numericStat.target}
+          data-counter-suffix={numericStat.suffix}
+          data-size={size}
+          className={cn(
+            "relative inline-flex items-center justify-center rounded-2xl p-3 sm:p-5",
+            isLarge && "bg-gradient-to-br from-brand-red via-brand-rose to-brand-purple"
+          )}
+        >
+          <div className="flex items-center justify-center gap-0.5 sm:gap-1">
+            {formatted.split("").map((char, i) => {
+              if (char === "," || char === "+") {
+                return (
+                  <span
+                    key={i}
+                    className={cn(
+                      "font-display font-bold leading-none",
+                      isLarge ? "text-4xl sm:text-6xl text-white" : "text-2xl sm:text-4xl text-foreground"
+                    )}
+                  >
+                    {char}
+                  </span>
+                );
+              }
+              const digit = parseInt(char);
+              return (
+                <div
+                  key={i}
+                  className={cn(
+                    "overflow-hidden rounded-lg",
+                    isLarge ? "w-8 sm:w-12 h-12 sm:h-16 bg-white/10 backdrop-blur-sm" : "w-6 sm:w-10 h-10 sm:h-12 bg-card"
+                  )}
+                >
+                  <div
+                    data-counter-digit
+                    data-digit={digit}
+                    className="flex flex-col"
+                  >
+                    {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
+                      <div
+                        key={n}
+                        className={cn(
+                          "flex items-center justify-center font-display font-bold leading-none",
+                          isLarge ? "h-12 sm:h-16 text-4xl sm:text-6xl text-white" : "h-10 sm:h-12 text-2xl sm:text-4xl text-foreground"
+                        )}
+                      >
+                        {n}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <p
+          className={cn(
+            "font-sans font-semibold text-muted-foreground text-center",
+            isLarge ? "text-body" : "text-small"
+          )}
+        >
+          {formatLabel(stat.label)}
+        </p>
+      </CardContent>
+    </Card>
   );
 }
 

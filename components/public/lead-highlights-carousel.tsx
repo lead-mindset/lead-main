@@ -18,13 +18,13 @@ export function LeadHighlightsCarousel({ highlights }: { highlights: Highlight[]
     <section id="highlights" className="relative scroll-mt-24 overflow-hidden pb-14 pt-20 sm:pb-24 sm:pt-28">
       <MainContainer>
         <div className="max-w-3xl">
-          <p className="eyebrow-label">
+          <p className="text-overline font-sans font-bold uppercase text-primary">
             LEAD highlights
           </p>
-          <h2 className="section-title mt-4">
+          <h2 className="text-h1 font-display font-semibold mt-4">
             Real moments from a community in motion.
           </h2>
-          <p className="body-copy mt-4 text-muted-foreground">
+          <p className="text-body font-sans mt-4 text-muted-foreground">
             Events, chapters, workshops, and student stories show how LEAD turns
             access into belonging, practice, and proof.
           </p>
@@ -46,7 +46,7 @@ export function LeadHighlightsCarousel({ highlights }: { highlights: Highlight[]
                 <article
                   key={`${highlight.title}-${index}`}
                   aria-hidden={isDuplicate}
-                  className="relative h-[24rem] w-[82vw] max-w-[21rem] shrink-0 snap-start overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_80px_rgba(0,0,0,0.22)] sm:h-[28rem] sm:w-[24rem] sm:max-w-none"
+                  className="relative h-[24rem] w-[82vw] max-w-[21rem] shrink-0 snap-start overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_80px_color-mix(in_oklch,black_22%,transparent)] sm:h-[28rem] sm:w-[24rem] sm:max-w-none"
                 >
                   <Image
                     src={highlight.image}
@@ -59,13 +59,13 @@ export function LeadHighlightsCarousel({ highlights }: { highlights: Highlight[]
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/34 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 p-5">
-                    <p className="card-eyebrow">
+                    <p className="text-small font-sans font-bold uppercase text-primary">
                       {highlight.pillar}
                     </p>
-                    <h3 className="card-title mt-3 text-white">
+                    <h3 className="text-h2 font-display font-semibold mt-3 text-foreground">
                       {highlight.title}
                     </h3>
-                    <p className="mt-3 line-clamp-3 text-sm leading-6 text-white/76">
+                    <p className="mt-3 line-clamp-3 text-small leading-6 text-foreground/76">
                       {highlight.why}
                     </p>
                   </div>

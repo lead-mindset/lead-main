@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, type ReactNode } from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
 
 export function CinematicVideoPanel({
   src,
@@ -65,11 +65,11 @@ export function CinematicVideoPanel({
       />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent sm:via-background/45" />
       <div className="absolute inset-x-0 bottom-0 p-5 sm:p-8">
-        <span className="eyebrow-label">{eyebrow}</span>
-        <h3 className="card-title mt-3 max-w-2xl text-foreground sm:mt-4">
+        <span className="text-overline font-sans font-bold uppercase text-primary">{eyebrow}</span>
+        <h3 className="text-h2 font-display font-semibold mt-3 max-w-2xl text-foreground sm:mt-4">
           {title}
         </h3>
-        <p className="body-copy mt-3 max-w-2xl text-sm text-muted-foreground sm:text-base">{children}</p>
+        <p className="text-body font-sans mt-3 max-w-2xl text-sm text-muted-foreground sm:text-base">{children}</p>
       </div>
     </div>
   );

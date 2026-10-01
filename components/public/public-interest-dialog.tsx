@@ -5,13 +5,8 @@ import { createPortal } from "react-dom";
 import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from "react";
 
 import { InterestForm } from "@/components/public/interest-form";
-import {
-  publicInterestDialogCloseClass,
-  publicInterestDialogContentClass,
-  publicInterestDialogHeaderClass,
-} from "@/components/public/interest-dialog-styles";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/cn";
 
 type PublicInterestDialogProps = {
   triggerLabel: string;
@@ -136,19 +131,19 @@ function PublicInterestDialog({
 
   return (
     <>
-      <button
+      <Button
         ref={triggerRef}
         type="button"
-        className={buttonVariants({ size: "lg", variant: "hero" })}
+        size="lg"
         onClick={() => setOpen(true)}
       >
         {triggerLabel}
-      </button>
+      </Button>
 
       {open
         ? createPortal(
             <div
-              className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xs"
+              className="fixed inset-0 z-50 bg-background/80 backdrop-blur-xs"
               onMouseDown={(event) => {
                 if (event.target === event.currentTarget) closeDialog();
               }}
@@ -160,33 +155,29 @@ function PublicInterestDialog({
                 aria-labelledby={titleId}
                 aria-describedby={descriptionId}
                 tabIndex={-1}
-                className={cn(
-                  "fixed left-1/2 top-1/2 z-50 grid w-full -translate-x-1/2 -translate-y-1/2 gap-5 outline-none motion-safe:animate-in motion-safe:fade-in-0 motion-safe:zoom-in-95 motion-safe:slide-in-from-bottom-2 motion-safe:duration-300",
-                  publicInterestDialogContentClass
-                )}
+                className="fixed left-1/2 top-1/2 z-50 grid w-full max-w-[min(44rem,calc(100vw-1.5rem))] -translate-x-1/2 -translate-y-1/2 gap-5 rounded-2xl border border-border bg-card p-6 shadow-2xl outline-none motion-safe:animate-in motion-safe:fade-in-0 motion-safe:zoom-in-95 motion-safe:slide-in-from-bottom-2 motion-safe:duration-300 sm:p-8"
               >
-                <button
+                <Button
                   type="button"
+                  variant="ghost"
+                  size="icon-sm"
                   aria-label={closeLabel}
-                  className={cn(
-                    buttonVariants({ variant: "ghost", size: "icon-sm" }),
-                    publicInterestDialogCloseClass
-                  )}
+                  className="absolute right-3 top-3"
                   onClick={closeDialog}
                 >
                   <X className="size-4" />
-                </button>
+                </Button>
 
-                <div className={cn("grid", publicInterestDialogHeaderClass)}>
+                <div className="items-start gap-2 pr-10 text-left">
                   <h2
                     id={titleId}
-                    className="font-headline text-xl font-bold leading-tight text-foreground"
+                    className="font-display text-h3 font-bold leading-tight text-foreground"
                   >
                     {title}
                   </h2>
                   <p
                     id={descriptionId}
-                    className="text-sm leading-6 text-muted-foreground md:text-pretty"
+                    className="text-body leading-6 text-muted-foreground md:text-pretty"
                   >
                     {description}
                   </p>

@@ -1,14 +1,11 @@
-
 import type { Metadata } from "next";
 import "./globals.css";
 import NavHeader from "@/components/global/navigation/NavHeader";
 import Footer from "@/components/global/footer";
-import { Montserrat, Raleway } from "next/font/google";
+import { montserrat, sourceSans } from "./styles/fonts";
+import { GeistSans } from "geist/font/sans";
 import "@/lib/gsap-setup";
 import { GoogleAnalytics } from "@next/third-parties/google";
-
-const raleway = Raleway({ subsets: ["latin"], variable: "--font-raleway" });
-const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat" });
 
 export const metadata: Metadata = {
   title: "LEAD",
@@ -23,7 +20,7 @@ export default function RootLayout({
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
   return (
-    <html lang="en" className={`${raleway.variable} ${montserrat.variable}`}>
+    <html lang="en" className={`${montserrat.variable} ${sourceSans.variable} ${GeistSans.variable}`}>
       <body className="antialiased">
         <NavHeader />
         <main>{children}</main>

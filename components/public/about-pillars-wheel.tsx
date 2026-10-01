@@ -32,7 +32,7 @@ const pillars: Pillar[] = [
       "Build strong, sustainable chapters that foster engagement, collaboration, and belonging among students across Latin America.",
     Icon: UsersRound,
     gradient:
-      "linear-gradient(135deg, var(--brand-logo-red-orange), var(--brand-logo-magenta))",
+      "linear-gradient(135deg, var(--brand-red), var(--brand-rose))",
   },
   {
     title: "Academic Excellence",
@@ -41,7 +41,7 @@ const pillars: Pillar[] = [
       "Promote high academic achievement and a culture of curiosity, discipline, and lifelong learning to prepare students for future success.",
     Icon: BookOpen,
     gradient:
-      "linear-gradient(135deg, var(--brand-logo-magenta), var(--primary))",
+      "linear-gradient(135deg, var(--brand-rose), var(--primary))",
   },
   {
     title: "Leadership",
@@ -59,7 +59,7 @@ const pillars: Pillar[] = [
       "Equip students with skills, mentorship, and experiences to excel in their careers and thrive in the evolving tech landscape.",
     Icon: Briefcase,
     gradient:
-      "linear-gradient(135deg, var(--brand-header-muted-coral), var(--primary))",
+      "linear-gradient(135deg, var(--brand-red-light), var(--primary))",
   },
   {
     title: "Community Impact",
@@ -68,7 +68,7 @@ const pillars: Pillar[] = [
       "Inspire students to lead initiatives that transform communities, promote social responsibility, and leave a lasting legacy.",
     Icon: Globe2,
     gradient:
-      "linear-gradient(135deg, var(--accent), var(--brand-logo-magenta))",
+      "linear-gradient(135deg, var(--accent), var(--brand-rose))",
   },
   {
     title: "Women Excellence",
@@ -77,7 +77,7 @@ const pillars: Pillar[] = [
       "Empower female students with mentorship, support, and opportunities to thrive as leaders in technology and beyond.",
     Icon: UserRound,
     gradient:
-      "linear-gradient(135deg, var(--brand-header-vibrant-purple), var(--brand-logo-red-orange))",
+      "linear-gradient(135deg, var(--brand-purple-light), var(--brand-red))",
   },
   {
     title: "LEAD Academia",
@@ -86,7 +86,7 @@ const pillars: Pillar[] = [
       "Engage K-12 students with technology, leadership skills, and career opportunities to cultivate the next generation of young talent.",
     Icon: GraduationCap,
     gradient:
-      "linear-gradient(135deg, var(--primary), var(--brand-header-deep-magenta))",
+      "linear-gradient(135deg, var(--primary), var(--brand-rose))",
   },
 ];
 
@@ -111,13 +111,13 @@ export function AboutPillarsBridge() {
         <div className="relative overflow-hidden py-10 sm:py-14">
           <div className="pointer-events-none absolute left-1/2 top-1/2 size-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-3xl" />
           <div className="relative mx-auto grid max-w-4xl gap-5 text-center">
-            <p className="text-sm font-extrabold uppercase text-primary">
+            <p className="text-small font-extrabold uppercase text-primary">
               Values in practice
             </p>
-            <h2 className="font-headline text-3xl font-extrabold leading-tight text-foreground sm:text-5xl">
-              One standard for how <span className="lead-gradient-text">LEAD grows</span>.
+            <h2 className="font-display text-h1 font-extrabold leading-tight text-foreground sm:text-display">
+              One standard for how <span className="text-gradient">LEAD grows</span>.
             </h2>
-            <p className="mx-auto max-w-2xl text-base leading-7 text-muted-foreground">
+            <p className="mx-auto max-w-2xl text-body leading-7 text-muted-foreground">
               Chapters, programs, mentors, and student leaders move with shared
               expectations.
             </p>
@@ -218,7 +218,7 @@ export function AboutPillarsWheel() {
         <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div className="relative mx-auto hidden aspect-square w-full max-w-[35rem] md:block">
             <div className="absolute inset-0 rounded-full border border-primary/18">
-              <div className="absolute inset-[12%] rounded-full border border-white/10" />
+              <div className="absolute inset-[12%] rounded-full border border-foreground/10" />
               <div
                 className="absolute inset-[27%] rounded-full ring-1 ring-primary/18 transition duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]"
                 style={{
@@ -245,13 +245,13 @@ export function AboutPillarsWheel() {
                       transform: "translate(-50%, -50%)",
                       backgroundImage: active
                         ? pillar.gradient
-                        : "linear-gradient(135deg, rgba(255,255,255,0.2), rgba(161,139,255,0.18))",
+                        : "linear-gradient(135deg, color-mix(in oklch, white 20%, transparent), color-mix(in oklch, var(--brand-purple-light) 18%, transparent))",
                     }}
                   >
                     <span
-                      className={`grid size-full place-items-center rounded-full px-2 py-3 text-xs font-extrabold leading-tight transition duration-500 ${
+                      className={`grid size-full place-items-center rounded-full px-2 py-3 text-caption font-extrabold leading-tight transition duration-500 ${
                         active
-                          ? "bg-transparent text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]"
+                          ? "bg-transparent text-foreground shadow-[inset_0_1px_0_color-mix(in_oklch,white_20%,transparent)]"
                           : "bg-background text-muted-foreground group-hover/pillar:text-foreground"
                       }`}
                     >
@@ -264,9 +264,9 @@ export function AboutPillarsWheel() {
                 );
               })}
             </div>
-            <div className="absolute left-1/2 top-1/2 grid size-44 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-background/80 text-center ring-1 ring-white/12">
+            <div className="absolute left-1/2 top-1/2 grid size-44 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-background/80 text-center ring-1 ring-foreground/12">
               <div
-                className="grid size-24 place-items-center rounded-full text-white shadow-[0_20px_52px_rgba(0,0,0,0.22)]"
+                className="grid size-24 place-items-center rounded-full text-foreground shadow-[0_20px_52px_color-mix(in_oklch,black_22%,transparent)]"
                 style={{ backgroundImage: activePillar.gradient }}
               >
                 <ActiveIcon className="size-10" strokeWidth={1.7} />
@@ -275,25 +275,25 @@ export function AboutPillarsWheel() {
           </div>
 
           <div className="relative">
-            <span className="eyebrow-label">Our pillars</span>
+            <span className="text-overline font-sans font-bold uppercase text-primary">Our pillars</span>
 
             <div className="mt-6 border-y border-border/80 py-7 sm:py-8">
               <div className="flex items-center gap-4">
                 <span
-                  className="grid size-14 shrink-0 place-items-center rounded-full text-white ring-1 ring-white/18 md:hidden"
+                  className="grid size-14 shrink-0 place-items-center rounded-full text-foreground ring-1 ring-foreground/18 md:hidden"
                   style={{ backgroundImage: activePillar.gradient }}
                 >
                   <ActiveIcon className="size-7" strokeWidth={1.8} />
                 </span>
-                <p className="text-sm font-extrabold text-primary">
+                <p className="text-small font-extrabold text-primary">
                   {String(activeIndex + 1).padStart(2, "0")} /{" "}
                   {String(pillars.length).padStart(2, "0")}
                 </p>
               </div>
-              <h2 className="mt-5 font-headline text-3xl font-extrabold leading-tight text-foreground sm:text-5xl">
+              <h2 className="mt-5 font-display text-h1 font-extrabold leading-tight text-foreground sm:text-display">
                 {activePillar.title}
               </h2>
-              <p className="body-copy mt-4 text-muted-foreground">
+              <p className="text-body font-sans mt-4 text-muted-foreground">
                 {activePillar.description}
               </p>
             </div>
@@ -305,11 +305,11 @@ export function AboutPillarsWheel() {
                   type="button"
                   onClick={() => setActiveIndex(index)}
                   aria-pressed={index === activeIndex}
-                  className="flex min-h-12 cursor-pointer items-center justify-between gap-3 border-b border-border/60 py-3 text-left text-sm font-bold text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/45 aria-pressed:text-foreground"
+                    className="flex min-h-12 cursor-pointer items-center justify-between gap-3 border-b border-border/60 py-3 text-left text-small font-bold text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/45 aria-pressed:text-foreground"
                 >
                   <span className="flex items-center gap-3">
                     <span
-                      className="grid size-8 place-items-center rounded-full text-white"
+                      className="grid size-8 place-items-center rounded-full text-foreground"
                       style={{ backgroundImage: pillar.gradient }}
                     >
                       <pillar.Icon className="size-4" strokeWidth={1.8} />

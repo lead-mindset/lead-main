@@ -22,9 +22,9 @@ export const publicCtas = {
 };
 
 export const proofStats = [
-  { value: "1,135+", label: "members" },
-  { value: "14", label: "university chapters" },
-  { value: "100+", label: "events organized" },
+  { value: "1,135+", label: "students since 2024" },
+  { value: "14", label: "universities across 3 countries" },
+  { value: "100+", label: "events hosted" },
 ];
 
 export const partnerLogos = [

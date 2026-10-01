@@ -10,13 +10,13 @@ import { Button } from "@/components/ui/button";
 
 const heroWashStyle: CSSProperties = {
   background:
-    "linear-gradient(90deg, rgba(8, 13, 59, 0.96) 0%, rgba(8, 13, 59, 0.76) 46%, rgba(8, 13, 59, 0.26) 100%), linear-gradient(180deg, rgba(8, 13, 59, 0.18) 0%, rgba(8, 13, 59, 0.26) 58%, rgba(8, 13, 59, 0.62) 100%)",
+    "linear-gradient(90deg, color-mix(in oklab, var(--background) 70%, transparent) 0%, color-mix(in oklab, var(--background) 50%, transparent) 46%, color-mix(in oklab, var(--background) 20%, transparent) 100%), linear-gradient(180deg, color-mix(in oklab, var(--background) 10%, transparent) 0%, color-mix(in oklab, var(--background) 15%, transparent) 58%, color-mix(in oklab, var(--background) 40%, transparent) 100%)",
 };
 
 const heroBottomWashStyle: CSSProperties = {
   height: "clamp(22rem, 60svh, 34rem)",
   background:
-    "linear-gradient(to top, var(--background) 0%, var(--background) 38%, rgba(8, 13, 59, 0.95) 68%, rgba(8, 13, 59, 0) 100%)",
+    "linear-gradient(to top, var(--background) 0%, var(--background) 38%, color-mix(in oklab, var(--background) 95%, transparent) 68%, transparent 100%)",
 };
 
 export function VideoHero({
@@ -95,34 +95,33 @@ export function VideoHero({
 
       <MainContainer className="relative z-10 flex min-h-[calc(88svh-4rem)] flex-col justify-end pb-9 pt-20 sm:min-h-[calc(94svh-4rem)] sm:pb-14 lg:pb-16">
         <div className="max-w-4xl">
-          <p className="eyebrow-label eyebrow-label--light">
+          <p className="text-small font-sans font-semibold uppercase text-primary">
             LEAD Americas
           </p>
-          <h1 className="public-hero-title mt-5 max-w-4xl text-white drop-shadow-[0_3px_22px_rgba(0,0,0,0.4)]">
+          <h1 className="text-display font-display font-bold mt-4 max-w-4xl text-foreground drop-shadow-[0_3px_22px_color-mix(in_oklch,black_40%,transparent)]">
             Building the{" "}
-            <span className="lead-gradient-text drop-shadow-[0_2px_16px_rgba(8,13,59,0.72)]">
+            <span className="text-gradient drop-shadow-[0_2px_16px_color-mix(in_oklch,var(--background)_72%,transparent)]">
               next generation
             </span>{" "}
             of{" "}
-            <span className="lead-gradient-text drop-shadow-[0_2px_16px_rgba(8,13,59,0.72)]">
+            <span className="text-gradient drop-shadow-[0_2px_16px_color-mix(in_oklch,var(--background)_72%,transparent)]">
               leaders
             </span>{" "}
             across the Americas.
           </h1>
-          <p className="public-hero-subtitle section-subtitle mt-6 text-white/82">
-            LEAD connects students with STEM learning, leadership experiences,
-            community, and real pathways to opportunity.
+          <p className="text-body-lg mt-4 max-w-2xl text-foreground/90">
+            A student-led non-profit connecting 1,135+ students across 14 universities in STEM learning, leadership, and opportunity.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg">
               <Link href={primaryHref} {...externalProps(primaryHref)}>
-                Action Button 1
+                Join LEAD
                 <ArrowRight className="size-4" />
               </Link>
             </Button>
-            <Button asChild variant="glass" size="lg">
+            <Button asChild variant="outline" size="lg">
               <Link href={secondaryHref} {...externalProps(secondaryHref)}>
-                Action Button 2
+                Partner with us
               </Link>
             </Button>
           </div>
