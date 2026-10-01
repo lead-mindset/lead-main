@@ -51,13 +51,13 @@ export default function DesktopMenu({
           flex items-center"
           onClick={onMenuItemClick}
         >
-          <h3 className="font-headline text-base font-bold">{menuItem.name}</h3>
+          <h3 className="font-display text-body font-bold">{menuItem.name}</h3>
         </Link>
 
         {hasSubMenu && (
           <ChevronDown
             onClick={onClick}
-            className={`duration-200 hover:bg-opacity-10 rounded-full -ml-2 hover:mt-0.5 hover:bg-gm-white cursor-pointer ${isActive ? "rotate-180" : ""
+            className={`duration-200 hover:bg-muted/10 rounded-full -ml-2 hover:mt-0.5 cursor-pointer ${isActive ? "rotate-180" : ""
               }`}
           />
         )}
@@ -65,7 +65,7 @@ export default function DesktopMenu({
 
       {hasSubMenu && (
         <motion.div
-          className="absolute bg-gm-gray rounded-lg top-10 z-50 p-4 rounded-b-lg origin-[50%_-170px]"
+          className="absolute bg-popover rounded-lg top-10 z-50 p-4 rounded-b-lg origin-[50%_-170px] border border-border"
           initial="exit"
           animate={isActive ? "enter" : "exit"}
           variants={subMenuAnimate}
@@ -73,7 +73,7 @@ export default function DesktopMenu({
           {(menuItem.subMenu ?? []).map((submenu, i) => (
             <div
               key={`${submenu.name}-${i}`}
-              className="hover:text-opacity-100 text-opacity-80 py-1 text-gm-white transition-all"
+              className="hover:text-foreground text-muted-foreground py-1 transition-all"
               onClick={onSubMenuClick}
             >
               <Link

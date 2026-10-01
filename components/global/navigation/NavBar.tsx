@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 
 import { MainContainer } from "@/components/global/main-container";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
 
 import MobMenu from "./MobMenu";
 import {
@@ -45,7 +45,7 @@ export default function NavBar() {
           priority
           className="h-auto w-[38px]"
         />
-        <span className="font-headline text-lg font-bold text-foreground">LEAD</span>
+        <span className="font-display text-body-lg font-bold text-foreground">LEAD</span>
       </Link>
 
       <div className="ml-auto hidden items-center gap-1 lg:flex">
@@ -58,7 +58,7 @@ export default function NavBar() {
               href={item.href}
               aria-current={active ? "page" : undefined}
               className={cn(
-                "inline-flex min-h-10 items-center whitespace-nowrap rounded-[var(--lead-radius-button)] px-3 py-2 text-sm font-medium text-muted-foreground transition-[background-color,color] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-muted/80 hover:text-foreground",
+                "inline-flex min-h-10 items-center whitespace-nowrap rounded-xl px-3 py-2 text-small font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground",
                 active && "bg-muted text-foreground"
               )}
               {...navLinkProps(item.href)}

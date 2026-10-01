@@ -6,6 +6,7 @@ export type PublicNavItem = {
 export const PUBLIC_NAV_ITEMS: PublicNavItem[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about-us" },
+  { label: "Get Involved", href: "/get-involved" },
 ];
 
 export const JOIN_LEAD_HREF =

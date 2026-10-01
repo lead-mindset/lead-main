@@ -24,6 +24,23 @@ const socialLinks = [
   },
 ];
 
+const footerLinks = [
+  {
+    title: "Quick Links",
+    links: [
+      { label: "About LEAD", href: "/about-us" },
+      { label: "Get Involved", href: "/get-involved" },
+    ],
+  },
+  {
+    title: "Connect",
+    links: [
+      { label: "Partner with us", href: "mailto:partnerships@leadmindset.org" },
+      { label: "Contact", href: "mailto:culture@leadmindset.org" },
+    ],
+  },
+];
+
 function externalProps(href: string) {
   const external = isExternalHref(href);
 
@@ -35,13 +52,13 @@ function externalProps(href: string) {
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-border/60 bg-[linear-gradient(180deg,rgba(10,14,53,0.98),var(--lead-surface-deep))]">
-      <MainContainer className="relative py-9 sm:py-11">
-        <div className="grid gap-8 lg:grid-cols-[minmax(18rem,0.95fr)_minmax(0,1.45fr)] lg:items-start lg:gap-10">
+    <footer className="relative overflow-hidden border-t border-border/60 bg-background">
+      <MainContainer className="relative py-12 sm:py-16">
+        <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr_1fr] lg:gap-8">
           <div className="max-w-md">
             <Link
               href="/"
-              className="inline-flex min-h-11 items-center gap-3 rounded-[var(--lead-radius-button)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/45"
+              className="inline-flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/45 rounded-lg"
             >
               <Image
                 src="/leadl2.svg"
@@ -50,9 +67,9 @@ export default function Footer() {
                 height={22}
                 className="h-auto w-10"
               />
-              <span className="text-xl font-bold text-foreground">LEAD</span>
+              <span className="text-h3 font-display font-bold text-foreground">LEAD</span>
             </Link>
-            <p className="mt-4 text-sm leading-7 text-muted-foreground sm:text-base">
+            <p className="mt-4 text-body leading-7 text-muted-foreground">
               LEAD helps students learn, explore, aspire, and discover through
               chapters, programs, mentors, partners, and community.
             </p>
@@ -62,7 +79,7 @@ export default function Footer() {
                 <Button
                   key={href}
                   asChild
-                  variant="glass"
+                  variant="outline"
                   size="icon-sm"
                 >
                   <Link
@@ -77,11 +94,34 @@ export default function Footer() {
             </div>
           </div>
 
+          {footerLinks.map((section) => (
+            <div key={section.title}>
+              <h3 className="text-small font-sans font-bold uppercase text-foreground mb-4">
+                {section.title}
+              </h3>
+              <ul className="space-y-3">
+                {section.links.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="text-body text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
-        <div className="mt-8 flex flex-col gap-3 border-t border-white/10 pt-5 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <p>&copy; {new Date().getFullYear()} LEAD. All rights reserved.</p>
-          <p>Built for students across the Americas and the communities supporting them.</p>
+        <div className="mt-12 pt-8 border-t border-border/60 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-small text-muted-foreground">
+            &copy; {new Date().getFullYear()} LEAD Americas. All rights reserved.
+          </p>
+          <p className="text-small text-muted-foreground">
+            Built for students across the Americas.
+          </p>
         </div>
       </MainContainer>
     </footer>

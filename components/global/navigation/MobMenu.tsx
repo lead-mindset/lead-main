@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/cn";
 
 import {
   JOIN_LEAD_HREF,
@@ -57,7 +57,7 @@ export default function MobMenu({ pathname }: { pathname: string }) {
         type="button"
         variant="ghost"
         size="icon-lg"
-        className="border border-white/15 bg-white/10 text-white hover:bg-white/15 hover:text-white"
+        className="border border-border bg-muted/50 text-foreground hover:bg-muted hover:text-foreground"
         aria-label={isOpen ? "Close navigation" : "Open navigation"}
         aria-controls={mobileNavId}
         aria-expanded={isOpen}
@@ -77,7 +77,7 @@ export default function MobMenu({ pathname }: { pathname: string }) {
             transition={{ duration: 0.28, ease: [0.32, 0.72, 0, 1] }}
             role="region"
             aria-label="Mobile navigation"
-            className="fixed inset-x-4 top-20 z-50 rounded-xl border border-border bg-popover p-3 shadow-[0_24px_80px_rgba(0,0,0,0.28),inset_0_1px_0_rgba(255,255,255,0.08)]"
+            className="fixed inset-x-4 top-20 z-50 rounded-xl border border-border bg-popover p-3 shadow-lg"
           >
             <div className="grid gap-1">
               {PUBLIC_NAV_ITEMS.map((item) => {
@@ -89,7 +89,7 @@ export default function MobMenu({ pathname }: { pathname: string }) {
                     href={item.href}
                     aria-current={active ? "page" : undefined}
                     className={cn(
-                      "rounded-[var(--lead-radius-button)] px-3 py-3 text-sm font-medium text-muted-foreground transition-[background-color,color] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/45 focus-visible:ring-offset-2 focus-visible:ring-offset-popover",
+                      "rounded-xl px-3 py-3 text-small font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/45 focus-visible:ring-offset-2 focus-visible:ring-offset-popover",
                       active && "bg-muted text-foreground"
                     )}
                     target={isExternalHref(item.href) ? "_blank" : undefined}
