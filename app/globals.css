@@ -1,15 +1,45 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* aspect ratios — content constants */
+  --aspect-media: 4 / 3;
+  --aspect-banner: 3 / 2;
+  /* type scale — stepped: 12 → 13 → 14 → 16 → 18 → 20 → 24 → 32 */
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1.45;
+  --text-small: 0.8125rem;
+  --text-small--line-height: 1.45;
+  --text-body: 0.875rem;
+  --text-body--line-height: 1.5;
+  --text-body-lg: 1rem;
+  --text-body-lg--line-height: 1.55;
+  --text-h3: 1.125rem;
+  --text-h3--line-height: 1.4;
+  --text-h2: 1.25rem;
+  --text-h2--line-height: 1.35;
+  --text-h1: 1.5rem;
+  --text-h1--line-height: 1.3;
+  --text-display: 2rem;
+  --text-display--line-height: 1.2;
+  --text-h4: 1rem;
+  --text-h4--line-height: 1.4;
+  --text-overline: 0.75rem;
+  --text-overline--line-height: 1.4;
+  --text-label: 0.8125rem;
+  --text-label--line-height: 1.4;
+  --text-body-strong: 0.875rem;
+  --text-body-strong--line-height: 1.5;
+}
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-montserrat);
-  --font-headline: var(--font-raleway);
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  /* cherry-picked from Angela's template: Montserrat (display) + Geist (sans) */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-montserrat), "Montserrat", system-ui, sans-serif;
+  --font-heading: var(--font-montserrat), "Montserrat", system-ui, sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -27,6 +57,9 @@
   --color-input: var(--input);
   --color-border: var(--border);
   --color-destructive: var(--destructive);
+  --color-destructive-light: var(--destructive-light);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
@@ -35,129 +68,147 @@
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
-  --color-success-foreground: var(--success-foreground);
-  --color-success: var(--success);
-  --color-warning-foreground: var(--warning-foreground);
-  --color-warning: var(--warning);
-  --color-info-foreground: var(--info-foreground);
-  --color-info: var(--info);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  /* brand accents (LEAD identity) */
+  --color-brand-red: var(--brand-red);
+  --color-brand-red-light: var(--brand-red-light);
+  --color-brand-rose: var(--brand-rose);
+  --color-brand-purple: var(--brand-purple);
+  --color-brand-purple-light: var(--brand-purple-light);
+  --color-brand-orange: var(--brand-orange);
+  /* Angela's semantic vocabulary (surface/ink/line) — aliases of the base tokens */
+  --color-surface: var(--color-background);
+  --color-surface-alt: var(--color-muted);
+  --color-surface-raised: var(--color-card);
+  --color-surface-inverse: var(--color-foreground);
+  --color-line: var(--color-border);
+  --color-line-strong: var(--color-border);
+  --color-heading: var(--color-foreground);
+  --color-ink: var(--color-foreground);
+  --color-ink-muted: var(--color-muted-foreground);
+  --color-ink-disabled: var(--color-muted-foreground);
+  --color-on-inverse: var(--color-background);
+  --color-primary-strong: var(--color-primary);
+  --color-on-primary: var(--color-primary-foreground);
+  --color-primary-soft: var(--color-primary);
+  --color-accent-soft: var(--color-accent);
+  --color-danger: var(--color-destructive);
+  --color-danger-soft: var(--color-destructive);
+  --color-success-soft: var(--color-success);
+  --color-focus-ring: var(--color-ring);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-:root {
-  --brand-background: #080d3b;
-  --brand-foreground: #ffffff;
-  --brand-accent: #a18bff;
-  --brand-header-warm-red: #c43d45;
-  --brand-header-muted-coral: #ba4e5e;
-  --brand-header-deep-magenta: #9b2e8b;
-  --brand-header-vibrant-purple: #7e56e2;
-  --brand-header-dark-navy: #0e1442;
-  --brand-logo-red-orange: #e53e3e;
-  --brand-logo-magenta: #9f258c;
+/* LEAD brand — dark navy + red → rose → purple.
+   Base: abi's system. Identity colors cherry-picked from Angela's official palette. */
+:root,
+.dark {
+  --card-spacing: 1rem;
+  --brand-red: oklch(0.56 0.21 20);
+  --brand-red-light: oklch(0.78 0.14 20); /* text links + focus ring on navy */
+  --brand-rose: oklch(0.487 0.2087 322.04);
+  --brand-purple: oklch(0.5584 0.2066 286.65);
+  --brand-purple-light: oklch(0.72 0.15 287); /* interactive text/icons */
+  --brand-orange: oklch(0.55 0.19 45); /* burnt orange — avatar */
+  --brand-navy: #030c40; /* official LEAD navy */
+  --brand-navy-900: #0a1128;
+  --brand-navy-700: #1e2a4a;
+  --brand-violet: #7957f2;
+  --logo-red: #dd3029;
+  --logo-purple: #931ea2;
 
-  --md-sys-color-primary: #a18bff;
-  --md-sys-color-on-primary: #080d3b;
-  --md-sys-color-primary-container: #5d41b0;
-  --md-sys-color-on-primary-container: #e6deff;
-  --md-sys-color-secondary: #ba4e5e;
-  --md-sys-color-on-secondary: #ffffff;
-  --md-sys-color-secondary-container: #9b2e8b;
-  --md-sys-color-on-secondary-container: #ffdad6;
-  --md-sys-color-tertiary: #7e56e2;
-  --md-sys-color-on-tertiary: #ffffff;
-  --md-sys-color-tertiary-container: #623db0;
-  --md-sys-color-on-tertiary-container: #e8ddff;
-  --md-sys-color-surface: #080d3b;
-  --md-sys-color-on-surface: #ffffff;
-  --md-sys-color-surface-variant: #1a1f4b;
-  --md-sys-color-on-surface-variant: #e0e0ff;
-  --md-sys-color-outline: #a18bff;
-  --md-sys-color-outline-variant: #5d41b0;
-  --md-sys-color-surface-container-lowest: #03061f;
-  --md-sys-color-surface-container-low: #060a2e;
-  --md-sys-color-surface-container: #0a0e35;
-  --md-sys-color-surface-container-high: #1a1f4b;
-  --md-sys-color-surface-container-highest: #2a2f5b;
-
-  --background: #080d3b;
-  --foreground: #ffffff;
-  --card: #0a0e35;
-  --card-foreground: #ffffff;
-  --popover: #1a1f4b;
-  --popover-foreground: #ffffff;
-  --primary: #a18bff;
-  --primary-foreground: #080d3b;
-  --secondary: #ba4e5e;
-  --secondary-foreground: #ffffff;
-  --muted: #1a1f4b;
-  --muted-foreground: #e0e0ff;
-  --accent: #7e56e2;
-  --accent-foreground: #ffffff;
-  --destructive: #c43d45;
-  --destructive-foreground: #ffffff;
-  --border: #2a2f5b;
-  --input: #1a1f4b;
-  --ring: #a18bff;
-  --chart-1: #7a57d1;
-  --chart-2: #ba4e5e;
-  --chart-3: #9b2e8b;
-  --chart-4: #7e56e2;
-  --chart-5: #e53e3e;
-  --radius: 0.625rem;
+  /* redesign backward-compat aliases — map old variable names to design system tokens */
+  --brand-logo-red-orange: var(--brand-red);
+  --brand-logo-magenta: var(--brand-rose);
+  --brand-header-muted-coral: var(--brand-red-light);
+  --brand-header-deep-magenta: var(--brand-rose);
+  --brand-header-vibrant-purple: var(--brand-purple-light);
+  --lead-surface-deep: var(--background);
+  --lead-surface-elevated: var(--card);
   --lead-radius-button: 9999px;
-  --success: oklch(0.62 0.17 158);
-  --success-foreground: #ffffff;
-  --warning: oklch(0.72 0.18 62);
-  --warning-foreground: #080d3b;
-  --info: #7e56e2;
-  --info-foreground: #ffffff;
-  --sidebar: #060a2e;
-  --sidebar-foreground: #ffffff;
-  --sidebar-primary: #a18bff;
-  --sidebar-primary-foreground: #080d3b;
-  --sidebar-accent: #1a1f4b;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #2a2f5b;
-  --sidebar-ring: #a18bff;
 
-  --lead-surface-deep: #050824;
-  --lead-surface-section: #060a2e;
-  --lead-surface-elevated: #0a0e35;
-  --lead-surface-inverse-soft: #f4f1ff;
-  --lead-gradient-primary: linear-gradient(135deg, var(--primary), var(--accent));
-  --lead-gradient-red-purple: linear-gradient(135deg, var(--brand-logo-red-orange), var(--brand-logo-magenta), var(--accent));
-  --lead-gradient-proof: linear-gradient(135deg, var(--brand-header-muted-coral), var(--brand-header-deep-magenta), var(--accent));
+  --background: oklch(0.235 0.105 272);
+  --foreground: oklch(0.955 0.012 272);
+  --card: oklch(0.28 0.105 272);
+  --card-foreground: oklch(0.955 0.015 272);
+  --popover: oklch(0.315 0.10 272);
+  --popover-foreground: oklch(0.955 0.012 272);
+  --primary: oklch(0.5584 0.2066 286.65);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.31 0.10 272);
+  --secondary-foreground: oklch(0.93 0.015 272);
+  --muted: oklch(0.30 0.10 272);
+  --muted-foreground: oklch(0.75 0.05 272);
+  --accent: oklch(0.52 0.2 322);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.57 0.22 24);
+  --destructive-light: oklch(0.75 0.15 24);
+  --destructive-foreground: oklch(1 0 0);
+  --success: oklch(0.74 0.16 155);
+  --success-foreground: oklch(0.16 0.04 155);
+  --border: oklch(0.75 0.07 272 / 20%);
+  --input: oklch(0.78 0.06 272 / 26%);
+  --ring: oklch(0.75 0.12 287);
+  --chart-1: oklch(0.6294 0.2102 21.34);
+  --chart-2: oklch(0.487 0.2087 322.04);
+  --chart-3: oklch(0.5584 0.2066 286.65);
+  --chart-4: oklch(0.5584 0.2066 286.65);
+  --chart-5: oklch(0.52 0.2 4);
+  --radius: 0.75rem;
+  --sidebar: oklch(0.2 0.095 272);
+  --sidebar-foreground: oklch(0.93 0.012 272);
+  --sidebar-primary: oklch(0.5584 0.2066 286.65);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.30 0.10 272);
+  --sidebar-accent-foreground: oklch(0.955 0.012 272);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring: oklch(0.75 0.12 287);
+}
 
-  --md-sys-elevation-0: none;
-  --md-sys-elevation-1: 0 1px 2px rgba(122, 87, 209, 0.1), 0 1px 3px rgba(122, 87, 209, 0.05);
-  --md-sys-elevation-2: 0 4px 6px rgba(122, 87, 209, 0.15), 0 2px 4px rgba(122, 87, 209, 0.1);
-  --md-sys-elevation-3: 0 10px 15px rgba(122, 87, 209, 0.2), 0 4px 6px rgba(122, 87, 209, 0.15);
-  --md-sys-shape-corner-small: 6px;
-  --md-sys-shape-corner-medium: 8px;
-  --md-sys-shape-corner-large: 12px;
-  --md-sys-shape-corner-extra-large: 16px;
-  --md-sys-shape-corner-full: 9999px;
-  --md-sys-spacing-1: 4px;
-  --md-sys-spacing-2: 8px;
-  --md-sys-spacing-3: 12px;
-  --md-sys-spacing-4: 16px;
-  --md-sys-spacing-5: 20px;
-  --md-sys-spacing-6: 24px;
-  --md-sys-spacing-7: 32px;
-  --md-sys-spacing-8: 40px;
-  --md-sys-spacing-9: 48px;
-  --md-sys-spacing-10: 64px;
+/* Light theme: LEAD identity stays, surfaces go light. Opt-in via <html data-theme="light">. */
+:root[data-theme="light"] {
+  --background: oklch(0.975 0.008 272);
+  --foreground: oklch(0.28 0.05 272);
+  --card: oklch(0.995 0.004 272);
+  --card-foreground: oklch(0.28 0.05 272);
+  --popover: oklch(0.995 0.004 272);
+  --popover-foreground: oklch(0.28 0.05 272);
+  --secondary: oklch(0.93 0.012 272);
+  --secondary-foreground: oklch(0.28 0.05 272);
+  --muted: oklch(0.94 0.012 272);
+  --muted-foreground: oklch(0.5 0.03 272);
+  --accent: oklch(0.5584 0.2066 286.65);
+  --accent-foreground: oklch(1 0 0);
+  --primary: oklch(0.5584 0.2066 286.65);
+  --primary-foreground: oklch(1 0 0);
+  --destructive: oklch(0.52 0.22 24);
+  --destructive-light: oklch(0.45 0.22 24);
+  --destructive-foreground: oklch(1 0 0);
+  --success: oklch(0.58 0.14 155);
+  --success-foreground: oklch(1 0 0);
+  --border: oklch(0.85 0.02 272 / 60%);
+  --input: oklch(0.8 0.02 272 / 70%);
+  --ring: oklch(0.52 0.2 287);
+  --brand-purple-light: oklch(0.52 0.2 287);
+  --brand-red-light: oklch(0.55 0.22 24);
+  --sidebar: oklch(0.96 0.01 272);
+  --sidebar-foreground: oklch(0.28 0.05 272);
+  --sidebar-primary: oklch(0.5584 0.2066 286.65);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.93 0.012 272);
+  --sidebar-accent-foreground: oklch(0.28 0.05 272);
+  --sidebar-border: oklch(0.28 0.05 272 / 12%);
+  --sidebar-ring: oklch(0.52 0.2 287);
+  --card-spacing: 1rem;
 }
 
 @layer base {
@@ -166,95 +217,122 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-montserrat), sans-serif;
   }
-
-  :where(
-    a[href],
-    button:not(:disabled),
-    [role="button"],
-    [role="tab"],
-    [role="link"],
-    [role="menuitem"],
-    [role="option"],
-    [role="checkbox"],
-    [role="radio"],
-    [role="switch"],
-    summary,
-    label[for],
-    select:not(:disabled),
-    input[type="button"]:not(:disabled),
-    input[type="submit"]:not(:disabled),
-    input[type="reset"]:not(:disabled),
-    input[type="checkbox"]:not(:disabled),
-    input[type="radio"]:not(:disabled)
-  ) {
-    cursor: pointer;
+  html {
+    @apply font-sans;
   }
-
-  :where(
-    button:disabled,
-    [aria-disabled="true"],
-    [data-disabled],
-    select:disabled,
-    input:disabled,
-    textarea:disabled
-  ) {
-    cursor: not-allowed;
-  }
-
   h1,
   h2,
   h3,
-  h4,
-  h5,
-  h6 {
-    font-family: var(--font-raleway), sans-serif;
+  h4 {
+    font-family: var(--font-display);
   }
+  /* hide native number spinners (inconsistent on dark theme) */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+}
+
+/* destructive/brand text color — applied by variant so twMerge can't drop it (custom text-* sizes collide) */
+button[data-variant="destructive"],
+button[data-variant="destructive-outline"],
+button[data-variant="destructive-ghost"] {
+  color: var(--destructive-light);
+}
+button[data-variant="destructive-outline"]:hover,
+button[data-variant="destructive-ghost"]:hover {
+  color: var(--destructive-light);
+}
+button[data-variant="brand-ghost"] {
+  color: var(--brand-purple-light);
+}
+button[data-variant="brand-ghost"]:hover {
+  color: var(--brand-purple-light);
+}
+button[data-variant="link"] {
+  color: var(--primary);
+}
+
+@utility brand-gradient {
+  background-image: linear-gradient(
+    120deg,
+    var(--brand-rose),
+    var(--brand-purple-light)
+  );
+}
+
+@utility text-gradient {
+  background-image: linear-gradient(
+    120deg,
+    var(--brand-rose),
+    var(--brand-purple-light)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility brand-button {
+  background-image: linear-gradient(120deg, var(--brand-purple), var(--brand-rose));
+}
+
+@utility card-surface {
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklch, var(--brand-purple) 5%, var(--card)),
+    var(--card) 30%
+  );
+}
+
+@utility bg-ambient {
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklch, var(--card) 55%, transparent),
+    transparent 42rem
+  );
+}
+
+@utility brand-progress {
+  background-image: linear-gradient(
+    90deg,
+    var(--brand-purple),
+    var(--brand-purple-light)
+  );
+}
+
+/* redesign type scale mappings — maps old custom classes to design system tokens */
+.display-title,
+.hero-title,
+.public-hero-title,
+.pathway-display-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1.08;
 }
 
 .display-title {
   font-size: 3.5rem;
-  font-family: var(--font-raleway), sans-serif;
-  font-weight: 800;
-  letter-spacing: 0;
-  line-height: 1;
-  max-width: 100%;
-  overflow-wrap: break-word;
-  text-wrap: balance;
 }
 
 .hero-title {
   font-size: 3rem;
-  font-family: var(--font-raleway), sans-serif;
-  font-weight: 800;
-  letter-spacing: 0;
-  line-height: 1.08;
-  max-width: 100%;
-  overflow-wrap: break-word;
-  text-wrap: balance;
 }
 
 .public-hero-title {
   font-size: clamp(1.95rem, 5.4vw, 4.55rem);
-  font-family: var(--font-raleway), sans-serif;
-  font-weight: 800;
-  letter-spacing: 0;
-  line-height: 1.04;
-  max-width: 100%;
-  overflow-wrap: break-word;
-  text-wrap: balance;
 }
 
 .pathway-display-title {
-  width: max-content;
   font-size: clamp(3.1rem, 13vw, 3.65rem);
-  font-family: var(--font-raleway), sans-serif;
-  font-weight: 800;
-  letter-spacing: 0;
+  width: max-content;
   line-height: 0.9;
-  max-width: 100%;
-  overflow-wrap: break-word;
 }
 
 .pathway-display-title > span {
@@ -262,70 +340,50 @@
 }
 
 .section-title {
+  font-family: var(--font-display);
   font-size: 2.25rem;
-  font-family: var(--font-raleway), sans-serif;
   font-weight: 700;
   letter-spacing: 0;
   line-height: 1.15;
-  max-width: 100%;
-  overflow-wrap: break-word;
-  text-wrap: balance;
 }
 
 .section-subtitle {
   font-size: 1.125rem;
   line-height: 1.7;
-  max-width: 100%;
-  overflow-wrap: break-word;
-}
-
-.public-hero-subtitle {
-  max-width: 32ch;
 }
 
 .body-copy {
+  font-family: var(--font-sans);
   font-size: 1rem;
-  font-family: var(--font-montserrat), sans-serif;
   line-height: 1.7;
-  max-width: 100%;
-  overflow-wrap: break-word;
 }
 
 .feature-title {
+  font-family: var(--font-display);
   font-size: clamp(1.75rem, 3vw, 2.5rem);
-  font-family: var(--font-raleway), sans-serif;
   font-weight: 800;
   letter-spacing: 0;
   line-height: 1.12;
-  max-width: 100%;
-  overflow-wrap: break-word;
-  text-wrap: balance;
 }
 
 .card-title {
+  font-family: var(--font-display);
   font-size: 1.375rem;
-  font-family: var(--font-raleway), sans-serif;
   font-weight: 700;
   letter-spacing: 0;
   line-height: 1.18;
-  max-width: 100%;
-  overflow-wrap: break-word;
-  text-wrap: balance;
 }
 
 .media-caption-title {
+  font-family: var(--font-display);
   font-size: clamp(1.25rem, 2vw, 1.5rem);
-  font-family: var(--font-raleway), sans-serif;
   font-weight: 700;
   letter-spacing: 0;
   line-height: 1.16;
-  max-width: 100%;
-  overflow-wrap: break-word;
-  text-wrap: balance;
 }
 
 .metric-value {
-  font-family: var(--font-raleway), sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(4rem, 7vw, 6.8rem);
   font-weight: 800;
   letter-spacing: 0;
@@ -333,7 +391,7 @@
 }
 
 .rolling-digit {
-  font-family: var(--font-raleway), sans-serif;
+  font-family: var(--font-display);
   font-size: 2.25rem;
   font-weight: 800;
   letter-spacing: 0;
@@ -343,7 +401,7 @@
 .metric-label,
 .card-eyebrow,
 .footer-heading {
-  font-family: var(--font-montserrat), sans-serif;
+  font-family: var(--font-sans);
   font-weight: 800;
   letter-spacing: 0;
   text-transform: uppercase;
@@ -363,11 +421,31 @@
   color: var(--muted-foreground);
 }
 
+.eyebrow-label {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  color: var(--primary);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.eyebrow-label--light {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.eyebrow-label--inverse {
+  color: var(--brand-purple-light);
+}
+
 .lead-gradient-text {
   background-image: linear-gradient(
     90deg,
-    var(--brand-logo-red-orange),
-    var(--brand-logo-magenta),
+    var(--brand-logo-red-orange, var(--brand-red)),
+    var(--brand-logo-magenta, var(--brand-rose)),
     var(--primary)
   );
   background-clip: text;
@@ -375,7 +453,7 @@
 }
 
 .button-gradient-primary {
-  background-image: var(--lead-gradient-primary);
+  background-image: linear-gradient(135deg, var(--primary), var(--accent));
 }
 
 .lead-public-page {
@@ -389,9 +467,9 @@
 .lead-soft-inverse-surface {
   background:
     radial-gradient(circle at 14% 8%, color-mix(in oklab, var(--primary) 18%, transparent), transparent 28rem),
-    radial-gradient(circle at 82% 80%, color-mix(in oklab, var(--brand-header-muted-coral) 11%, transparent), transparent 30rem),
-    linear-gradient(180deg, color-mix(in oklab, var(--lead-surface-inverse-soft) 88%, var(--background)), color-mix(in oklab, var(--lead-surface-inverse-soft) 82%, var(--background) 18%));
-  color: var(--brand-background);
+    radial-gradient(circle at 82% 80%, color-mix(in oklab, var(--brand-red) 11%, transparent), transparent 30rem),
+    linear-gradient(180deg, color-mix(in oklab, var(--foreground) 88%, var(--background)), color-mix(in oklab, var(--foreground) 82%, var(--background) 18%));
+  color: var(--background);
 }
 
 .lead-public-cta-surface {
@@ -526,26 +604,6 @@
   box-shadow: 0 24px 80px color-mix(in oklab, black 28%, transparent);
 }
 
-.eyebrow-label {
-  display: inline-flex;
-  align-items: center;
-  width: fit-content;
-  color: var(--primary);
-  font-family: var(--font-montserrat), sans-serif;
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0;
-  text-transform: uppercase;
-}
-
-.eyebrow-label--light {
-  color: rgba(255, 255, 255, 0.78);
-}
-
-.eyebrow-label--inverse {
-  color: var(--brand-header-vibrant-purple);
-}
-
 .pathway-stage {
   --pathway-stage-color: var(--primary);
   --pathway-stage-contrast: var(--foreground);
@@ -555,7 +613,7 @@
   background:
     linear-gradient(
       180deg,
-      color-mix(in oklab, var(--lead-surface-elevated) 18%, transparent),
+      color-mix(in oklab, var(--card) 18%, transparent),
       transparent 18rem
     );
 }
@@ -628,7 +686,7 @@
   background: linear-gradient(
     135deg,
     color-mix(in oklab, var(--pathway-stage-color) 12%, var(--card)),
-    color-mix(in oklab, var(--lead-surface-elevated) 86%, transparent)
+    color-mix(in oklab, var(--card) 86%, transparent)
   );
   transition:
     background-color 320ms ease,
@@ -653,7 +711,7 @@
   background: linear-gradient(
     135deg,
     color-mix(in oklab, var(--pathway-stage-color) 18%, var(--card)),
-    color-mix(in oklab, var(--lead-surface-elevated) 84%, transparent)
+    color-mix(in oklab, var(--card) 84%, transparent)
   );
 }
 
