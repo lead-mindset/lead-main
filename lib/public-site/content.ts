@@ -3,9 +3,9 @@ import {
   GraduationCap,
   Handshake,
   HeartHandshake,
+  Info,
   MapPinPlus,
   Rocket,
-  UserRoundPlus,
   Users,
   Waypoints,
 } from "lucide-react";
@@ -14,6 +14,8 @@ import { JOIN_LEAD_HREF } from "@/components/global/navigation/nav-links";
 
 export const publicCtas = {
   join: JOIN_LEAD_HREF,
+  about: "/about-us",
+  involved: "/get-involved",
   partner: "/get-involved#partners",
   community: "/get-involved#partners",
   chapter: "/get-involved#chapters",
@@ -397,7 +399,7 @@ export const partnerTypes = [
 ];
 
 export const finalPaths = [
-  { label: "Join LEAD", href: publicCtas.join, icon: UserRoundPlus },
+  { label: "About us", href: publicCtas.about, icon: Info },
   { label: "Submit chapter interest", href: publicCtas.chapter, icon: MapPinPlus },
   { label: "Partner with LEAD", href: publicCtas.partner, icon: Handshake },
   { label: "Community Collaboration", href: publicCtas.community, icon: Waypoints },

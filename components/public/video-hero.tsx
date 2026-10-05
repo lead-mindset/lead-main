@@ -115,7 +115,7 @@ export function VideoHero({
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg">
               <Link href={primaryHref} {...externalProps(primaryHref)}>
-                Join LEAD
+                About us
                 <ArrowRight className="size-4" />
               </Link>
             </Button>

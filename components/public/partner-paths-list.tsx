@@ -26,23 +26,23 @@ const partnerPaths = [
 
 export function PartnerPathsList() {
   return (
-    <div className="mt-6 grid gap-4 sm:grid-cols-3">
+    <div className="mt-6 grid gap-3">
       {partnerPaths.map((path) => {
         const Icon = path.icon;
         return (
-          <Card key={path.title} className="p-6">
-            <CardContent className="flex flex-col gap-4 p-0">
-              <IconTile className="size-12 rounded-full bg-primary/10 text-primary">
-                <Icon className="size-6" strokeWidth={1.6} />
+          <Card key={path.title} className="p-5">
+            <CardContent className="flex items-start gap-4 p-0">
+              <IconTile className="size-11 shrink-0 rounded-full bg-primary/10 text-primary">
+                <Icon className="size-5" strokeWidth={1.6} />
               </IconTile>
-              <div>
-                <h3 className="text-h3 font-display font-bold text-foreground">
+              <div className="min-w-0">
+                <h3 className="text-body-lg font-display font-bold text-foreground">
                   {path.title}
                 </h3>
-                <p className="mt-2 text-body font-semibold text-foreground">
+                <p className="mt-1.5 text-small font-semibold text-foreground">
                   {path.outcome}
                 </p>
-                <p className="mt-3 text-small text-muted-foreground">
+                <p className="mt-2 text-small text-muted-foreground">
                   {path.description}
                 </p>
               </div>

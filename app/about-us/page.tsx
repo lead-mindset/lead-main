@@ -46,7 +46,7 @@ export default function AboutPage() {
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button asChild size="lg">
-                  <Link href={publicCtas.join} {...externalProps(publicCtas.join)}>Join LEAD</Link>
+                  <Link href={publicCtas.involved} {...externalProps(publicCtas.involved)}>Get involved</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg">
                   <Link href={publicCtas.chapter}>Submit chapter interest</Link>

@@ -35,7 +35,7 @@ const footerLinks = [
   {
     title: "Connect",
     links: [
-      { label: "Partner with us", href: "mailto:partnerships@leadmindset.org" },
+      { label: "Partner with us", href: "mailto:contact@leadmindset.org" },
       { label: "Contact", href: "mailto:culture@leadmindset.org" },
     ],
   },

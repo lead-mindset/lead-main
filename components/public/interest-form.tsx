@@ -7,6 +7,13 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Field, FieldLabel, FieldDescription } from "@/components/ui/field";
 import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { partnerTypes } from "@/lib/public-site/content";
 import { cn } from "@/lib/cn";
 
@@ -30,12 +37,19 @@ export function InterestForm({
 }) {
   const [enabled, setEnabled] = useState(defaultOpen);
   const [status, setStatus] = useState<SubmitState>("idle");
+  const [partnerType, setPartnerType] = useState("");
 
   const isChapter = kind === "chapter_interest";
   const title = isChapter ? "Chapter interest form" : "Partnership form";
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    if (!isChapter && !partnerType.trim()) {
+      setStatus("error");
+      return;
+    }
+
     setStatus("submitting");
 
     const formData = new FormData(event.currentTarget);
@@ -48,7 +62,10 @@ export function InterestForm({
     });
 
     setStatus(response.ok ? "success" : "error");
-    if (response.ok) event.currentTarget.reset();
+    if (response.ok) {
+      event.currentTarget.reset();
+      setPartnerType("");
+    }
   }
 
   function goToPrograms() {
@@ -231,20 +248,23 @@ export function InterestForm({
                   Partner type
                   <span className="text-primary" aria-hidden="true">*</span>
                 </FieldLabel>
-                <select
-                  id="partner-type"
-                  name="partnerType"
-                  required
-                  aria-required="true"
-                  className="h-10 w-full rounded-lg border border-input bg-background px-3 py-2 text-body text-foreground outline-none transition-colors focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50"
-                >
-                  <option value="">Select a path</option>
-                  {partnerTypes.map((type) => (
-                    <option key={type.value} value={type.value}>
-                      {type.title}
-                    </option>
-                  ))}
-                </select>
+                <Select value={partnerType} onValueChange={setPartnerType}>
+                  <SelectTrigger
+                    id="partner-type"
+                    aria-required="true"
+                    className="h-10 w-full"
+                  >
+                    <SelectValue placeholder="Select a path" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {partnerTypes.map((type) => (
+                      <SelectItem key={type.value} value={type.value}>
+                        {type.title}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <input type="hidden" name="partnerType" value={partnerType} />
               </Field>
 
               <Field>

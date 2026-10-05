@@ -1,8 +1,24 @@
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 
-const EMAIL_USER = process.env.EMAIL_USER;
-const EMAIL_PASS = process.env.EMAIL_PASS;
+import { createAdminClient } from "@/lib/supabase-admin";
+
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+
+const CONTACT_FROM =
+  process.env.CONTACT_FROM ?? "LEAD Public Site <noreply@leadmindset.org>";
+
+const CONTACT_TO = process.env.CONTACT_TO ?? "contact@leadmindset.org";
+
+/**
+ * Recipients per intent. Both default to CONTACT_TO (contact@leadmindset.org).
+ * `CHAPTER_INTEREST_TO` is temporary until the team confirms who owns
+ * chapter-interest routing (Angela feedback, oct 2026).
+ */
+const RECIPIENTS = {
+  chapter_interest: process.env.CHAPTER_INTEREST_TO ?? CONTACT_TO,
+  partnership: process.env.PARTNERSHIP_TO ?? CONTACT_TO,
+} as const;
 
 const requiredFieldsByIntent = {
   chapter_interest: [
@@ -34,6 +50,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing required fields", missing }, { status: 400 });
     }
 
+    const recipient = RECIPIENTS[intent];
     const subject =
       intent === "chapter_interest"
         ? `LEAD chapter interest: ${stringValue(body.university)}`
@@ -42,7 +59,44 @@ export async function POST(req: NextRequest) {
     const text = buildPlainText(intent, body);
     const html = buildSafeHtml(intent, body);
 
-    if (!EMAIL_USER || !EMAIL_PASS) {
+    let delivered = false;
+    let emailId: string | null = null;
+    let deliveryError: string | null = null;
+
+    if (resend) {
+      try {
+        const result = await resend.emails.send({
+          from: CONTACT_FROM,
+          to: recipient,
+          replyTo: stringValue(body.email),
+          subject,
+          text,
+          html,
+        });
+
+        if (result.error) {
+          deliveryError = result.error.message;
+        } else {
+          delivered = true;
+          emailId = result.data?.id ?? null;
+        }
+      } catch (error) {
+        deliveryError = error instanceof Error ? error.message : "Email send failed";
+      }
+    } else {
+      deliveryError = "Email delivery is not configured in this environment";
+    }
+
+    await recordSubmission({
+      intent,
+      body,
+      recipient,
+      delivered,
+      emailId,
+      deliveryError,
+    });
+
+    if (!resend) {
       return NextResponse.json({
         success: true,
         delivered: false,
@@ -50,27 +104,54 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: EMAIL_USER,
-        pass: EMAIL_PASS,
-      },
-    });
-
-    await transporter.sendMail({
-      from: `"LEAD Public Site" <${EMAIL_USER}>`,
-      replyTo: stringValue(body.email),
-      to: EMAIL_USER,
-      subject,
-      text,
-      html,
-    });
+    if (deliveryError) {
+      return NextResponse.json({ error: "Failed to send email" }, { status: 502 });
+    }
 
     return NextResponse.json({ success: true, delivered: true });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: "Failed to process submission" }, { status: 500 });
+  }
+}
+
+async function recordSubmission({
+  intent,
+  body,
+  recipient,
+  delivered,
+  emailId,
+  deliveryError,
+}: {
+  intent: Intent;
+  body: Record<string, unknown>;
+  recipient: string;
+  delivered: boolean;
+  emailId: string | null;
+  deliveryError: string | null;
+}) {
+  try {
+    const supabase = createAdminClient();
+    const { error } = await supabase.from("contact_submission").insert({
+      intent,
+      name: stringValue(body.name) || null,
+      email: stringValue(body.email) || null,
+      organization: stringValue(body.organization) || null,
+      university: stringValue(body.university) || null,
+      location: stringValue(body.location) || null,
+      region: stringValue(body.region) || null,
+      profile: stringValue(body.profile) || null,
+      recipient,
+      delivered,
+      email_id: emailId,
+      error: deliveryError,
+      payload: body,
+    });
+
+    if (error) throw error;
+  } catch (error) {
+    // Metrics must never break the user-facing submission.
+    console.error("Failed to persist contact submission", error);
   }
 }
 

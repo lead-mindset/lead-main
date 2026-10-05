@@ -4,15 +4,25 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Instagram, Linkedin } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 
-import {
-  JOIN_LEAD_HREF,
-  PUBLIC_NAV_ITEMS,
-  isExternalHref,
-} from "./nav-links";
+import { PUBLIC_NAV_ITEMS, isExternalHref } from "./nav-links";
+
+const SOCIAL_LINKS = [
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/lead_americas/",
+    icon: Instagram,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/leadmindsetorg/",
+    icon: Linkedin,
+  },
+];
 
 function isActivePath(pathname: string, href: string) {
   if (href.includes("#")) return false;
@@ -29,8 +39,6 @@ export default function Header() {
     href: item.href,
     active: isActivePath(pathname, item.href),
   }));
-
-  const joinIsExternal = isExternalHref(JOIN_LEAD_HREF);
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
@@ -63,15 +71,19 @@ export default function Header() {
         </nav>
 
         <div className="ml-auto flex items-center gap-2">
-          <Button size="sm" asChild className="hidden sm:inline-flex">
-            <Link
-              href={JOIN_LEAD_HREF}
-              target={joinIsExternal ? "_blank" : undefined}
-              rel={joinIsExternal ? "noreferrer" : undefined}
+          {SOCIAL_LINKS.map(({ label, href, icon: Icon }) => (
+            <Button
+              key={href}
+              asChild
+              variant="ghost"
+              size="icon-sm"
+              className="text-muted-foreground hover:text-foreground"
             >
-              Join LEAD
-            </Link>
-          </Button>
+              <Link href={href} target="_blank" rel="noreferrer" aria-label={label}>
+                <Icon className="size-4" />
+              </Link>
+            </Button>
+          ))}
           <Button
             size="icon"
             variant="ghost"
@@ -87,7 +99,7 @@ export default function Header() {
 
       {open && (
         <nav className="border-t border-border/60 bg-background/95 px-6 py-3 backdrop-blur md:hidden" aria-label="Mobile navigation">
-          {[...links, { label: "Join LEAD", href: JOIN_LEAD_HREF, active: false }].map((link) => (
+          {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}

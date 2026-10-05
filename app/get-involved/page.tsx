@@ -69,15 +69,16 @@ export default function GetInvolvedPage() {
             <div>
               <p className="text-overline font-sans font-bold uppercase text-primary">Student path</p>
               <h2 className="text-h1 font-display font-semibold mt-3">
-                Join the community and enter the Talent Platform.
+                Join the community. The Talent Platform is in development.
               </h2>
               <p className="text-body font-sans mt-4 max-w-2xl text-muted-foreground">
-                Joining LEAD gives students a clear starting point: create a
-                profile, connect with the community, explore programs, and keep
-                track of opportunities as they grow.
+                LEAD&apos;s Talent Platform, where students build profiles and
+                track opportunities, is being rebuilt and will roll out soon.
+                In the meantime, join the community through programs, chapters,
+                and events.
               </p>
               <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                {["Create profile", "Find community", "Explore programs"].map((step, index) => (
+                {["Join the community", "Explore programs", "Build your story"].map((step, index) => (
                   <div
                     key={step}
                     data-lead-motion="card"
@@ -90,12 +91,12 @@ export default function GetInvolvedPage() {
               </div>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                 <Button asChild size="lg">
-                  <Link href={publicCtas.join} {...externalProps(publicCtas.join)}>
-                    Join LEAD
+                  <Link href={publicCtas.programs} {...externalProps(publicCtas.programs)}>
+                    Explore programs
                   </Link>
                 </Button>
                 <Button asChild size="lg" variant="outline">
-                  <Link href="/#programs">View programs</Link>
+                  <Link href="/#impact">See our impact</Link>
                 </Button>
               </div>
             </div>

@@ -28,7 +28,7 @@ export default function HomePage() {
             <VideoHero
               videoSrc="/media/lead/hero/lead-community-hero.mp4"
               posterSrc="/media/lead/hero/lead-community-hero.webp"
-              primaryHref={publicCtas.pathway}
+              primaryHref={publicCtas.about}
               secondaryHref={publicCtas.partner}
             />
           </SectionReveal>

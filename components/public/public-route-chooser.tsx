@@ -10,10 +10,10 @@ const routeDetails: Record<
   string,
   { description: string; action: string }
 > = {
-  "Join LEAD": {
+  "About us": {
     description:
-      "Create your profile and start finding programs, chapters, and opportunities.",
-    action: "Join the community",
+      "Learn who LEAD is, the mission behind it, and the team building access across the Americas.",
+    action: "Read our story",
   },
   "Submit chapter interest": {
     description:
