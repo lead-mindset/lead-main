@@ -13,6 +13,12 @@ import gsap from "@/lib/gsap-setup";
 const ROCKET_SRC = "/models/rocket.glb";
 
 export function GetInvolvedRocketHero() {
+  // warm the rocket GLB only when the get-involved hero mounts, so a prefetch
+  // of this route from other pages doesn't pull the 1.7MB model
+  useEffect(() => {
+    useGLTF.preload(ROCKET_SRC);
+  }, []);
+
   return (
     <>
       <RocketVisualLayer
@@ -206,5 +212,3 @@ function ModelFallback() {
     </Html>
   );
 }
-
-useGLTF.preload(ROCKET_SRC);
