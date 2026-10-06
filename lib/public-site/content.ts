@@ -18,7 +18,7 @@ export const publicCtas = {
   partner: "/get-involved#partners",
   community: "/get-involved#partners",
   chapter: "/get-involved#chapters",
-  programs: "/#programs",
+  programs: "/get-involved#students",
   pathway: "/#pathway",
 };
 

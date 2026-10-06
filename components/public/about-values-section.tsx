@@ -8,23 +8,23 @@ import gsap from "@/lib/gsap-setup";
 
 const values = [
   {
-    title: "Mindset",
-    description: "Students are trusted as builders before they have every answer.",
+    title: "One LEAD",
+    description: "We grow together as one organization, one mission, one community.",
     className: "from-[var(--brand-red)] via-[var(--brand-red-light)] to-[var(--brand-rose)]",
   },
   {
-    title: "Purpose",
-    description: "Every program should connect to a clearer next step for students.",
+    title: "Growth Mindset",
+    description: "We continuously learn and improve, and see challenges as chances to grow.",
     className: "from-[var(--brand-red-light)] via-[var(--brand-rose)] to-[var(--brand-purple)]",
   },
   {
-    title: "Excellence",
-    description: "Preparation, responsibility, and follow-through protect the culture.",
+    title: "Inclusive Leadership",
+    description: "We develop leaders, not followers, and create pathways for others to lead.",
     className: "from-[var(--brand-rose)] via-[var(--brand-purple)] to-[var(--brand-purple-light)]",
   },
   {
-    title: "Impact",
-    description: "Activity matters only when it creates access, confidence, and proof.",
+    title: "Mission With Purpose",
+    description: "Every decision connects back to our mission and long-term impact.",
     className: "from-[var(--brand-purple)] via-[var(--brand-purple-light)] to-[var(--brand-red)]",
   },
 ];

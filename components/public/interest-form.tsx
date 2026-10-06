@@ -70,7 +70,7 @@ export function InterestForm({
 
   function goToPrograms() {
     onSuccessAction?.();
-    window.location.assign("/#programs");
+    window.location.assign("/get-involved#students");
   }
 
   return (
