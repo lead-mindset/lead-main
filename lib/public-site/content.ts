@@ -326,19 +326,19 @@ export const operatingValues = [
 ];
 
 export const leadership = [
-  { name: "Luis Coronel", role: "Founder & CEO", image: "/luisphoto.jpg" },
+  { name: "Luis Coronel", role: "Founder & CEO", image: "/media/lead/team/luis.webp" },
   { name: "Abigail Briones", role: "Dir. of Transformation", image: "/abigailbriones.jpeg" },
   { name: "Cristhy T.", role: "Dir. of Legal & Compliance", image: "/cristhy.jpeg" },
   { name: "Keily Luna", role: "Marketing", image: "/keily.jpg" },
-  { name: "Antonny Porlles", role: "Co-Founder & COO", image: "/antonnyphoto.jpg" },
-  { name: "Jhoei Cisneros", role: "Dir. of Events", image: "/jhoel.png" },
+  { name: "Antonny Porlles", role: "Co-Founder & COO", image: "/media/lead/team/antonny.webp" },
+  { name: "Jhoei Cisneros", role: "Dir. of Events", image: "/media/lead/team/jhoel.webp" },
   { name: "Ariana Cassina", role: "Dir. of Marketing", image: "/ariana.jpg" },
   { name: "Nikole A.", role: "Program Manager", image: "/nikole.jpg" },
-  { name: "Nicole Jimenez", role: "VP of Operations", image: "/nicole.png" },
+  { name: "Nicole Jimenez", role: "VP of Operations", image: "/media/lead/team/nicole.webp" },
   { name: "Christopher Lozada", role: "Country Director, Peru", image: "/christopher.jpg" },
   { name: "Arianna Yauri", role: "Dir. of Programs", image: "/arianna.jpg" },
   { name: "Xiomara Landa", role: "Dir. of People", image: "/xiomara.jpg" },
-  { name: "Angela Cortes", role: "Dir. of International Exp.", image: "/angela.png" },
+  { name: "Angela Cortes", role: "Dir. of International Exp.", image: "/media/lead/team/angela.webp" },
   { name: "Kiara Aguirre", role: "Dir. of Communications", image: "/kiara.jpg" },
 ];
 

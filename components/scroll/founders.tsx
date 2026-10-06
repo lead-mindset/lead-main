@@ -6,15 +6,15 @@ import AnimatedText from "./animated-text";
 
 const founders = [
   // leadership
-  { name: "Luis Coronel",      role: "Founder & CEO",                  photo: "/luisphoto.jpg",       link: "https://www.linkedin.com/in/luis-t-coronel/",          logo: "/allies/microsoftmini.png" },
-  { name: "Antonny Porlles",   role: "Co-Founder & COO",               photo: "/antonnyphoto.jpg",    link: "https://www.linkedin.com/in/antonny-porlles/",          logo: "/allies/microsoftmini.png" },
-  { name: "Nicole Jimenez",    role: "VP of Operations",               photo: "/nicole.png",          link: "https://www.linkedin.com/in/nicolejimenez824/",         logo: "/allies/accenturemini.png" },
+  { name: "Luis Coronel",      role: "Founder & CEO",                  photo: "/media/lead/team/luis.webp",       link: "https://www.linkedin.com/in/luis-t-coronel/",          logo: "/allies/microsoftmini.png" },
+  { name: "Antonny Porlles",   role: "Co-Founder & COO",               photo: "/media/lead/team/antonny.webp",    link: "https://www.linkedin.com/in/antonny-porlles/",          logo: "/allies/microsoftmini.png" },
+  { name: "Nicole Jimenez",    role: "VP of Operations",               photo: "/media/lead/team/nicole.webp",          link: "https://www.linkedin.com/in/nicolejimenez824/",         logo: "/allies/accenturemini.png" },
 
   // directors
   { name: "Abigail Briones",   role: "Dir. of Transformation",        photo: "/abigailbriones.jpeg", link: "https://www.linkedin.com/in/abigailbrionesaranda/" },
-  { name: "Jhoei Cisneros",    role: "Dir. of Events",                 photo: "/jhoel.png",           link: "#" },
+  { name: "Jhoei Cisneros",    role: "Dir. of Events",                 photo: "/media/lead/team/jhoel.webp",           link: "#" },
   { name: "Christopher Lozada",role: "Country Director, Peru",         photo: "/christopher.jpg",     link: "https://www.linkedin.com/in/christopher-lozada/" },
-  { name: "Angela Cortes",     role: "Dir. of International Exp.",     photo: "/angela.png",          link: "https://www.linkedin.com/in/angela-cortes-pabon/" },
+  { name: "Angela Cortes",     role: "Dir. of International Exp.",     photo: "/media/lead/team/angela.webp",          link: "https://www.linkedin.com/in/angela-cortes-pabon/" },
   { name: "Kiara Aguirre",     role: "Dir. of Communications",        photo: "/kiara.jpg",           link: "#" },
   { name: "Cristhy T.",        role: "Dir. of Legal & Compliance",    photo: "/cristhy.jpeg",        link: "#" },
   { name: "Ariana Cassina",    role: "Dir. of Marketing",             photo: "/ariana.jpg",          link: "#" },
