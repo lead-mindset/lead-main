@@ -2,11 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { MainContainer } from "@/components/global/main-container";
-import {
-  AboutPillarsBridge,
-  AboutPillarsWheel,
-} from "@/components/public/about-pillars-wheel";
+import { AboutPillarsWheel } from "@/components/public/about-pillars-wheel";
 import { AboutValuesSection } from "@/components/public/about-values-section";
+import { BrandScrollTrace } from "@/components/public/brand-scroll-trace";
 import { PublicRouteChooser } from "@/components/public/public-route-chooser";
 import { SectionReveal } from "@/components/public/section-reveal";
 import { Button } from "@/components/ui/button";
@@ -26,14 +24,20 @@ const teamRoster = [
 export default function AboutPage() {
   return (
     <div className="lead-public-page relative isolate overflow-x-clip text-foreground">
+      <BrandScrollTrace route="about" hideFrom="#pillars" />
+      <div className="relative z-10">
       <SectionReveal>
         <section className="relative z-10 editorial-photo-hero pt-28">
-          <Image
-            src="/media/lead/about/community-at-ibm.webp"
-            alt="LEAD students gathered at IBM Explore Day"
-            fill
-            priority
-            className="absolute inset-0 -z-10 object-cover"
+          <video
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover"
+            src="/media/lead/about/agent-innovation-day.mp4"
+            poster="/media/lead/about/agent-innovation-day.webp"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
           />
           <MainContainer className="relative z-10 flex min-h-[calc(88dvh-7rem)] items-end py-16">
             <div className="relative max-w-3xl before:absolute before:-inset-x-8 before:-inset-y-6 before:-z-10 before:bg-gradient-to-r before:from-background/80 before:via-background/55 before:to-transparent before:blur-2xl">
@@ -122,8 +126,6 @@ export default function AboutPage() {
 
         <AboutValuesSection />
 
-        <AboutPillarsBridge />
-
         <AboutPillarsWheel />
 
         <SectionReveal className="relative z-10">
@@ -199,6 +201,7 @@ export default function AboutPage() {
             description="Join the community, submit chapter interest, or start a partnership conversation."
           />
         </SectionReveal>
+      </div>
       </div>
     </div>
   );

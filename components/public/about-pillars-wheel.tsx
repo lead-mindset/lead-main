@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 
 import { MainContainer } from "@/components/global/main-container";
+import { cn } from "@/lib/cn";
 import gsap from "@/lib/gsap-setup";
 
 type Pillar = {
@@ -41,7 +42,7 @@ const pillars: Pillar[] = [
       "Promote high academic achievement and a culture of curiosity, discipline, and lifelong learning to prepare students for future success.",
     Icon: BookOpen,
     gradient:
-      "linear-gradient(135deg, var(--brand-rose), var(--primary))",
+      "linear-gradient(135deg, var(--brand-rose), var(--brand-purple))",
   },
   {
     title: "Leadership",
@@ -50,7 +51,7 @@ const pillars: Pillar[] = [
       "Develop confident, ethical leaders who inspire others and create meaningful impact in their communities and industries.",
     Icon: Award,
     gradient:
-      "linear-gradient(135deg, var(--primary), var(--accent))",
+      "linear-gradient(135deg, var(--brand-purple), var(--brand-rose))",
   },
   {
     title: "Professional Development",
@@ -59,7 +60,7 @@ const pillars: Pillar[] = [
       "Equip students with skills, mentorship, and experiences to excel in their careers and thrive in the evolving tech landscape.",
     Icon: Briefcase,
     gradient:
-      "linear-gradient(135deg, var(--brand-red-light), var(--primary))",
+      "linear-gradient(135deg, var(--brand-red-light), var(--brand-purple))",
   },
   {
     title: "Community Impact",
@@ -68,7 +69,7 @@ const pillars: Pillar[] = [
       "Inspire students to lead initiatives that transform communities, promote social responsibility, and leave a lasting legacy.",
     Icon: Globe2,
     gradient:
-      "linear-gradient(135deg, var(--accent), var(--brand-rose))",
+      "linear-gradient(135deg, var(--brand-purple-light), var(--brand-rose))",
   },
   {
     title: "Women Excellence",
@@ -86,13 +87,12 @@ const pillars: Pillar[] = [
       "Engage K-12 students with technology, leadership skills, and career opportunities to cultivate the next generation of young talent.",
     Icon: GraduationCap,
     gradient:
-      "linear-gradient(135deg, var(--primary), var(--brand-rose))",
+      "linear-gradient(135deg, var(--brand-purple), var(--brand-rose))",
   },
 ];
 
 const circle = 360;
 const orbitRadius = 39;
-const wheelTravelProgress = 0.62;
 
 function getPillarPosition(index: number, rotation = 0) {
   const angle =
@@ -102,30 +102,6 @@ function getPillarPosition(index: number, rotation = 0) {
     left: Number((50 + Math.cos(angle) * orbitRadius).toFixed(4)),
     top: Number((50 + Math.sin(angle) * orbitRadius).toFixed(4)),
   };
-}
-
-export function AboutPillarsBridge() {
-  return (
-    <section className="relative scroll-mt-28 overflow-hidden py-10 sm:py-14">
-      <MainContainer>
-        <div className="relative overflow-hidden py-10 sm:py-14">
-          <div className="pointer-events-none absolute left-1/2 top-1/2 size-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-3xl" />
-          <div className="relative mx-auto grid max-w-4xl gap-5 text-center">
-            <p className="text-small font-extrabold uppercase text-primary">
-              Values in practice
-            </p>
-            <h2 className="font-display text-h1 font-extrabold leading-tight text-foreground sm:text-display">
-              One standard for how <span className="text-gradient">LEAD grows</span>.
-            </h2>
-            <p className="mx-auto max-w-2xl text-body leading-7 text-muted-foreground">
-              Chapters, programs, mentors, and student leaders move with shared
-              expectations.
-            </p>
-          </div>
-        </div>
-      </MainContainer>
-    </section>
-  );
 }
 
 export function AboutPillarsWheel() {
@@ -164,21 +140,18 @@ export function AboutPillarsWheel() {
         const timeline = gsap.timeline({
           scrollTrigger: {
             trigger: section,
-            start: "top 18%",
-            end: "bottom 62%",
-            scrub: 0.85,
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 0.6,
             invalidateOnRefresh: true,
             onUpdate: (self) => {
-              const readableProgress = Math.min(
-                1,
-                self.progress / wheelTravelProgress
-              );
+              const progress = self.progress;
 
-              placeNodes(-circle * readableProgress);
+              placeNodes(-circle * progress);
 
               const index = Math.min(
                 pillars.length - 1,
-                Math.round(readableProgress * (pillars.length - 1))
+                Math.round(progress * (pillars.length - 1))
               );
               setActiveIndex(index);
             },
@@ -213,17 +186,16 @@ export function AboutPillarsWheel() {
   );
 
   return (
-    <section id="pillars" ref={sectionRef} className="relative scroll-mt-28 pb-12 pt-20 sm:pb-20 sm:pt-24 md:min-h-[300svh] md:py-20">
-      <MainContainer className="md:sticky md:top-24">
+    <section id="pillars" ref={sectionRef} className="relative scroll-mt-28 py-16 sm:py-24 md:min-h-[240svh] md:py-0">
+      <MainContainer className="md:sticky md:top-0 md:flex md:h-[100svh] md:flex-col md:justify-center">
         <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div className="relative mx-auto hidden aspect-square w-full max-w-[35rem] md:block">
             <div className="absolute inset-0 rounded-full border border-primary/18">
-              <div className="absolute inset-[12%] rounded-full border border-foreground/10" />
               <div
-                className="absolute inset-[27%] rounded-full ring-1 ring-primary/18 transition duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]"
+                className="absolute inset-[27%] rounded-full transition duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]"
                 style={{
                   background:
-                    "radial-gradient(circle, color-mix(in oklab, var(--primary) 14%, transparent), transparent 68%)",
+                    "radial-gradient(circle, color-mix(in oklab, var(--brand-purple) 14%, transparent), transparent 68%)",
                 }}
               />
               {pillars.map((pillar, index) => {
@@ -238,26 +210,25 @@ export function AboutPillarsWheel() {
                     aria-label={pillar.title}
                     aria-pressed={active}
                     onClick={() => setActiveIndex(index)}
-                    className="group/pillar absolute grid size-24 cursor-pointer place-items-center rounded-full bg-background/90 p-[2px] text-center transition-[background-image,color,box-shadow,transform] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/55"
+                    className="group/pillar absolute grid size-[6.75rem] cursor-pointer place-items-center rounded-full bg-background/90 p-[2px] text-center transition-[background-image,color,box-shadow,transform] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/55"
                     style={{
                       left: `${getPillarPosition(index).left}%`,
                       top: `${getPillarPosition(index).top}%`,
                       transform: "translate(-50%, -50%)",
-                      backgroundImage: active
-                        ? pillar.gradient
-                        : "linear-gradient(135deg, color-mix(in oklch, white 20%, transparent), color-mix(in oklch, var(--brand-purple-light) 18%, transparent))",
+                      backgroundImage: active ? pillar.gradient : undefined,
                     }}
                   >
                     <span
-                      className={`grid size-full place-items-center rounded-full px-2 py-3 text-caption font-extrabold leading-tight transition duration-500 ${
+                      className={cn(
+                        "grid size-full place-items-center overflow-hidden rounded-full px-1.5 py-2 text-caption font-extrabold leading-[1.05] ring-1 transition duration-500",
                         active
-                          ? "bg-transparent text-foreground shadow-[inset_0_1px_0_color-mix(in_oklch,white_20%,transparent)]"
-                          : "bg-background text-muted-foreground group-hover/pillar:text-foreground"
-                      }`}
+                          ? "bg-background/35 text-foreground ring-white/25"
+                          : "bg-card text-muted-foreground ring-white/10 group-hover/pillar:text-foreground group-hover/pillar:ring-white/20"
+                      )}
                     >
-                      <span className="grid gap-1 place-items-center">
+                      <span className="grid w-full gap-1 place-items-center">
                         <Icon className="size-5" strokeWidth={1.8} />
-                        <span>{pillar.short}</span>
+                        <span className="w-full text-center leading-[1.05]">{pillar.short}</span>
                       </span>
                     </span>
                   </button>
@@ -290,12 +261,17 @@ export function AboutPillarsWheel() {
                   {String(pillars.length).padStart(2, "0")}
                 </p>
               </div>
-              <h2 className="mt-5 font-display text-h1 font-extrabold leading-tight text-foreground sm:text-display">
-                {activePillar.title}
-              </h2>
-              <p className="text-body font-sans mt-4 text-muted-foreground">
-                {activePillar.description}
-              </p>
+              <div
+                key={activeIndex}
+                className="mt-5 motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-bottom-3 motion-safe:duration-300 motion-safe:ease-[cubic-bezier(0.32,0.72,0,1)]"
+              >
+                <h2 className="font-display text-h1 font-extrabold leading-tight text-foreground sm:text-display">
+                  {activePillar.title}
+                </h2>
+                <p className="text-body font-sans mt-4 text-muted-foreground">
+                  {activePillar.description}
+                </p>
+              </div>
             </div>
 
             <div className="mt-5 grid gap-2 md:hidden">
