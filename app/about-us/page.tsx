@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { MainContainer } from "@/components/global/main-container";
 import { AboutPillarsWheel } from "@/components/public/about-pillars-wheel";
+import { AboutOKRsSection } from "@/components/public/about-okrs-section";
 import { AboutValuesSection } from "@/components/public/about-values-section";
 import { BrandScrollTrace } from "@/components/public/brand-scroll-trace";
 import { PublicRouteChooser } from "@/components/public/public-route-chooser";
@@ -125,6 +126,8 @@ export default function AboutPage() {
 
 
         <AboutValuesSection />
+
+        <AboutOKRsSection />
 
         <AboutPillarsWheel />
 

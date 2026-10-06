@@ -19,6 +19,10 @@ import {
 } from "@/lib/public-site/content";
 
 export default function HomePage() {
+  // TEMP-HIDDEN 2026-10-06: programs section hidden at team request until relaunch.
+  // flip to true to re-enable.
+  const showPrograms = false;
+
   return (
     <div className="lead-public-page relative isolate overflow-x-clip text-foreground">
       <div className="relative z-10">
@@ -41,9 +45,11 @@ export default function HomePage() {
 
           <LeadPathway stages={pathwayStages} />
 
-          <SectionReveal>
-            <ProgramsVideoCarousel programs={programs} />
-          </SectionReveal>
+          {showPrograms ? (
+            <SectionReveal>
+              <ProgramsVideoCarousel programs={programs} />
+            </SectionReveal>
+          ) : null}
 
           <SectionReveal>
             <ChapterLaunchSection />
