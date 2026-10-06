@@ -15,17 +15,17 @@ const values = [
   {
     title: "Purpose",
     description: "Every program should connect to a clearer next step for students.",
-    className: "from-[var(--brand-rose)] via-[var(--brand-rose)] to-primary",
+    className: "from-[var(--brand-red-light)] via-[var(--brand-rose)] to-[var(--brand-purple)]",
   },
   {
     title: "Excellence",
     description: "Preparation, responsibility, and follow-through protect the culture.",
-    className: "from-primary via-[var(--brand-purple-light)] to-[var(--accent)]",
+    className: "from-[var(--brand-rose)] via-[var(--brand-purple)] to-[var(--brand-purple-light)]",
   },
   {
     title: "Impact",
     description: "Activity matters only when it creates access, confidence, and proof.",
-    className: "from-foreground via-primary to-[var(--brand-rose)]",
+    className: "from-[var(--brand-purple)] via-[var(--brand-purple-light)] to-[var(--brand-red)]",
   },
 ];
 
@@ -49,25 +49,22 @@ export function AboutValuesSection() {
 
       mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
         const circles = gsap.utils.toArray<HTMLElement>("[data-value-circle]");
-        const label = stage.querySelector<HTMLElement>("[data-values-label]");
 
         gsap.set(circles, {
           xPercent: -50,
           yPercent: -50,
-          x: (index) => [-148, 126, -118, 152][index] ?? 0,
-          y: (index) => [-112, -86, 102, 118][index] ?? 0,
-          rotate: (index) => [-8, 7, 6, -6][index] ?? 0,
-          scale: 0.94,
+          x: 0,
+          y: 0,
+          rotate: 0,
+          scale: 0.68,
           transformOrigin: "50% 50%",
         });
-
-        gsap.set(label, { autoAlpha: 0.44, scale: 0.98 });
 
         const timeline = gsap.timeline({
           scrollTrigger: {
             trigger: stage,
-            start: "top 78%",
-            end: "bottom 38%",
+            start: "top 82%",
+            end: "bottom 40%",
             scrub: 0.7,
             invalidateOnRefresh: true,
           },
@@ -75,22 +72,21 @@ export function AboutValuesSection() {
 
         timeline
           .to(circles, {
+            x: (index) => [-148, 126, -118, 152][index] ?? 0,
+            y: (index) => [-112, -86, 102, 118][index] ?? 0,
+            rotate: (index) => [-8, 7, 6, -6][index] ?? 0,
+            scale: 0.94,
+            ease: "power3.out",
+            stagger: 0.05,
+          })
+          .to(circles, {
             x: (index) => [-128, 94, -104, 112][index] ?? 0,
             y: (index) => [-96, -82, 100, 96][index] ?? 0,
             rotate: 0,
             scale: (index) => [0.98, 0.96, 0.96, 0.98][index] ?? 0.96,
             ease: "power3.out",
             stagger: 0.05,
-          })
-          .to(
-            label,
-            {
-              autoAlpha: 0.82,
-              scale: 1,
-              ease: "power3.out",
-            },
-            "<"
-          );
+          });
 
         return () => {
           timeline.scrollTrigger?.kill();
@@ -122,15 +118,8 @@ export function AboutValuesSection() {
 
             <div
               ref={stageRef}
-              className="relative min-h-[28rem] overflow-hidden rounded-3xl border border-foreground/10 bg-background/42 p-5 shadow-[inset_0_1px_0_color-mix(in_oklch,white_8%,transparent)] sm:min-h-[34rem] sm:p-8"
+              className="relative min-h-[28rem] overflow-hidden rounded-3xl p-5 sm:min-h-[34rem] sm:p-8"
             >
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_48%,color-mix(in_oklch,var(--brand-purple-light)_16%,transparent),transparent_20rem)]" />
-              <p
-                data-values-label
-                className="absolute left-1/2 top-1/2 z-0 hidden max-w-[14rem] -translate-x-1/2 -translate-y-1/2 text-center font-display text-h1 font-extrabold leading-none text-foreground/72 sm:text-display md:block"
-              >
-                Our Values
-              </p>
 
               <div className="relative z-10 hidden min-h-[30rem] place-items-center md:grid">
                 {values.map((value, index) => (
@@ -143,7 +132,7 @@ export function AboutValuesSection() {
                     transform: `translate(calc(-50% + ${desktopValuePositions[index].x}px), calc(-50% + ${desktopValuePositions[index].y}px)) rotate(${desktopValuePositions[index].rotate}deg) scale(${desktopValuePositions[index].scale})`,
                   }}
                 >
-                    <div className="grid size-full place-items-center rounded-full bg-background/18 px-5 ring-1 ring-foreground/20">
+                    <div className="grid size-full place-items-center rounded-full px-5 ring-1 ring-foreground/20">
                       <div>
                         <h3 className="font-display text-h2 font-extrabold text-foreground sm:text-h1">
                           {value.title}
@@ -175,7 +164,7 @@ export function AboutValuesSection() {
                       ][index],
                     }}
                   >
-                    <div className="grid size-full place-items-center rounded-full bg-background/18 px-4 ring-1 ring-foreground/20">
+                    <div className="grid size-full place-items-center rounded-full px-4 ring-1 ring-foreground/20">
                       <h3 className="font-display text-h3 font-extrabold text-foreground">
                         {value.title}
                       </h3>

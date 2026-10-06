@@ -132,10 +132,10 @@ export function StarfieldImpactCounters({ stats }: { stats: ProofStat[] }) {
     <section
       ref={sectionRef}
       id="impact"
-      className="relative isolate -mt-14 scroll-mt-24 overflow-visible pb-14 pt-28 sm:-mt-24 sm:pb-24 sm:pt-48"
+      className="pointer-events-none relative isolate -mt-14 scroll-mt-24 overflow-visible pb-14 pt-28 sm:-mt-24 sm:pb-24 sm:pt-48"
     >
       <div className="lead-impact-aura" />
-      <MainContainer>
+      <MainContainer className="pointer-events-auto">
         {primaryStat && (
           <div
             role="listitem"

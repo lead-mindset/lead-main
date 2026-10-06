@@ -78,9 +78,9 @@ export function ProgramsVideoCarousel({ programs }: { programs: Program[] }) {
     "motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-bottom-2 motion-safe:duration-500 motion-safe:ease-[cubic-bezier(0.32,0.72,0,1)]";
 
   return (
-    <section id="programs" className="relative isolate -mt-10 scroll-mt-24 overflow-visible pb-12 pt-20 sm:-mt-16 sm:pb-16 sm:pt-28">
+    <section id="programs" className="pointer-events-none relative isolate -mt-10 scroll-mt-24 overflow-visible pb-12 pt-20 sm:-mt-16 sm:pb-16 sm:pt-28">
       <div className="lead-programs-aura" />
-      <MainContainer>
+      <MainContainer className="pointer-events-auto">
         <div className="grid gap-5 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
           <div>
             <p className="text-overline font-sans font-bold uppercase text-primary">

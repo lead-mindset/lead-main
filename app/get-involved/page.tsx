@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 
 import { MainContainer } from "@/components/global/main-container";
@@ -69,7 +70,7 @@ export default function GetInvolvedPage() {
             <div>
               <p className="text-overline font-sans font-bold uppercase text-primary">Student path</p>
               <h2 className="text-h1 font-display font-semibold mt-3">
-                Join the community. The Talent Platform is in development.
+                Join the community.
               </h2>
               <p className="text-body font-sans mt-4 max-w-2xl text-muted-foreground">
                 LEAD&apos;s Talent Platform, where students build profiles and
@@ -77,18 +78,6 @@ export default function GetInvolvedPage() {
                 In the meantime, join the community through programs, chapters,
                 and events.
               </p>
-              <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                {["Join the community", "Explore programs", "Build your story"].map((step, index) => (
-                  <div
-                    key={step}
-                    data-lead-motion="card"
-                    className="rounded-xl border border-border/65 bg-foreground/[0.025] px-4 py-4 shadow-[inset_0_1px_0_color-mix(in_oklch,white_4%,transparent)]"
-                  >
-                    <p className="text-caption font-bold text-primary">{String(index + 1).padStart(2, "0")}</p>
-                    <p className="mt-2 text-small font-semibold text-foreground">{step}</p>
-                  </div>
-                ))}
-              </div>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                 <Button asChild size="lg">
                   <Link href={publicCtas.programs} {...externalProps(publicCtas.programs)}>
@@ -122,29 +111,25 @@ export default function GetInvolvedPage() {
               </div>
             </div>
 
-            <div
-              data-lead-motion="card"
-              className="rounded-2xl border border-border/70 bg-foreground/[0.025] p-5 shadow-[inset_0_1px_0_color-mix(in_oklch,white_4%,transparent)] sm:p-6"
-            >
-              <p className="text-small font-sans font-bold uppercase text-primary">What to include</p>
-              <div className="mt-5 grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-                {["University", "Student team", "Why LEAD matters"].map((item, index) => (
-                  <div
-                    key={item}
-                    className="rounded-xl bg-background/40 p-4 ring-1 ring-border/60"
-                  >
-                    <p className="text-caption font-bold text-primary">
-                      {String(index + 1).padStart(2, "0")}
-                    </p>
-                    <p className="mt-2 text-small font-bold leading-snug text-foreground">
-                      {item}
-                    </p>
-                  </div>
-                ))}
+            <div data-lead-motion="card" className="grid grid-cols-2 gap-3">
+              <div className="relative overflow-hidden rounded-2xl border border-border/70 shadow-[inset_0_1px_0_color-mix(in_oklch,white_4%,transparent)]">
+                <Image
+                  src="/media/lead/get-involved/chapters-photo-4.webp"
+                  alt="LEAD university chapter students"
+                  width={800}
+                  height={1000}
+                  className="aspect-[4/5] w-full object-cover"
+                />
               </div>
-              <p className="mt-5 text-sm leading-6 text-muted-foreground">
-                Keep it simple. The form is only the first step.
-              </p>
+              <div className="relative overflow-hidden rounded-2xl border border-border/70 shadow-[inset_0_1px_0_color-mix(in_oklch,white_4%,transparent)]">
+                <Image
+                  src="/media/lead/get-involved/chapters-photo-3.webp"
+                  alt="LEAD chapter team building together"
+                  width={800}
+                  height={1000}
+                  className="aspect-[4/5] w-full object-cover"
+                />
+              </div>
             </div>
           </MainContainer>
         </section>
@@ -154,13 +139,19 @@ export default function GetInvolvedPage() {
         <section id="partners" className="scroll-mt-24 py-14 sm:py-20">
           <MainContainer className="grid gap-8 lg:grid-cols-2 lg:items-stretch">
             <div className="order-1 lg:order-1">
-              <div
-                className="partner-media-panel relative overflow-hidden rounded-xl border border-border shadow-[inset_0_1px_0_color-mix(in_oklch,white_9%,transparent)]"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(180deg, color-mix(in_oklch,var(--background)_12%,transparent), color-mix(in_oklch,var(--background)_88%,transparent)), url('/media/lead/highlights/ibm-explore-day-speakers.webp')",
-                }}
-              >
+              <div className="partner-media-panel relative overflow-hidden rounded-xl border border-border shadow-[inset_0_1px_0_color-mix(in_oklch,white_9%,transparent)]">
+                <video
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+                  src="/media/lead/get-involved/partner-utp-hackathon.mp4"
+                  poster="/media/lead/get-involved/partner-utp-hackathon.webp"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/85 via-background/30 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-5">
                   <p className="text-h3 font-display font-semibold max-w-xl text-foreground">
                     Bring students closer to real opportunity.

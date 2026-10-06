@@ -5,7 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import gsap from "@/lib/gsap-setup";
 
-export type BrandScrollTraceRoute = "home";
+export type BrandScrollTraceRoute = "home" | "about";
 
 type JourneyRoute = {
   id: BrandScrollTraceRoute;
@@ -23,6 +23,7 @@ const VIEWBOX_WIDTH = 1440;
 const DEFAULT_VIEWBOX_HEIGHT = 6200;
 const PATH_SAMPLE_COUNT = 1200;
 const VIEWPORT_ANCHOR_RATIO = 0.56;
+
 const ACTIVE_SEGMENT_RATIO = 0.1;
 const ACTIVE_SEGMENT_MIN_LENGTH = 420;
 const ACTIVE_SEGMENT_MAX_LENGTH = 720;
@@ -62,6 +63,16 @@ const HOME_TRACE_PATH = smoothRoutePath([
   [1560, 6420],
 ]);
 
+const ABOUT_TRACE_PATH = smoothRoutePath([
+  [1180, -180],
+  [300, 900],
+  [1160, 2020],
+  [320, 3280],
+  [1180, 4460],
+  [340, 5560],
+  [1140, 6420],
+]);
+
 const JOURNEY_ROUTES: Record<BrandScrollTraceRoute, JourneyRoute> = {
   home: {
     id: "home",
@@ -72,12 +83,23 @@ const JOURNEY_ROUTES: Record<BrandScrollTraceRoute, JourneyRoute> = {
     activeOpacity: 0.4,
     reducedMotionOpacity: 0.14,
   },
+  about: {
+    id: "about",
+    path: ABOUT_TRACE_PATH,
+    viewBoxHeight: DEFAULT_VIEWBOX_HEIGHT,
+    strokeWidth: 56,
+    trailOpacity: 0.07,
+    activeOpacity: 0.34,
+    reducedMotionOpacity: 0.12,
+  },
 };
 
 export function BrandScrollTrace({
   route = "home",
+  hideFrom,
 }: {
   route?: BrandScrollTraceRoute;
+  hideFrom?: string;
 }) {
   const routeConfig = JOURNEY_ROUTES[route] ?? JOURNEY_ROUTES.home;
   const containerRef = useRef<HTMLDivElement>(null);
@@ -205,6 +227,31 @@ export function BrandScrollTrace({
 
     return () => mm.revert();
   }, [routeConfig]);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container || !hideFrom) return;
+
+    const target = document.querySelector<HTMLElement>(hideFrom);
+    if (!target) return;
+
+    const tween = gsap.to(container, {
+      autoAlpha: 0,
+      ease: "none",
+      scrollTrigger: {
+        trigger: target,
+        start: "top bottom",
+        end: "top center",
+        scrub: true,
+        invalidateOnRefresh: true,
+      },
+    });
+
+    return () => {
+      tween.scrollTrigger?.kill();
+      tween.kill();
+    };
+  }, [hideFrom]);
 
   return (
     <div
