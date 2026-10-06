@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "check:media": "node scripts/check-media-budget.mjs",
     "media:linkedin": "node tools/media/download-linkedin-videos-ytdlp.js",
     "media:linkedin:taplio": "node tools/media/download-linkedin-videos-taplio.js",
     "media:instagram": "node tools/media/download-instagram-gallery-dl.js",

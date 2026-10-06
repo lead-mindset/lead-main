@@ -174,7 +174,7 @@ export default function AboutPage() {
                             width={104}
                             height={104}
                             sizes="(min-width: 1024px) 81px, 74px"
-                            loading="eager"
+                            loading="lazy"
                             className="size-full object-cover"
                           />
                         </div>
