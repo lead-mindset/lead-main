@@ -76,7 +76,7 @@ export function VideoHero({
       <video
         ref={videoRef}
         aria-hidden="true"
-        className="absolute inset-0 -z-20 h-full w-full object-cover object-[48%_center] sm:object-[54%_center] lg:object-[52%_center]"
+        className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover object-[48%_center] sm:object-[54%_center] lg:object-[52%_center]"
         src={videoSrc}
         poster={posterSrc}
         autoPlay
@@ -87,13 +87,13 @@ export function VideoHero({
         preload="metadata"
         tabIndex={-1}
       />
-      <div className="absolute inset-0 -z-10" style={heroWashStyle} />
+      <div className="pointer-events-none absolute inset-0 -z-10" style={heroWashStyle} />
       <div
         className="pointer-events-none absolute inset-x-0 bottom-0 z-0"
         style={heroBottomWashStyle}
       />
 
-      <MainContainer className="relative z-10 flex min-h-[calc(88svh-4rem)] flex-col justify-end pb-9 pt-20 sm:min-h-[calc(94svh-4rem)] sm:pb-14 lg:pb-16">
+      <MainContainer className="relative z-20 flex min-h-[calc(88svh-4rem)] flex-col justify-end pb-9 pt-20 sm:min-h-[calc(94svh-4rem)] sm:pb-14 lg:pb-16">
         <div className="max-w-4xl">
           <p className="text-small font-sans font-semibold uppercase text-primary">
             LEAD Americas
