@@ -16,7 +16,9 @@ const CONTACT_TO = process.env.CONTACT_TO ?? "contact@leadmindset.org";
  * chapter-interest routing (Angela feedback, oct 2026).
  */
 const RECIPIENTS = {
-  chapter_interest: process.env.CHAPTER_INTEREST_TO ?? CONTACT_TO,
+  chapter_interest:
+    process.env.CHAPTER_INTEREST_TO ??
+    "ocastro@leadmindset.org, clozada@leadmindset.org",
   partnership: process.env.PARTNERSHIP_TO ?? CONTACT_TO,
 } as const;
 
@@ -67,7 +69,7 @@ export async function POST(req: NextRequest) {
       try {
         const result = await resend.emails.send({
           from: CONTACT_FROM,
-          to: recipient,
+          to: recipient.split(/,\s*/),
           replyTo: stringValue(body.email),
           subject,
           text,
