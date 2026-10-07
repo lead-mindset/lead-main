@@ -393,5 +393,4 @@ export const finalPaths = [
   { label: "About us", href: publicCtas.about, icon: Info },
   { label: "Submit chapter interest", href: publicCtas.chapter, icon: MapPinPlus },
   { label: "Partner with LEAD", href: publicCtas.partner, icon: Handshake },
-  { label: "Community Collaboration", href: publicCtas.community, icon: Users },
 ];

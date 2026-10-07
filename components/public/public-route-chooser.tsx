@@ -24,11 +24,6 @@ const routeDetails: Record<string, { description: string; action: string }> = {
       "Bring mentorship, events, resources, or hands-on opportunities to the students we serve.",
     action: "Start partnership",
   },
-  "Community Collaboration": {
-    description:
-      "Build aligned STEM, leadership, or access initiatives with LEAD to widen access together.",
-    action: "Collaborate with LEAD",
-  },
 };
 
 type PublicRouteChooserProps = {
