@@ -85,7 +85,7 @@ const init = () => {
       <Html position={[0.3, -0.1, 1]} center>
         <div
           ref={peruRef}
-          className="flex items-center sm:space-x-2 text-2xl  text-foreground font-bold p-2 rounded"
+          className="card-title flex items-center rounded p-2 text-foreground sm:space-x-2"
         >
           <span className="fi fi-pe" />
           <span className="max-md:hidden">Peru</span>
@@ -95,7 +95,7 @@ const init = () => {
       <Html position={[-0.2, 0.6, 0.85]} center>
         <div
           ref={usaRef}
-          className="flex items-center space-x-2 text-2xl  text-foreground font-bold p-2 rounded"
+          className="card-title flex items-center space-x-2 rounded p-2 text-foreground"
         >
           <span className="fi fi-us" />
           <span className="max-md:hidden">USA</span>

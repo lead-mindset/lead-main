@@ -50,7 +50,7 @@ export default function PinnedSlogan() {
         className="absolute inset-0 flex items-center justify-center scale-0 opacity-0"
       >
         <div className="mx-auto relative w-fit text-left">
-          <h1 className="font-bold text-6xl lg:text-8xl">
+          <h1 className="pathway-display-title">
             <span className="block text-chart-1">Learn</span>
             <span className="block text-chart-2">Explore</span>
             <span className="block text-chart-3">Aspire</span>

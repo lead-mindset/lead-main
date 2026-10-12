@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useLayoutEffect } from "react";
+import { useRef, useLayoutEffect, useMemo } from "react";
 import * as THREE from "three";
 import gsap from "@/lib/gsap-setup";
 
@@ -35,7 +35,7 @@ export default function Galaxy() {
     });
   }, []);
 
-  const { positions, colors } = (() => {
+  const { positions, colors } = useMemo(() => {
     const count = 8000;
     const radius = 20;
     const branches = 5;
@@ -50,13 +50,13 @@ export default function Galaxy() {
 
     for (let i = 0; i < count; i++) {
       const i3 = i * 3;
-      const r = Math.pow(Math.random(), 1.6) * radius;
+      const r = Math.pow(seededRandom(i * 7 + 1), 1.6) * radius;
       const branchAngle = ((i % branches) / branches) * Math.PI * 2;
       const spinAngle = r * spin;
 
-      const randomX = Math.pow(Math.random(), 2) * (Math.random() < 0.5 ? 1 : -1) * randomness;
-      const randomY = Math.pow(Math.random(), 2) * (Math.random() < 0.5 ? 1 : -1) * randomness;
-      const randomZ = Math.pow(Math.random(), 2) * (Math.random() < 0.5 ? 1 : -1) * randomness;
+      const randomX = Math.pow(seededRandom(i * 7 + 2), 2) * (seededRandom(i * 7 + 3) < 0.5 ? 1 : -1) * randomness;
+      const randomY = Math.pow(seededRandom(i * 7 + 4), 2) * (seededRandom(i * 7 + 5) < 0.5 ? 1 : -1) * randomness;
+      const randomZ = Math.pow(seededRandom(i * 7 + 6), 2) * (seededRandom(i * 7 + 7) < 0.5 ? 1 : -1) * randomness;
 
       positions[i3] = Math.cos(branchAngle + spinAngle) * r + randomX;
       positions[i3 + 1] = randomY * 0.2;
@@ -71,7 +71,7 @@ export default function Galaxy() {
     }
 
     return { positions, colors };
-  })();
+  }, []);
 
   return (
     <group ref={groupRef}>
@@ -92,4 +92,9 @@ export default function Galaxy() {
       </points>
     </group>
   );
+}
+
+function seededRandom(seed: number) {
+  const value = Math.sin(seed) * 10000;
+  return value - Math.floor(value);
 }

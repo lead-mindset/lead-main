@@ -1,26 +1,39 @@
-
 import type { Metadata } from "next";
 import "./globals.css";
 import NavHeader from "@/components/global/navigation/NavHeader";
-import { Raleway } from "next/font/google";
-import "../lib/gsap-setup"; // eslint-disable-line @typescript-eslint/no-unused-vars
-import { GoogleAnalytics } from '@next/third-parties/google'
-
-const outfit = Raleway({ subsets: ['latin'], variable: '--font-sans' });
-
-const geistSans = Raleway({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Raleway({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Footer from "@/components/global/footer";
+import SmoothScroll from "@/components/global/smooth-scroll";
+import { montserrat, sourceSans } from "./styles/fonts";
+import { GeistSans } from "geist/font/sans";
+import "@/lib/gsap-setup";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
-  title: "LEAD",
-  description: "Learn. Explore. Aspire. Discover.",
+  title: "LEAD | Building the next generation of leaders across the Americas",
+  description:
+    "A student-led non-profit connecting students across the Americas in STEM learning, leadership, and opportunity.",
+  openGraph: {
+    type: "website",
+    siteName: "LEAD",
+    title: "LEAD | Building the next generation of leaders across the Americas",
+    description:
+      "A student-led non-profit connecting students across the Americas in STEM learning, leadership, and opportunity.",
+    images: [
+      {
+        url: "/media/lead/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "LEAD students across the Americas",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "LEAD | Building the next generation of leaders across the Americas",
+    description:
+      "A student-led non-profit connecting students across the Americas in STEM learning, leadership, and opportunity.",
+    images: ["/media/lead/og.jpg"],
+  },
 };
 
 export default function RootLayout({
@@ -28,14 +41,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+
   return (
-    <html lang="en" className={outfit.variable}>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="en" className={`${montserrat.variable} ${sourceSans.variable} ${GeistSans.variable}`}>
+      <body className="antialiased">
+        <SmoothScroll />
         <NavHeader />
-        {children}
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
+        <main>{children}</main>
+        <Footer />
+        {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
       </body>
     </html>
   );

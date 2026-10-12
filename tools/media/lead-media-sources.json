@@ -1,0 +1,124 @@
+{
+  "scrape_reference_date": "2026-05-27",
+  "sources": [
+    {
+      "platform": "instagram",
+      "kind": "main",
+      "account": "lead_americas",
+      "name": "LEAD Americas",
+      "url": "https://www.instagram.com/lead_americas/"
+    },
+    {
+      "platform": "instagram",
+      "kind": "chapter",
+      "account": "lead_pucp",
+      "name": "LEAD PUCP",
+      "url": "https://instagram.com/lead_pucp"
+    },
+    {
+      "platform": "instagram",
+      "kind": "chapter",
+      "account": "lead.tecsup",
+      "name": "LEAD TECSUP",
+      "url": "https://instagram.com/lead.tecsup"
+    },
+    {
+      "platform": "instagram",
+      "kind": "chapter",
+      "account": "lead_ucsur",
+      "name": "LEAD UCSUR",
+      "url": "https://instagram.com/lead_ucsur"
+    },
+    {
+      "platform": "instagram",
+      "kind": "chapter",
+      "account": "lead.at.ulima",
+      "name": "LEAD ULIMA",
+      "url": "https://instagram.com/lead.at.ulima"
+    },
+    {
+      "platform": "instagram",
+      "kind": "chapter",
+      "account": "lead_uni",
+      "name": "LEAD UNI",
+      "url": "https://instagram.com/lead_uni"
+    },
+    {
+      "platform": "instagram",
+      "kind": "chapter",
+      "account": "lead_unmsm",
+      "name": "LEAD UNMSM",
+      "url": "https://instagram.com/lead_unmsm"
+    },
+    {
+      "platform": "instagram",
+      "kind": "chapter",
+      "account": "lead_unsa",
+      "name": "LEAD UNSA",
+      "url": "https://instagram.com/lead_unsa"
+    },
+    {
+      "platform": "instagram",
+      "kind": "chapter",
+      "account": "lead_pacifico",
+      "name": "LEAD UP",
+      "url": "https://instagram.com/lead_pacifico"
+    },
+    {
+      "platform": "instagram",
+      "kind": "chapter",
+      "account": "lead.upc",
+      "name": "LEAD UPC",
+      "url": "https://instagram.com/lead.upc"
+    },
+    {
+      "platform": "instagram",
+      "kind": "chapter",
+      "account": "lead_upn",
+      "name": "LEAD UPN",
+      "url": "https://instagram.com/lead_upn"
+    },
+    {
+      "platform": "instagram",
+      "kind": "chapter",
+      "account": "leadupn_trujillo",
+      "name": "LEAD UPN TRUJILLO",
+      "url": "https://instagram.com/leadupn_trujillo"
+    },
+    {
+      "platform": "instagram",
+      "kind": "chapter",
+      "account": "lead.usil",
+      "name": "LEAD USIL",
+      "url": "https://instagram.com/lead.usil"
+    },
+    {
+      "platform": "instagram",
+      "kind": "chapter",
+      "account": "lead.utec",
+      "name": "LEAD UTEC",
+      "url": "https://instagram.com/lead.utec"
+    },
+    {
+      "platform": "instagram",
+      "kind": "chapter",
+      "account": "lead_utp",
+      "name": "LEAD UTP",
+      "url": "https://instagram.com/lead_utp"
+    },
+    {
+      "platform": "instagram",
+      "kind": "chapter",
+      "account": "lead.villarreal",
+      "name": "LEAD VILLAREAL",
+      "url": "https://instagram.com/lead.villarreal"
+    },
+    {
+      "platform": "linkedin",
+      "kind": "company",
+      "account": "leadmindsetorg",
+      "name": "LEAD LinkedIn Company Page",
+      "url": "https://www.linkedin.com/company/leadmindsetorg/posts/?feedView=all"
+    }
+  ]
+}

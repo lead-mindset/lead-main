@@ -1,0 +1,26 @@
+[
+  {
+    "platform": "instagram",
+    "account": "lead_pacifico",
+    "source_name": "LEAD UP",
+    "status": "failed_not_found",
+    "evidence": "gallery-dl returned NotFoundError for lead_pacifico. Candidate handles lead.up and lead.pacifico also returned NotFoundError.",
+    "next_action": "Verify the current Universidad del Pacifico chapter handle with LEAD before retrying."
+  },
+  {
+    "platform": "instagram",
+    "account": "lead_upn",
+    "source_name": "LEAD UPN",
+    "status": "resolved_after_retry",
+    "evidence": "Initial run missed DKHzDR9xcQO_4.jpg after repeated Instagram CDN 503 responses. A source-only retry downloaded the missing image successfully.",
+    "next_action": "No action needed unless future validation finds another missing file."
+  },
+  {
+    "platform": "instagram",
+    "account": "lead.utec",
+    "source_name": "LEAD UTEC",
+    "status": "corrected_archived",
+    "evidence": "Registry previously used lead_utec, but public LEAD UTEC references point to @lead.utec. The corrected account downloaded successfully.",
+    "next_action": "Keep lead.utec in the source registry."
+  }
+]

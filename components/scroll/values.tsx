@@ -54,11 +54,11 @@ export default function Values() {
           className={`circle absolute w-56 h-56 rounded-full flex items-center justify-center text-center p-2 bg-gradient-to-br ${colors[i]}`}
           style={{ zIndex: i + 10 }}
         >
-          <h1 className="text-white font-bold text-2xl">{value}</h1>
+          <h1 className="card-title text-white">{value}</h1>
         </div>
       ))}
 
-      <h1 className="absolute text-white text-4xl font-bold z-0">
+      <h1 className="section-title absolute z-0 text-white">
         Our Values
       </h1>
     </div>

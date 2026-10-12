@@ -1,0 +1,55 @@
+import { MainContainer } from "@/components/global/main-container";
+import { ChapterInterestDialog } from "@/components/public/public-interest-dialog";
+
+export function ChapterLaunchSection() {
+  return (
+    <section id="chapters" className="relative scroll-mt-24 pb-16 pt-20 sm:pb-20 sm:pt-28">
+      <MainContainer>
+        <div className="grid gap-7 lg:grid-cols-[0.86fr_1.14fr] lg:items-center">
+          <div>
+            <p className="text-overline font-sans font-bold uppercase text-primary">
+              University chapters
+            </p>
+            <h2 className="text-h1 font-display font-semibold mt-4 max-w-2xl">
+              Want to bring LEAD to your university?
+            </h2>
+            <p className="text-body font-sans mt-4 max-w-xl text-muted-foreground">
+              Share your university, your team, and why LEAD would matter there.
+              A request starts the conversation; it does not create a chapter automatically.
+            </p>
+
+            <div className="mt-7">
+              <ChapterInterestDialog />
+            </div>
+          </div>
+
+          <div data-lead-motion="card" className="overflow-hidden rounded-2xl border border-border bg-card">
+            <div className="relative aspect-[16/10]">
+              <video
+                aria-hidden="true"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                poster="/media/lead/chapters/villarreal-chapter-team.webp"
+                disablePictureInPicture
+                tabIndex={-1}
+                className="h-full w-full object-cover object-center"
+              >
+                <source
+                  src="/media/lead/chapters/villarreal-chapter-team.mp4"
+                  type="video/mp4"
+                />
+              </video>
+              <div className="absolute inset-0 bg-gradient-to-t from-background/78 via-background/8 to-transparent" />
+              <p className="text-h3 font-display font-semibold absolute bottom-5 left-5 right-5 max-w-xl text-foreground">
+                University chapters make LEAD local, visible, and student-led.
+              </p>
+            </div>
+          </div>
+        </div>
+      </MainContainer>
+    </section>
+  );
+}

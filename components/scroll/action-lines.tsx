@@ -3,24 +3,27 @@
 import { useRef, useMemo, useLayoutEffect } from "react";
 import * as THREE from "three";
 import gsap from "@/lib/gsap-setup";
+
+type StarMesh = THREE.Mesh<THREE.ShapeGeometry, THREE.MeshBasicMaterial>;
+
 export default function ActionLines() {
   const starsRef = useRef<THREE.Group>(null);
 
   const stars = useMemo(() => {
-    return Array.from({ length: 160 }, () => ({
-      x: (Math.random() - 0.5) * 50,
-      y: (Math.random() - 0.5) * 50,
-      z: -Math.random() * 200 - 20,
-      scale: Math.random() * 0.2 + 0.05,
+    return Array.from({ length: 160 }, (_, index) => ({
+      x: (seededRandom(index * 4 + 1) - 0.5) * 50,
+      y: (seededRandom(index * 4 + 2) - 0.5) * 50,
+      z: -seededRandom(index * 4 + 3) * 200 - 20,
+      scale: seededRandom(index * 4 + 4) * 0.2 + 0.05,
     }));
   }, []);
 
   useLayoutEffect(() => {
     if (!starsRef.current) return;
 
-    const meshes = starsRef.current.children as THREE.Mesh[];
+    const meshes = starsRef.current.children as StarMesh[];
 
-    meshes.forEach((mesh: any) => {
+    meshes.forEach((mesh) => {
       mesh.userData.startZ = mesh.position.z;
       mesh.material.transparent = true;
       mesh.material.opacity = 1;
@@ -62,7 +65,7 @@ export default function ActionLines() {
     );
 
     tl.to(
-      meshes.map((m: any) => m.material),
+      meshes.map((m) => m.material),
       {
         opacity: 0,
         duration: 0.3,
@@ -105,4 +108,9 @@ export default function ActionLines() {
       ))}
     </group>
   );
+}
+
+function seededRandom(seed: number) {
+  const value = Math.sin(seed) * 10000;
+  return value - Math.floor(value);
 }

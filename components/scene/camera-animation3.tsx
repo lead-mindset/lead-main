@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/immutability */
+
 import { useThree } from "@react-three/fiber";
 import { useRef } from "react";
 import gsap from "gsap";
@@ -20,7 +22,7 @@ export default function CameraAnimation3() {
     camera.position.set(base.current.x, base.current.y, base.current.z);
     camera.lookAt(0, 0, 0);
 
-    const globalST = ScrollTrigger.create({
+    ScrollTrigger.create({
       trigger: document.documentElement,
       start: "top top",
       end: "bottom bottom",

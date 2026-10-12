@@ -36,7 +36,7 @@ export default function JoinSlackCommunity() {
               <Link target="_blank" href='https://join.slack.com/t/leadmindsetworkspace/shared_invite/zt-3k9782iqo-lm1xNxkptWdSbkkXOR5mvg'>                               <Button className="w-fit mb-4">Join our Slack</Button>
               </Link>
 
-              <p className="text-white/80 text-xl md:text-2xl mb-8 max-w-xl">
+              <p className="section-subtitle mb-8 max-w-xl text-white/80">
                 Our main space to connect, collaborate, and stay aligned. Share
                 updates, ask questions, celebrate wins, and grow together.
               </p>
@@ -54,7 +54,7 @@ export default function JoinSlackCommunity() {
                   className="js-feature flex items-start gap-3 bg-popover rounded-xl px-5 py-4"
                 >
                   <span className="mt-2 w-2 h-2 rounded-full bg-white shrink-0" />
-                  <span className="md:text-xl text-white/90">{item}</span>
+                  <span className="body-copy text-white/90">{item}</span>
                 </div>
               ))}
             </div>

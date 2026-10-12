@@ -1,0 +1,158 @@
+"use client";
+
+import { Suspense, useMemo, useRef } from "react";
+import { Canvas } from "@react-three/fiber";
+import { Html, OrbitControls, useGLTF } from "@react-three/drei";
+import { useGSAP } from "@gsap/react";
+import type { Group } from "three";
+import type { GLTF } from "three-stdlib";
+
+import gsap from "@/lib/gsap-setup";
+import { REDUCED_MOTION_QUERY } from "@/components/global/motion-guidelines";
+import { cn } from "@/lib/cn";
+
+type ModelKind = "earth" | "rocket";
+
+const modelConfig = {
+  earth: {
+    src: "/models/earthbase.glb",
+    scale: 1.18,
+    position: [0, -0.72, 0] as [number, number, number],
+    rotation: [0.1, -0.7, 0] as [number, number, number],
+    camera: { position: [0, 0, 6] as [number, number, number], fov: 42 },
+  },
+  rocket: {
+    src: "/models/rocket.glb",
+    scale: 0.42,
+    position: [0, -0.38, 0] as [number, number, number],
+    rotation: [0.35, -1.9, 0.05] as [number, number, number],
+    camera: { position: [0, 0, 7.2] as [number, number, number], fov: 54 },
+  },
+};
+
+export function ControlledModelStage({
+  kind,
+  eyebrow,
+  title,
+  description,
+  className,
+}: {
+  kind: ModelKind;
+  eyebrow: string;
+  title: string;
+  description: string;
+  className?: string;
+}) {
+  const config = modelConfig[kind];
+  const copyPlacement =
+    kind === "earth"
+      ? "inset-x-0 top-0 bg-gradient-to-b from-background via-background/72 to-transparent"
+      : "inset-x-0 bottom-0 bg-gradient-to-t from-background via-background/75 to-transparent";
+
+  return (
+    <div className={cn("editorial-card relative overflow-hidden rounded-2xl p-0", className)}>
+      <div aria-hidden="true" className="aspect-[16/10] min-h-[340px] sm:min-h-[380px]">
+        <Canvas camera={config.camera} dpr={[1, 1.5]}>
+          <ambientLight intensity={1.4} />
+          <directionalLight position={[4, 4, 4]} intensity={2.2} />
+          <Suspense fallback={<ModelFallback />}>
+            <AnimatedModel kind={kind} />
+          </Suspense>
+          <OrbitControls
+            enablePan={false}
+            enableZoom={false}
+            enableDamping
+            dampingFactor={0.08}
+            rotateSpeed={0.16}
+          />
+        </Canvas>
+      </div>
+      <div className={cn("absolute p-5 sm:p-7", copyPlacement)}>
+        <span className="text-overline font-sans font-bold uppercase text-primary">{eyebrow}</span>
+        <h3 className="text-h2 font-display font-semibold mt-4 max-w-[18rem] text-foreground sm:max-w-2xl">
+          {title}
+        </h3>
+        <p className="text-body font-sans mt-3 max-w-2xl text-muted-foreground">{description}</p>
+      </div>
+    </div>
+  );
+}
+
+function AnimatedModel({ kind }: { kind: ModelKind }) {
+  const config = modelConfig[kind];
+  const groupRef = useRef<Group>(null);
+  const gltf = useGLTF(config.src) as GLTF & { scene: Group };
+  const scene = useMemo(() => gltf.scene.clone(true), [gltf.scene]);
+
+  useGSAP(
+    () => {
+      const group = groupRef.current;
+      if (!group) return;
+
+      const mm = gsap.matchMedia();
+
+      gsap.set(group.position, {
+        x: config.position[0],
+        y: config.position[1],
+        z: config.position[2],
+      });
+      gsap.set(group.rotation, {
+        x: config.rotation[0],
+        y: config.rotation[1],
+        z: config.rotation[2],
+      });
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.to(group.rotation, {
+          y: kind === "earth" ? config.rotation[1] + 1.2 : config.rotation[1] + 0.55,
+          x: kind === "earth" ? config.rotation[0] + 0.12 : config.rotation[0] - 0.08,
+          ease: "none",
+          scrollTrigger: {
+            trigger: "body",
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 0.8,
+          },
+        });
+
+        gsap.to(group.position, {
+          y: config.position[1] + (kind === "earth" ? 0.15 : 0.28),
+          duration: 4,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
+      });
+
+      mm.add(REDUCED_MOTION_QUERY, () => {
+        gsap.set(group.rotation, {
+          x: config.rotation[0],
+          y: config.rotation[1],
+          z: config.rotation[2],
+        });
+      });
+
+      return () => mm.revert();
+    },
+    { dependencies: [kind] }
+  );
+
+  return (
+    <group ref={groupRef} scale={config.scale}>
+      <primitive object={scene} />
+    </group>
+  );
+}
+
+function ModelFallback() {
+  return (
+    <Html center>
+      <div className="rounded-full border border-border bg-background px-4 py-2 text-small text-muted-foreground">
+        Loading LEAD visual
+      </div>
+    </Html>
+  );
+}
+
+useGLTF.preload(modelConfig.earth.src);
+useGLTF.preload(modelConfig.rocket.src);
