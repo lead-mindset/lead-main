@@ -52,14 +52,14 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/node": "^26",
     "@types/nodemailer": "^7.0.4",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/three": "^0.182.0",
-    "eslint": "^9",
-    "eslint-config-next": "16.0.10",
+    "eslint": "^10",
+    "eslint-config-next": "16.4.0",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^7"
   }
 }
