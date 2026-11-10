@@ -14,6 +14,7 @@ import {
   partnerLogos,
   pathwayStages,
   programs,
+  publicMetrics,
   proofStats,
   publicCtas,
 } from "@/lib/public-site/content";
@@ -34,6 +35,8 @@ export default function HomePage() {
               posterSrc="/media/lead/hero/lead-community-hero.webp"
               primaryHref={publicCtas.about}
               secondaryHref={publicCtas.partner}
+              studentMetric={publicMetrics.students}
+              universityMetric={publicMetrics.universities}
             />
           </SectionReveal>
 

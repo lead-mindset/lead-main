@@ -7,6 +7,10 @@ import { useEffect, useRef, type CSSProperties } from "react";
 import { MainContainer } from "@/components/global/main-container";
 import { isExternalHref } from "@/components/global/navigation/nav-links";
 import { Button } from "@/components/ui/button";
+import {
+  formatPublicMetric,
+  type PublicMetric,
+} from "@/lib/public-site/content";
 
 const heroWashStyle: CSSProperties = {
   background:
@@ -24,11 +28,15 @@ export function VideoHero({
   posterSrc,
   primaryHref,
   secondaryHref,
+  studentMetric,
+  universityMetric,
 }: {
   videoSrc: string;
   posterSrc: string;
   primaryHref: string;
   secondaryHref: string;
+  studentMetric: PublicMetric;
+  universityMetric: PublicMetric;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const heroFrameSeconds = 5.1;
@@ -110,7 +118,9 @@ export function VideoHero({
             across the Americas.
           </h1>
           <p className="text-body-lg mt-4 max-w-2xl text-foreground/90">
-            A student-led non-profit connecting 1,135+ students across 14 universities in STEM learning, leadership, and opportunity.
+            A student-led non-profit connecting {formatPublicMetric(studentMetric)}{" "}
+            students across {formatPublicMetric(universityMetric)} universities in STEM
+            learning, leadership, and opportunity.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg">
