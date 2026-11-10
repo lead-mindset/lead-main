@@ -75,7 +75,7 @@ Specific issues to fix:
    - Inspired by the original screenshot and original leadmain counter section.
    - Dark LEAD navy star background.
    - Large animated metric blocks.
-   - Use current canonical metrics from `proofStats`: `1,135+`, `14`, `100+`, and regional reach unless updated by LEAD.
+   - Use current canonical metrics from `publicMetrics`/`proofStats` in `lib/public-site/content.ts`: students, universities, and events, plus regional reach unless updated by LEAD.
 
 3. **Regional Earth Moment**
    - Rotating Earth with starfield.
@@ -154,11 +154,11 @@ This matches the user mental model better than a reduced nav with only Impact, C
 
 ### Metrics
 
-Use the current data source unless LEAD provides updated values:
+Use the current data source in `lib/public-site/content.ts` (`publicMetrics` and its `proofStats` projection) unless LEAD provides updated values:
 
-- `1,135+` members
-- `14` chapters
-- `100+` events
+- students
+- universities
+- events
 - LATAM + U.S. reach
 
 The original screenshot's `1140`, `13`, and `+100` should inform layout and animation style, not data truth.

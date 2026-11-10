@@ -22,11 +22,30 @@ export const publicCtas = {
   pathway: "/#pathway",
 };
 
+export type PublicMetric = {
+  value: number;
+  suffix?: string;
+  label: string;
+};
+
+export const publicMetrics = {
+  students: { value: 1500, suffix: "+", label: "students since 2024" },
+  universities: { value: 21, label: "universities across 3 countries" },
+  events: { value: 150, suffix: "+", label: "events hosted" },
+} satisfies Record<string, PublicMetric>;
+
+export function formatPublicMetric(metric: PublicMetric) {
+  return `${metric.value.toLocaleString("en-US")}${metric.suffix ?? ""}`;
+}
+
 export const proofStats = [
-  { value: "1,135+", label: "students since 2024" },
-  { value: "14", label: "universities across 3 countries" },
-  { value: "100+", label: "events hosted" },
-];
+  publicMetrics.students,
+  publicMetrics.universities,
+  publicMetrics.events,
+].map((metric) => ({
+  value: formatPublicMetric(metric),
+  label: metric.label,
+}));
 
 export const partnerLogos = [
   { name: "Microsoft", src: "/allies/microsoft.svg" },
