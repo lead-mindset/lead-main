@@ -7,6 +7,7 @@ import { montserrat, sourceSans } from "./styles/fonts";
 import { GeistSans } from "geist/font/sans";
 import "@/lib/gsap-setup";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import EventsPopup from "@/components/global/EventsPopup";
 
 export const metadata: Metadata = {
   title: "LEAD | Building the next generation of leaders across the Americas",
@@ -50,6 +51,7 @@ export default function RootLayout({
         <NavHeader />
         <main>{children}</main>
         <Footer />
+        <EventsPopup />
         {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
       </body>
     </html>
