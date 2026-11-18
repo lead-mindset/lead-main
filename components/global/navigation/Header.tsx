@@ -4,12 +4,13 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Instagram, Linkedin } from "lucide-react";
+import { Instagram, Linkedin, ShoppingBag } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 
-import { PUBLIC_NAV_ITEMS, isExternalHref } from "./nav-links";
+import { PUBLIC_NAV_ITEMS, SHOP_HREF, SIGN_IN_HREF, isExternalHref } from "./nav-links";
+import PlatformsMenu, { PlatformsMobileList } from "./PlatformsMenu";
 
 const SOCIAL_LINKS = [
   {
@@ -68,6 +69,7 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
+          <PlatformsMenu />
         </nav>
 
         <div className="ml-auto flex items-center gap-2">
@@ -84,6 +86,23 @@ export default function Header() {
               </Link>
             </Button>
           ))}
+          {SHOP_HREF && (
+            <Button
+              asChild
+              variant="ghost"
+              size="icon-sm"
+              className="text-muted-foreground hover:text-foreground"
+            >
+              <Link href={SHOP_HREF} aria-label="LEAD Shop">
+                <ShoppingBag className="size-4" />
+              </Link>
+            </Button>
+          )}
+          {SIGN_IN_HREF && (
+            <Button asChild size="sm" className="ml-1 hidden rounded-full px-4 md:inline-flex">
+              <Link href={SIGN_IN_HREF}>Sign in</Link>
+            </Button>
+          )}
           <Button
             size="icon"
             variant="ghost"
@@ -115,6 +134,14 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
+          <PlatformsMobileList onNavigate={() => setOpen(false)} />
+          {SIGN_IN_HREF && (
+            <Button asChild className="mt-3 w-full rounded-full">
+              <Link href={SIGN_IN_HREF} onClick={() => setOpen(false)}>
+                Sign in
+              </Link>
+            </Button>
+          )}
         </nav>
       )}
     </header>
